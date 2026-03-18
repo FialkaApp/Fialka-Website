@@ -356,3 +356,10 @@ body {
 .skeleton { position: relative; overflow: hidden; background: rgba(123, 45, 142, 0.08); border-radius: 8px; }
 .skeleton::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(156, 77, 204, 0.06), transparent); animation: shimmer 1.8s infinite; }
 @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+/* Mobile hamburger animation */
+.menu-open #bar1 { transform: translateY(4px) rotate(45deg); }
+.menu-open #bar2 { opacity: 0; }
+.menu-open #bar3 { transform: translateY(-4px) rotate(-45deg); }
+#mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+#mobile-menu.open { max-height: 500px; }
