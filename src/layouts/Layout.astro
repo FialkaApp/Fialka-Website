@@ -1,0 +1,87 @@
+---
+import '../styles/global.css'
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const siteUrl = 'https://devbot667.github.io/SecureChat-Website';
+---
+
+<!doctype html>
+<html lang="fr" class="lang-fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SecureChat — La messagerie chiffrée de bout en bout qui ne sait rien de vous. Double Ratchet X25519, Tor, zéro métadonnée." />
+    <meta name="theme-color" content="#7B2D8E" />
+    <meta name="author" content="DevBot667" />
+    <meta name="keywords" content="SecureChat, encrypted messaging, E2E encryption, Tor, Double Ratchet, X25519, privacy, anonymous chat, zero metadata" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="End-to-end encrypted messenger with Double Ratchet, Tor integration, and zero metadata." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="SecureChat" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content="End-to-end encrypted messenger with Double Ratchet, Tor integration, and zero metadata." />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/SecureChat-Website/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/SecureChat-Website/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/SecureChat-Website/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/SecureChat-Website/icon-512.png" />
+    <link rel="manifest" href="/SecureChat-Website/manifest.json" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SecureChat",
+      "applicationCategory": "CommunicationApplication",
+      "operatingSystem": "Android",
+      "description": "End-to-end encrypted messenger with Double Ratchet protocol, Tor integration, and zero metadata collection.",
+      "url": siteUrl,
+      "author": {
+        "@type": "Person",
+        "name": "DevBot667",
+        "url": "https://github.com/DevBot667"
+      },
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "End-to-end encryption (AES-256-GCM)",
+        "Double Ratchet protocol (X25519)",
+        "Tor network integration",
+        "Zero metadata collection",
+        "Ephemeral messages",
+        "SQLCipher local storage"
+      ]
+    })} />
+
+    <title>{title}</title>
+  </head>
+  <body class="bg-surface text-text-primary antialiased">
+    <slot />
+  </body>
+</html>

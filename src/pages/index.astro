@@ -1,0 +1,791 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="SecureChat — Private by Design">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <svg class="w-8 h-8 transition-transform group-hover:scale-110" viewBox="0 0 64 64" fill="none">
+          <defs><linearGradient id="nav-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs>
+          <rect width="64" height="64" rx="14" fill="url(#nav-g)"/>
+          <path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/>
+          <rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/>
+          <circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/>
+          <path d="M31 42h2v5h-2z" fill="#7B2D8E"/>
+        </svg>
+        <span class="text-xl font-bold font-['Space_Grotesk']">Secure<span class="text-phantom-light">Chat</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
+        <a href="#features" class="hover:text-phantom-light transition-colors" data-lang="fr">Fonctionnalités</a>
+        <a href="#features" class="hover:text-phantom-light transition-colors" data-lang="en">Features</a>
+        <a href="#security" class="hover:text-phantom-light transition-colors" data-lang="fr">Sécurité</a>
+        <a href="#security" class="hover:text-phantom-light transition-colors" data-lang="en">Security</a>
+        <a href="#crypto" class="hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+        <a href="#crypto" class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
+        <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
+        <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+        <a href="#faq" class="hover:text-phantom-light transition-colors">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer">
+          <span data-lang="fr">EN</span>
+          <span data-lang="en">FR</span>
+        </button>
+        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="relative min-h-screen flex items-center justify-center animated-gradient overflow-hidden pt-20">
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-8">
+          <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
+          <span data-lang="fr">Open Source & Gratuit</span>
+          <span data-lang="en">Open Source & Free</span>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-black font-['Space_Grotesk'] leading-tight mb-6">
+          <span class="glitch" data-text="SecureChat">Secure<span class="gradient-text">Chat</span></span>
+          <br/>
+          <span data-lang="fr"><span id="typing-text-fr" class="text-3xl md:text-4xl font-medium text-text-secondary typing-cursor"></span></span>
+          <span data-lang="en"><span id="typing-text-en" class="text-3xl md:text-4xl font-medium text-text-secondary typing-cursor"></span></span>
+        </h1>
+
+        <p class="text-lg text-text-secondary max-w-lg mx-auto lg:mx-0 mb-10" data-lang="fr">
+          La messagerie chiffrée de bout en bout qui ne sait <strong class="text-white">rien</strong> de vous.
+          Double Ratchet X25519, Tor intégré, zéro métadonnée.
+        </p>
+        <p class="text-lg text-text-secondary max-w-lg mx-auto lg:mx-0 mb-10" data-lang="en">
+          The end-to-end encrypted messenger that knows <strong class="text-white">nothing</strong> about you.
+          Double Ratchet X25519, built-in Tor, zero metadata.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong text-lg">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span data-lang="fr">Voir sur GitHub</span>
+            <span data-lang="en">View on GitHub</span>
+          </a>
+          <a href="#encrypt-demo" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-phantom/40 hover:border-phantom-light text-text-secondary hover:text-white rounded-2xl transition-all hover:scale-105 text-lg">
+            <span data-lang="fr">Tester le chiffrement</span>
+            <span data-lang="en">Try Encryption</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+        </div>
+
+        <!-- GitHub stats counters -->
+        <div class="flex gap-8 mt-12 justify-center lg:justify-start">
+          <div class="text-center">
+            <div class="text-3xl font-bold font-['Space_Grotesk'] gradient-text" data-count="256">0</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="fr">bits de chiffrement</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="en">bits encryption</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold font-['Space_Grotesk'] gradient-text" id="gh-commits" data-count="0">—</div>
+            <div class="text-xs text-text-muted mt-1">commits</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold font-['Space_Grotesk'] gradient-text" data-count="0">0</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="fr">métadonnées stockées</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="en">metadata stored</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="hidden lg:flex justify-center">
+        <div class="animate-float">
+          <div class="relative w-[300px] h-[620px] rounded-[3rem] border-4 border-phantom/40 bg-surface-light p-3 glow-phantom-strong">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-surface rounded-b-2xl"></div>
+            <div class="w-full h-full rounded-[2.3rem] bg-surface overflow-hidden flex flex-col">
+              <div class="bg-surface-elevated px-4 py-3 flex items-center gap-3 border-b border-white/5">
+                <div class="w-9 h-9 rounded-full bg-phantom/30 flex items-center justify-center text-sm">A</div>
+                <div>
+                  <div class="text-sm font-semibold">Alice</div>
+                  <div class="text-xs text-accent-green flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent-green"></span>
+                    <span data-lang="fr">En ligne · Chiffré</span>
+                    <span data-lang="en">Online · Encrypted</span>
+                  </div>
+                </div>
+                <div class="ml-auto text-phantom-light text-xs">🔒</div>
+              </div>
+              <div class="flex-1 p-3 space-y-3 overflow-hidden">
+                <div class="flex justify-start"><div class="bg-surface-elevated rounded-2xl rounded-tl-sm px-3 py-2 max-w-[200px] text-xs"><span data-lang="fr">Salut ! Tu as activé Tor ?</span><span data-lang="en">Hey! Did you enable Tor?</span><div class="text-[10px] text-text-muted mt-1">10:42</div></div></div>
+                <div class="flex justify-end"><div class="bg-phantom/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[200px] text-xs"><span data-lang="fr">Oui ! Tout passe par le réseau onion 🧅</span><span data-lang="en">Yes! Everything goes through onion routing 🧅</span><div class="text-[10px] text-text-muted mt-1 flex items-center gap-1 justify-end">10:43 <span class="text-phantom-light">✓✓</span></div></div></div>
+                <div class="flex justify-start"><div class="bg-surface-elevated rounded-2xl rounded-tl-sm px-3 py-2 max-w-[200px] text-xs">Double Ratchet + Tor = invisible 🔐<div class="text-[10px] text-text-muted mt-1">10:43</div></div></div>
+                <div class="flex justify-end"><div class="bg-phantom/30 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[200px] text-xs"><span data-lang="fr">Même Firebase ne sait pas qui parle 👻</span><span data-lang="en">Even Firebase can't tell who's talking 👻</span><div class="text-[10px] text-text-muted mt-1 flex items-center gap-1 justify-end">10:44 <span class="text-phantom-light">✓✓</span></div></div></div>
+                <div class="flex justify-start"><div class="bg-surface-elevated rounded-2xl rounded-tl-sm px-3 py-2 max-w-[200px] text-xs"><span data-lang="fr">Et les messages s'autodétruisent ⏱️💨</span><span data-lang="en">And messages self-destruct ⏱️💨</span><div class="text-[10px] text-text-muted mt-1">10:45</div></div></div>
+              </div>
+              <div class="bg-surface-elevated px-3 py-2 flex items-center gap-2 border-t border-white/5">
+                <div class="text-phantom-light text-lg">+</div>
+                <div class="flex-1 bg-surface rounded-full px-3 py-1.5 text-xs text-text-muted"><span data-lang="fr">Message chiffré...</span><span data-lang="en">Encrypted message...</span></div>
+                <div class="w-8 h-8 rounded-full bg-phantom flex items-center justify-center"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+      <div class="w-6 h-10 rounded-full border-2 border-phantom/40 flex items-start justify-center p-1.5">
+        <div class="w-1.5 h-3 rounded-full bg-phantom-light animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== LIVE ENCRYPTION DEMO ===== -->
+  <section id="encrypt-demo" class="py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4">
+          <span data-lang="fr"><span class="glitch" data-text="Chiffrement">Chiffrement</span> en <span class="gradient-text">direct</span></span>
+          <span data-lang="en"><span class="glitch" data-text="Encryption">Encryption</span> <span class="gradient-text">live</span></span>
+        </h2>
+        <p class="text-text-secondary" data-lang="fr">Tapez un message et voyez-le se chiffrer en AES-256-GCM.</p>
+        <p class="text-text-secondary" data-lang="en">Type a message and watch it encrypt with AES-256-GCM.</p>
+      </div>
+      <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12 space-y-6">
+        <div>
+          <label class="text-sm text-text-muted mb-2 block font-['JetBrains_Mono']" data-lang="fr">→ Votre message (plaintext)</label>
+          <label class="text-sm text-text-muted mb-2 block font-['JetBrains_Mono']" data-lang="en">→ Your message (plaintext)</label>
+          <input id="encrypt-input" type="text" class="encrypt-input w-full px-5 py-4 rounded-xl text-lg" placeholder="Hello SecureChat..." maxlength="200" autocomplete="off" />
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']">🔑 AES-256 Key (hex)</div>
+            <div id="encrypt-key" class="bg-surface/80 rounded-lg p-3 font-['JetBrains_Mono'] text-xs text-phantom-light/70 break-all min-h-[3rem]">—</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']">🎲 IV / Nonce (hex)</div>
+            <div id="encrypt-iv" class="bg-surface/80 rounded-lg p-3 font-['JetBrains_Mono'] text-xs text-accent-green/70 break-all min-h-[3rem]">—</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs text-text-muted font-['JetBrains_Mono'] mb-2">🔒 Ciphertext (base64)</div>
+          <div id="encrypt-output" class="encrypt-output bg-surface/80 rounded-lg p-4 font-['JetBrains_Mono'] text-sm text-phantom-light min-h-[4rem] transition-all">—</div>
+        </div>
+        <div class="flex items-center gap-3 text-xs text-text-muted">
+          <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
+          <span data-lang="fr">Chiffrement réel via l'API Web Crypto — rien n'est envoyé.</span>
+          <span data-lang="en">Real encryption via Web Crypto API — nothing is sent anywhere.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FEATURES (3D Tilt Cards) ===== -->
+  <section id="features" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Tout ce dont vous avez <span class="gradient-text">besoin</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Everything you <span class="gradient-text">need</span></h2>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">Conçu pour la vie privée absolue. Chaque fonctionnalité protège vos communications.</p>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">Designed for absolute privacy. Every feature protects your communications.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-reveal" id="features-grid">
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🔐</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Chiffrement E2E</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">E2E Encryption</h3><p class="text-sm text-text-secondary" data-lang="fr">Double Ratchet X25519 + AES-256-GCM. Perfect Forward Secrecy sur chaque message.</p><p class="text-sm text-text-secondary" data-lang="en">Double Ratchet X25519 + AES-256-GCM. Perfect Forward Secrecy on every message.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🧅</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Réseau Tor intégré</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">Built-in Tor Network</h3><p class="text-sm text-text-secondary" data-lang="fr">VPN TUN → SOCKS5 → Tor. Tout le trafic est routé via le réseau onion.</p><p class="text-sm text-text-secondary" data-lang="en">VPN TUN → SOCKS5 → Tor. All traffic routed through the onion network.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">👻</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Zéro métadonnée</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">Zero Metadata</h3><p class="text-sm text-text-secondary">senderUid HMAC, delete-after-delivery, message padding, dummy traffic.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">⏱️</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Messages éphémères</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">Ephemeral Messages</h3><p class="text-sm text-text-secondary" data-lang="fr">Timer côté envoi + côté lecture. Les messages disparaissent automatiquement.</p><p class="text-sm text-text-secondary" data-lang="en">Send-side + read-side timer. Messages vanish automatically.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📝</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">BIP-39 Backup</h3><p class="text-sm text-text-secondary" data-lang="fr">24 mots mnémoniques pour sauvegarder votre clé. 2²⁵⁶ combinaisons possibles.</p><p class="text-sm text-text-secondary" data-lang="en">24 mnemonic words to backup your key. 2²⁵⁶ possible combinations.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">✍️</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">Ed25519 Signing</h3><p class="text-sm text-text-secondary" data-lang="fr">Chaque message est signé. Badge ✅ si valide, ⚠️ si falsifié.</p><p class="text-sm text-text-secondary" data-lang="en">Every message is signed. Badge ✅ if valid, ⚠️ if tampered.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🎨</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">5 Thèmes M3</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">5 M3 Themes</h3><p class="text-sm text-text-secondary">Midnight, Hacker, Phantom, Aurora, Daylight — Material Design 3.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🔑</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">PIN + Biometric</h3><p class="text-sm text-text-secondary" data-lang="fr">PIN 6 chiffres PBKDF2 (600K itérations) + empreinte digitale.</p><p class="text-sm text-text-secondary" data-lang="en">6-digit PIN with PBKDF2 (600K iterations) + fingerprint unlock.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📎</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Fichiers chiffrés E2E</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">E2E Encrypted Files</h3><p class="text-sm text-text-secondary" data-lang="fr">Photos, fichiers, caméra — chiffré AES-256-GCM avant l'envoi.</p><p class="text-sm text-text-secondary" data-lang="en">Photos, files, camera — AES-256-GCM encrypted before sending.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ARCHITECTURE ===== -->
+  <section id="architecture" class="py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Architecture <span class="gradient-text">réseau</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Network <span class="gradient-text">Architecture</span></h2>
+      </div>
+      <div class="section-reveal">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+          <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
+            <div class="text-3xl mb-2">📱</div>
+            <div class="font-semibold font-['Space_Grotesk']">SecureChat</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffre les messages</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="en">Encrypts messages</div>
+          </div>
+          <div class="arch-arrow h-1 w-12 md:w-16 rounded-full hidden md:block"></div>
+          <div class="arch-arrow w-1 h-8 rounded-full md:hidden"></div>
+          <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
+            <div class="text-3xl mb-2">🧅</div>
+            <div class="font-semibold font-['Space_Grotesk']">Tor Network</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="fr">Masque l'IP</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="en">Hides IP</div>
+          </div>
+          <div class="arch-arrow h-1 w-12 md:w-16 rounded-full hidden md:block"></div>
+          <div class="arch-arrow w-1 h-8 rounded-full md:hidden"></div>
+          <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
+            <div class="text-3xl mb-2">🗄️</div>
+            <div class="font-semibold font-['Space_Grotesk']">Firebase</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="fr">Stocke le blob chiffré</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="en">Stores encrypted blob</div>
+          </div>
+          <div class="arch-arrow h-1 w-12 md:w-16 rounded-full hidden md:block"></div>
+          <div class="arch-arrow w-1 h-8 rounded-full md:hidden"></div>
+          <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
+            <div class="text-3xl mb-2">📱</div>
+            <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Destinataire</div>
+            <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Recipient</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="fr">Déchiffre en local</div>
+            <div class="text-xs text-text-muted mt-1" data-lang="en">Decrypts locally</div>
+          </div>
+        </div>
+        <div class="text-center mt-8 text-sm text-text-muted">
+          <span data-lang="fr">Firebase ne voit que des blobs opaques • Delete-after-delivery • senderUid = HMAC anonyme</span>
+          <span data-lang="en">Firebase only sees opaque blobs • Delete-after-delivery • senderUid = anonymous HMAC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== SECURITY ===== -->
+  <section id="security" class="py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/30 to-surface pointer-events-none"></div>
+    <!-- Parallax floating elements -->
+    <div class="parallax-slow absolute top-20 left-10 text-6xl opacity-5">🔐</div>
+    <div class="parallax-fast absolute top-40 right-20 text-5xl opacity-5">🧅</div>
+    <div class="parallax-slow absolute bottom-20 right-10 text-7xl opacity-5">👻</div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sécurité de <span class="gradient-text glitch" data-text="niveau militaire">niveau militaire</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en"><span class="gradient-text glitch" data-text="Military-grade">Military-grade</span> security</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="section-reveal space-y-6">
+          <div class="glass rounded-2xl p-6 space-y-4">
+            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2"><span class="text-phantom-light">⚡</span><span data-lang="fr">Flux de chiffrement</span><span data-lang="en">Encryption Flow</span></h3>
+            <div class="space-y-3 font-['JetBrains_Mono'] text-sm">
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">01</span><span data-lang="fr">Message → Padding (256B/1K/4K/16K)</span><span data-lang="en">Message → Padding (256B/1K/4K/16K)</span></div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">02</span><span>Padded → AES-256-GCM(ratchet_key, nonce)</span></div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">03</span><span>Ciphertext → Ed25519.sign(ct ‖ convId ‖ ts)</span></div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">04</span><span data-lang="fr">HMAC(convId, UID) → senderUid anonymisé</span><span data-lang="en">HMAC(convId, UID) → anonymized senderUid</span></div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">05</span><span>Firebase → delete-after-delivery</span></div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6">
+            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🎲</span><span data-lang="fr">Entropie : 256 bits</span><span data-lang="en">Entropy: 256 bits</span></h3>
+            <div class="font-['JetBrains_Mono'] text-xs text-phantom-light/80 bg-surface/50 p-4 rounded-lg overflow-x-auto mb-4"><div id="entropy-bits" class="flex flex-wrap gap-0.5 leading-5"></div></div>
+            <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">2²⁵⁶</strong> = 1.16 × 10⁷⁷ combinaisons. Plus que les atomes de l'univers (10⁸⁰). Un superordinateur à 10¹² clés/s → <strong class="text-phantom-light">3.67 × 10⁵⁷ années</strong>.</p>
+            <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">2²⁵⁶</strong> = 1.16 × 10⁷⁷ combinations. More than atoms in the universe (10⁸⁰). A supercomputer at 10¹² keys/s → <strong class="text-phantom-light">3.67 × 10⁵⁷ years</strong>.</p>
+          </div>
+        </div>
+
+        <div class="section-reveal space-y-6">
+          <div class="glass rounded-2xl p-6">
+            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🔄</span> Double Ratchet X25519</h3>
+            <div class="space-y-3 text-sm text-text-secondary">
+              <div class="flex items-start gap-3"><span class="text-phantom-light mt-0.5">▸</span><span data-lang="fr"><strong class="text-white">DH Ratchet</strong> — Nouvel échange X25519 à chaque tour</span><span data-lang="en"><strong class="text-white">DH Ratchet</strong> — New X25519 exchange every reply turn</span></div>
+              <div class="flex items-start gap-3"><span class="text-phantom-light mt-0.5">▸</span><span data-lang="fr"><strong class="text-white">KDF Chain</strong> — Dérivation HKDF pour les message keys</span><span data-lang="en"><strong class="text-white">KDF Chain</strong> — HKDF derivation for message keys</span></div>
+              <div class="flex items-start gap-3"><span class="text-phantom-light mt-0.5">▸</span><span><strong class="text-white">PFS</strong> — Perfect Forward Secrecy</span></div>
+              <div class="flex items-start gap-3"><span class="text-phantom-light mt-0.5">▸</span><span data-lang="fr"><strong class="text-white">Self-healing</strong> — Auto-réparation après compromission</span><span data-lang="en"><strong class="text-white">Self-healing</strong> — Auto-recovers from compromise</span></div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6">
+            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">📐</span> X25519 (Curve25519)</h3>
+            <p class="text-sm text-text-secondary mb-3" data-lang="fr"><strong class="text-white">Courbe Montgomery</strong> par D.J. Bernstein. 128-bit sécurité.</p>
+            <p class="text-sm text-text-secondary mb-3" data-lang="en"><strong class="text-white">Montgomery curve</strong> by D.J. Bernstein. 128-bit security.</p>
+            <div class="p-3 rounded-lg bg-surface/50 font-['JetBrains_Mono'] text-xs text-phantom-light/80">y² = x³ + 486662x² + x &nbsp;(mod 2²⁵⁵ − 19)</div>
+          </div>
+          <div class="glass rounded-2xl p-6">
+            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🫧</span><span data-lang="fr">Empreinte Emoji (Anti-MITM)</span><span data-lang="en">Emoji Fingerprint (Anti-MITM)</span></h3>
+            <p class="text-sm text-text-secondary mb-3" data-lang="fr"><strong class="text-white">16 emojis</strong> d'une palette de 64 = <strong class="text-phantom-light">96 bits d'entropie</strong>.</p>
+            <p class="text-sm text-text-secondary mb-3" data-lang="en"><strong class="text-white">16 emojis</strong> from a 64-emoji palette = <strong class="text-phantom-light">96 bits of entropy</strong>.</p>
+            <div class="flex gap-1 text-2xl p-3 rounded-lg bg-surface/50 justify-center flex-wrap" id="emoji-fingerprint"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== CRYPTO DEEP DIVE ===== -->
+  <section id="crypto" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Plongée dans la <span class="gradient-text">cryptographie</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en"><span class="gradient-text">Cryptography</span> deep dive</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-reveal">
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">🔒</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">AES-256-GCM</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Mode authentifié : chiffré ET vérifié par un tag 128-bit.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Authenticated mode: encrypted AND verified by 128-bit tag.</p><div class="font-['JetBrains_Mono'] text-xs p-2 rounded bg-surface/50 text-phantom-light/70">C = AES-GCM(K, IV, P, AAD) → (ct, tag₁₂₈)</div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">📏</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">Message Padding</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Messages paddés à 256B/1KB/4KB/16KB. Taille réelle cachée.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Messages padded to 256B/1KB/4KB/16KB. Real size hidden.</p><div class="flex gap-2 mt-2"><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-1/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-2/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-3/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-full rounded bg-phantom-light"></div></div></div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">👻</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2" data-lang="fr">Trafic Factice</h3><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2" data-lang="en">Dummy Traffic</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Messages factices toutes les 45-120s via le vrai Double Ratchet.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Fake messages every 45-120s via real Double Ratchet.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">✍️</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">Ed25519</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Signature sur <code class="text-phantom-light">ct ‖ convId ‖ ts</code>. Anti-falsification.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Signature over <code class="text-phantom-light">ct ‖ convId ‖ ts</code>. Anti-tampering.</p><div class="flex items-center gap-2 text-xs"><span class="px-2 py-1 rounded bg-accent-green/20 text-accent-green">✅ Valid</span><span class="px-2 py-1 rounded bg-accent-red/20 text-accent-red">⚠️ Tampered</span></div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">📝</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">BIP-39</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">24 mots = 256 bits + checksum SHA-256. Espace = 2²⁵⁶.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">24 words = 256 bits + SHA-256 checksum. Space = 2²⁵⁶.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">🗄️</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">SQLCipher</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Base Room chiffrée AES-256. Clé dans EncryptedSharedPreferences.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Room DB encrypted AES-256. Key in EncryptedSharedPreferences.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== COMPARISON ===== -->
+  <section id="compare" class="py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Comment on se <span class="gradient-text">compare</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">How we <span class="gradient-text">compare</span></h2>
+      </div>
+      <div class="section-reveal overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead><tr class="border-b border-white/10">
+            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="fr">Fonctionnalité</th>
+            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="en">Feature</th>
+            <th class="py-4 px-4 text-center"><span class="gradient-text font-bold">SecureChat</span></th>
+            <th class="py-4 px-4 text-center text-text-secondary">Signal</th>
+            <th class="py-4 px-4 text-center text-text-secondary">Telegram</th>
+            <th class="py-4 px-4 text-center text-text-secondary">WhatsApp</th>
+          </tr></thead>
+          <tbody>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">E2E par défaut</td><td class="py-3 px-4" data-lang="en">E2E by default</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4">Double Ratchet PFS</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Tor intégré</td><td class="py-3 px-4" data-lang="en">Built-in Tor</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Zéro métadonnée</td><td class="py-3 px-4" data-lang="en">Zero metadata</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Trafic factice</td><td class="py-3 px-4" data-lang="en">Dummy traffic</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4">Delete-after-delivery</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4">senderUid HMAC</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4">Open Source</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Pas de numéro de tél.</td><td class="py-3 px-4" data-lang="en">No phone number</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== INSPIRATIONS ===== -->
+  <section id="inspirations" class="py-32 relative">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Inspiré par les <span class="gradient-text">meilleurs</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Inspired by the <span class="gradient-text">best</span></h2>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">SecureChat s'inscrit dans un mouvement plus large. Ces projets nous inspirent par leur vision de la vie privée.</p>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">SecureChat is part of a larger movement. These projects inspire us with their vision for privacy.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6 section-reveal">
+        <div class="glass rounded-2xl p-6 feature-card">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-accent-green/10 flex items-center justify-center text-2xl">💬</div>
+            <div>
+              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Signal</h3>
+              <div class="text-xs text-text-muted" data-lang="fr">Le standard du Double Ratchet</div>
+              <div class="text-xs text-text-muted" data-lang="en">The Double Ratchet standard</div>
+            </div>
+          </div>
+          <p class="text-sm text-text-secondary" data-lang="fr">Signal a défini le standard du chiffrement E2E moderne. Le protocole Double Ratchet que nous utilisons a été créé par leur équipe. Respect total.</p>
+          <p class="text-sm text-text-secondary" data-lang="en">Signal defined the standard for modern E2E encryption. The Double Ratchet protocol we use was created by their team. Total respect.</p>
+        </div>
+        <div class="glass rounded-2xl p-6 feature-card">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl">🌐</div>
+            <div>
+              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Session</h3>
+              <div class="text-xs text-text-muted" data-lang="fr">Messagerie décentralisée</div>
+              <div class="text-xs text-text-muted" data-lang="en">Decentralized messenger</div>
+            </div>
+          </div>
+          <p class="text-sm text-text-secondary" data-lang="fr">Session a prouvé qu'une messagerie sans numéro de téléphone et sans serveur central est possible. Leur approche onion-routing via Lokinet nous a inspiré pour l'intégration de Tor.</p>
+          <p class="text-sm text-text-secondary" data-lang="en">Session proved that a messenger without phone numbers or central servers is possible. Their onion-routing via Lokinet inspired our Tor integration.</p>
+        </div>
+      </div>
+      <div class="text-center mt-10 section-reveal">
+        <div class="glass rounded-xl inline-flex items-center gap-3 px-6 py-3 text-sm text-text-secondary">
+          <span class="text-phantom-light">💡</span>
+          <span data-lang="fr">SecureChat n'est affilié à aucun de ces projets. Nous partageons simplement une vision commune : la vie privée comme droit fondamental.</span>
+          <span data-lang="en">SecureChat is not affiliated with any of these projects. We simply share a common vision: privacy as a fundamental right.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== ROADMAP ===== -->
+  <section id="roadmap" class="py-32 relative">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-20 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4"><span class="gradient-text">Roadmap</span></h2></div>
+      <div class="relative section-reveal">
+        <div class="absolute left-8 top-0 bottom-0 w-0.5 timeline-line"></div>
+        <div class="relative pl-20 pb-12 timeline-item">
+          <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V1 — Core</h3></div><p class="text-sm text-text-secondary" data-lang="fr">E2E, contacts QR, PIN+bio, thèmes, messages éphémères, SQLCipher</p><p class="text-sm text-text-secondary" data-lang="en">E2E, QR contacts, PIN+bio, themes, ephemeral messages, SQLCipher</p></div>
+        </div>
+        <div class="relative pl-20 pb-12 timeline-item">
+          <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V2 — Crypto Upgrade</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Full Double Ratchet X25519, BIP-39, suppression compte, UI modernization</p><p class="text-sm text-text-secondary" data-lang="en">Full Double Ratchet X25519, BIP-39, account deletion, UI modernization</p></div>
+        </div>
+        <div class="relative pl-20 pb-12 timeline-item">
+          <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.3 — Material 3, Tor & Hardening</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Material 3, Tor intégré, Ed25519, fichiers E2E, dummy traffic, ProGuard, HMAC senderUid</p><p class="text-sm text-text-secondary" data-lang="en">Material 3, built-in Tor, Ed25519, E2E files, dummy traffic, ProGuard, HMAC senderUid</p></div>
+        </div>
+        <div class="relative pl-20 timeline-item">
+          <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom-light border-4 border-surface animate-pulse-glow flex items-center justify-center"><span class="text-[8px]">→</span></div>
+          <div class="glass rounded-xl p-5 border border-phantom/30"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">En cours</span><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">In Progress</span><h3 class="font-semibold font-['Space_Grotesk']">V3.4 — Camouflage & Voice</h3></div><p class="text-sm text-text-secondary" data-lang="fr">App disguise, faux écran, dual PIN, panic button, FLAG_SECURE, messages vocaux E2E, sealed sender, reply/quote</p><p class="text-sm text-text-secondary" data-lang="en">App disguise, cover screen, dual PIN, panic button, FLAG_SECURE, E2E voice messages, sealed sender, reply/quote</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== DOWNLOAD ===== -->
+  <section id="download" class="py-32 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-phantom/5 to-surface pointer-events-none"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center section-reveal">
+      <div class="glass-strong rounded-3xl p-12">
+        <div class="w-20 h-20 rounded-2xl bg-phantom/20 flex items-center justify-center mx-auto mb-8">
+          <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="dl-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#dl-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Télécharger Secure<span class="gradient-text">Chat</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Download Secure<span class="gradient-text">Chat</span></h2>
+        <p class="text-text-secondary mb-8" data-lang="fr">Version 3.3.0 · Android 13+ · APK signé · Open Source GPLv3</p>
+        <p class="text-text-secondary mb-8" data-lang="en">Version 3.3.0 · Android 13+ · Signed APK · Open Source GPLv3</p>
+        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 bg-phantom hover:bg-phantom-light text-white text-lg font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong mb-8">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span data-lang="fr">Voir sur GitHub</span><span data-lang="en">View on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="py-32 relative">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4">FAQ</h2></div>
+      <div class="space-y-4 section-reveal">
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">SecureChat est-il vraiment gratuit ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Oui, 100% gratuit et open source sous licence GPLv3. Pas de publicité, pas de tracking, pas d'abonnement.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Ai-je besoin d'un numéro de téléphone ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Non. SecureChat utilise l'authentification anonyme Firebase. Aucun numéro, email ou donnée personnelle requis.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Qu'est-ce que le Double Ratchet ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Le protocole Double Ratchet génère une nouvelle clé pour chaque message via X25519 DH. Si une clé est compromise, les messages passés et futurs restent sûrs (PFS).</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Pourquoi Tor est-il intégré ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Tor masque votre IP réelle. Combiné au HMAC senderUid et dummy traffic, votre identité réseau est invisible.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Puis-je restaurer mon compte ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Oui, grâce à votre phrase BIP-39 de 24 mots.</div></div>
+
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Is SecureChat really free?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Yes, 100% free and open source under GPLv3. No ads, no tracking, no subscriptions.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Do I need a phone number?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">No. SecureChat uses Firebase anonymous authentication. No phone number, email, or personal data required.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">What is Double Ratchet?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">The Double Ratchet generates a new key per message via X25519 DH. If one key leaks, past and future messages stay safe (PFS).</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Why is Tor built-in?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Tor hides your real IP. Combined with HMAC senderUid and dummy traffic, your network identity is invisible.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Can I restore my account?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Yes, using your 24-word BIP-39 mnemonic phrase.</div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="ft-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#ft-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
+          <span class="text-sm text-text-secondary">SecureChat — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
+        </div>
+        <div class="flex items-center gap-6 text-sm text-text-muted">
+          <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
+          <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+          <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hover:text-phantom-light transition-colors">GitHub</a>
+          <span>GPLv3</span>
+        </div>
+        <div class="text-xs text-text-muted">© 2026 SecureChat. <span data-lang="fr">Tous droits réservés.</span><span data-lang="en">All rights reserved.</span></div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ---- Language Switcher ----
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'fr';
+    langToggle?.addEventListener('click', () => {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      document.documentElement.classList.remove('lang-fr', 'lang-en');
+      document.documentElement.classList.add(`lang-${currentLang}`);
+      document.documentElement.lang = currentLang;
+    });
+
+    // ---- Scroll Progress Bar ----
+    const scrollBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      if (!scrollBar) return;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.width = h > 0 ? `${(window.scrollY / h * 100)}%` : '0%';
+    });
+
+    // ---- Typing Effect ----
+    function typeWriter(elId: string, phrases: string[]) {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      let pi = 0, ci = 0, del = false;
+      function tick() {
+        const p = phrases[pi];
+        if (del) { el.textContent = p.substring(0, ci - 1); ci--; }
+        else { el.textContent = p.substring(0, ci + 1); ci++; }
+        let d = del ? 30 : 60;
+        if (!del && ci === p.length) { d = 2000; del = true; }
+        else if (del && ci === 0) { del = false; pi = (pi + 1) % phrases.length; d = 500; }
+        setTimeout(tick, d);
+      }
+      tick();
+    }
+    typeWriter('typing-text-fr', ["La messagerie qui ne sait rien de vous.", "Chiffrement de bout en bout.", "Zéro métadonnée. Zéro compromis.", "Private by design."]);
+    typeWriter('typing-text-en', ["The messenger that knows nothing about you.", "End-to-end encrypted.", "Zero metadata. Zero compromise.", "Private by design."]);
+
+    // ---- Count Up ----
+    function animateCountUp() {
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.getAttribute('data-count') || '0');
+        if (target === 0) { (el as HTMLElement).textContent = '0'; return; }
+        let cur = 0; const inc = target / 40;
+        const t = setInterval(() => { cur += inc; if (cur >= target) { cur = target; clearInterval(t); } (el as HTMLElement).textContent = Math.floor(cur).toString(); }, 30);
+      });
+    }
+
+    // ---- Scroll Reveal ----
+    const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.section-reveal').forEach(el => obs.observe(el));
+    const statsObs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) { animateCountUp(); statsObs.disconnect(); } }); }, { threshold: 0.5 });
+    const statsEl = document.querySelector('[data-count]')?.closest('div');
+    if (statsEl) statsObs.observe(statsEl);
+
+    // ---- Entropy Bits ----
+    const entropyC = document.getElementById('entropy-bits');
+    if (entropyC) { for (let i = 0; i < 256; i++) { const s = document.createElement('span'); const v = Math.random() > 0.5 ? '1' : '0'; s.textContent = v; s.className = v === '1' ? 'text-phantom-light' : 'text-text-muted/40'; entropyC.appendChild(s); } }
+
+    // ---- Emoji Fingerprint ----
+    const emojiPalette = ['😀','😎','🥳','😈','👻','💀','🤖','👽','🐶','🐱','🦊','🐻','🐼','🐸','🦁','🐲','🌸','🌺','🌻','🌹','🍀','🌴','🌊','⭐','🔥','❄️','⚡','🌙','☀️','🌈','💎','🎯','🎵','🎸','🎮','🎲','🏆','🎪','🎭','🎨','🍕','🍔','🍟','🌮','🍣','🍪','🍰','🧁','🚀','✈️','🛸','🏎️','⛵','🎈','🎁','🔮','💜','💙','💚','💛','🧡','❤️','🤍','🖤'];
+    const fpEl = document.getElementById('emoji-fingerprint');
+    if (fpEl) { for (let i = 0; i < 16; i++) { const s = document.createElement('span'); s.textContent = emojiPalette[Math.floor(Math.random() * 64)]; s.className = 'transition-transform hover:scale-125 cursor-default'; fpEl.appendChild(s); } }
+
+    // ---- Live Encryption Demo (Web Crypto) ----
+    let encKeyHex = '', encIvHex = '';
+    async function initEncryption() {
+      const key = await crypto.subtle.generateKey({ name: 'AES-GCM', length: 256 }, true, ['encrypt']);
+      const raw = await crypto.subtle.exportKey('raw', key);
+      encKeyHex = Array.from(new Uint8Array(raw)).map(b => b.toString(16).padStart(2, '0')).join('');
+      const keyEl = document.getElementById('encrypt-key');
+      if (keyEl) keyEl.textContent = encKeyHex;
+
+      const input = document.getElementById('encrypt-input') as HTMLInputElement;
+      input?.addEventListener('input', async () => {
+        const text = input.value;
+        if (!text) { setEncOutput('—', '—'); return; }
+        const iv = crypto.getRandomValues(new Uint8Array(12));
+        encIvHex = Array.from(iv).map(b => b.toString(16).padStart(2, '0')).join('');
+        const ivEl = document.getElementById('encrypt-iv');
+        if (ivEl) ivEl.textContent = encIvHex;
+        const enc = new TextEncoder();
+        const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(text));
+        const b64 = btoa(String.fromCharCode(...new Uint8Array(ct)));
+        const outEl = document.getElementById('encrypt-output');
+        if (outEl) { outEl.textContent = b64; outEl.classList.add('text-phantom-light'); }
+      });
+    }
+    function setEncOutput(iv: string, out: string) {
+      const ivEl = document.getElementById('encrypt-iv');
+      const outEl = document.getElementById('encrypt-output');
+      if (ivEl) ivEl.textContent = iv;
+      if (outEl) { outEl.textContent = out; outEl.classList.remove('text-phantom-light'); }
+    }
+    initEncryption();
+
+    // ---- 3D Tilt Cards ----
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      const el = card as HTMLElement;
+      el.addEventListener('mousemove', (e: MouseEvent) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = `perspective(800px) rotateY(${x * 15}deg) rotateX(${-y * 15}deg)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg)'; });
+    });
+
+    // ---- Parallax ----
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      document.querySelectorAll('.parallax-slow').forEach(el => { (el as HTMLElement).style.transform = `translateY(${sy * 0.05}px)`; });
+      document.querySelectorAll('.parallax-fast').forEach(el => { (el as HTMLElement).style.transform = `translateY(${sy * 0.12}px)`; });
+    });
+
+    // ---- GitHub Stats (commits count) ----
+    async function fetchGHStats() {
+      try {
+        const resp = await fetch('https://api.github.com/repos/DevBot667/SecureChat');
+        if (!resp.ok) return;
+        const data = await resp.json();
+        const el = document.getElementById('gh-commits');
+        if (el && data.size) {
+          // GitHub API doesn't directly give commit count easily, use contributors stats
+          const cResp = await fetch('https://api.github.com/repos/DevBot667/SecureChat/contributors');
+          if (cResp.ok) {
+            const contributors = await cResp.json();
+            const total = contributors.reduce((s: number, c: any) => s + (c.contributions || 0), 0);
+            if (total > 0) { el.setAttribute('data-count', total.toString()); el.textContent = total.toString(); }
+          }
+        }
+      } catch { /* silent */ }
+    }
+    fetchGHStats();
+
+    // ---- Easter Egg (Konami Code) ----
+    const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let konamiIdx = 0;
+    document.addEventListener('keydown', (e) => {
+      if (e.key === konamiCode[konamiIdx]) {
+        konamiIdx++;
+        if (konamiIdx === konamiCode.length) {
+          konamiIdx = 0;
+          document.body.classList.add('easter-unlocked');
+          const msg = document.createElement('div');
+          msg.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] glass-strong rounded-3xl p-12 text-center';
+          msg.innerHTML = `<div class="text-6xl mb-4">🔓</div><div class="text-2xl font-bold font-['Space_Grotesk'] gradient-text mb-2">Easter Egg Unlocked!</div><div class="text-text-secondary">You found the secret. You're a true cypherpunk. 🫡</div>`;
+          document.body.appendChild(msg);
+          setTimeout(() => { msg.remove(); document.body.classList.remove('easter-unlocked'); }, 4000);
+        }
+      } else { konamiIdx = 0; }
+    });
+
+    // ---- Three.js Hero (Particles + Connected Lines + Wireframe Lock) ----
+    async function initHeroCanvas() {
+      const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+      if (!canvas) return;
+      const THREE = await import('three');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Particles
+      const pc = 600;
+      const pos = new Float32Array(pc * 3);
+      const cols = new Float32Array(pc * 3);
+      const velocities: number[] = [];
+      for (let i = 0; i < pc; i++) {
+        pos[i*3] = (Math.random()-0.5)*50; pos[i*3+1] = (Math.random()-0.5)*50; pos[i*3+2] = (Math.random()-0.5)*50;
+        cols[i*3] = 0.48+Math.random()*0.15; cols[i*3+1] = 0.18+Math.random()*0.1; cols[i*3+2] = 0.55+Math.random()*0.25;
+        velocities.push((Math.random()-0.5)*0.02, (Math.random()-0.5)*0.02, (Math.random()-0.5)*0.02);
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      pGeo.setAttribute('color', new THREE.BufferAttribute(cols, 3));
+      const pMat = new THREE.PointsMaterial({ size: 0.1, vertexColors: true, transparent: true, opacity: 0.7, blending: THREE.AdditiveBlending });
+      const particles = new THREE.Points(pGeo, pMat);
+      scene.add(particles);
+
+      // Connection lines
+      const lineGeo = new THREE.BufferGeometry();
+      const linePositions = new Float32Array(pc * pc * 0.01 * 6); // rough max
+      lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+      const lineMat = new THREE.LineBasicMaterial({ color: 0x7B2D8E, transparent: true, opacity: 0.15, blending: THREE.AdditiveBlending });
+      const lines = new THREE.LineSegments(lineGeo, lineMat);
+      scene.add(lines);
+
+      // Wireframe lock
+      const lockGroup = new THREE.Group();
+      const bodyGeo = new THREE.BoxGeometry(2.5, 2, 1.5, 4, 4, 4);
+      const bodyMat = new THREE.MeshBasicMaterial({ color: 0x7B2D8E, wireframe: true, transparent: true, opacity: 0.3 });
+      const body = new THREE.Mesh(bodyGeo, bodyMat); body.position.y = -0.5; lockGroup.add(body);
+      const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(-0.8,0.5,0), new THREE.Vector3(-0.8,1.8,0), new THREE.Vector3(0,2.4,0), new THREE.Vector3(0.8,1.8,0), new THREE.Vector3(0.8,0.5,0)]);
+      const tubeGeo = new THREE.TubeGeometry(curve, 20, 0.15, 8, false);
+      const tubeMat = new THREE.MeshBasicMaterial({ color: 0x9C4DCC, wireframe: true, transparent: true, opacity: 0.4 });
+      lockGroup.add(new THREE.Mesh(tubeGeo, tubeMat));
+      lockGroup.position.set(3, 0, -5); lockGroup.scale.set(1.5, 1.5, 1.5);
+      scene.add(lockGroup);
+      camera.position.z = 15;
+
+      let mX = 0, mY = 0;
+      document.addEventListener('mousemove', e => { mX = (e.clientX / window.innerWidth - 0.5) * 2; mY = (e.clientY / window.innerHeight - 0.5) * 2; });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // Move particles
+        const pArr = pGeo.attributes.position.array as Float32Array;
+        for (let i = 0; i < pc; i++) {
+          pArr[i*3] += velocities[i*3]; pArr[i*3+1] += velocities[i*3+1]; pArr[i*3+2] += velocities[i*3+2];
+          if (Math.abs(pArr[i*3]) > 25) velocities[i*3] *= -1;
+          if (Math.abs(pArr[i*3+1]) > 25) velocities[i*3+1] *= -1;
+          if (Math.abs(pArr[i*3+2]) > 25) velocities[i*3+2] *= -1;
+        }
+        pGeo.attributes.position.needsUpdate = true;
+
+        // Update connection lines (connect nearby particles)
+        const lArr = lineGeo.attributes.position.array as Float32Array;
+        let li = 0;
+        const maxDist = 6;
+        for (let i = 0; i < pc && li < lArr.length - 6; i += 3) {
+          for (let j = i + 3; j < pc && li < lArr.length - 6; j += 3) {
+            const dx = pArr[i*3] - pArr[j*3], dy = pArr[i*3+1] - pArr[j*3+1], dz = pArr[i*3+2] - pArr[j*3+2];
+            if (dx*dx + dy*dy + dz*dz < maxDist*maxDist) {
+              lArr[li++] = pArr[i*3]; lArr[li++] = pArr[i*3+1]; lArr[li++] = pArr[i*3+2];
+              lArr[li++] = pArr[j*3]; lArr[li++] = pArr[j*3+1]; lArr[li++] = pArr[j*3+2];
+            }
+          }
+        }
+        for (let k = li; k < lArr.length; k++) lArr[k] = 0;
+        lineGeo.attributes.position.needsUpdate = true;
+
+        particles.rotation.y += 0.0003;
+        lockGroup.rotation.y += 0.005; lockGroup.rotation.x = mY * 0.1; lockGroup.rotation.z = mX * 0.05;
+        camera.position.x += (mX * 0.5 - camera.position.x) * 0.02;
+        camera.position.y += (-mY * 0.5 - camera.position.y) * 0.02;
+        camera.lookAt(scene.position);
+        renderer.render(scene, camera);
+      }
+      animate();
+      window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+    }
+    initHeroCanvas();
+
+    // ---- GSAP Animations ----
+    async function initGSAP() {
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.tilt-card').forEach((card, i) => { gsap.from(card as Element, { scrollTrigger: { trigger: card as Element, start: 'top 85%' }, y: 60, opacity: 0, duration: 0.6, delay: i * 0.08 }); });
+      gsap.utils.toArray('.timeline-item').forEach((item, i) => { gsap.from(item as Element, { scrollTrigger: { trigger: item as Element, start: 'top 80%' }, x: -40, opacity: 0, duration: 0.6, delay: i * 0.15 }); });
+      gsap.utils.toArray('tbody tr').forEach((row, i) => { gsap.from(row as Element, { scrollTrigger: { trigger: row as Element, start: 'top 90%' }, x: -20, opacity: 0, duration: 0.4, delay: i * 0.05 }); });
+      gsap.utils.toArray('.arch-node').forEach((node, i) => { gsap.from(node as Element, { scrollTrigger: { trigger: node as Element, start: 'top 85%' }, scale: 0.5, opacity: 0, duration: 0.5, delay: i * 0.15 }); });
+    }
+    initGSAP();
+
+    // ---- Smooth scroll ----
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(this: HTMLAnchorElement, e: Event) { e.preventDefault(); document.querySelector(this.getAttribute('href')!)?.scrollIntoView({ behavior: 'smooth' }); });
+    });
+  </script>
+
+</Layout>

@@ -1,0 +1,331 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="SecureChat — How It Works">
+
+  <div id="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <svg class="w-8 h-8 transition-transform group-hover:scale-110" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="nav-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#nav-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
+        <span class="text-xl font-bold font-['Space_Grotesk']">Secure<span class="text-phantom-light">Chat</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
+        <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}how-it-works`} class="text-phantom-light font-semibold">How it Works</a>
+        <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer"><span data-lang="fr">EN</span><span data-lang="en">FR</span></button>
+        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="pt-32 pb-16 animated-gradient">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h1 class="text-5xl md:text-6xl font-black font-['Space_Grotesk'] mb-6" data-lang="fr">Comment ça <span class="gradient-text">fonctionne</span></h1>
+      <h1 class="text-5xl md:text-6xl font-black font-['Space_Grotesk'] mb-6" data-lang="en">How it <span class="gradient-text">works</span></h1>
+      <p class="text-xl text-text-secondary" data-lang="fr">Le parcours d'un message, du premier contact à la destruction automatique.</p>
+      <p class="text-xl text-text-secondary" data-lang="en">A message's journey, from first contact to automatic destruction.</p>
+    </div>
+  </section>
+
+  <!-- Step 1: Key Exchange -->
+  <section class="py-24 relative">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">1</div>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="fr">Échange de clés</h2>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Key Exchange</h2>
+          </div>
+          <div class="space-y-4 text-text-secondary">
+            <p data-lang="fr">Quand Alice et Bob se connectent pour la première fois, ils scannent leurs <strong class="text-white">QR codes</strong> contenant leurs clés publiques X25519.</p>
+            <p data-lang="en">When Alice and Bob connect for the first time, they scan each other's <strong class="text-white">QR codes</strong> containing their X25519 public keys.</p>
+            <p data-lang="fr">Un <strong class="text-white">X3DH handshake</strong> (Extended Triple Diffie-Hellman) crée le secret partagé initial. À partir de là, le <strong class="text-phantom-light">Double Ratchet</strong> démarre.</p>
+            <p data-lang="en">An <strong class="text-white">X3DH handshake</strong> (Extended Triple Diffie-Hellman) creates the initial shared secret. From there, the <strong class="text-phantom-light">Double Ratchet</strong> begins.</p>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-8">
+          <div class="space-y-4 font-['JetBrains_Mono'] text-sm">
+            <div class="flex items-center gap-3"><span class="text-accent-green">Alice</span><span class="text-text-muted">→ génère (SK_a, PK_a)</span></div>
+            <div class="flex items-center gap-3"><span class="text-phantom-light">Bob</span><span class="text-text-muted">→ génère (SK_b, PK_b)</span></div>
+            <div class="border-t border-white/5 pt-4">
+              <div class="text-text-muted mb-2">X3DH Handshake :</div>
+              <div class="text-xs text-phantom-light/70 space-y-1">
+                <div>DH1 = X25519(IK_a, SPK_b)</div>
+                <div>DH2 = X25519(EK_a, IK_b)</div>
+                <div>DH3 = X25519(EK_a, SPK_b)</div>
+                <div>DH4 = X25519(EK_a, OPK_b)</div>
+                <div class="text-accent-green mt-2">SK = HKDF(DH1 ‖ DH2 ‖ DH3 ‖ DH4)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2: Double Ratchet -->
+  <section class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
+        <div class="glass rounded-2xl p-8 order-2 lg:order-1">
+          <div class="text-center mb-6">
+            <div class="text-xs text-text-muted font-['JetBrains_Mono'] mb-4" data-lang="fr">Double Ratchet — visualisation</div>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono'] mb-4" data-lang="en">Double Ratchet — visualization</div>
+          </div>
+          <div class="space-y-3" id="ratchet-visual">
+            <div class="flex items-center gap-3 ratchet-step">
+              <div class="w-8 h-8 rounded-full bg-accent-green/20 text-accent-green flex items-center justify-center text-xs font-bold">→</div>
+              <div class="flex-1 h-10 rounded-lg bg-surface/50 border border-phantom/10 flex items-center px-3 font-['JetBrains_Mono'] text-xs"><span class="text-accent-green">msg₁</span><span class="text-text-muted ml-2">key = KDF(CK₁)</span></div>
+            </div>
+            <div class="flex items-center gap-3 ratchet-step">
+              <div class="w-8 h-8 rounded-full bg-phantom/20 text-phantom-light flex items-center justify-center text-xs font-bold">←</div>
+              <div class="flex-1 h-10 rounded-lg bg-surface/50 border border-phantom/10 flex items-center px-3 font-['JetBrains_Mono'] text-xs"><span class="text-phantom-light">msg₂</span><span class="text-text-muted ml-2">key = KDF(CK₂)</span></div>
+            </div>
+            <div class="flex items-center justify-center">
+              <div class="px-3 py-1 rounded-full bg-phantom/10 text-xs text-phantom-light font-['JetBrains_Mono']">🔄 DH Ratchet → new CK</div>
+            </div>
+            <div class="flex items-center gap-3 ratchet-step">
+              <div class="w-8 h-8 rounded-full bg-accent-green/20 text-accent-green flex items-center justify-center text-xs font-bold">→</div>
+              <div class="flex-1 h-10 rounded-lg bg-surface/50 border border-phantom/10 flex items-center px-3 font-['JetBrains_Mono'] text-xs"><span class="text-accent-green">msg₃</span><span class="text-text-muted ml-2">key = KDF(CK₃)</span></div>
+            </div>
+            <div class="flex items-center gap-3 ratchet-step">
+              <div class="w-8 h-8 rounded-full bg-phantom/20 text-phantom-light flex items-center justify-center text-xs font-bold">←</div>
+              <div class="flex-1 h-10 rounded-lg bg-surface/50 border border-phantom/10 flex items-center px-3 font-['JetBrains_Mono'] text-xs"><span class="text-phantom-light">msg₄</span><span class="text-text-muted ml-2">key = KDF(CK₄)</span></div>
+            </div>
+          </div>
+          <div class="text-center mt-4 text-xs text-text-muted" data-lang="fr">Chaque message a une clé unique. Les clés sont détruites après usage.</div>
+          <div class="text-center mt-4 text-xs text-text-muted" data-lang="en">Every message has a unique key. Keys are destroyed after use.</div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">2</div>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']">Double Ratchet</h2>
+          </div>
+          <div class="space-y-4 text-text-secondary">
+            <p data-lang="fr">À chaque <strong class="text-white">tour de conversation</strong> (Alice parle, puis Bob répond), un nouvel échange X25519 est effectué — c'est le <strong class="text-phantom-light">DH Ratchet</strong>.</p>
+            <p data-lang="en">Each <strong class="text-white">conversation turn</strong> (Alice speaks, Bob replies) triggers a new X25519 exchange — the <strong class="text-phantom-light">DH Ratchet</strong>.</p>
+            <p data-lang="fr">Pour chaque message individuel, une <strong class="text-white">KDF Chain</strong> dérive une clé unique via HKDF. Résultat : même si un attaquant capture une clé, il ne peut lire <strong class="text-phantom-light">ni les messages passés ni futurs</strong>.</p>
+            <p data-lang="en">For each individual message, a <strong class="text-white">KDF Chain</strong> derives a unique key via HKDF. Result: even if an attacker captures one key, they can't read <strong class="text-phantom-light">past or future messages</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 3: Encryption -->
+  <section class="py-24 relative">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">3</div>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="fr">Chiffrement & Signature</h2>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Encryption & Signing</h2>
+          </div>
+          <div class="space-y-4 text-text-secondary">
+            <p data-lang="fr">Le message est d'abord <strong class="text-white">paddé</strong> à une taille fixe (256B/1KB/4KB/16KB) pour cacher sa longueur réelle.</p>
+            <p data-lang="en">The message is first <strong class="text-white">padded</strong> to a fixed size (256B/1KB/4KB/16KB) to hide its actual length.</p>
+            <p data-lang="fr">Ensuite : chiffrement <strong class="text-phantom-light">AES-256-GCM</strong> avec la clé du ratchet. Le tag 128-bit authentifie le message. Puis <strong class="text-white">Ed25519</strong> signe <code class="text-phantom-light text-xs">ct ‖ convId ‖ timestamp</code>.</p>
+            <p data-lang="en">Then: <strong class="text-phantom-light">AES-256-GCM</strong> encryption with the ratchet key. The 128-bit tag authenticates it. Then <strong class="text-white">Ed25519</strong> signs <code class="text-phantom-light text-xs">ct ‖ convId ‖ timestamp</code>.</p>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-8 font-['JetBrains_Mono'] text-xs space-y-3">
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">1.</span> <span class="text-white">"Hello"</span> <span class="text-text-muted">→ pad →</span> <span class="text-phantom-light">[256 bytes]</span></div>
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">2.</span> <span class="text-phantom-light">AES-256-GCM</span><span class="text-text-muted">(key, iv, padded)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">ciphertext + tag₁₂₈</span></div>
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">3.</span> <span class="text-phantom-light">Ed25519.sign</span><span class="text-text-muted">(ct ‖ convId ‖ ts)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">signature₅₁₂</span></div>
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">4.</span> <span class="text-text-muted">senderUid =</span> <span class="text-phantom-light">HMAC</span><span class="text-text-muted">(convId, realUid)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">anonymous ID</span></div>
+          <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green">→ Firebase reçoit un blob opaque. Rien n'est lisible côté serveur.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 4: Transport -->
+  <section class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
+        <div class="glass rounded-2xl p-8 text-center">
+          <div class="flex flex-col items-center gap-4">
+            <!-- Animated Phone SVG -->
+            <svg class="w-16 h-16 svg-float" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="16" y="4" width="32" height="56" rx="6" stroke="#9C4DCC" stroke-width="2" fill="#1A1A1A"/>
+              <rect x="20" y="12" width="24" height="36" rx="2" fill="#7B2D8E" opacity="0.2"/>
+              <circle cx="32" cy="54" r="2.5" fill="#9C4DCC"/>
+              <rect x="26" y="7" width="12" height="2" rx="1" fill="#9C4DCC" opacity="0.5"/>
+              <!-- Pulse signal lines -->
+              <path d="M48 20 Q52 20 52 24" stroke="#9C4DCC" stroke-width="1.5" fill="none" opacity="0.6"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/></path>
+              <path d="M50 16 Q56 16 56 22" stroke="#9C4DCC" stroke-width="1.5" fill="none" opacity="0.4"><animate attributeName="opacity" values="0.1;0.6;0.1" dur="2s" begin="0.3s" repeatCount="indefinite"/></path>
+              <!-- Lock icon on screen -->
+              <path d="M29 26v-2a3 3 0 0 1 6 0v2" stroke="white" stroke-width="1.2" fill="none"/>
+              <rect x="28" y="26" width="8" height="6" rx="1" fill="white" opacity="0.9"/>
+            </svg>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="fr">Blob chiffré + signature</div>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="en">Encrypted blob + signature</div>
+            <div class="flex items-center gap-2"><div class="arch-arrow h-1 w-8 rounded-full"></div><span class="text-xs text-phantom-light">VPN TUN</span><div class="arch-arrow h-1 w-8 rounded-full"></div></div>
+            <!-- Animated Onion/Tor SVG -->
+            <svg class="w-14 h-14 svg-float" style="animation-delay:-1s" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Onion layers -->
+              <ellipse cx="32" cy="34" rx="26" ry="28" fill="#7B2D8E" opacity="0.15"><animate attributeName="opacity" values="0.1;0.25;0.1" dur="3s" repeatCount="indefinite"/></ellipse>
+              <ellipse cx="32" cy="34" rx="20" ry="22" fill="#7B2D8E" opacity="0.25"><animate attributeName="opacity" values="0.15;0.35;0.15" dur="3s" begin="0.5s" repeatCount="indefinite"/></ellipse>
+              <ellipse cx="32" cy="34" rx="14" ry="16" fill="#7B2D8E" opacity="0.4"><animate attributeName="opacity" values="0.3;0.5;0.3" dur="3s" begin="1s" repeatCount="indefinite"/></ellipse>
+              <ellipse cx="32" cy="34" rx="8" ry="10" fill="#9C4DCC" opacity="0.7"/>
+              <!-- Stem -->
+              <path d="M32 6 Q32 14 28 18" stroke="#9C4DCC" stroke-width="2" fill="none"/>
+              <path d="M28 6 Q32 10 32 6" stroke="#9C4DCC" stroke-width="1.5" fill="none"/>
+            </svg>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']">3 relais Tor (Guard → Middle → Exit)</div>
+            <div class="flex items-center gap-2"><div class="arch-arrow h-1 w-8 rounded-full"></div><span class="text-xs text-phantom-light">HTTPS</span><div class="arch-arrow h-1 w-8 rounded-full"></div></div>
+            <!-- Animated Server SVG -->
+            <svg class="w-14 h-14 svg-float" style="animation-delay:-2s" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="12" y="8" width="40" height="16" rx="3" stroke="#9C4DCC" stroke-width="1.5" fill="#1A1A1A"/>
+              <rect x="12" y="28" width="40" height="16" rx="3" stroke="#9C4DCC" stroke-width="1.5" fill="#1A1A1A"/>
+              <rect x="12" y="48" width="40" height="12" rx="3" stroke="#9C4DCC" stroke-width="1.5" fill="#1A1A1A"/>
+              <!-- Blinking LEDs -->
+              <circle cx="20" cy="16" r="2" fill="#22c55e"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+              <circle cx="27" cy="16" r="2" fill="#9C4DCC"><animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/></circle>
+              <circle cx="20" cy="36" r="2" fill="#22c55e"><animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite"/></circle>
+              <circle cx="27" cy="36" r="2" fill="#9C4DCC"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.3s" repeatCount="indefinite"/></circle>
+              <!-- Drive slots -->
+              <rect x="36" y="13" width="10" height="6" rx="1" fill="#7B2D8E" opacity="0.3"/>
+              <rect x="36" y="33" width="10" height="6" rx="1" fill="#7B2D8E" opacity="0.3"/>
+            </svg>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="fr">Firebase (blob opaque)</div>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="en">Firebase (opaque blob)</div>
+            <div class="text-xs text-accent-green mt-2 font-['JetBrains_Mono']">delete-after-delivery ✓</div>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">4</div>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']">Transport Tor</h2>
+          </div>
+          <div class="space-y-4 text-text-secondary">
+            <p data-lang="fr">Le blob chiffré est envoyé via un <strong class="text-white">VPN TUN local</strong> qui route tout le trafic vers un proxy <strong class="text-phantom-light">SOCKS5 → Tor</strong>.</p>
+            <p data-lang="en">The encrypted blob is sent via a <strong class="text-white">local VPN TUN</strong> that routes all traffic through a <strong class="text-phantom-light">SOCKS5 → Tor</strong> proxy.</p>
+            <p data-lang="fr">Le message traverse <strong class="text-white">3 relais Tor</strong> (Guard, Middle, Exit). Firebase ne voit qu'une IP de sortie Tor — jamais la vôtre. Combiné au <strong class="text-phantom-light">senderUid HMAC</strong>, l'anonymat est total.</p>
+            <p data-lang="en">The message traverses <strong class="text-white">3 Tor relays</strong> (Guard, Middle, Exit). Firebase only sees a Tor exit IP — never yours. Combined with <strong class="text-phantom-light">senderUid HMAC</strong>, anonymity is complete.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 5: Receive & Destroy -->
+  <section class="py-24 relative">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">5</div>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="fr">Réception & Destruction</h2>
+            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Receive & Destroy</h2>
+          </div>
+          <div class="space-y-4 text-text-secondary">
+            <p data-lang="fr">Bob reçoit le blob. Il <strong class="text-white">vérifie la signature Ed25519</strong> (badge ✅ ou ⚠️), puis déchiffre avec sa clé AES-256-GCM du ratchet.</p>
+            <p data-lang="en">Bob receives the blob. He <strong class="text-white">verifies the Ed25519 signature</strong> (badge ✅ or ⚠️), then decrypts with his AES-256-GCM ratchet key.</p>
+            <p data-lang="fr">Le message déchiffré est stocké dans <strong class="text-phantom-light">SQLCipher</strong> (base Room chiffrée AES-256). Si un timer éphémère est actif, le message <strong class="text-white">s'autodétruit</strong>. Côté serveur, delete-after-delivery supprime le blob immédiatement.</p>
+            <p data-lang="en">The decrypted message is stored in <strong class="text-phantom-light">SQLCipher</strong> (AES-256 encrypted Room DB). If an ephemeral timer is active, the message <strong class="text-white">self-destructs</strong>. Server-side, delete-after-delivery removes the blob immediately.</p>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-8 font-['JetBrains_Mono'] text-xs space-y-3">
+          <div class="p-3 rounded-lg bg-surface/50 border border-accent-green/20"><span class="text-accent-green">✅</span> <span class="text-text-muted">Ed25519.verify(sig, ct ‖ convId ‖ ts) =</span> <span class="text-accent-green">VALID</span></div>
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">AES-256-GCM.decrypt(key, iv, ct) →</span> <span class="text-phantom-light">[padded]</span></div>
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">unpad([padded]) →</span> <span class="text-white">"Hello"</span></div>
+          <div class="border-t border-white/5 pt-3 space-y-2">
+            <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">💾 Store →</span> <span class="text-phantom-light">SQLCipher(AES-256)</span></div>
+            <div class="p-3 rounded-lg bg-accent-red/5 border border-accent-red/20"><span class="text-accent-red">⏱️ Timer → autodestruction</span></div>
+            <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green">🗑️ Firebase → blob supprimé</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-phantom/5 to-surface pointer-events-none"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center section-reveal">
+      <div class="glass-strong rounded-3xl p-12">
+        <!-- Animated Shield SVG -->
+        <svg class="w-16 h-16 mx-auto mb-6 svg-float" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 4 L56 16 V36 C56 50 32 60 32 60 C32 60 8 50 8 36 V16 Z" fill="#7B2D8E" opacity="0.15" stroke="#9C4DCC" stroke-width="2"/>
+          <path d="M32 12 L50 22 V36 C50 46 32 54 32 54 C32 54 14 46 14 36 V22 Z" fill="#7B2D8E" opacity="0.25"><animate attributeName="opacity" values="0.15;0.35;0.15" dur="3s" repeatCount="indefinite"/></path>
+          <path d="M24 32 L30 38 L42 26" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" fill="freeze"/><animate attributeName="stroke-dasharray" values="0 30;30 0" dur="1.5s" fill="freeze"/></path>
+        </svg>
+        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-6" data-lang="fr">Résultat : <span class="gradient-text">invisibilité totale</span></h2>
+        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-6" data-lang="en">Result: <span class="gradient-text">total invisibility</span></h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="p-4 rounded-xl bg-surface/50">
+            <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 32 32" fill="none"><rect x="6" y="14" width="20" height="14" rx="3" fill="#9C4DCC" opacity="0.3" stroke="#9C4DCC" stroke-width="1.5"/><path d="M11 14v-4a5 5 0 0 1 10 0v4" stroke="#9C4DCC" stroke-width="1.5" fill="none"/><circle cx="16" cy="20" r="2" fill="#9C4DCC"><animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/></circle></svg>
+            <div class="text-xs text-text-secondary" data-lang="fr">Contenu chiffré</div><div class="text-xs text-text-secondary" data-lang="en">Content encrypted</div>
+          </div>
+          <div class="p-4 rounded-xl bg-surface/50">
+            <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="17" rx="13" ry="14" fill="#7B2D8E" opacity="0.15"/><ellipse cx="16" cy="17" rx="9" ry="10" fill="#7B2D8E" opacity="0.3"><animate attributeName="opacity" values="0.2;0.4;0.2" dur="2s" repeatCount="indefinite"/></ellipse><ellipse cx="16" cy="17" rx="5" ry="6" fill="#9C4DCC" opacity="0.5"/><path d="M16 3Q16 7 14 9" stroke="#9C4DCC" stroke-width="1.2" fill="none"/></svg>
+            <div class="text-xs text-text-secondary" data-lang="fr">IP masquée</div><div class="text-xs text-text-secondary" data-lang="en">IP hidden</div>
+          </div>
+          <div class="p-4 rounded-xl bg-surface/50">
+            <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="6" fill="#9C4DCC" opacity="0.2" stroke="#9C4DCC" stroke-width="1.2" stroke-dasharray="3 2"><animate attributeName="stroke-dashoffset" from="0" to="20" dur="4s" repeatCount="indefinite"/></circle><path d="M8 28c0-6 4-9 8-9s8 3 8 9" fill="#9C4DCC" opacity="0.15" stroke="#9C4DCC" stroke-width="1.2" stroke-dasharray="3 2"><animate attributeName="stroke-dashoffset" from="0" to="20" dur="4s" repeatCount="indefinite"/></path></svg>
+            <div class="text-xs text-text-secondary" data-lang="fr">Identité anonyme</div><div class="text-xs text-text-secondary" data-lang="en">Identity anonymous</div>
+          </div>
+          <div class="p-4 rounded-xl bg-surface/50">
+            <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 32 32" fill="none"><path d="M6 16 Q10 10 16 14 Q22 18 26 12" stroke="#9C4DCC" stroke-width="1.5" fill="none" stroke-linecap="round"><animate attributeName="d" values="M6 16 Q10 10 16 14 Q22 18 26 12;M6 18 Q10 14 16 16 Q22 14 26 16;M6 16 Q10 10 16 14 Q22 18 26 12" dur="3s" repeatCount="indefinite"/></path><path d="M8 20 Q12 16 18 18 Q24 20 28 16" stroke="#9C4DCC" stroke-width="1" fill="none" opacity="0.4" stroke-linecap="round"><animate attributeName="opacity" values="0.4;0.1;0.4" dur="3s" repeatCount="indefinite"/></path><path d="M10 24 Q14 22 20 22 Q26 22 30 20" stroke="#9C4DCC" stroke-width="0.8" fill="none" opacity="0.2" stroke-linecap="round"><animate attributeName="opacity" values="0.2;0;0.2" dur="3s" repeatCount="indefinite"/></path></svg>
+            <div class="text-xs text-text-secondary" data-lang="fr">Aucune trace</div><div class="text-xs text-text-secondary" data-lang="en">No trace left</div>
+          </div>
+        </div>
+        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span data-lang="fr">Voir le code source</span><span data-lang="en">View source code</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <span class="text-sm text-text-secondary">SecureChat — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
+      <div class="flex items-center gap-6 text-sm text-text-muted">
+        <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+        <span>GPLv3</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Language
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'fr';
+    langToggle?.addEventListener('click', () => { currentLang = currentLang === 'fr' ? 'en' : 'fr'; document.documentElement.classList.remove('lang-fr','lang-en'); document.documentElement.classList.add(`lang-${currentLang}`); document.documentElement.lang = currentLang; });
+    // Scroll progress
+    const sp = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => { if (!sp) return; const h = document.documentElement.scrollHeight - window.innerHeight; sp.style.width = h > 0 ? `${(window.scrollY/h*100)}%` : '0%'; });
+    // Reveal
+    const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.section-reveal').forEach(el => obs.observe(el));
+    // GSAP
+    async function initGSAP() {
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.ratchet-step').forEach((s, i) => { gsap.from(s as Element, { scrollTrigger: { trigger: s as Element, start: 'top 85%' }, x: i % 2 === 0 ? -30 : 30, opacity: 0, duration: 0.5, delay: i * 0.1 }); });
+    }
+    initGSAP();
+  </script>
+
+</Layout>

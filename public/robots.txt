@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devbot667.github.io/SecureChat-Website/sitemap-index.xml
