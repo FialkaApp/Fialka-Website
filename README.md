@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# SecureChat Website
+
+Official website for **SecureChat** — the end-to-end encrypted messenger that knows nothing about you.
+
+🔗 **Live:** [devbot667.github.io/SecureChat-Website](https://devbot667.github.io/SecureChat-Website/)
+
+## Features
+
+- **Homepage** — Animated hero, live AES-256-GCM encryption demo, 3D tilt cards, particle connections (Three.js), comparison table, Konami easter egg
+- **How It Works** — 5-step interactive walkthrough of the Double Ratchet protocol with animated SVG illustrations
+- **Changelog** — Auto-fetched from the app repo's CHANGELOG.md, parsed client-side with `marked`
+- **Custom 404** — "Message lost in the void" with spiraling particles and live cipher text animation
+- **FR/EN** — Full bilingual support with language switcher on every page
+
+## Tech Stack
+
+- [Astro](https://astro.build/) — Static site generator
+- [Tailwind CSS 4](https://tailwindcss.com/) — Utility-first styling
+- [Three.js](https://threejs.org/) — 3D particle effects
+- [GSAP](https://gsap.com/) — Scroll-triggered animations
+- [marked](https://marked.js.org/) — Markdown parsing for changelog
+
+## SEO
+
+- Sitemap (`@astrojs/sitemap`)
+- `robots.txt`
+- JSON-LD structured data
+- Open Graph + Twitter Card meta tags
+- OG image (1200×630)
+
+## Development
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev       # localhost:4321
+npm run build     # static output in dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Related
 
-## 🚀 Project Structure
+- [SecureChat App](https://github.com/DevBot667/SecureChat) — The Android app
 
-Inside of your Astro project, you'll see the following folders and files:
+## License
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
