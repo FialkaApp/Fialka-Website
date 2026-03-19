@@ -68,24 +68,25 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Key Exchange</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
-            <p data-lang="fr">Quand Alice et Bob se connectent pour la première fois, ils scannent leurs <strong class="text-white">QR codes</strong> contenant leurs clés publiques X25519.</p>
-            <p data-lang="en">When Alice and Bob connect for the first time, they scan each other's <strong class="text-white">QR codes</strong> containing their X25519 public keys.</p>
-            <p data-lang="fr">Un <strong class="text-white">X3DH handshake</strong> (Extended Triple Diffie-Hellman) crée le secret partagé initial. À partir de là, le <strong class="text-phantom-light">Double Ratchet</strong> démarre.</p>
-            <p data-lang="en">An <strong class="text-white">X3DH handshake</strong> (Extended Triple Diffie-Hellman) creates the initial shared secret. From there, the <strong class="text-phantom-light">Double Ratchet</strong> begins.</p>
+            <p data-lang="fr">Quand Alice et Bob se connectent pour la première fois, ils scannent leurs <strong class="text-white">QR codes v2</strong> contenant leurs clés publiques X25519 et ML-KEM-768.</p>
+            <p data-lang="en">When Alice and Bob connect for the first time, they scan each other's <strong class="text-white">v2 QR codes</strong> containing their X25519 and ML-KEM-768 public keys.</p>
+            <p data-lang="fr">Un <strong class="text-white">PQXDH handshake</strong> (Post-Quantum Extended Diffie-Hellman) crée le secret partagé initial en combinant X25519 et ML-KEM-768 (NIST FIPS 203). À partir de là, le <strong class="text-phantom-light">Double Ratchet</strong> démarre.</p>
+            <p data-lang="en">A <strong class="text-white">PQXDH handshake</strong> (Post-Quantum Extended Diffie-Hellman) creates the initial shared secret by combining X25519 and ML-KEM-768 (NIST FIPS 203). From there, the <strong class="text-phantom-light">Double Ratchet</strong> begins.</p>
           </div>
         </div>
         <div class="glass rounded-2xl p-8">
           <div class="space-y-4 font-['JetBrains_Mono'] text-sm">
-            <div class="flex items-center gap-3"><span class="text-accent-green">Alice</span><span class="text-text-muted">→ génère (SK_a, PK_a)</span></div>
-            <div class="flex items-center gap-3"><span class="text-phantom-light">Bob</span><span class="text-text-muted">→ génère (SK_b, PK_b)</span></div>
+            <div class="flex items-center gap-3"><span class="text-accent-green">Alice</span><span class="text-text-muted">→ génère (X25519_a, ML-KEM_a)</span></div>
+            <div class="flex items-center gap-3"><span class="text-phantom-light">Bob</span><span class="text-text-muted">→ génère (X25519_b, ML-KEM_b)</span></div>
             <div class="border-t border-white/5 pt-4">
-              <div class="text-text-muted mb-2">X3DH Handshake :</div>
+              <div class="text-text-muted mb-2">PQXDH Handshake :</div>
               <div class="text-xs text-phantom-light/70 space-y-1">
                 <div>DH1 = X25519(IK_a, SPK_b)</div>
                 <div>DH2 = X25519(EK_a, IK_b)</div>
                 <div>DH3 = X25519(EK_a, SPK_b)</div>
                 <div>DH4 = X25519(EK_a, OPK_b)</div>
-                <div class="text-accent-green mt-2">SK = HKDF(DH1 ‖ DH2 ‖ DH3 ‖ DH4)</div>
+                <div class="text-accent-green">ct = ML-KEM.Encaps(pk_b) → (ss, ct)</div>
+                <div class="text-accent-green mt-2">SK = HKDF(DH1 ‖ DH2 ‖ DH3 ‖ DH4 ‖ ss)</div>
               </div>
             </div>
           </div>
@@ -134,8 +135,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <h2 class="text-3xl font-bold font-['Space_Grotesk']">Double Ratchet</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
-            <p data-lang="fr">À chaque <strong class="text-white">tour de conversation</strong> (Alice parle, puis Bob répond), un nouvel échange X25519 est effectué — c'est le <strong class="text-phantom-light">DH Ratchet</strong>.</p>
-            <p data-lang="en">Each <strong class="text-white">conversation turn</strong> (Alice speaks, Bob replies) triggers a new X25519 exchange — the <strong class="text-phantom-light">DH Ratchet</strong>.</p>
+            <p data-lang="fr">À chaque <strong class="text-white">tour de conversation</strong> (Alice parle, puis Bob répond), un nouvel échange X25519 est effectué — c'est le <strong class="text-phantom-light">DH Ratchet</strong>. L'échange initial PQXDH garantit une résistance post-quantique.</p>
+            <p data-lang="en">Each <strong class="text-white">conversation turn</strong> (Alice speaks, Bob replies) triggers a new X25519 exchange — the <strong class="text-phantom-light">DH Ratchet</strong>. The initial PQXDH exchange ensures post-quantum resistance.</p>
             <p data-lang="fr">Pour chaque message individuel, une <strong class="text-white">KDF Chain</strong> dérive une clé unique via HKDF. Résultat : même si un attaquant capture une clé, il ne peut lire <strong class="text-phantom-light">ni les messages passés ni futurs</strong>.</p>
             <p data-lang="en">For each individual message, a <strong class="text-white">KDF Chain</strong> derives a unique key via HKDF. Result: even if an attacker captures one key, they can't read <strong class="text-phantom-light">past or future messages</strong>.</p>
           </div>
