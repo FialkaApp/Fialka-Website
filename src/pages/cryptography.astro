@@ -1210,10 +1210,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   </section>
 
   <!-- ===== ROCKET NAVIGATOR ===== -->
-  <div id="rocket-nav" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 opacity-0 pointer-events-none transition-all duration-500 hidden lg:block">
-    <!-- Trajectory line -->
-    <div class="relative flex flex-col items-center">
-      <!-- Track (animated gradient) -->
+  <div id="rocket-nav" class="fixed right-6 top-1/2 -translate-y-1/2 z-50 opacity-0 pointer-events-none transition-all duration-500 hidden lg:flex">
+    <!-- Rocket rail (left side) -->
+    <div class="relative flex flex-col items-center" id="rocket-rail" style="width: 48px; margin-right: 8px;">
+      <!-- Track background -->
       <div class="rocket-track absolute top-0 bottom-0 w-0.5 left-1/2 -translate-x-1/2 rounded-full overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-phantom/10 via-phantom-light/30 to-phantom/10"></div>
       </div>
@@ -1229,7 +1229,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div id="rocket-drag-hint" class="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap text-xs text-phantom-light/80 bg-surface/95 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-phantom/30 opacity-0 transition-all duration-300 pointer-events-none">
             <span data-lang="fr">↕ Glisser pour naviguer</span><span data-lang="en">↕ Drag to navigate</span>
           </div>
-          <svg class="w-12 h-12 rocket-svg" viewBox="0 0 64 64" fill="none">
+          <svg class="w-10 h-10 rocket-svg" viewBox="0 0 64 64" fill="none">
             <defs>
               <linearGradient id="rBody" x1="32" y1="4" x2="32" y2="48" gradientUnits="userSpaceOnUse">
                 <stop offset="0%" stop-color="#D68FFF"/>
@@ -1242,86 +1242,72 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
                 <stop offset="100%" stop-color="#6B2FA0" stop-opacity="0.1"/>
               </radialGradient>
             </defs>
-            <!-- Body -->
             <path d="M32 4 C32 4 18 18 18 40 L24 47 L40 47 L46 40 C46 18 32 4 32 4Z" fill="url(#rBody)"/>
-            <!-- Nose highlight -->
             <path d="M32 4 C32 4 26 14 25 26 L32 6 L39 26 C38 14 32 4 32 4Z" fill="#D68FFF" opacity="0.25"/>
-            <!-- Porthole ring -->
-            <circle cx="32" cy="26" r="7" fill="none" stroke="#B44FE0" stroke-width="0.8" opacity="0.4"/>
-            <!-- Porthole -->
             <circle cx="32" cy="26" r="5.5" fill="#0A0A10" stroke="#B44FE0" stroke-width="1.5"/>
             <circle cx="32" cy="26" r="4" fill="url(#rPorthole)"/>
-            <!-- Porthole reflections -->
             <circle cx="30" cy="24" r="1.5" fill="white" opacity="0.35"/>
-            <circle cx="33.5" cy="28" r="0.7" fill="white" opacity="0.15"/>
-            <!-- Fins -->
             <path d="M18 36 L9 52 L18 44Z" fill="#7B2D8E"/>
             <path d="M46 36 L55 52 L46 44Z" fill="#7B2D8E"/>
-            <path d="M18 36 L11 49 L18 42Z" fill="#9C4DCC" opacity="0.3"/>
-            <path d="M46 36 L53 49 L46 42Z" fill="#9C4DCC" opacity="0.3"/>
-            <!-- Bottom ring -->
             <ellipse cx="32" cy="45" rx="8" ry="2.5" fill="#5A1F7A" stroke="#9C4DCC" stroke-width="0.5" opacity="0.7"/>
-            <!-- Body stripes -->
-            <line x1="24" y1="38" x2="40" y2="38" stroke="#B44FE0" stroke-width="0.5" opacity="0.25"/>
-            <line x1="22" y1="42" x2="42" y2="42" stroke="#B44FE0" stroke-width="0.5" opacity="0.15"/>
           </svg>
-          <!-- Enhanced flames (5 layers) -->
-          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-0.5" id="rocket-nav-flames">
+          <!-- Enhanced flames -->
+          <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-0.5" id="rocket-nav-flames">
             <div class="w-1 h-3 bg-gradient-to-b from-orange-300 to-orange-600 rounded-full animate-rflame1 opacity-90"></div>
-            <div class="w-1.5 h-5 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full animate-rflame2"></div>
-            <div class="w-2 h-6 bg-gradient-to-b from-white to-yellow-400 rounded-full animate-rflame2" style="animation-delay: -0.1s;"></div>
-            <div class="w-1.5 h-5 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full animate-rflame2" style="animation-delay: -0.15s;"></div>
+            <div class="w-1.5 h-4 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full animate-rflame2"></div>
+            <div class="w-1.5 h-5 bg-gradient-to-b from-white to-yellow-400 rounded-full animate-rflame2" style="animation-delay: -0.1s;"></div>
+            <div class="w-1.5 h-4 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full animate-rflame2" style="animation-delay: -0.15s;"></div>
             <div class="w-1 h-3 bg-gradient-to-b from-orange-300 to-orange-600 rounded-full animate-rflame3 opacity-90"></div>
           </div>
-          <!-- Spark particles (visible on drag) -->
-          <div class="rocket-sparks absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" id="rocket-sparks">
+          <!-- Spark particles -->
+          <div class="rocket-sparks absolute -bottom-6 left-1/2 -translate-x-1/2 pointer-events-none" id="rocket-sparks">
             <div class="spark"></div><div class="spark"></div><div class="spark"></div>
             <div class="spark"></div><div class="spark"></div><div class="spark"></div>
           </div>
           <!-- Exhaust trail -->
-          <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-4 h-12 bg-gradient-to-b from-orange-400/25 via-phantom/10 to-transparent rounded-full blur-md transition-all duration-300" id="rocket-exhaust"></div>
+          <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3 h-10 bg-gradient-to-b from-orange-400/25 via-phantom/10 to-transparent rounded-full blur-md transition-all duration-300" id="rocket-exhaust"></div>
         </div>
       </div>
+    </div>
 
-      <!-- Station dots -->
-      <div class="flex flex-col gap-0" id="rocket-stations">
-        <button data-target="vs-aes" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="AES-256-GCM">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">AES-256-GCM</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-chacha" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="ChaCha20">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">ChaCha20-Poly1305</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-x25519" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="X25519">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">X25519</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-mlkem" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="ML-KEM-1024">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">ML-KEM-1024</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-ed25519" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="Ed25519">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">Ed25519</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-ratchet" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="Double Ratchet">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">Double Ratchet</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-spqr" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="SPQR">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">SPQR Triple Ratchet</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-hkdf" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="HKDF">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">HKDF-SHA256</span>
-          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
-        </button>
-        <button data-target="vs-quantum" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="Quantum">
-          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20 border-red-500/30 text-red-400/80">⚛️ Menaces quantiques</span>
-          <div class="w-3 h-3 rounded-full border-2 border-red-500/40 bg-surface transition-all duration-300 group-hover:border-red-400 group-hover:bg-red-500/30 group-hover:scale-125"></div>
-        </button>
-      </div>
+    <!-- Station dots (right side, separate column) -->
+    <div class="flex flex-col" id="rocket-stations" style="gap: 6px;">
+      <button data-target="vs-aes" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="AES-256-GCM">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">AES-256-GCM</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-chacha" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="ChaCha20">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">ChaCha20-Poly1305</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-x25519" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="X25519">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">X25519</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-mlkem" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="ML-KEM-1024">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">ML-KEM-1024</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-ed25519" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="Ed25519">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">Ed25519</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-ratchet" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="Double Ratchet">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">Double Ratchet</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-spqr" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="SPQR">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">SPQR Triple Ratchet</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-hkdf" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="HKDF">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">HKDF-SHA256</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+      </button>
+      <button data-target="vs-quantum" class="rocket-station group relative flex items-center justify-end cursor-pointer bg-transparent border-none" style="padding: 10px 0;" aria-label="Quantum">
+        <span class="station-label absolute right-10 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20 border-red-500/30 text-red-400/80">⚛️ Menaces quantiques</span>
+        <div class="station-dot w-3 h-3 rounded-full border-2 border-red-500/40 bg-surface transition-all duration-300 group-hover:border-red-400 group-hover:bg-red-500/30 group-hover:scale-125"></div>
+      </button>
     </div>
   </div>
 
@@ -1373,12 +1359,11 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       cursor: grabbing !important;
       animation: none !important;
       filter: drop-shadow(0 0 24px rgba(156, 77, 204, 0.9)) !important;
-      transition: none !important;
     }
-    #rocket-ship.dragging .rocket-svg { transform: scale(1.25); transition: transform 0.15s; }
-    #rocket-ship.dragging #rocket-nav-flames div { height: 2rem !important; }
-    #rocket-ship.dragging #rocket-exhaust { height: 5rem; opacity: 0.8; filter: blur(8px); }
-    #rocket-ship.dragging .rocket-glow-ring { animation: none; transform: scale(1.6); opacity: 1; }
+    #rocket-ship.dragging .rocket-svg { transform: scale(1.2); transition: transform 0.15s; }
+    #rocket-ship.dragging #rocket-nav-flames div { height: 1.5rem !important; }
+    #rocket-ship.dragging #rocket-exhaust { height: 4rem; opacity: 0.8; filter: blur(8px); }
+    #rocket-ship.dragging .rocket-glow-ring { animation: none; transform: scale(1.5); opacity: 1; }
 
     /* Show ALL labels while dragging */
     #rocket-nav.nav-dragging .station-label {
@@ -1392,21 +1377,21 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     #rocket-ship.dragging #rocket-drag-hint { opacity: 0 !important; }
 
     /* === ACTIVE STATION DOT === */
-    .rocket-station .w-3 { position: relative; }
-    .rocket-station .w-3.active {
+    .rocket-station .station-dot { position: relative; }
+    .rocket-station .station-dot.active {
       border-color: #B44FE0 !important;
       background: rgba(156, 77, 204, 0.5) !important;
       box-shadow: 0 0 12px rgba(156, 77, 204, 0.6);
       transform: scale(1.4);
     }
     /* Ping ring on active dot */
-    .rocket-station .w-3.active::after {
+    .rocket-station .station-dot.active::after {
       content: '';
       position: absolute; inset: -4px; border-radius: 50%;
       border: 1.5px solid rgba(180, 79, 224, 0.4);
       animation: stationPing 1.5s ease-out infinite;
     }
-    .rocket-station[data-target="vs-quantum"] .w-3.active::after {
+    .rocket-station[data-target="vs-quantum"] .station-dot.active::after {
       border-color: rgba(239, 68, 68, 0.4);
     }
     @keyframes stationPing {
@@ -1534,11 +1519,34 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     const stations = document.querySelectorAll('.rocket-station');
     const sectionIds = Array.from(stations).map(s => s.getAttribute('data-target')!);
     const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const rocketRail = document.getElementById('rocket-rail');
     let isDragging = false;
+    let lastSnapIdx = -1;
+
+    // Get station Y positions relative to the rail (for snap targets)
+    function getStationPositions(): number[] {
+      const stationsContainer = document.getElementById('rocket-stations');
+      const rail = document.getElementById('rocket-rail');
+      if (!stationsContainer || !rail) return [];
+      const railRect = rail.getBoundingClientRect();
+      return Array.from(stations).map(s => {
+        const r = s.getBoundingClientRect();
+        return r.top - railRect.top + r.height / 2;
+      });
+    }
+
+    // Sync the rail height to match stations container
+    function syncRailHeight() {
+      const stationsContainer = document.getElementById('rocket-stations');
+      if (rocketRail && stationsContainer) {
+        rocketRail.style.height = `${stationsContainer.offsetHeight}px`;
+      }
+    }
 
     // Show/hide + track position
     function updateRocketNav() {
       if (!rocketNav || !rocketShip || sectionEls.length === 0) return;
+      syncRailHeight();
 
       const scrollY = window.scrollY;
       const firstSection = sectionEls[0];
@@ -1562,22 +1570,16 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       // Move rocket to active station (skip if dragging — user controls it)
       if (!isDragging) {
-        const stationArr = Array.from(stations);
-        const targetStation = stationArr[activeIdx];
-        if (targetStation) {
-          const stationsContainer = document.getElementById('rocket-stations');
-          if (stationsContainer) {
-            const containerRect = stationsContainer.getBoundingClientRect();
-            const stationRect = targetStation.getBoundingClientRect();
-            const offset = stationRect.top - containerRect.top + stationRect.height / 2 - 24;
-            rocketShip.style.top = `${offset}px`;
-          }
+        const positions = getStationPositions();
+        if (positions[activeIdx] !== undefined) {
+          const rocketH = 40;
+          rocketShip.style.top = `${positions[activeIdx] - rocketH / 2}px`;
         }
       }
 
       // Update active dots
       stations.forEach((s, i) => {
-        const dot = s.querySelector('.w-3');
+        const dot = s.querySelector('.station-dot');
         if (i === activeIdx) dot?.classList.add('active');
         else dot?.classList.remove('active');
       });
@@ -1603,10 +1605,11 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       });
     });
 
-    // ==== DRAG-TO-SCROLL (like a real scrollbar!) ====
+    // ==== DRAG-TO-SCROLL WITH SNAP DETENTS ====
     if (rocketShip && rocketNav) {
       function startDrag(clientY: number) {
         isDragging = true;
+        lastSnapIdx = -1;
         rocketShip!.classList.add('dragging');
         rocketNav!.classList.add('nav-dragging');
         document.body.style.userSelect = 'none';
@@ -1615,29 +1618,56 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       }
 
       function onDrag(clientY: number) {
-        if (!isDragging) return;
-        const stationsContainer = document.getElementById('rocket-stations');
-        if (!stationsContainer || sectionEls.length < 2) return;
+        if (!isDragging || !rocketRail) return;
+        const positions = getStationPositions();
+        if (positions.length < 2) return;
 
-        const containerRect = stationsContainer.getBoundingClientRect();
-        const relativeY = clientY - containerRect.top;
-        const ratio = Math.max(0, Math.min(1, relativeY / containerRect.height));
+        const railRect = rocketRail.getBoundingClientRect();
+        const relativeY = clientY - railRect.top;
+        const rocketH = 40;
 
-        // Map ratio → page scroll position (first section to last section)
-        const firstTop = sectionEls[0].offsetTop - 100;
-        const lastEl = sectionEls[sectionEls.length - 1];
-        const lastBottom = lastEl.offsetTop + lastEl.offsetHeight;
-        const scrollRange = lastBottom - firstTop - window.innerHeight;
-        window.scrollTo({ top: firstTop + ratio * scrollRange, behavior: 'auto' });
+        // Find nearest station (snap target)
+        let nearestIdx = 0;
+        let nearestDist = Infinity;
+        for (let i = 0; i < positions.length; i++) {
+          const dist = Math.abs(relativeY - positions[i]);
+          if (dist < nearestDist) {
+            nearestDist = dist;
+            nearestIdx = i;
+          }
+        }
 
-        // Move rocket directly (instant, no transition lag)
-        const offset = ratio * (containerRect.height - 48);
-        rocketShip!.style.top = `${offset}px`;
-        rocketShip!.style.transition = 'none';
+        // Snap: move rocket to nearest station with a slight spring
+        const snapY = positions[nearestIdx] - rocketH / 2;
+        rocketShip!.style.transition = 'top 0.15s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        rocketShip!.style.top = `${snapY}px`;
 
-        // Track fill
-        if (rocketTrackFill) {
-          rocketTrackFill.style.height = `${ratio * 100}%`;
+        // Detent feedback: visual pulse when crossing a new station
+        if (nearestIdx !== lastSnapIdx) {
+          lastSnapIdx = nearestIdx;
+          rocketShip!.style.transform = 'translateX(-50%) scale(1.15)';
+          setTimeout(() => {
+            if (rocketShip) rocketShip.style.transform = 'translateX(-50%) scale(1)';
+          }, 120);
+
+          // Scroll to snapped section
+          const target = sectionEls[nearestIdx];
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 100, behavior: 'auto' });
+          }
+
+          // Update active dots immediately
+          stations.forEach((s, i) => {
+            const dot = s.querySelector('.station-dot');
+            if (i === nearestIdx) dot?.classList.add('active');
+            else dot?.classList.remove('active');
+          });
+
+          // Update track fill
+          if (rocketTrackFill) {
+            const ratio = nearestIdx / (positions.length - 1);
+            rocketTrackFill.style.height = `${ratio * 100}%`;
+          }
         }
       }
 
@@ -1647,6 +1677,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         rocketShip!.classList.remove('dragging');
         rocketNav!.classList.remove('nav-dragging');
         rocketShip!.style.transition = '';
+        rocketShip!.style.transform = '';
         document.body.style.userSelect = '';
         (document.body.style as any).webkitUserSelect = '';
 
