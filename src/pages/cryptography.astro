@@ -1,0 +1,1361 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="SecureChat — Cryptography Deep Dive">
+
+  <div id="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <svg class="w-8 h-8 transition-transform group-hover:scale-110" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="nav-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#nav-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
+        <span class="text-xl font-bold font-['Space_Grotesk']">Secure<span class="text-phantom-light">Chat</span></span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
+        <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="text-phantom-light font-semibold" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="text-phantom-light font-semibold" data-lang="en">Cryptography</a>
+        <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
+        <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer"><span data-lang="fr">EN</span><span data-lang="en">FR</span></button>
+        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Menu">
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar1"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar2"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" id="bar3"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden glass-strong border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
+        <a href={base} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="py-2 text-phantom-light font-semibold" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="py-2 text-phantom-light font-semibold" data-lang="en">Cryptography</a>
+        <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
+        <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
+        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 animated-gradient relative overflow-hidden">
+    <canvas id="crypto-canvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-6">
+        <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
+        <span data-lang="fr">Pourquoi ces choix cryptographiques ?</span>
+        <span data-lang="en">Why these cryptographic choices?</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-black font-['Space_Grotesk'] mb-6">
+        <span data-lang="fr"><span class="gradient-text">Cryptographie</span> comparée</span>
+        <span data-lang="en">Comparative <span class="gradient-text">Cryptography</span></span>
+      </h1>
+      <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-lang="fr">
+        Chaque algorithme a été choisi pour une raison précise. Voici pourquoi — et pourquoi <strong class="text-white">pas</strong> les alternatives.
+      </p>
+      <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-lang="en">
+        Every algorithm was chosen for a specific reason. Here's why — and why <strong class="text-white">not</strong> the alternatives.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick Stack Overview -->
+  <section class="py-20 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 section-reveal">
+        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">La pile <span class="gradient-text">cryptographique</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The cryptographic <span class="gradient-text">stack</span></h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 section-reveal">
+        <a href="#vs-aes" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">🔒</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">AES-256-GCM</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffrement symétrique</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Symmetric encryption</div>
+        </a>
+        <a href="#vs-chacha" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">⚡</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">ChaCha20-Poly1305</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffrement alternatif</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Alternative cipher</div>
+        </a>
+        <a href="#vs-x25519" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">🔑</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">X25519</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Échange de clés</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Key exchange</div>
+        </a>
+        <a href="#vs-mlkem" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">🛡️</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">ML-KEM-1024</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Post-quantique</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Post-quantum</div>
+        </a>
+        <a href="#vs-ed25519" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">✍️</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">Ed25519</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Signatures</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Signatures</div>
+        </a>
+        <a href="#vs-ratchet" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">🔄</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">Double Ratchet</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Renouvellement de clés</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Key renewal</div>
+        </a>
+        <a href="#vs-spqr" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">🏛️</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">SPQR</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Triple Ratchet PQ</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">PQ Triple Ratchet</div>
+        </a>
+        <a href="#vs-hkdf" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
+          <div class="text-3xl mb-2">🧪</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">HKDF-SHA256</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Dérivation de clés</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Key derivation</div>
+        </a>
+        <a href="#vs-quantum" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group border border-accent-red/20">
+          <div class="text-3xl mb-2">⚛️</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors" data-lang="fr">Menaces quantiques</div>
+          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors" data-lang="en">Quantum threats</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="fr">Shor, Grover & défenses</div>
+          <div class="text-xs text-text-muted mt-1" data-lang="en">Shor, Grover & defenses</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 1: AES-256-GCM vs RSA ===== -->
+  <section id="vs-aes" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Chiffrement symétrique</span>
+          <span data-lang="en">Symmetric encryption</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">AES-256-GCM</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">AES-256-GCM</span>?</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 section-reveal">
+        <!-- Winner -->
+        <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 relative overflow-hidden">
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-accent-green/20 text-accent-green text-xs font-bold">SecureChat</div>
+          <h3 class="text-2xl font-bold font-['Space_Grotesk'] mb-4 flex items-center gap-3">
+            <span class="text-3xl">🔒</span> AES-256-GCM
+          </h3>
+          <div class="space-y-3 text-sm text-text-secondary">
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">AEAD</strong> — Chiffrement + authentification en un seul passage (Encrypt-then-MAC intégré)</span><span data-lang="en"><strong class="text-white">AEAD</strong> — Encryption + authentication in one pass (built-in Encrypt-then-MAC)</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">256 bits de clé</strong> — 2<sup>256</sup> combinaisons, inviolable même par les ordinateurs quantiques (Grover → 2<sup>128</sup>)</span><span data-lang="en"><strong class="text-white">256-bit key</strong> — 2<sup>256</sup> combinations, unbreakable even by quantum computers (Grover → 2<sup>128</sup>)</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">AES-NI</strong> — Accéléré par le matériel sur la plupart des processeurs modernes</span><span data-lang="en"><strong class="text-white">AES-NI</strong> — Hardware-accelerated on most modern processors</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Standard NIST</strong> — Approuvé FIPS 197, audité depuis 20+ ans, aucune attaque pratique connue</span><span data-lang="en"><strong class="text-white">NIST standard</strong> — FIPS 197 approved, audited for 20+ years, no known practical attack</span></div>
+          </div>
+          <div class="mt-6 p-4 rounded-xl bg-surface/50 font-['JetBrains_Mono'] text-xs text-phantom-light/80">
+            C, Tag = AES-256-GCM(Key₂₅₆, Nonce₉₆, Plaintext, AAD)
+          </div>
+          <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+            <div class="p-2 rounded-lg bg-surface/50"><div class="text-lg font-bold text-phantom-light">256</div><div class="text-[10px] text-text-muted" data-lang="fr">bits de clé</div><div class="text-[10px] text-text-muted" data-lang="en">key bits</div></div>
+            <div class="p-2 rounded-lg bg-surface/50"><div class="text-lg font-bold text-phantom-light">~4 GB/s</div><div class="text-[10px] text-text-muted" data-lang="fr">débit (AES-NI)</div><div class="text-[10px] text-text-muted" data-lang="en">throughput (AES-NI)</div></div>
+            <div class="p-2 rounded-lg bg-surface/50"><div class="text-lg font-bold text-phantom-light">128</div><div class="text-[10px] text-text-muted" data-lang="fr">bits de tag</div><div class="text-[10px] text-text-muted" data-lang="en">tag bits</div></div>
+          </div>
+        </div>
+
+        <!-- Losers -->
+        <div class="space-y-6">
+          <div class="glass rounded-2xl p-6 border border-accent-red/20 opacity-80">
+            <h3 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-xl">🐌</span> RSA-2048/4096
+              <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="fr">Pas adapté</span>
+              <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="en">Not suitable</span>
+            </h3>
+            <div class="space-y-2 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-accent-red mt-0.5">✗</span><span data-lang="fr"><strong class="text-white">Asymétrique</strong> — RSA chiffre des données, pas des messages. Limité à ~245 octets avec RSA-2048</span><span data-lang="en"><strong class="text-white">Asymmetric</strong> — RSA encrypts data, not messages. Limited to ~245 bytes with RSA-2048</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-red mt-0.5">✗</span><span data-lang="fr"><strong class="text-white">1000× plus lent</strong> que AES pour le chiffrement bulk</span><span data-lang="en"><strong class="text-white">1000× slower</strong> than AES for bulk encryption</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-red mt-0.5">✗</span><span data-lang="fr"><strong class="text-white">Vulnérable quantique</strong> — Algorithme de Shor casse RSA en temps polynomial</span><span data-lang="en"><strong class="text-white">Quantum vulnerable</strong> — Shor's algorithm breaks RSA in polynomial time</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-red mt-0.5">✗</span><span data-lang="fr"><strong class="text-white">Pas d'authentification</strong> — nécessite un MAC séparé (pas AEAD)</span><span data-lang="en"><strong class="text-white">No authentication</strong> — needs separate MAC (not AEAD)</span></div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-white/5 opacity-60">
+            <h3 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-xl">😐</span> AES-256-CBC
+              <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="fr">Inférieur</span>
+              <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="en">Inferior</span>
+            </h3>
+            <div class="space-y-2 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-yellow-400 mt-0.5">△</span><span data-lang="fr"><strong class="text-white">Pas AEAD</strong> — Vulnérable aux attaques padding oracle sans MAC externe</span><span data-lang="en"><strong class="text-white">Not AEAD</strong> — Vulnerable to padding oracle attacks without external MAC</span></div>
+              <div class="flex items-start gap-2"><span class="text-yellow-400 mt-0.5">△</span><span data-lang="fr"><strong class="text-white">Séquentiel</strong> — Impossible de paralléliser le chiffrement (contrairement à GCM/CTR)</span><span data-lang="en"><strong class="text-white">Sequential</strong> — Cannot parallelize encryption (unlike GCM/CTR)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 2: ChaCha20-Poly1305 ===== -->
+  <section id="vs-chacha" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Chiffrement adaptatif · Nouveau en V3.5</span>
+          <span data-lang="en">Adaptive cipher · New in V3.5</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">ChaCha20-Poly1305</span> en alternative ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">ChaCha20-Poly1305</span> as alternative?</h2>
+      </div>
+
+      <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12 mb-8">
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sélection automatique du chiffrement</h3>
+            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Automatic cipher selection</h3>
+            <p class="text-text-secondary mb-6" data-lang="fr">SecureChat détecte au runtime si le processeur supporte <strong class="text-white">AES-NI</strong> (accélération matérielle AES). Si oui → AES-256-GCM. Sinon → ChaCha20-Poly1305, qui est <strong class="text-phantom-light">3× plus rapide en software pur</strong>.</p>
+            <p class="text-text-secondary mb-6" data-lang="en">SecureChat detects at runtime whether the CPU supports <strong class="text-white">AES-NI</strong> (hardware AES acceleration). If yes → AES-256-GCM. If no → ChaCha20-Poly1305, which is <strong class="text-phantom-light">3× faster in pure software</strong>.</p>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10">
+                <span class="text-accent-green font-['JetBrains_Mono']">if</span>
+                <span class="text-text-secondary">CPU has AES-NI →</span>
+                <span class="text-phantom-light font-semibold">AES-256-GCM</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10">
+                <span class="text-accent-red font-['JetBrains_Mono']">else</span>
+                <span class="text-text-secondary">no AES hardware →</span>
+                <span class="text-phantom-light font-semibold">ChaCha20-Poly1305</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="space-y-4">
+              <div class="glass rounded-xl p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-semibold font-['Space_Grotesk'] text-sm">AES-256-GCM</span>
+                  <span class="text-xs text-text-muted" data-lang="fr">avec AES-NI</span>
+                  <span class="text-xs text-text-muted" data-lang="en">with AES-NI</span>
+                </div>
+                <div class="h-4 rounded-full bg-surface/80 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-phantom to-phantom-light" style="width: 95%"></div></div>
+                <div class="text-xs text-text-muted mt-1 text-right">~4 GB/s</div>
+              </div>
+              <div class="glass rounded-xl p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-semibold font-['Space_Grotesk'] text-sm">ChaCha20-Poly1305</span>
+                  <span class="text-xs text-accent-green" data-lang="fr">sans AES-NI</span>
+                  <span class="text-xs text-accent-green" data-lang="en">without AES-NI</span>
+                </div>
+                <div class="h-4 rounded-full bg-surface/80 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-accent-green/80 to-accent-green" style="width: 90%"></div></div>
+                <div class="text-xs text-text-muted mt-1 text-right">~1.5 GB/s (software)</div>
+              </div>
+              <div class="glass rounded-xl p-5 opacity-50">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="font-semibold font-['Space_Grotesk'] text-sm">AES-256-GCM</span>
+                  <span class="text-xs text-accent-red" data-lang="fr">sans AES-NI</span>
+                  <span class="text-xs text-accent-red" data-lang="en">without AES-NI</span>
+                </div>
+                <div class="h-4 rounded-full bg-surface/80 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-accent-red/50 to-accent-red/80" style="width: 30%"></div></div>
+                <div class="text-xs text-accent-red mt-1 text-right">~0.5 GB/s ⚠️</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 section-reveal">
+        <div class="glass rounded-2xl p-6">
+          <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2"><span class="text-phantom-light">⚡</span> ChaCha20-Poly1305</h4>
+          <div class="space-y-2 text-sm text-text-secondary">
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Conçu par djb</strong> (Daniel J. Bernstein) — audité, adopté par TLS 1.3, WireGuard, Google</span><span data-lang="en"><strong class="text-white">Designed by djb</strong> (Daniel J. Bernstein) — audited, adopted by TLS 1.3, WireGuard, Google</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">AEAD</strong> identique à GCM — chiffrement + authentification en un passage</span><span data-lang="en"><strong class="text-white">AEAD</strong> just like GCM — encryption + authentication in one pass</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Pas de timing attacks</strong> — Opérations en temps constant, pas de table lookups</span><span data-lang="en"><strong class="text-white">No timing attacks</strong> — Constant-time operations, no table lookups</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Idéal sur ARM</strong> — La majorité des smartphones n'ont pas d'AES-NI</span><span data-lang="en"><strong class="text-white">Ideal on ARM</strong> — Most smartphones lack AES-NI</span></div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2"><span class="text-phantom-light">🔐</span><span data-lang="fr">Les deux sont AEAD</span><span data-lang="en">Both are AEAD</span></h4>
+          <div class="space-y-2 text-sm text-text-secondary">
+            <p data-lang="fr">AES-256-GCM et ChaCha20-Poly1305 fournissent tous les deux le chiffrement <strong class="text-white">authentifié</strong> (AEAD). Ils intègrent nativement un MAC (Encrypt-then-MAC) :</p>
+            <p data-lang="en">Both AES-256-GCM and ChaCha20-Poly1305 provide <strong class="text-white">authenticated</strong> encryption (AEAD). They natively include a MAC (Encrypt-then-MAC):</p>
+            <div class="mt-3 space-y-2 font-['JetBrains_Mono'] text-xs">
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">AES-GCM: GHASH → Tag₁₂₈</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">ChaCha20: Poly1305 → Tag₁₂₈</div>
+            </div>
+            <p class="mt-3" data-lang="fr">En plus, Ed25519 ajoute une <strong class="text-white">deuxième couche</strong> d'intégrité indépendante : signature sur <code class="text-phantom-light text-xs">ct ‖ convId ‖ ts</code>.</p>
+            <p class="mt-3" data-lang="en">Additionally, Ed25519 adds a <strong class="text-white">second independent</strong> integrity layer: signature over <code class="text-phantom-light text-xs">ct ‖ convId ‖ ts</code>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 3: X25519 vs P-256 vs RSA ===== -->
+  <section id="vs-x25519" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Échange de clés Diffie-Hellman</span>
+          <span data-lang="en">Diffie-Hellman key exchange</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">X25519</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">X25519</span>?</h2>
+      </div>
+
+      <div class="section-reveal overflow-x-auto mb-8">
+        <table class="w-full text-sm">
+          <thead><tr class="border-b border-white/10">
+            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="fr">Critère</th>
+            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="en">Criteria</th>
+            <th class="py-4 px-4 text-center"><span class="gradient-text font-bold">X25519</span></th>
+            <th class="py-4 px-4 text-center text-text-secondary">P-256 (NIST)</th>
+            <th class="py-4 px-4 text-center text-text-secondary">RSA-2048 DH</th>
+          </tr></thead>
+          <tbody>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Taille de clé publique</td><td class="py-3 px-4" data-lang="en">Public key size</td>
+              <td class="py-3 px-4 text-center text-accent-green font-bold">32 bytes</td>
+              <td class="py-3 px-4 text-center">64 bytes</td>
+              <td class="py-3 px-4 text-center text-accent-red">256 bytes</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Sécurité (bits)</td><td class="py-3 px-4" data-lang="en">Security (bits)</td>
+              <td class="py-3 px-4 text-center text-accent-green font-bold">~128 bits</td>
+              <td class="py-3 px-4 text-center">~128 bits</td>
+              <td class="py-3 px-4 text-center text-yellow-400">~112 bits</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Vitesse ECDH</td><td class="py-3 px-4" data-lang="en">ECDH speed</td>
+              <td class="py-3 px-4 text-center text-accent-green font-bold">~0.15 ms</td>
+              <td class="py-3 px-4 text-center">~0.30 ms</td>
+              <td class="py-3 px-4 text-center text-accent-red">~2.5 ms</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Temps constant</td><td class="py-3 px-4" data-lang="en">Constant time</td>
+              <td class="py-3 px-4 text-center compare-check text-lg">✓</td>
+              <td class="py-3 px-4 text-center compare-partial text-lg">◐</td>
+              <td class="py-3 px-4 text-center compare-cross text-lg">✗</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Résistant au quantum</td><td class="py-3 px-4" data-lang="en">Quantum resistant</td>
+              <td class="py-3 px-4 text-center compare-cross text-lg">✗ *</td>
+              <td class="py-3 px-4 text-center compare-cross text-lg">✗</td>
+              <td class="py-3 px-4 text-center compare-cross text-lg">✗</td>
+            </tr>
+            <tr class="hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Backdoor risk</td><td class="py-3 px-4" data-lang="en">Backdoor risk</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="fr">Aucun (djb)</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="en">None (djb)</td>
+              <td class="py-3 px-4 text-center text-yellow-400 font-['JetBrains_Mono'] text-xs" data-lang="fr">Débattu (Dual EC)</td>
+              <td class="py-3 px-4 text-center text-yellow-400 font-['JetBrains_Mono'] text-xs" data-lang="en">Debated (Dual EC)</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="fr">Aucun</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="en">None</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-reveal glass rounded-2xl p-6 flex items-center gap-4">
+        <span class="text-2xl">💡</span>
+        <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">* X25519 seul n'est pas post-quantique</strong>, c'est pourquoi SecureChat utilise <strong class="text-phantom-light">PQXDH</strong> : X25519 + ML-KEM-1024. La sécurité classique de X25519 est complétée par la résistance quantique de ML-KEM.</p>
+        <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">* X25519 alone is not post-quantum</strong>, which is why SecureChat uses <strong class="text-phantom-light">PQXDH</strong>: X25519 + ML-KEM-1024. X25519's classical security is complemented by ML-KEM's quantum resistance.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-8 section-reveal">
+        <div class="glass rounded-2xl p-6 border border-accent-green/20">
+          <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-accent-green">Curve25519</h4>
+          <p class="text-xs text-text-secondary" data-lang="fr">Courbe de Montgomery a = 486662, champ premier p = 2<sup>255</sup> − 19. Conçue par Daniel J. Bernstein pour être <strong class="text-white">immune aux timing attacks</strong> par design. Utilisée par Signal, WireGuard, SSH, Tor.</p>
+          <p class="text-xs text-text-secondary" data-lang="en">Montgomery curve a = 486662, prime field p = 2<sup>255</sup> − 19. Designed by Daniel J. Bernstein to be <strong class="text-white">immune to timing attacks</strong> by design. Used by Signal, WireGuard, SSH, Tor.</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-yellow-400">P-256 (secp256r1)</h4>
+          <p class="text-xs text-text-secondary" data-lang="fr">Courbe Short Weierstrass NIST. Performante mais paramètres "inexpliqués" — des chercheurs soupçonnent un choix non aléatoire (similaire à Dual_EC_DRBG). Implémentations souvent non constant-time.</p>
+          <p class="text-xs text-text-secondary" data-lang="en">NIST Short Weierstrass curve. Performant but "unexplained" parameters — researchers suspect non-random choice (similar to Dual_EC_DRBG). Implementations often not constant-time.</p>
+        </div>
+        <div class="glass rounded-2xl p-6 opacity-60">
+          <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-accent-red">RSA-2048</h4>
+          <p class="text-xs text-text-secondary" data-lang="fr">Diffie-Hellman classique sur corps premier. Clés énormes (256+ bytes), lent, pas de PFS sauf avec des éphémères explicites. Vulnérable au quantum (Shor).</p>
+          <p class="text-xs text-text-secondary" data-lang="en">Classical prime-field Diffie-Hellman. Huge keys (256+ bytes), slow, no PFS unless using explicit ephemerals. Quantum vulnerable (Shor).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 4: ML-KEM-1024 (Post-Quantum) ===== -->
+  <section id="vs-mlkem" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Résistance post-quantique</span>
+          <span data-lang="en">Post-quantum resistance</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">ML-KEM-1024</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">ML-KEM-1024</span>?</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 section-reveal">
+        <div class="space-y-6">
+          <div class="glass-strong rounded-2xl p-8 border border-accent-green/30">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">🛡️</span>
+              <div>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']">ML-KEM-1024 (Kyber)</h3>
+                <span class="text-xs text-accent-green">NIST FIPS 203 — SecureChat</span>
+              </div>
+            </div>
+            <div class="space-y-2 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Standard NIST</strong> — Premier standard PQ officiel (août 2024), basé sur la dureté du problème MLWE (Module Learning With Errors)</span><span data-lang="en"><strong class="text-white">NIST standard</strong> — First official PQ standard (August 2024), based on MLWE (Module Learning With Errors) hardness</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Niveau 5</strong> — Sécurité ≥ AES-256, le plus haut niveau de sécurité NIST</span><span data-lang="en"><strong class="text-white">Level 5</strong> — Security ≥ AES-256, the highest NIST security level</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Rapide</strong> — Encapsulation ~0.1ms, Décapsulation ~0.1ms</span><span data-lang="en"><strong class="text-white">Fast</strong> — Encapsulation ~0.1ms, Decapsulation ~0.1ms</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Compact</strong> — Clé publique 1568 bytes, ciphertext 1568 bytes</span><span data-lang="en"><strong class="text-white">Compact</strong> — Public key 1568 bytes, ciphertext 1568 bytes</span></div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6">
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="fr">Pourquoi ML-KEM-<span class="text-phantom-light">1024</span> et pas 768 ?</h4>
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="en">Why ML-KEM-<span class="text-phantom-light">1024</span> and not 768?</h4>
+            <p class="text-sm text-text-secondary" data-lang="fr">ML-KEM-768 offre un niveau de sécurité 3 (≈ AES-192). Nous avons choisi <strong class="text-white">ML-KEM-1024</strong> (niveau 5 ≈ AES-256) pour une marge de sécurité maximale. Le surcoût est minimal (+0.05ms, +500 bytes).</p>
+            <p class="text-sm text-text-secondary" data-lang="en">ML-KEM-768 offers security level 3 (≈ AES-192). We chose <strong class="text-white">ML-KEM-1024</strong> (level 5 ≈ AES-256) for maximum security margin. The overhead is minimal (+0.05ms, +500 bytes).</p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="glass rounded-2xl p-6 border border-white/5 opacity-70">
+            <h4 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-xl">🔷</span> NTRU
+              <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="fr">Alternatif</span>
+              <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="en">Alternative</span>
+            </h4>
+            <div class="space-y-2 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-yellow-400 mt-0.5">△</span><span data-lang="fr">Historiquement le premier KEM lattice-based. <strong class="text-white">Non sélectionné par le NIST</strong> comme standard principal</span><span data-lang="en">Historically the first lattice-based KEM. <strong class="text-white">Not selected by NIST</strong> as primary standard</span></div>
+              <div class="flex items-start gap-2"><span class="text-yellow-400 mt-0.5">△</span><span data-lang="fr">Brevets (expirés mais complexité juridique) et implémentations moins auditées</span><span data-lang="en">Patents (expired but legal complexity) and less audited implementations</span></div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-white/5 opacity-70">
+            <h4 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-xl">🟢</span> McEliece
+              <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="fr">Clés énormes</span>
+              <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="en">Huge keys</span>
+            </h4>
+            <div class="space-y-2 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-yellow-400 mt-0.5">△</span><span data-lang="fr">Sécurité prouvée depuis 1978 (code-based). <strong class="text-white">Mais clé publique = 261 KB</strong> (vs 1.5 KB pour ML-KEM)</span><span data-lang="en">Proven security since 1978 (code-based). <strong class="text-white">But public key = 261 KB</strong> (vs 1.5 KB for ML-KEM)</span></div>
+              <div class="flex items-start gap-2"><span class="text-yellow-400 mt-0.5">△</span><span data-lang="fr">Impraticable sur mobile — QR code, échange réseau, stockage</span><span data-lang="en">Impractical on mobile — QR code, network exchange, storage</span></div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-white/5 opacity-70">
+            <h4 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-xl">🔴</span> SIKE/SIDH
+              <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="fr">Cassé</span>
+              <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="en">Broken</span>
+            </h4>
+            <div class="space-y-2 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-accent-red mt-0.5">✗</span><span data-lang="fr">Était candidat NIST. <strong class="text-white">Cassé en 2022</strong> par Castryck-Decru attack (sur un laptop en 1 heure). Abandonné.</span><span data-lang="en">Was a NIST candidate. <strong class="text-white">Broken in 2022</strong> by Castryck-Decru attack (on a laptop in 1 hour). Abandoned.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 5: Ed25519 vs RSA/ECDSA ===== -->
+  <section id="vs-ed25519" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Signatures numériques</span>
+          <span data-lang="en">Digital signatures</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">Ed25519</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">Ed25519</span>?</h2>
+      </div>
+
+      <div class="section-reveal overflow-x-auto mb-8">
+        <table class="w-full text-sm">
+          <thead><tr class="border-b border-white/10">
+            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="fr">Critère</th>
+            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="en">Criteria</th>
+            <th class="py-4 px-4 text-center"><span class="gradient-text font-bold">Ed25519</span></th>
+            <th class="py-4 px-4 text-center text-text-secondary">ECDSA (P-256)</th>
+            <th class="py-4 px-4 text-center text-text-secondary">RSA-2048</th>
+          </tr></thead>
+          <tbody>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Signature</td><td class="py-3 px-4" data-lang="en">Signature size</td>
+              <td class="py-3 px-4 text-center text-accent-green font-bold">64 bytes</td>
+              <td class="py-3 px-4 text-center">64 bytes</td>
+              <td class="py-3 px-4 text-center text-accent-red">256 bytes</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Clé publique</td><td class="py-3 px-4" data-lang="en">Public key</td>
+              <td class="py-3 px-4 text-center text-accent-green font-bold">32 bytes</td>
+              <td class="py-3 px-4 text-center">64 bytes</td>
+              <td class="py-3 px-4 text-center text-accent-red">256 bytes</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Vitesse signature</td><td class="py-3 px-4" data-lang="en">Sign speed</td>
+              <td class="py-3 px-4 text-center text-accent-green font-bold">~0.05 ms</td>
+              <td class="py-3 px-4 text-center">~0.15 ms</td>
+              <td class="py-3 px-4 text-center text-accent-red">~1.5 ms</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Déterministe</td><td class="py-3 px-4" data-lang="en">Deterministic</td>
+              <td class="py-3 px-4 text-center compare-check text-lg">✓</td>
+              <td class="py-3 px-4 text-center compare-cross text-lg">✗ *</td>
+              <td class="py-3 px-4 text-center compare-check text-lg">✓</td>
+            </tr>
+            <tr class="border-b border-white/5 hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Temps constant</td><td class="py-3 px-4" data-lang="en">Constant time</td>
+              <td class="py-3 px-4 text-center compare-check text-lg">✓</td>
+              <td class="py-3 px-4 text-center compare-partial text-lg">◐</td>
+              <td class="py-3 px-4 text-center compare-cross text-lg">✗</td>
+            </tr>
+            <tr class="hover:bg-white/2">
+              <td class="py-3 px-4" data-lang="fr">Risque nonce</td><td class="py-3 px-4" data-lang="en">Nonce risk</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="fr">Aucun</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="en">None</td>
+              <td class="py-3 px-4 text-center text-accent-red font-['JetBrains_Mono'] text-xs" data-lang="fr">Critique !</td>
+              <td class="py-3 px-4 text-center text-accent-red font-['JetBrains_Mono'] text-xs" data-lang="en">Critical!</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="fr">Aucun</td>
+              <td class="py-3 px-4 text-center text-accent-green font-['JetBrains_Mono'] text-xs" data-lang="en">None</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-reveal glass rounded-2xl p-6 flex items-center gap-4">
+        <span class="text-2xl">⚠️</span>
+        <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">* ECDSA a un problème critique</strong> : si le nonce aléatoire est réutilisé ou biaisé, la <strong class="text-accent-red">clé privée est récupérable</strong>. C'est exactement ce qui a permis de pirater la PS3 en 2010. Ed25519 élimine ce risque car il est <strong class="text-phantom-light">déterministe</strong> (le nonce est dérivé du message).</p>
+        <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">* ECDSA has a critical issue</strong>: if the random nonce is reused or biased, the <strong class="text-accent-red">private key becomes recoverable</strong>. This is exactly how the PS3 was hacked in 2010. Ed25519 eliminates this risk because it's <strong class="text-phantom-light">deterministic</strong> (the nonce is derived from the message).</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 6: Double Ratchet ===== -->
+  <section id="vs-ratchet" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Renouvellement des clés</span>
+          <span data-lang="en">Key renewal</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi le <span class="gradient-text">Double Ratchet</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why the <span class="gradient-text">Double Ratchet</span>?</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 section-reveal">
+        <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 lg:col-span-2">
+          <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 flex items-center gap-2">
+            <span class="text-2xl">🔄</span><span data-lang="fr">Double Ratchet (Signal Protocol)</span><span data-lang="en">Double Ratchet (Signal Protocol)</span>
+            <span class="px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green text-xs">SecureChat</span>
+          </h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-3 text-sm text-text-secondary">
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">PFS</strong> (Perfect Forward Secrecy) — La compromission d'une clé ne révèle pas les messages passés</span><span data-lang="en"><strong class="text-white">PFS</strong> (Perfect Forward Secrecy) — Compromising one key doesn't reveal past messages</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Self-healing</strong> — Après compromission, la sécurité se rétablit automatiquement au prochain DH ratchet</span><span data-lang="en"><strong class="text-white">Self-healing</strong> — After compromise, security auto-restores at the next DH ratchet</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Clé unique par message</strong> — Chaque message utilise une clé différente dérivée via HKDF</span><span data-lang="en"><strong class="text-white">Unique key per message</strong> — Every message uses a different key derived via HKDF</span></div>
+              <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Asynchrone</strong> — Fonctionne même si le destinataire est hors ligne (prekeys)</span><span data-lang="en"><strong class="text-white">Asynchronous</strong> — Works even when recipient is offline (prekeys)</span></div>
+            </div>
+            <div class="font-['JetBrains_Mono'] text-xs space-y-2">
+              <div class="text-text-muted mb-2" data-lang="fr">Deux ratchets imbriqués :</div>
+              <div class="text-text-muted mb-2" data-lang="en">Two nested ratchets:</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">1. DH Ratchet (X25519)</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">→ new RootKey = HKDF(RK, DH(a,B))</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">2. KDF Chain Ratchet</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">→ MK₁ = HMAC(CK₁)</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">→ CK₂ = HMAC(CK₁)</div>
+              <div class="p-2 rounded bg-surface/50 text-phantom-light/80">→ MK₂ = HMAC(CK₂) …</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="glass rounded-2xl p-6 border border-accent-red/20 opacity-70">
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-accent-red">✗</span>
+              <span data-lang="fr">Clé statique</span>
+              <span data-lang="en">Static key</span>
+            </h4>
+            <p class="text-xs text-text-secondary" data-lang="fr">WhatsApp avant 2016, Telegram (chats non-secrets). Une seule clé partagée. Si compromise → <strong class="text-accent-red">tous les messages passés ET futurs sont lisibles</strong>.</p>
+            <p class="text-xs text-text-secondary" data-lang="en">WhatsApp pre-2016, Telegram (non-secret chats). Single shared key. If compromised → <strong class="text-accent-red">all past AND future messages are readable</strong>.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-yellow-500/20 opacity-70">
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-yellow-400">△</span>
+              <span data-lang="fr">OTR (Off-the-Record)</span>
+              <span data-lang="en">OTR (Off-the-Record)</span>
+            </h4>
+            <p class="text-xs text-text-secondary" data-lang="fr">Précurseur du Double Ratchet. PFS mais pas de messages asynchrones — les deux parties doivent être en ligne simultanément.</p>
+            <p class="text-xs text-text-secondary" data-lang="en">Double Ratchet predecessor. PFS but no async messages — both parties must be online simultaneously.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-yellow-500/20 opacity-70">
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+              <span class="text-yellow-400">△</span>
+              <span>MTProto 2.0</span>
+            </h4>
+            <p class="text-xs text-text-secondary" data-lang="fr">Telegram. Protocole propriétaire, pas de forward secrecy par défaut, E2E uniquement en "secret chat". Des chercheurs ont trouvé des faiblesses cryptographiques.</p>
+            <p class="text-xs text-text-secondary" data-lang="en">Telegram. Proprietary protocol, no forward secrecy by default, E2E only in "secret chat". Researchers have found cryptographic weaknesses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 7: SPQR (Triple Ratchet) ===== -->
+  <section id="vs-spqr" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
+          <span data-lang="fr">Nouveau en V3.5</span>
+          <span data-lang="en">New in V3.5</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">SPQR — Le <span class="gradient-text">Triple Ratchet</span> post-quantique</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">SPQR — The post-quantum <span class="gradient-text">Triple Ratchet</span></h2>
+      </div>
+
+      <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12 mb-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Le problème</h3>
+            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The problem</h3>
+            <p class="text-text-secondary mb-4" data-lang="fr">Le Double Ratchet classique renouvelle les clés via <strong class="text-white">X25519</strong> uniquement. ML-KEM-1024 n'est utilisé que dans le handshake initial PQXDH. Si un ordinateur quantique casse X25519 <strong class="text-phantom-light">après</strong> le handshake, les ratchets DH suivants ne bénéficient plus de protection post-quantique.</p>
+            <p class="text-text-secondary mb-4" data-lang="en">The classic Double Ratchet renews keys via <strong class="text-white">X25519</strong> only. ML-KEM-1024 is only used in the initial PQXDH handshake. If a quantum computer breaks X25519 <strong class="text-phantom-light">after</strong> the handshake, subsequent DH ratchets no longer benefit from post-quantum protection.</p>
+
+            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 mt-8" data-lang="fr">La solution SPQR</h3>
+            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 mt-8" data-lang="en">The SPQR solution</h3>
+            <p class="text-text-secondary" data-lang="fr">Tous les <strong class="text-white">10 messages</strong>, SecureChat effectue un nouvel échange ML-KEM-1024 (encapsulation + décapsulation) et mélange le secret partagé post-quantique dans la rootKey via HKDF. C'est le <strong class="text-phantom-light">PQ Ratchet</strong> — un troisième ratchet, indépendant des deux autres.</p>
+            <p class="text-text-secondary" data-lang="en">Every <strong class="text-white">10 messages</strong>, SecureChat performs a new ML-KEM-1024 exchange (encapsulation + decapsulation) and mixes the post-quantum shared secret into the rootKey via HKDF. This is the <strong class="text-phantom-light">PQ Ratchet</strong> — a third ratchet, independent of the other two.</p>
+          </div>
+          <div class="font-['JetBrains_Mono'] text-xs space-y-3">
+            <div class="text-text-muted mb-2 text-center">SPQR — Triple Ratchet</div>
+            <div class="space-y-2">
+              <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">msg₁₋₉</span> <span class="text-text-muted">→ Double Ratchet classique (X25519 + KDF Chain)</span></div>
+              <div class="p-3 rounded-lg bg-phantom/20 border border-phantom/30">
+                <span class="text-phantom-light font-bold">msg₁₀ → SPQR Trigger!</span>
+                <div class="mt-2 pl-4 space-y-1 text-phantom-light/80">
+                  <div>ct = ML-KEM.Encaps(pk_partner) → (ss, ct)</div>
+                  <div>newRK = HKDF(currentRK ‖ ss, info="SecureChat-SPQR-pq-ratchet")</div>
+                  <div>pqRatchetCounter = 0</div>
+                </div>
+              </div>
+              <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">msg₁₁₋₁₉</span> <span class="text-text-muted">→ Double Ratchet avec la nouvelle rootKey PQ</span></div>
+              <div class="p-3 rounded-lg bg-phantom/20 border border-phantom/30">
+                <span class="text-phantom-light font-bold">msg₂₀ → SPQR Trigger!</span>
+                <span class="text-text-muted ml-2">→ nouvel échange ML-KEM ...</span>
+              </div>
+              <div class="text-text-muted text-center">... ∞</div>
+            </div>
+            <div class="mt-4 p-3 rounded-lg bg-accent-green/10 border border-accent-green/20 text-accent-green text-center">
+              <span data-lang="fr">🛡️ Protection PQ continue, pas seulement au handshake</span>
+              <span data-lang="en">🛡️ Continuous PQ protection, not just at handshake</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 8: HKDF ===== -->
+  <section id="vs-hkdf" class="py-24 relative">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-phantom-light mb-4">
+          <span data-lang="fr">Dérivation de clés</span>
+          <span data-lang="en">Key derivation</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">HKDF-SHA256</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">HKDF-SHA256</span>?</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 section-reveal">
+        <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 md:col-span-1">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">🧪</span>
+            <div>
+              <h3 class="font-bold font-['Space_Grotesk']">HKDF</h3>
+              <span class="text-xs text-accent-green">RFC 5869</span>
+            </div>
+          </div>
+          <div class="space-y-2 text-sm text-text-secondary">
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Extract-Expand</strong> — Deux phases : extrait l'entropie puis dérive N clés</span><span data-lang="en"><strong class="text-white">Extract-Expand</strong> — Two phases: extracts entropy then derives N keys</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Prouvé sûr</strong> — Sécurité formelle prouvée sous le modèle PRF</span><span data-lang="en"><strong class="text-white">Proven secure</strong> — Formal security proof under PRF model</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Standard</strong> — Utilisé par TLS 1.3, Signal, WireGuard</span><span data-lang="en"><strong class="text-white">Standard</strong> — Used by TLS 1.3, Signal, WireGuard</span></div>
+          </div>
+          <div class="mt-4 p-3 rounded-xl bg-surface/50 font-['JetBrains_Mono'] text-xs text-phantom-light/80 space-y-1">
+            <div>PRK = HMAC-SHA256(salt, IKM)</div>
+            <div>OKM = HMAC-SHA256(PRK, info ‖ 0x01)</div>
+          </div>
+        </div>
+
+        <div class="md:col-span-2 space-y-6">
+          <div class="glass rounded-2xl p-6">
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="fr">Où HKDF est utilisé dans SecureChat</h4>
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="en">Where HKDF is used in SecureChat</h4>
+            <div class="space-y-2 font-['JetBrains_Mono'] text-xs">
+              <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">PQXDH</span><span class="text-text-muted">SK = HKDF(DH₁‖DH₂‖DH₃‖DH₄‖ML-KEM.ss)</span></div>
+              <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">DH Ratchet</span><span class="text-text-muted">newRK, CK = HKDF(RK, DH(a,B))</span></div>
+              <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">KDF Chain</span><span class="text-text-muted">CKₙ₊₁, MK = HMAC-SHA256(CKₙ)</span></div>
+              <div class="p-2 rounded bg-phantom/15 flex items-center gap-3 border border-phantom/20"><span class="text-phantom-light">SPQR</span><span class="text-text-muted">newRK = HKDF(RK ‖ ss, "SecureChat-SPQR-pq-ratchet")</span></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="glass rounded-2xl p-5 opacity-60">
+              <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-sm text-yellow-400">PBKDF2</h4>
+              <p class="text-xs text-text-secondary" data-lang="fr">Conçu pour deriver des clés à partir de <strong class="text-white">mots de passe</strong> (lent volontairement). Pas adapté pour dérivation rapide type ratchet.</p>
+              <p class="text-xs text-text-secondary" data-lang="en">Designed to derive keys from <strong class="text-white">passwords</strong> (intentionally slow). Not suited for fast ratchet-style derivation.</p>
+              <p class="text-xs text-text-muted mt-2" data-lang="fr">→ SecureChat utilise PBKDF2 uniquement pour le PIN (600K itérations)</p>
+              <p class="text-xs text-text-muted mt-2" data-lang="en">→ SecureChat uses PBKDF2 only for PIN (600K iterations)</p>
+            </div>
+            <div class="glass rounded-2xl p-5 opacity-60">
+              <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-sm text-yellow-400">Argon2</h4>
+              <p class="text-xs text-text-secondary" data-lang="fr">Memory-hard KDF, meilleur que PBKDF2 pour les mots de passe. Mais <strong class="text-white">trop lent</strong> et memory-intensive pour un ratchet par message.</p>
+              <p class="text-xs text-text-secondary" data-lang="en">Memory-hard KDF, better than PBKDF2 for passwords. But <strong class="text-white">too slow</strong> and memory-intensive for per-message ratcheting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== VS 9: Quantum Threats ===== -->
+  <section id="vs-quantum" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-accent-red/3 to-surface pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-accent-red mb-4 border border-accent-red/20">
+          <span class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></span>
+          <span data-lang="fr">Menaces & résistance</span>
+          <span data-lang="en">Threats & resistance</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Résistance aux <span class="gradient-text">attaques quantiques</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Resistance to <span class="gradient-text">quantum attacks</span></h2>
+        <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="fr">Un ordinateur quantique suffisamment puissant disposera de deux armes principales. Voici comment SecureChat se défend contre chacune.</p>
+        <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="en">A sufficiently powerful quantum computer will have two main weapons. Here's how SecureChat defends against each.</p>
+      </div>
+
+      <!-- Shor's Algorithm -->
+      <div class="grid lg:grid-cols-2 gap-8 mb-12 section-reveal">
+        <div class="glass-strong rounded-2xl p-8 border border-accent-red/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-accent-red/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-1">
+              <span class="text-3xl">💀</span>
+              <div>
+                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="fr">Algorithme de Shor</h3>
+                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="en">Shor's Algorithm</h3>
+                <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="fr">MENACE CRITIQUE — casse la crypto asymétrique</span>
+                <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="en">CRITICAL THREAT — breaks asymmetric crypto</span>
+              </div>
+            </div>
+            <div class="mt-4 space-y-3 text-sm text-text-secondary">
+              <p data-lang="fr">L'algorithme de <strong class="text-white">Peter Shor (1994)</strong> résout la factorisation des grands nombres et le logarithme discret en <strong class="text-accent-red">temps polynomial</strong> sur un ordinateur quantique.</p>
+              <p data-lang="en"><strong class="text-white">Peter Shor's algorithm (1994)</strong> solves large integer factorization and discrete logarithm in <strong class="text-accent-red">polynomial time</strong> on a quantum computer.</p>
+              <p data-lang="fr">Concrètement, il <strong class="text-accent-red">détruit</strong> tous les systèmes basés sur :</p>
+              <p data-lang="en">Concretely, it <strong class="text-accent-red">destroys</strong> all systems based on:</p>
+              <div class="space-y-2 ml-4">
+                <div class="flex items-center gap-2"><span class="text-accent-red">✗</span><span><strong class="text-white">RSA</strong> — <span data-lang="fr">factorisation de n = p × q</span><span data-lang="en">factoring n = p × q</span></span></div>
+                <div class="flex items-center gap-2"><span class="text-accent-red">✗</span><span><strong class="text-white">ECDSA / ECDH (P-256)</strong> — <span data-lang="fr">logarithme discret sur courbes</span><span data-lang="en">discrete log on curves</span></span></div>
+                <div class="flex items-center gap-2"><span class="text-accent-red">✗</span><span><strong class="text-white">X25519 / Ed25519</strong> — <span data-lang="fr">même problème (courbes elliptiques)</span><span data-lang="en">same problem (elliptic curves)</span></span></div>
+                <div class="flex items-center gap-2"><span class="text-accent-red">✗</span><span><strong class="text-white">DSA / DHE classique</strong> — <span data-lang="fr">logarithme discret sur corps fini</span><span data-lang="en">discrete log on finite fields</span></span></div>
+              </div>
+            </div>
+            <div class="mt-5 p-4 rounded-xl bg-accent-red/10 border border-accent-red/20">
+              <div class="font-['JetBrains_Mono'] text-xs text-accent-red" data-lang="fr">⚠️ Complexité classique RSA-2048 : O(e^(n^(1/3))) ≈ 2<sup>112</sup> opérations</div>
+              <div class="font-['JetBrains_Mono'] text-xs text-accent-red" data-lang="en">⚠️ Classical RSA-2048 complexity: O(e^(n^(1/3))) ≈ 2<sup>112</sup> operations</div>
+              <div class="font-['JetBrains_Mono'] text-xs text-accent-red mt-1" data-lang="fr">💀 Complexité quantique (Shor) : O(n<sup>3</sup>) ≈ quelques heures</div>
+              <div class="font-['JetBrains_Mono'] text-xs text-accent-red mt-1" data-lang="en">💀 Quantum complexity (Shor): O(n<sup>3</sup>) ≈ a few hours</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-accent-green/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-1">
+              <span class="text-3xl">🛡️</span>
+              <div>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense SecureChat vs Shor</h3>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">SecureChat defense vs Shor</h3>
+              </div>
+            </div>
+            <div class="mt-4 space-y-4 text-sm text-text-secondary">
+              <div class="p-4 rounded-xl bg-surface/50 border border-accent-green/10">
+                <div class="font-semibold text-white mb-1" data-lang="fr">🔑 Échange de clés — PROTÉGÉ</div>
+                <div class="font-semibold text-white mb-1" data-lang="en">🔑 Key exchange — PROTECTED</div>
+                <p data-lang="fr"><strong class="text-phantom-light">PQXDH = X25519 + ML-KEM-1024</strong>. ML-KEM est basé sur le problème MLWE (Module Learning With Errors), résistant à Shor. Même si X25519 tombe, ML-KEM tient.</p>
+                <p data-lang="en"><strong class="text-phantom-light">PQXDH = X25519 + ML-KEM-1024</strong>. ML-KEM is based on MLWE (Module Learning With Errors), resistant to Shor. Even if X25519 falls, ML-KEM holds.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface/50 border border-accent-green/10">
+                <div class="font-semibold text-white mb-1" data-lang="fr">🔄 Ratchet continu — PROTÉGÉ</div>
+                <div class="font-semibold text-white mb-1" data-lang="en">🔄 Continuous ratchet — PROTECTED</div>
+                <p data-lang="fr"><strong class="text-phantom-light">SPQR</strong> ré-encapsule ML-KEM tous les 10 messages. La protection PQ ne s'arrête pas au handshake — elle est <strong class="text-white">continue</strong>.</p>
+                <p data-lang="en"><strong class="text-phantom-light">SPQR</strong> re-encapsulates ML-KEM every 10 messages. PQ protection doesn't stop at handshake — it's <strong class="text-white">continuous</strong>.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-surface/50 border border-yellow-500/10">
+                <div class="font-semibold text-yellow-400 mb-1" data-lang="fr">✍️ Signatures — EN COURS (V3.6+)</div>
+                <div class="font-semibold text-yellow-400 mb-1" data-lang="en">✍️ Signatures — IN PROGRESS (V3.6+)</div>
+                <p data-lang="fr">Ed25519 est vulnérable à Shor, mais un attaquant devrait <strong class="text-white">forger une signature en temps réel</strong> — pas rétroactif. Migration vers <strong class="text-phantom-light">Ed25519 + ML-DSA-44</strong> hybride prévue en V3.6.</p>
+                <p data-lang="en">Ed25519 is vulnerable to Shor, but an attacker would need to <strong class="text-white">forge a signature in real-time</strong> — not retroactive. Migration to hybrid <strong class="text-phantom-light">Ed25519 + ML-DSA-44</strong> planned for V3.6.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grover's Algorithm -->
+      <div class="grid lg:grid-cols-2 gap-8 mb-12 section-reveal">
+        <div class="glass-strong rounded-2xl p-8 border border-yellow-500/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-1">
+              <span class="text-3xl">🔍</span>
+              <div>
+                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="fr">Algorithme de Grover</h3>
+                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="en">Grover's Algorithm</h3>
+                <span class="text-xs text-yellow-400 font-['JetBrains_Mono']" data-lang="fr">MENACE MODÉRÉE — divise la sécurité symétrique par 2</span>
+                <span class="text-xs text-yellow-400 font-['JetBrains_Mono']" data-lang="en">MODERATE THREAT — halves symmetric security</span>
+              </div>
+            </div>
+            <div class="mt-4 space-y-3 text-sm text-text-secondary">
+              <p data-lang="fr">L'algorithme de <strong class="text-white">Lov Grover (1996)</strong> accélère la recherche brute-force. Il trouve une clé dans un espace de taille N en <strong class="text-yellow-400">√N opérations</strong> au lieu de N.</p>
+              <p data-lang="en"><strong class="text-white">Lov Grover's algorithm (1996)</strong> accelerates brute-force search. It finds a key in a space of size N in <strong class="text-yellow-400">√N operations</strong> instead of N.</p>
+              <p data-lang="fr">Concrètement, la sécurité de chaque clé symétrique est <strong class="text-yellow-400">divisée par deux</strong> :</p>
+              <p data-lang="en">Concretely, every symmetric key's security is <strong class="text-yellow-400">halved</strong>:</p>
+              <div class="space-y-2 mt-3">
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50">
+                  <span class="font-['JetBrains_Mono'] text-xs text-white w-32">AES-256</span>
+                  <span class="text-text-muted">→</span>
+                  <span class="font-['JetBrains_Mono'] text-xs">256 bits → <span class="text-accent-green font-bold">128 bits</span></span>
+                  <span class="text-accent-green text-xs ml-auto">✓ Safe</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50">
+                  <span class="font-['JetBrains_Mono'] text-xs text-white w-32">ChaCha20</span>
+                  <span class="text-text-muted">→</span>
+                  <span class="font-['JetBrains_Mono'] text-xs">256 bits → <span class="text-accent-green font-bold">128 bits</span></span>
+                  <span class="text-accent-green text-xs ml-auto">✓ Safe</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50">
+                  <span class="font-['JetBrains_Mono'] text-xs text-white w-32">HKDF-SHA256</span>
+                  <span class="text-text-muted">→</span>
+                  <span class="font-['JetBrains_Mono'] text-xs">256 bits → <span class="text-accent-green font-bold">128 bits</span></span>
+                  <span class="text-accent-green text-xs ml-auto">✓ Safe</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50">
+                  <span class="font-['JetBrains_Mono'] text-xs text-white w-32">ML-KEM-1024</span>
+                  <span class="text-text-muted">→</span>
+                  <span class="font-['JetBrains_Mono'] text-xs">256 bits → <span class="text-accent-green font-bold">~128 bits</span></span>
+                  <span class="text-accent-green text-xs ml-auto">✓ Safe</span>
+                </div>
+                <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 opacity-50">
+                  <span class="font-['JetBrains_Mono'] text-xs text-white w-32">AES-128 ⚠️</span>
+                  <span class="text-text-muted">→</span>
+                  <span class="font-['JetBrains_Mono'] text-xs">128 bits → <span class="text-accent-red font-bold">64 bits</span></span>
+                  <span class="text-accent-red text-xs ml-auto" data-lang="fr">✗ Cassable</span>
+                  <span class="text-accent-red text-xs ml-auto" data-lang="en">✗ Breakable</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-5 p-4 rounded-xl bg-yellow-500/10 border border-yellow-500/20">
+              <div class="font-['JetBrains_Mono'] text-xs text-yellow-400" data-lang="fr">🔍 Brute-force classique AES-256 : 2<sup>256</sup> opérations (impossible)</div>
+              <div class="font-['JetBrains_Mono'] text-xs text-yellow-400" data-lang="en">🔍 Classical brute-force AES-256: 2<sup>256</sup> operations (impossible)</div>
+              <div class="font-['JetBrains_Mono'] text-xs text-yellow-400 mt-1" data-lang="fr">⚛️ Grover sur AES-256 : 2<sup>128</sup> opérations (toujours impossible)</div>
+              <div class="font-['JetBrains_Mono'] text-xs text-yellow-400 mt-1" data-lang="en">⚛️ Grover on AES-256: 2<sup>128</sup> operations (still impossible)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-accent-green/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-1">
+              <span class="text-3xl">✅</span>
+              <div>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense SecureChat vs Grover</h3>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">SecureChat defense vs Grover</h3>
+              </div>
+            </div>
+            <div class="mt-4 space-y-3 text-sm text-text-secondary">
+              <p data-lang="fr"><strong class="text-accent-green">Grover n'est pas un problème pour SecureChat.</strong> Toute la pile symétrique utilise des clés de <strong class="text-white">256 bits</strong>. Même divisée par 2 → 128 bits restants = <strong class="text-phantom-light">astronomiquement sûr</strong>.</p>
+              <p data-lang="en"><strong class="text-accent-green">Grover is not a problem for SecureChat.</strong> The entire symmetric stack uses <strong class="text-white">256-bit keys</strong>. Even halved → 128 bits remaining = <strong class="text-phantom-light">astronomically safe</strong>.</p>
+              <div class="p-4 rounded-xl bg-surface/50 border border-phantom/10 mt-4">
+                <p class="font-['JetBrains_Mono'] text-xs text-phantom-light mb-2" data-lang="fr">Pour mettre en perspective 2<sup>128</sup> :</p>
+                <p class="font-['JetBrains_Mono'] text-xs text-phantom-light mb-2" data-lang="en">To put 2<sup>128</sup> in perspective:</p>
+                <div class="space-y-2 text-xs">
+                  <div class="flex items-start gap-2"><span class="text-phantom-light">•</span><span data-lang="fr">Si <strong class="text-white">chaque atome de l'univers</strong> (≈ 10<sup>80</sup>) était un ordinateur quantique...</span><span data-lang="en">If <strong class="text-white">every atom in the universe</strong> (≈ 10<sup>80</sup>) were a quantum computer...</span></div>
+                  <div class="flex items-start gap-2"><span class="text-phantom-light">•</span><span data-lang="fr">Chacun testant <strong class="text-white">1 milliard de clés/seconde</strong>...</span><span data-lang="en">Each testing <strong class="text-white">1 billion keys/second</strong>...</span></div>
+                  <div class="flex items-start gap-2"><span class="text-phantom-light">•</span><span data-lang="fr">Il faudrait <strong class="text-accent-green">~10<sup>8</sup> ans</strong> pour épuiser 2<sup>128</sup> — plus vieux que l'univers lui-même.</span><span data-lang="en">It would take <strong class="text-accent-green">~10<sup>8</sup> years</strong> to exhaust 2<sup>128</sup> — older than the universe itself.</span></div>
+                </div>
+              </div>
+              <p class="mt-3" data-lang="fr">C'est précisément pourquoi <strong class="text-white">AES-256</strong> (et non AES-128) a été choisi. La marge de sécurité post-Grover est <strong class="text-phantom-light">identique à la sécurité pré-quantique d'AES-128</strong>, qui est elle-même considérée incassable.</p>
+              <p class="mt-3" data-lang="en">This is precisely why <strong class="text-white">AES-256</strong> (not AES-128) was chosen. The post-Grover security margin is <strong class="text-phantom-light">identical to AES-128's pre-quantum security</strong>, which is itself considered unbreakable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Attacks: HNDL + Side-channel -->
+      <div class="grid lg:grid-cols-3 gap-6 mb-12 section-reveal">
+        <div class="glass-strong rounded-2xl p-8 border border-accent-red/20">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">📡</span>
+            <div>
+              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="fr">Harvest Now, Decrypt Later</h3>
+              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="en">Harvest Now, Decrypt Later</h3>
+              <span class="text-xs text-accent-red font-['JetBrains_Mono']">HNDL</span>
+            </div>
+          </div>
+          <div class="text-sm text-text-secondary space-y-3">
+            <p data-lang="fr">Des adversaires (états, agences) <strong class="text-white">interceptent et stockent</strong> le trafic chiffré aujourd'hui, en attendant qu'un ordinateur quantique puisse le déchiffrer dans 10-20 ans.</p>
+            <p data-lang="en">Adversaries (states, agencies) <strong class="text-white">intercept and store</strong> encrypted traffic today, waiting for a quantum computer to decrypt it in 10-20 years.</p>
+            <div class="mt-3 p-3 rounded-lg bg-accent-green/10 border border-accent-green/20">
+              <p class="text-xs text-accent-green" data-lang="fr"><strong>Défense SecureChat :</strong> PQXDH + SPQR. Le chiffrement est post-quantique dès maintenant. Même capturé, le trafic reste indéchiffrable dans le futur.</p>
+              <p class="text-xs text-accent-green" data-lang="en"><strong>SecureChat defense:</strong> PQXDH + SPQR. Encryption is post-quantum right now. Even if captured, traffic remains undecryptable in the future.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-strong rounded-2xl p-8 border border-yellow-500/20">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">⚡</span>
+            <div>
+              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="fr">Attaques par canal auxiliaire</h3>
+              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="en">Side-channel attacks</h3>
+              <span class="text-xs text-yellow-400 font-['JetBrains_Mono']">Timing / Power / Cache</span>
+            </div>
+          </div>
+          <div class="text-sm text-text-secondary space-y-3">
+            <p data-lang="fr">Mesurer le <strong class="text-white">temps d'exécution</strong>, la consommation électrique, ou les cache-miss pour déduire la clé sans casser l'algorithme.</p>
+            <p data-lang="en">Measuring <strong class="text-white">execution time</strong>, power consumption, or cache misses to deduce the key without breaking the algorithm.</p>
+            <div class="mt-3 p-3 rounded-lg bg-accent-green/10 border border-accent-green/20">
+              <p class="text-xs text-accent-green" data-lang="fr"><strong>Défense :</strong> X25519 et Ed25519 sont constant-time par design. ChaCha20 n'utilise aucune table lookup. AES-GCM bénéficie d'AES-NI (hardware, pas de cache-timing).</p>
+              <p class="text-xs text-accent-green" data-lang="en"><strong>Defense:</strong> X25519 and Ed25519 are constant-time by design. ChaCha20 uses no table lookups. AES-GCM benefits from AES-NI (hardware, no cache-timing).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-strong rounded-2xl p-8 border border-yellow-500/20">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">🎯</span>
+            <div>
+              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="fr">Autres menaces connues</h3>
+              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="en">Other known threats</h3>
+            </div>
+          </div>
+          <div class="text-sm text-text-secondary space-y-3">
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Replay attack</strong> — Contré par nonce unique + timestamp + convId dans la signature Ed25519</span><span data-lang="en"><strong class="text-white">Replay attack</strong> — Countered by unique nonce + timestamp + convId in Ed25519 signature</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">MitM</strong> — Contré par PQXDH avec vérification d'identité Ed25519 + safety number</span><span data-lang="en"><strong class="text-white">MitM</strong> — Countered by PQXDH with Ed25519 identity verification + safety number</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Birthday attack</strong> — SHA-256 a 128 bits de résistance aux collisions → suffisant</span><span data-lang="en"><strong class="text-white">Birthday attack</strong> — SHA-256 has 128-bit collision resistance → sufficient</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Padding oracle</strong> — Impossible avec GCM/Poly1305 (AEAD, pas de padding type CBC)</span><span data-lang="en"><strong class="text-white">Padding oracle</strong> — Impossible with GCM/Poly1305 (AEAD, no CBC-style padding)</span></div>
+            <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Nonce reuse</strong> — Ed25519 est déterministe. AES-GCM utilise un nonce incrémenté par le ratchet (jamais réutilisé)</span><span data-lang="en"><strong class="text-white">Nonce reuse</strong> — Ed25519 is deterministic. AES-GCM uses a ratchet-incremented nonce (never reused)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Threat Matrix Table -->
+      <div class="section-reveal">
+        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-6" data-lang="fr">Matrice de <span class="gradient-text">résistance</span> complète</h3>
+        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-6" data-lang="en">Complete <span class="gradient-text">resistance</span> matrix</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead><tr class="border-b border-white/10">
+              <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="fr">Composant</th>
+              <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="en">Component</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal">Shor</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal">Grover</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal">HNDL</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal" data-lang="fr">Side-channel</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal" data-lang="en">Side-channel</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal" data-lang="fr">Sécurité post-Q</th>
+              <th class="py-4 px-3 text-center text-text-secondary font-normal" data-lang="en">Post-Q security</th>
+            </tr></thead>
+            <tbody>
+              <tr class="border-b border-white/5 hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-white" colspan="1">AES-256-GCM</td>
+                <td class="py-3 px-3 text-center text-accent-green">N/A</td>
+                <td class="py-3 px-3 text-center text-accent-green">128 bits ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">AES-NI ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold">✅</td>
+              </tr>
+              <tr class="border-b border-white/5 hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-white">ChaCha20-Poly1305</td>
+                <td class="py-3 px-3 text-center text-accent-green">N/A</td>
+                <td class="py-3 px-3 text-center text-accent-green">128 bits ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green" data-lang="fr">Constant-time ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green" data-lang="en">Constant-time ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold">✅</td>
+              </tr>
+              <tr class="border-b border-white/5 hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-white">X25519</td>
+                <td class="py-3 px-3 text-center text-accent-red" data-lang="fr">❌ Cassé</td>
+                <td class="py-3 px-3 text-center text-accent-red" data-lang="en">❌ Broken</td>
+                <td class="py-3 px-3 text-center text-text-muted">N/A</td>
+                <td class="py-3 px-3 text-center text-accent-green" data-lang="fr">+ML-KEM ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green" data-lang="en">+ML-KEM ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">CT ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold" data-lang="fr">✅ via PQXDH</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold" data-lang="en">✅ via PQXDH</td>
+              </tr>
+              <tr class="border-b border-white/5 hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-white">ML-KEM-1024</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓ MLWE</td>
+                <td class="py-3 px-3 text-center text-accent-green">~128 bits ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold">✅</td>
+              </tr>
+              <tr class="border-b border-white/5 hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-white">Ed25519</td>
+                <td class="py-3 px-3 text-center text-accent-red" data-lang="fr">❌ Cassé</td>
+                <td class="py-3 px-3 text-center text-accent-red" data-lang="en">❌ Broken</td>
+                <td class="py-3 px-3 text-center text-text-muted">N/A</td>
+                <td class="py-3 px-3 text-center text-text-muted">N/A</td>
+                <td class="py-3 px-3 text-center text-accent-green">CT ✓</td>
+                <td class="py-3 px-3 text-center text-yellow-400 font-bold" data-lang="fr">🟡 V3.6</td>
+                <td class="py-3 px-3 text-center text-yellow-400 font-bold" data-lang="en">🟡 V3.6</td>
+              </tr>
+              <tr class="border-b border-white/5 hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-white">HKDF-SHA256</td>
+                <td class="py-3 px-3 text-center text-accent-green">N/A</td>
+                <td class="py-3 px-3 text-center text-accent-green">128 bits ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">HMAC ✓</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold">✅</td>
+              </tr>
+              <tr class="hover:bg-white/2">
+                <td class="py-3 px-4 font-semibold text-phantom-light">SPQR (Triple Ratchet)</td>
+                <td class="py-3 px-3 text-center text-accent-green" data-lang="fr">✓ Continu</td>
+                <td class="py-3 px-3 text-center text-accent-green" data-lang="en">✓ Continuous</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green">✓</td>
+                <td class="py-3 px-3 text-center text-accent-green font-bold">✅</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Timeline: Quantum Roadmap -->
+      <div class="mt-12 section-reveal">
+        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="fr">Roadmap <span class="gradient-text">post-quantique</span> de SecureChat</h3>
+        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="en">SecureChat <span class="gradient-text">post-quantum</span> roadmap</h3>
+        <div class="space-y-4 max-w-3xl mx-auto">
+          <div class="flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-accent-green flex items-center justify-center text-white font-bold text-sm">✓</div>
+              <div class="w-0.5 h-full bg-accent-green/30 mt-1"></div>
+            </div>
+            <div class="glass rounded-xl p-5 flex-1 border border-accent-green/20">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="font-bold font-['Space_Grotesk'] text-accent-green">V3.5</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green" data-lang="fr">Fait</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green" data-lang="en">Done</span>
+              </div>
+              <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">Chiffrement PQ complet</strong> — PQXDH (X25519 + ML-KEM-1024), SPQR Triple Ratchet, ChaCha20 adaptatif. Résistant à Shor + Grover + HNDL sur le chiffrement.</p>
+              <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">Complete PQ encryption</strong> — PQXDH (X25519 + ML-KEM-1024), SPQR Triple Ratchet, adaptive ChaCha20. Resistant to Shor + Grover + HNDL on encryption.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-yellow-500/80 flex items-center justify-center text-white font-bold text-sm">→</div>
+              <div class="w-0.5 h-full bg-yellow-500/20 mt-1"></div>
+            </div>
+            <div class="glass rounded-xl p-5 flex-1 border border-yellow-500/20">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="font-bold font-['Space_Grotesk'] text-yellow-400">V3.6 – V3.7</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400" data-lang="fr">Prévu</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400" data-lang="en">Planned</span>
+              </div>
+              <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">Signatures hybrides</strong> — Ed25519 + ML-DSA-44 (Dilithium) sur le handshake PQXDH. Les signatures deviennent résistantes à Shor. Taille : +2420 bytes par signature hybride.</p>
+              <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">Hybrid signatures</strong> — Ed25519 + ML-DSA-44 (Dilithium) on PQXDH handshake. Signatures become Shor-resistant. Size: +2420 bytes per hybrid signature.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <div class="flex flex-col items-center">
+              <div class="w-10 h-10 rounded-full bg-phantom/60 flex items-center justify-center text-white font-bold text-sm">∞</div>
+            </div>
+            <div class="glass rounded-xl p-5 flex-1 border border-phantom/20">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="font-bold font-['Space_Grotesk'] text-phantom-light">V4.0</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">Recherche</span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">Research</span>
+              </div>
+              <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">Full PQ sur tout</strong> — Signatures hybrides sur chaque message ratcheté. Migration possible vers FN-DSA (Falcon-512, 666 bytes) si les libs Android mûrissent. 100% résistant quantique de bout en bout.</p>
+              <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">Full PQ everywhere</strong> — Hybrid signatures on every ratcheted message. Possible migration to FN-DSA (Falcon-512, 666 bytes) if Android libs mature. 100% quantum-resistant end-to-end.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===== Summary: Full Stack ===== -->
+  <section class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-phantom/5 to-surface pointer-events-none"></div>
+    <div class="relative max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">La pile <span class="gradient-text">complète</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The <span class="gradient-text">complete</span> stack</h2>
+      </div>
+      <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12">
+        <div class="space-y-4 font-['JetBrains_Mono'] text-sm">
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Échange de clés</span>
+            <span class="text-phantom-light w-40" data-lang="en">Key exchange</span>
+            <span class="text-white font-bold">PQXDH</span>
+            <span class="text-text-muted text-xs">= X25519 + ML-KEM-1024 (FIPS 203)</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Renouvellement</span>
+            <span class="text-phantom-light w-40" data-lang="en">Key renewal</span>
+            <span class="text-white font-bold">Double Ratchet + SPQR</span>
+            <span class="text-text-muted text-xs" data-lang="fr">= DH + KDF + PQ ratchet tous les 10 msgs</span>
+            <span class="text-text-muted text-xs" data-lang="en">= DH + KDF + PQ ratchet every 10 msgs</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Chiffrement</span>
+            <span class="text-phantom-light w-40" data-lang="en">Encryption</span>
+            <span class="text-white font-bold">AES-256-GCM / ChaCha20-Poly1305</span>
+            <span class="text-text-muted text-xs" data-lang="fr">AEAD, sélection auto hardware</span>
+            <span class="text-text-muted text-xs" data-lang="en">AEAD, auto hardware selection</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40">Signatures</span>
+            <span class="text-white font-bold">Ed25519</span>
+            <span class="text-text-muted text-xs" data-lang="fr">sur ct ‖ convId ‖ timestamp</span>
+            <span class="text-text-muted text-xs" data-lang="en">over ct ‖ convId ‖ timestamp</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Dérivation de clés</span>
+            <span class="text-phantom-light w-40" data-lang="en">Key derivation</span>
+            <span class="text-white font-bold">HKDF-SHA256</span>
+            <span class="text-text-muted text-xs">RFC 5869</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Stockage local</span>
+            <span class="text-phantom-light w-40" data-lang="en">Local storage</span>
+            <span class="text-white font-bold">SQLCipher (AES-256)</span>
+            <span class="text-text-muted text-xs" data-lang="fr">+ EncryptedSharedPreferences</span>
+            <span class="text-text-muted text-xs" data-lang="en">+ EncryptedSharedPreferences</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Backup clé</span>
+            <span class="text-phantom-light w-40" data-lang="en">Key backup</span>
+            <span class="text-white font-bold">BIP-39</span>
+            <span class="text-text-muted text-xs" data-lang="fr">24 mots = 256 bits + checksum SHA-256</span>
+            <span class="text-text-muted text-xs" data-lang="en">24 words = 256 bits + SHA-256 checksum</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40">PIN</span>
+            <span class="text-white font-bold">PBKDF2-HMAC-SHA256</span>
+            <span class="text-text-muted text-xs" data-lang="fr">600 000 itérations</span>
+            <span class="text-text-muted text-xs" data-lang="en">600,000 iterations</span>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-xl bg-surface/50 border border-phantom/10 flex-wrap">
+            <span class="text-phantom-light w-40" data-lang="fr">Transport</span>
+            <span class="text-phantom-light w-40" data-lang="en">Transport</span>
+            <span class="text-white font-bold">Tor (VPN TUN → SOCKS5)</span>
+            <span class="text-text-muted text-xs" data-lang="fr">3 relais (Guard, Middle, Exit)</span>
+            <span class="text-text-muted text-xs" data-lang="en">3 relays (Guard, Middle, Exit)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="py-20 relative">
+    <div class="max-w-3xl mx-auto px-6 text-center section-reveal">
+      <div class="glass-strong rounded-3xl p-12">
+        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Vérifiez par <span class="gradient-text">vous-même</span></h2>
+        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Verify it <span class="gradient-text">yourself</span></h2>
+        <p class="text-text-secondary mb-8" data-lang="fr">SecureChat est 100% open source. Chaque ligne de code crypto est auditable.</p>
+        <p class="text-text-secondary mb-8" data-lang="en">SecureChat is 100% open source. Every line of crypto code is auditable.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span data-lang="fr">Voir le code source</span><span data-lang="en">View source code</span>
+          </a>
+          <a href={`${base}how-it-works`} class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-phantom/40 hover:border-phantom-light text-text-secondary hover:text-white rounded-2xl transition-all hover:scale-105">
+            <span data-lang="fr">Comment ça marche</span><span data-lang="en">How it Works</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <span class="text-sm text-text-secondary">SecureChat — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
+      <div class="flex items-center gap-6 text-sm text-text-muted">
+        <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
+        <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+        <span>GPLv3</span>
+      </div>
+      <div class="text-xs text-text-muted">© 2026 SecureChat. <span data-lang="fr">Tous droits réservés.</span><span data-lang="en">All rights reserved.</span></div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenuBtn.closest('nav')?.classList.toggle('menu-open');
+      mobileMenu?.classList.toggle('hidden');
+      mobileMenu?.classList.toggle('open');
+    });
+
+    // Language
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = 'fr';
+    langToggle?.addEventListener('click', () => {
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      document.documentElement.classList.remove('lang-fr','lang-en');
+      document.documentElement.classList.add(`lang-${currentLang}`);
+      document.documentElement.lang = currentLang;
+    });
+
+    // Scroll progress
+    const sp = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => { if (!sp) return; const h = document.documentElement.scrollHeight - window.innerHeight; sp.style.width = h > 0 ? `${(window.scrollY/h*100)}%` : '0%'; });
+
+    // GSAP scroll animations
+    async function initGSAP() {
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Stagger stack cards
+      gsap.utils.toArray('.crypto-stack-card').forEach((card, i) => {
+        gsap.fromTo(card as Element, { y: 40, opacity: 0 }, { scrollTrigger: { trigger: card as Element, start: 'top 85%' }, y: 0, opacity: 1, duration: 0.5, delay: i * 0.06 });
+      });
+
+      // Animate table rows
+      gsap.utils.toArray('tbody tr').forEach((row, i) => {
+        gsap.fromTo(row as Element, { x: -20, opacity: 0 }, { scrollTrigger: { trigger: row as Element, start: 'top 90%' }, x: 0, opacity: 1, duration: 0.4, delay: i * 0.05 });
+      });
+
+      // Section reveals
+      gsap.utils.toArray('.section-reveal').forEach(el => {
+        gsap.fromTo(el as Element, { y: 60, opacity: 0 }, { scrollTrigger: { trigger: el as Element, start: 'top 80%' }, y: 0, opacity: 1, duration: 0.8 });
+      });
+    }
+    initGSAP();
+
+    // Section reveal observer fallback
+    const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('visible'); }); }, { threshold: 0.1 });
+    document.querySelectorAll('.section-reveal').forEach(el => obs.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(this: HTMLAnchorElement, e: Event) { e.preventDefault(); document.querySelector(this.getAttribute('href')!)?.scrollIntoView({ behavior: 'smooth' }); });
+    });
+
+    // Three.js particle background for hero
+    async function initCryptoCanvas() {
+      const canvas = document.getElementById('crypto-canvas') as HTMLCanvasElement;
+      if (!canvas) return;
+      const THREE = await import('three');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      // Floating geometric shapes (crypto-themed)
+      const group = new THREE.Group();
+
+      // Icosahedron (represents complexity)
+      const icoGeo = new THREE.IcosahedronGeometry(3, 1);
+      const icoMat = new THREE.MeshBasicMaterial({ color: 0x9C4DCC, wireframe: true, transparent: true, opacity: 0.15 });
+      const ico = new THREE.Mesh(icoGeo, icoMat);
+      ico.position.set(-8, 2, -10);
+      group.add(ico);
+
+      // Torus knot (represents key exchange)
+      const tkGeo = new THREE.TorusKnotGeometry(2, 0.5, 64, 8, 2, 3);
+      const tkMat = new THREE.MeshBasicMaterial({ color: 0x7B2D8E, wireframe: true, transparent: true, opacity: 0.12 });
+      const tk = new THREE.Mesh(tkGeo, tkMat);
+      tk.position.set(10, -3, -15);
+      group.add(tk);
+
+      // Octahedron (represents encryption)
+      const octGeo = new THREE.OctahedronGeometry(2, 0);
+      const octMat = new THREE.MeshBasicMaterial({ color: 0xB44FE0, wireframe: true, transparent: true, opacity: 0.1 });
+      const oct = new THREE.Mesh(octGeo, octMat);
+      oct.position.set(0, 5, -8);
+      group.add(oct);
+
+      // Particles
+      const pc = 300;
+      const pGeo = new THREE.BufferGeometry();
+      const pPos = new Float32Array(pc * 3);
+      for (let i = 0; i < pc; i++) {
+        pPos[i*3] = (Math.random()-0.5) * 40;
+        pPos[i*3+1] = (Math.random()-0.5) * 30;
+        pPos[i*3+2] = (Math.random()-0.5) * 30 - 10;
+      }
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      const pMat = new THREE.PointsMaterial({ color: 0x9C4DCC, size: 0.08, transparent: true, opacity: 0.4 });
+      group.add(new THREE.Points(pGeo, pMat));
+
+      scene.add(group);
+      camera.position.z = 15;
+
+      let mX = 0, mY = 0;
+      document.addEventListener('mousemove', e => {
+        mX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mY = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        ico.rotation.x += 0.003; ico.rotation.y += 0.005;
+        tk.rotation.x += 0.002; tk.rotation.z += 0.004;
+        oct.rotation.y += 0.004; oct.rotation.z += 0.002;
+        camera.position.x += (mX * 0.3 - camera.position.x) * 0.02;
+        camera.position.y += (-mY * 0.3 - camera.position.y) * 0.02;
+        camera.lookAt(scene.position);
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+    initCryptoCanvas();
+  </script>
+
+</Layout>

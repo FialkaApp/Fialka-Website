@@ -5,38 +5,94 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 <Layout title="SecureChat — 404">
 
+  <style>
+    @keyframes scanline { from { transform: translateY(-100%); } to { transform: translateY(100vh); } }
+    @keyframes flicker { 0%,100%{opacity:1} 50%{opacity:0.97} 52%{opacity:0.4} 54%{opacity:0.97} }
+    @keyframes matrixFall { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
+    .scanline { position:fixed; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,transparent,rgba(156,77,204,0.15),transparent); animation:scanline 3s linear infinite; pointer-events:none; z-index:100; }
+    .flicker { animation: flicker 0.15s infinite; }
+    .cipher-rain { position:absolute; font-family:'JetBrains Mono',monospace; font-size:12px; color:#9C4DCC; opacity:0; writing-mode:vertical-rl; animation: matrixFall linear infinite; pointer-events:none; }
+    .broken-lock { filter: drop-shadow(0 0 20px rgba(156,77,204,0.5)) drop-shadow(0 0 60px rgba(156,77,204,0.2)); }
+    .error-badge { animation: pulse-error 2s ease-in-out infinite; }
+    @keyframes pulse-error { 0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,0.4)} 50%{box-shadow:0 0 0 12px rgba(239,68,68,0)} }
+    .ghost-text { background: linear-gradient(90deg, transparent, rgba(156,77,204,0.1), transparent); background-size: 200% 100%; animation: ghostSlide 3s ease infinite; }
+    @keyframes ghostSlide { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+  </style>
+
   <div class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-6">
 
-    <!-- Three.js canvas for void particles -->
+    <!-- Scanline effect -->
+    <div class="scanline"></div>
+
+    <!-- Three.js 3D scene -->
     <canvas id="void-canvas" class="absolute inset-0 w-full h-full"></canvas>
 
+    <!-- Matrix rain overlay -->
+    <div id="matrix-rain" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
     <!-- Content -->
-    <div class="relative z-10 text-center max-w-lg">
+    <div class="relative z-10 text-center max-w-2xl">
+
+      <!-- Error code badge -->
+      <div class="error-badge inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm mb-6">
+        <div class="w-2 h-2 rounded-full bg-accent-red"></div>
+        <span class="font-['JetBrains_Mono'] text-accent-red text-xs">ERR_PAGE_DESTROYED</span>
+      </div>
 
       <!-- Animated glitch 404 -->
-      <h1 class="text-[10rem] md:text-[14rem] font-black font-['Space_Grotesk'] leading-none gradient-text glitch select-none" data-text="404">404</h1>
+      <h1 class="text-[10rem] md:text-[14rem] font-black font-['Space_Grotesk'] leading-none gradient-text glitch select-none flicker" data-text="404">404</h1>
 
       <!-- Encrypted message animation -->
-      <div class="glass-strong rounded-2xl p-6 mb-8 mt-4">
-        <div class="font-['JetBrains_Mono'] text-sm text-phantom-light/60 mb-2" data-lang="fr">Message intercepté :</div>
-        <div class="font-['JetBrains_Mono'] text-sm text-phantom-light/60 mb-2" data-lang="en">Intercepted message:</div>
-        <div id="cipher-text" class="font-['JetBrains_Mono'] text-xs text-text-muted break-all h-12 flex items-center justify-center"></div>
-        <div class="mt-3 flex items-center justify-center gap-2">
-          <div class="w-2 h-2 rounded-full bg-accent-red animate-pulse"></div>
-          <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="fr">DÉCHIFFREMENT IMPOSSIBLE — clé perdue dans le void</span>
-          <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="en">DECRYPTION FAILED — key lost in the void</span>
+      <div class="glass-strong rounded-2xl p-6 mb-6 mt-4 relative overflow-hidden">
+        <div class="ghost-text absolute inset-0 pointer-events-none"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-['JetBrains_Mono'] text-sm text-phantom-light/60" data-lang="fr">Message intercepté :</div>
+            <div class="font-['JetBrains_Mono'] text-sm text-phantom-light/60" data-lang="en">Intercepted message:</div>
+            <div class="flex items-center gap-1">
+              <div class="w-1.5 h-1.5 rounded-full bg-accent-red animate-pulse"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-accent-red animate-pulse" style="animation-delay:0.3s"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-accent-red animate-pulse" style="animation-delay:0.6s"></div>
+            </div>
+          </div>
+          <div id="cipher-text" class="font-['JetBrains_Mono'] text-xs text-text-muted break-all h-12 flex items-center justify-center"></div>
+          <div class="mt-3 pt-3 border-t border-white/5">
+            <div class="flex items-center justify-center gap-3">
+              <div class="flex items-center gap-1.5">
+                <svg class="w-3.5 h-3.5 text-accent-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+                <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="fr">DÉCHIFFREMENT IMPOSSIBLE</span>
+                <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="en">DECRYPTION FAILED</span>
+              </div>
+            </div>
+            <div class="mt-2 flex items-center justify-center gap-4 text-[10px] font-['JetBrains_Mono'] text-text-muted">
+              <span>AES-256-GCM</span>
+              <span class="text-accent-red">KEY_NOT_FOUND</span>
+              <span>Ed25519: <span class="text-accent-red">⚠️ UNVERIFIED</span></span>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Floating error logs -->
+      <div id="error-logs" class="mb-6 font-['JetBrains_Mono'] text-[10px] text-text-muted/40 h-16 overflow-hidden relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface pointer-events-none z-10"></div>
       </div>
 
       <p class="text-xl text-text-secondary mb-2" data-lang="fr">Cette page n'existe pas… ou a été <span class="text-phantom-light">autodétruite</span>.</p>
       <p class="text-xl text-text-secondary mb-2" data-lang="en">This page doesn't exist… or was <span class="text-phantom-light">self-destructed</span>.</p>
-      <p class="text-sm text-text-muted mb-8" data-lang="fr">Le message que vous cherchez a peut-être expiré.</p>
-      <p class="text-sm text-text-muted mb-8" data-lang="en">The message you're looking for may have expired.</p>
+      <p class="text-sm text-text-muted mb-8" data-lang="fr">Le message que vous cherchez a peut-être expiré. Le Double Ratchet a continué sans vous.</p>
+      <p class="text-sm text-text-muted mb-8" data-lang="en">The message you're looking for may have expired. The Double Ratchet moved on without you.</p>
 
-      <a href={base} class="inline-flex items-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
-        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>
-        <span data-lang="fr">Retour à l'accueil</span><span data-lang="en">Back to home</span>
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={base} class="inline-flex items-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 12l6-6M3 12l6 6"/></svg>
+          <span data-lang="fr">Retour à l'accueil</span><span data-lang="en">Back to home</span>
+        </a>
+        <a href={`${base}how-it-works`} class="inline-flex items-center gap-2 px-6 py-4 border border-phantom/30 hover:border-phantom-light text-text-secondary hover:text-white rounded-2xl transition-all hover:scale-105">
+          <span data-lang="fr">Comment ça marche</span><span data-lang="en">How it Works</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -47,13 +103,69 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       if (e.key === 'l') { currentLang = currentLang === 'fr' ? 'en' : 'fr'; document.documentElement.classList.remove('lang-fr','lang-en'); document.documentElement.classList.add(`lang-${currentLang}`); document.documentElement.lang = currentLang; }
     });
 
-    // Cipher text animation — random hex that constantly changes
+    // Cipher text animation
     const cipherEl = document.getElementById('cipher-text');
     function randomHex(len: number) { const chars = '0123456789abcdef'; let s = ''; for (let i = 0; i < len; i++) { if (i > 0 && i % 4 === 0) s += ' '; s += chars[Math.floor(Math.random() * 16)]; } return s; }
     setInterval(() => { if (cipherEl) cipherEl.textContent = randomHex(64); }, 80);
     if (cipherEl) cipherEl.textContent = randomHex(64);
 
-    // Three.js void particles
+    // Scrolling error logs
+    const errorLogs = document.getElementById('error-logs');
+    const logMessages = [
+      '[FATAL] RatchetState corrupted — chain key 0x00...00',
+      '[ERROR] Ed25519.verify() → SIGNATURE_MISMATCH',
+      '[WARN]  Firebase node /messages/{id} → PERMISSION_DENIED',
+      '[ERROR] AES-256-GCM: tag verification failed (0xDEAD)',
+      '[FATAL] ML-KEM.Decaps() → DECAPSULATION_ERROR',
+      '[WARN]  HKDF: ikm.length === 0 — no shared secret',
+      '[ERROR] X25519: peer public key is all-zeros',
+      '[FATAL] SQLCipher: database disk image is malformed',
+      '[WARN]  Tor circuit failed: Guard→Middle disconnected',
+      '[ERROR] PBKDF2: salt is null — PIN bypass attempt?',
+      '[FATAL] SPQR: pqRatchetCounter overflow at msg_∞',
+      '[ERROR] BIP-39: mnemonic checksum invalid (word 24)',
+      '[WARN]  senderUid HMAC mismatch — forgery detected',
+      '[ERROR] ChaCha20: nonce reuse detected (CRITICAL)',
+      '[FATAL] Delete-after-delivery failed: blob persists',
+    ];
+    let logIndex = 0;
+    function addLog() {
+      if (!errorLogs) return;
+      const div = document.createElement('div');
+      div.textContent = logMessages[logIndex % logMessages.length];
+      div.style.opacity = '0';
+      div.style.transition = 'opacity 0.3s';
+      errorLogs.appendChild(div);
+      requestAnimationFrame(() => { div.style.opacity = '1'; });
+      logIndex++;
+      if (errorLogs.children.length > 6) { const first = errorLogs.children[1]; if (first) first.remove(); }
+    }
+    setInterval(addLog, 800);
+    addLog();
+
+    // Matrix rain
+    const rainContainer = document.getElementById('matrix-rain');
+    function createRainColumn() {
+      if (!rainContainer) return;
+      const col = document.createElement('div');
+      col.className = 'cipher-rain';
+      col.style.left = Math.random() * 100 + '%';
+      col.style.animationDuration = (4 + Math.random() * 8) + 's';
+      col.style.animationDelay = Math.random() * 5 + 's';
+      col.style.opacity = (0.05 + Math.random() * 0.15).toString();
+      col.style.fontSize = (8 + Math.random() * 6) + 'px';
+      const chars = '0123456789abcdef';
+      let text = '';
+      const len = 10 + Math.floor(Math.random() * 30);
+      for (let i = 0; i < len; i++) text += chars[Math.floor(Math.random() * 16)] + '\n';
+      col.textContent = text;
+      rainContainer.appendChild(col);
+      setTimeout(() => col.remove(), 15000);
+    }
+    for (let i = 0; i < 25; i++) setTimeout(() => createRainColumn(), i * 200);
+    setInterval(createRainColumn, 400);
+
+    // Three.js void scene
     async function initVoid() {
       const THREE = await import('three');
       const canvas = document.getElementById('void-canvas') as HTMLCanvasElement;
@@ -63,66 +175,181 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-      camera.position.z = 30;
+      const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 200);
+      camera.position.z = 40;
 
-      // Particles spiraling into void
-      const count = 400;
-      const geo = new THREE.BufferGeometry();
-      const pos = new Float32Array(count * 3);
-      const vel = new Float32Array(count * 3);
-      for (let i = 0; i < count; i++) {
+      let mX = 0, mY = 0;
+      document.addEventListener('mousemove', e => {
+        mX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mY = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
+
+      // ===== 1. Massive particle vortex (800 particles) =====
+      const pCount = 800;
+      const pGeo = new THREE.BufferGeometry();
+      const pPos = new Float32Array(pCount * 3);
+      const pColors = new Float32Array(pCount * 3);
+      for (let i = 0; i < pCount; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const radius = 5 + Math.random() * 25;
-        pos[i * 3] = Math.cos(angle) * radius;
-        pos[i * 3 + 1] = (Math.random() - 0.5) * 30;
-        pos[i * 3 + 2] = Math.sin(angle) * radius + (Math.random() - 0.5) * 10;
-        vel[i * 3] = 0;
-        vel[i * 3 + 1] = 0;
-        vel[i * 3 + 2] = 0;
+        const radius = 3 + Math.random() * 35;
+        pPos[i*3] = Math.cos(angle) * radius;
+        pPos[i*3+1] = (Math.random() - 0.5) * 40;
+        pPos[i*3+2] = Math.sin(angle) * radius + (Math.random() - 0.5) * 15;
+        const c = new THREE.Color().setHSL(0.78 + Math.random() * 0.08, 0.8, 0.4 + Math.random() * 0.3);
+        pColors[i*3] = c.r; pColors[i*3+1] = c.g; pColors[i*3+2] = c.b;
       }
-      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      pGeo.setAttribute('color', new THREE.BufferAttribute(pColors, 3));
+      const pMat = new THREE.PointsMaterial({ size: 0.12, transparent: true, opacity: 0.7, sizeAttenuation: true, vertexColors: true });
+      const particles = new THREE.Points(pGeo, pMat);
+      scene.add(particles);
 
-      const mat = new THREE.PointsMaterial({ color: 0x9C4DCC, size: 0.15, transparent: true, opacity: 0.6, sizeAttenuation: true });
-      const points = new THREE.Points(geo, mat);
-      scene.add(points);
-
-      // Central void glow
-      const voidGeo = new THREE.SphereGeometry(1.5, 32, 32);
-      const voidMat = new THREE.MeshBasicMaterial({ color: 0x7B2D8E, transparent: true, opacity: 0.15 });
+      // ===== 2. Central void sphere with glow rings =====
+      const voidGeo = new THREE.SphereGeometry(2, 32, 32);
+      const voidMat = new THREE.MeshBasicMaterial({ color: 0x7B2D8E, transparent: true, opacity: 0.08 });
       const voidSphere = new THREE.Mesh(voidGeo, voidMat);
       scene.add(voidSphere);
 
+      // Glowing rings around void
+      for (let i = 0; i < 3; i++) {
+        const ringGeo = new THREE.TorusGeometry(3 + i * 1.5, 0.03, 8, 64);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x9C4DCC, transparent: true, opacity: 0.15 - i * 0.03 });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2 + i * 0.3;
+        ring.rotation.y = i * 0.5;
+        ring.userData = { speed: 0.003 + i * 0.002, axis: i };
+        scene.add(ring);
+      }
+
+      // ===== 3. Shattered wireframe lock =====
+      const lockGroup = new THREE.Group();
+      // Lock body (shattered into fragments)
+      const fragments: THREE.Mesh[] = [];
+      for (let i = 0; i < 12; i++) {
+        const size = 0.3 + Math.random() * 0.8;
+        const fGeo = new THREE.TetrahedronGeometry(size, 0);
+        const fMat = new THREE.MeshBasicMaterial({ color: 0x9C4DCC, wireframe: true, transparent: true, opacity: 0.25 + Math.random() * 0.2 });
+        const frag = new THREE.Mesh(fGeo, fMat);
+        const angle = (i / 12) * Math.PI * 2;
+        const r = 4 + Math.random() * 6;
+        frag.position.set(Math.cos(angle) * r, (Math.random() - 0.5) * 8, Math.sin(angle) * r);
+        frag.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        frag.userData = {
+          orbitSpeed: 0.001 + Math.random() * 0.003,
+          orbitRadius: r,
+          orbitAngle: angle,
+          rotSpeed: { x: (Math.random()-0.5)*0.02, y: (Math.random()-0.5)*0.02, z: (Math.random()-0.5)*0.02 },
+          floatSpeed: 0.5 + Math.random(),
+          floatOffset: Math.random() * Math.PI * 2
+        };
+        fragments.push(frag);
+        lockGroup.add(frag);
+      }
+
+      // Broken shackle arcs
+      for (let i = 0; i < 2; i++) {
+        const curve = new THREE.EllipseCurve(0, 0, 3, 4, i * Math.PI, i * Math.PI + Math.PI * 0.7, false, 0);
+        const pts = curve.getPoints(30);
+        const arcGeo = new THREE.BufferGeometry().setFromPoints(pts.map(p => new THREE.Vector3(p.x, p.y + 3, i * 2 - 1)));
+        const arcMat = new THREE.LineBasicMaterial({ color: 0xB44FE0, transparent: true, opacity: 0.3 });
+        lockGroup.add(new THREE.Line(arcGeo, arcMat));
+      }
+      scene.add(lockGroup);
+
+      // ===== 4. Wireframe icosahedron (large, slow rotation) =====
+      const icoGeo = new THREE.IcosahedronGeometry(18, 1);
+      const icoMat = new THREE.MeshBasicMaterial({ color: 0x9C4DCC, wireframe: true, transparent: true, opacity: 0.04 });
+      const ico = new THREE.Mesh(icoGeo, icoMat);
+      scene.add(ico);
+
+      // ===== 5. Orbiting data streams (lines) =====
+      const streamGroup = new THREE.Group();
+      for (let s = 0; s < 6; s++) {
+        const pts: THREE.Vector3[] = [];
+        const baseAngle = (s / 6) * Math.PI * 2;
+        const r = 12 + s * 2;
+        for (let j = 0; j <= 40; j++) {
+          const a = baseAngle + (j / 40) * Math.PI * 0.8;
+          pts.push(new THREE.Vector3(Math.cos(a) * r, (Math.sin(a * 3) * 3) + (Math.random()-0.5)*0.5, Math.sin(a) * r));
+        }
+        const sGeo = new THREE.BufferGeometry().setFromPoints(pts);
+        const sMat = new THREE.LineBasicMaterial({ color: 0x9C4DCC, transparent: true, opacity: 0.08 + Math.random() * 0.05 });
+        streamGroup.add(new THREE.Line(sGeo, sMat));
+      }
+      scene.add(streamGroup);
+
+      // ===== Animation loop =====
       function animate() {
         requestAnimationFrame(animate);
-        const positions = geo.attributes.position.array as Float32Array;
-        for (let i = 0; i < count; i++) {
-          const ix = i * 3, iy = i * 3 + 1, iz = i * 3 + 2;
-          const x = positions[ix], y = positions[iy], z = positions[iz];
-          const dist = Math.sqrt(x * x + y * y + z * z);
-          // Spiral pull toward center
-          const pull = 0.003 + 0.015 / (dist + 1);
+        const t = Date.now() * 0.001;
+
+        // Particle vortex
+        const positions = pGeo.attributes.position.array as Float32Array;
+        for (let i = 0; i < pCount; i++) {
+          const ix = i*3, iy = i*3+1, iz = i*3+2;
+          let x = positions[ix], y = positions[iy], z = positions[iz];
+          const dist = Math.sqrt(x*x + y*y + z*z);
+          const pull = 0.002 + 0.02 / (dist + 1);
           positions[ix] -= x * pull;
-          positions[iy] -= y * pull * 0.5;
+          positions[iy] -= y * pull * 0.3;
           positions[iz] -= z * pull;
-          // Add rotation
-          const angle = 0.002;
-          const nx = positions[ix] * Math.cos(angle) - positions[iz] * Math.sin(angle);
-          const nz = positions[ix] * Math.sin(angle) + positions[iz] * Math.cos(angle);
+          // Spiral rotation
+          const rot = 0.003;
+          const nx = positions[ix] * Math.cos(rot) - positions[iz] * Math.sin(rot);
+          const nz = positions[ix] * Math.sin(rot) + positions[iz] * Math.cos(rot);
           positions[ix] = nx;
           positions[iz] = nz;
-          // Respawn if too close to center
-          if (dist < 1) {
+          // Respawn
+          if (dist < 1.5) {
             const a = Math.random() * Math.PI * 2;
-            const r = 15 + Math.random() * 15;
+            const r = 20 + Math.random() * 20;
             positions[ix] = Math.cos(a) * r;
-            positions[iy] = (Math.random() - 0.5) * 30;
+            positions[iy] = (Math.random() - 0.5) * 40;
             positions[iz] = Math.sin(a) * r;
           }
         }
-        geo.attributes.position.needsUpdate = true;
-        voidSphere.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * 0.2);
-        (voidMat as THREE.MeshBasicMaterial).opacity = 0.1 + Math.sin(Date.now() * 0.003) * 0.05;
+        pGeo.attributes.position.needsUpdate = true;
+
+        // Void pulse
+        voidSphere.scale.setScalar(1 + Math.sin(t * 2) * 0.3);
+        voidMat.opacity = 0.05 + Math.sin(t * 3) * 0.04;
+
+        // Rings rotation
+        scene.children.forEach(child => {
+          if (child.userData?.speed) {
+            child.rotation.x += child.userData.speed;
+            child.rotation.z += child.userData.speed * 0.7;
+          }
+        });
+
+        // Shattered fragments orbit + float
+        fragments.forEach(f => {
+          f.userData.orbitAngle += f.userData.orbitSpeed;
+          f.position.x = Math.cos(f.userData.orbitAngle) * f.userData.orbitRadius;
+          f.position.z = Math.sin(f.userData.orbitAngle) * f.userData.orbitRadius;
+          f.position.y += Math.sin(t * f.userData.floatSpeed + f.userData.floatOffset) * 0.01;
+          f.rotation.x += f.userData.rotSpeed.x;
+          f.rotation.y += f.userData.rotSpeed.y;
+          f.rotation.z += f.userData.rotSpeed.z;
+        });
+
+        // Large icosahedron slow rotation
+        ico.rotation.x += 0.0005;
+        ico.rotation.y += 0.0008;
+
+        // Data streams rotation
+        streamGroup.rotation.y += 0.001;
+        streamGroup.rotation.x = Math.sin(t * 0.3) * 0.1;
+
+        // Lock group slow rotation
+        lockGroup.rotation.y += 0.002;
+        lockGroup.rotation.x = Math.sin(t * 0.5) * 0.15;
+
+        // Mouse-interactive camera
+        camera.position.x += (mX * 3 - camera.position.x) * 0.02;
+        camera.position.y += (-mY * 2 - camera.position.y) * 0.02;
+        camera.lookAt(scene.position);
+
         renderer.render(scene, camera);
       }
       animate();

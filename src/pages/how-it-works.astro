@@ -16,6 +16,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="text-phantom-light font-semibold">How it Works</a>
         <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
       </div>
@@ -38,6 +40,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
         <a href={base} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Home</a>
         <a href={`${base}how-it-works`} class="py-2 text-phantom-light font-semibold">How it Works</a>
+        <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
         <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
@@ -68,10 +72,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Key Exchange</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
-            <p data-lang="fr">Quand Alice et Bob se connectent pour la première fois, ils scannent leurs <strong class="text-white">QR codes v2</strong> contenant leurs clés publiques X25519 et ML-KEM-768.</p>
-            <p data-lang="en">When Alice and Bob connect for the first time, they scan each other's <strong class="text-white">v2 QR codes</strong> containing their X25519 and ML-KEM-768 public keys.</p>
-            <p data-lang="fr">Un <strong class="text-white">PQXDH handshake</strong> (Post-Quantum Extended Diffie-Hellman) crée le secret partagé initial en combinant X25519 et ML-KEM-768 (NIST FIPS 203). À partir de là, le <strong class="text-phantom-light">Double Ratchet</strong> démarre.</p>
-            <p data-lang="en">A <strong class="text-white">PQXDH handshake</strong> (Post-Quantum Extended Diffie-Hellman) creates the initial shared secret by combining X25519 and ML-KEM-768 (NIST FIPS 203). From there, the <strong class="text-phantom-light">Double Ratchet</strong> begins.</p>
+            <p data-lang="fr">Quand Alice et Bob se connectent pour la première fois, ils scannent leurs <strong class="text-white">QR codes v2</strong> contenant leurs clés publiques X25519 et ML-KEM-1024.</p>
+            <p data-lang="en">When Alice and Bob connect for the first time, they scan each other's <strong class="text-white">v2 QR codes</strong> containing their X25519 and ML-KEM-1024 public keys.</p>
+            <p data-lang="fr">Un <strong class="text-white">PQXDH handshake</strong> (Post-Quantum Extended Diffie-Hellman) crée le secret partagé initial en combinant X25519 et ML-KEM-1024 (NIST FIPS 203). À partir de là, le <strong class="text-phantom-light">Double Ratchet</strong> démarre.</p>
+            <p data-lang="en">A <strong class="text-white">PQXDH handshake</strong> (Post-Quantum Extended Diffie-Hellman) creates the initial shared secret by combining X25519 and ML-KEM-1024 (NIST FIPS 203). From there, the <strong class="text-phantom-light">Double Ratchet</strong> begins.</p>
           </div>
         </div>
         <div class="glass rounded-2xl p-8">
@@ -139,6 +143,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <p data-lang="en">Each <strong class="text-white">conversation turn</strong> (Alice speaks, Bob replies) triggers a new X25519 exchange — the <strong class="text-phantom-light">DH Ratchet</strong>. The initial PQXDH exchange ensures post-quantum resistance.</p>
             <p data-lang="fr">Pour chaque message individuel, une <strong class="text-white">KDF Chain</strong> dérive une clé unique via HKDF. Résultat : même si un attaquant capture une clé, il ne peut lire <strong class="text-phantom-light">ni les messages passés ni futurs</strong>.</p>
             <p data-lang="en">For each individual message, a <strong class="text-white">KDF Chain</strong> derives a unique key via HKDF. Result: even if an attacker captures one key, they can't read <strong class="text-phantom-light">past or future messages</strong>.</p>
+            <div class="mt-4 p-4 rounded-xl bg-phantom/10 border border-phantom/20">
+              <p class="text-sm" data-lang="fr"><strong class="text-phantom-light">🏛️ SPQR Triple Ratchet</strong> <span class="text-xs px-1.5 py-0.5 rounded bg-phantom/20 text-phantom-light">V3.5</span> — Tous les 10 messages, une <strong class="text-white">ré-encapsulation ML-KEM-1024</strong> injecte un nouveau secret post-quantique dans la rootKey via HKDF. La protection PQ est <strong class="text-white">continue</strong>, pas seulement au handshake initial.</p>
+              <p class="text-sm" data-lang="en"><strong class="text-phantom-light">🏛️ SPQR Triple Ratchet</strong> <span class="text-xs px-1.5 py-0.5 rounded bg-phantom/20 text-phantom-light">V3.5</span> — Every 10 messages, an <strong class="text-white">ML-KEM-1024 re-encapsulation</strong> injects a fresh post-quantum secret into rootKey via HKDF. PQ protection is <strong class="text-white">continuous</strong>, not just at the initial handshake.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -158,13 +166,17 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">Le message est d'abord <strong class="text-white">paddé</strong> à une taille fixe (256B/1KB/4KB/16KB) pour cacher sa longueur réelle.</p>
             <p data-lang="en">The message is first <strong class="text-white">padded</strong> to a fixed size (256B/1KB/4KB/16KB) to hide its actual length.</p>
-            <p data-lang="fr">Ensuite : chiffrement <strong class="text-phantom-light">AES-256-GCM</strong> avec la clé du ratchet. Le tag 128-bit authentifie le message. Puis <strong class="text-white">Ed25519</strong> signe <code class="text-phantom-light text-xs">ct ‖ convId ‖ timestamp</code>.</p>
-            <p data-lang="en">Then: <strong class="text-phantom-light">AES-256-GCM</strong> encryption with the ratchet key. The 128-bit tag authenticates it. Then <strong class="text-white">Ed25519</strong> signs <code class="text-phantom-light text-xs">ct ‖ convId ‖ timestamp</code>.</p>
+            <p data-lang="fr">Ensuite : chiffrement <strong class="text-phantom-light">AES-256-GCM</strong> (ou <strong class="text-phantom-light">ChaCha20-Poly1305</strong> sur les appareils sans accélération AES-NI) avec la clé du ratchet. Le tag 128-bit authentifie le message. Puis <strong class="text-white">Ed25519</strong> signe <code class="text-phantom-light text-xs">ct ‖ convId ‖ timestamp</code>.</p>
+            <p data-lang="en">Then: <strong class="text-phantom-light">AES-256-GCM</strong> (or <strong class="text-phantom-light">ChaCha20-Poly1305</strong> on devices without AES-NI hardware acceleration) encryption with the ratchet key. The 128-bit tag authenticates it. Then <strong class="text-white">Ed25519</strong> signs <code class="text-phantom-light text-xs">ct ‖ convId ‖ timestamp</code>.</p>
+            <div class="mt-4 p-4 rounded-xl bg-phantom/10 border border-phantom/20">
+              <p class="text-sm" data-lang="fr"><strong class="text-phantom-light">⚡ Sélection adaptative</strong> <span class="text-xs px-1.5 py-0.5 rounded bg-phantom/20 text-phantom-light">V3.5</span> — Le cipher est auto-détecté au démarrage via ARMv8 Crypto Extension probe. Les deux sont AEAD (authentification intégrée). Le champ <code class="text-phantom-light text-xs">cipherSuite</code> dans le wire format garantit l'interopérabilité.</p>
+              <p class="text-sm" data-lang="en"><strong class="text-phantom-light">⚡ Adaptive selection</strong> <span class="text-xs px-1.5 py-0.5 rounded bg-phantom/20 text-phantom-light">V3.5</span> — Cipher is auto-detected at startup via ARMv8 Crypto Extension probe. Both are AEAD (built-in authentication). The <code class="text-phantom-light text-xs">cipherSuite</code> field in the wire format ensures interoperability.</p>
+            </div>
           </div>
         </div>
         <div class="glass rounded-2xl p-8 font-['JetBrains_Mono'] text-xs space-y-3">
           <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">1.</span> <span class="text-white">"Hello"</span> <span class="text-text-muted">→ pad →</span> <span class="text-phantom-light">[256 bytes]</span></div>
-          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">2.</span> <span class="text-phantom-light">AES-256-GCM</span><span class="text-text-muted">(key, iv, padded)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">ciphertext + tag₁₂₈</span></div>
+          <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">2.</span> <span class="text-phantom-light">AES-256-GCM | ChaCha20-Poly1305</span><span class="text-text-muted">(key, iv, padded)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">ciphertext + tag₁₂₈</span></div>
           <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">3.</span> <span class="text-phantom-light">Ed25519.sign</span><span class="text-text-muted">(ct ‖ convId ‖ ts)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">signature₅₁₂</span></div>
           <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">4.</span> <span class="text-text-muted">senderUid =</span> <span class="text-phantom-light">HMAC</span><span class="text-text-muted">(convId, realUid)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">anonymous ID</span></div>
           <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green">→ Firebase reçoit un blob opaque. Rien n'est lisible côté serveur.</span></div>
@@ -255,8 +267,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Receive & Destroy</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
-            <p data-lang="fr">Bob reçoit le blob. Il <strong class="text-white">vérifie la signature Ed25519</strong> (badge ✅ ou ⚠️), puis déchiffre avec sa clé AES-256-GCM du ratchet.</p>
-            <p data-lang="en">Bob receives the blob. He <strong class="text-white">verifies the Ed25519 signature</strong> (badge ✅ or ⚠️), then decrypts with his AES-256-GCM ratchet key.</p>
+            <p data-lang="fr">Bob reçoit le blob. Il <strong class="text-white">vérifie la signature Ed25519</strong> (badge ✅ ou ⚠️), puis déchiffre avec sa clé <strong class="text-phantom-light">AES-256-GCM ou ChaCha20-Poly1305</strong> du ratchet (selon le champ <code class="text-phantom-light text-xs">cipherSuite</code>).</p>
+            <p data-lang="en">Bob receives the blob. He <strong class="text-white">verifies the Ed25519 signature</strong> (badge ✅ or ⚠️), then decrypts with his <strong class="text-phantom-light">AES-256-GCM or ChaCha20-Poly1305</strong> ratchet key (based on the <code class="text-phantom-light text-xs">cipherSuite</code> field).</p>
             <p data-lang="fr">Le message déchiffré est stocké dans <strong class="text-phantom-light">SQLCipher</strong> (base Room chiffrée AES-256). Si un timer éphémère est actif, le message <strong class="text-white">s'autodétruit</strong>. Côté serveur, delete-after-delivery supprime le blob immédiatement.</p>
             <p data-lang="en">The decrypted message is stored in <strong class="text-phantom-light">SQLCipher</strong> (AES-256 encrypted Room DB). If an ephemeral timer is active, the message <strong class="text-white">self-destructs</strong>. Server-side, delete-after-delivery removes the blob immediately.</p>
           </div>
@@ -320,6 +332,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <span class="text-sm text-text-secondary">SecureChat — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
       <div class="flex items-center gap-6 text-sm text-text-muted">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
         <span>GPLv3</span>
       </div>
