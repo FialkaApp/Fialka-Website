@@ -1209,6 +1209,233 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     </div>
   </section>
 
+  <!-- ===== ROCKET NAVIGATOR ===== -->
+  <div id="rocket-nav" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 opacity-0 pointer-events-none transition-all duration-500 hidden lg:block">
+    <!-- Trajectory line -->
+    <div class="relative flex flex-col items-center">
+      <!-- Track (animated gradient) -->
+      <div class="rocket-track absolute top-0 bottom-0 w-0.5 left-1/2 -translate-x-1/2 rounded-full overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-phantom/10 via-phantom-light/30 to-phantom/10"></div>
+      </div>
+      <!-- Track progress fill -->
+      <div id="rocket-track-fill" class="absolute top-0 w-1 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-b from-phantom/60 to-phantom-light/40 transition-all duration-300" style="height: 0%;"></div>
+
+      <!-- Rocket indicator (DRAGGABLE) -->
+      <div id="rocket-ship" class="absolute left-1/2 -translate-x-1/2 z-20 transition-all duration-700 ease-out" style="top: 0; cursor: grab;">
+        <div class="relative rocket-body">
+          <!-- Glow ring -->
+          <div class="rocket-glow-ring absolute -inset-3 rounded-full pointer-events-none"></div>
+          <!-- Drag hint tooltip -->
+          <div id="rocket-drag-hint" class="absolute right-16 top-1/2 -translate-y-1/2 whitespace-nowrap text-xs text-phantom-light/80 bg-surface/95 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-phantom/30 opacity-0 transition-all duration-300 pointer-events-none">
+            <span data-lang="fr">↕ Glisser pour naviguer</span><span data-lang="en">↕ Drag to navigate</span>
+          </div>
+          <svg class="w-12 h-12 rocket-svg" viewBox="0 0 64 64" fill="none">
+            <defs>
+              <linearGradient id="rBody" x1="32" y1="4" x2="32" y2="48" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#D68FFF"/>
+                <stop offset="40%" stop-color="#9C4DCC"/>
+                <stop offset="100%" stop-color="#6B2FA0"/>
+              </linearGradient>
+              <radialGradient id="rPorthole" cx="50%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#E0B0FF" stop-opacity="0.9"/>
+                <stop offset="70%" stop-color="#9C4DCC" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#6B2FA0" stop-opacity="0.1"/>
+              </radialGradient>
+            </defs>
+            <!-- Body -->
+            <path d="M32 4 C32 4 18 18 18 40 L24 47 L40 47 L46 40 C46 18 32 4 32 4Z" fill="url(#rBody)"/>
+            <!-- Nose highlight -->
+            <path d="M32 4 C32 4 26 14 25 26 L32 6 L39 26 C38 14 32 4 32 4Z" fill="#D68FFF" opacity="0.25"/>
+            <!-- Porthole ring -->
+            <circle cx="32" cy="26" r="7" fill="none" stroke="#B44FE0" stroke-width="0.8" opacity="0.4"/>
+            <!-- Porthole -->
+            <circle cx="32" cy="26" r="5.5" fill="#0A0A10" stroke="#B44FE0" stroke-width="1.5"/>
+            <circle cx="32" cy="26" r="4" fill="url(#rPorthole)"/>
+            <!-- Porthole reflections -->
+            <circle cx="30" cy="24" r="1.5" fill="white" opacity="0.35"/>
+            <circle cx="33.5" cy="28" r="0.7" fill="white" opacity="0.15"/>
+            <!-- Fins -->
+            <path d="M18 36 L9 52 L18 44Z" fill="#7B2D8E"/>
+            <path d="M46 36 L55 52 L46 44Z" fill="#7B2D8E"/>
+            <path d="M18 36 L11 49 L18 42Z" fill="#9C4DCC" opacity="0.3"/>
+            <path d="M46 36 L53 49 L46 42Z" fill="#9C4DCC" opacity="0.3"/>
+            <!-- Bottom ring -->
+            <ellipse cx="32" cy="45" rx="8" ry="2.5" fill="#5A1F7A" stroke="#9C4DCC" stroke-width="0.5" opacity="0.7"/>
+            <!-- Body stripes -->
+            <line x1="24" y1="38" x2="40" y2="38" stroke="#B44FE0" stroke-width="0.5" opacity="0.25"/>
+            <line x1="22" y1="42" x2="42" y2="42" stroke="#B44FE0" stroke-width="0.5" opacity="0.15"/>
+          </svg>
+          <!-- Enhanced flames (5 layers) -->
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 flex gap-0.5" id="rocket-nav-flames">
+            <div class="w-1 h-3 bg-gradient-to-b from-orange-300 to-orange-600 rounded-full animate-rflame1 opacity-90"></div>
+            <div class="w-1.5 h-5 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full animate-rflame2"></div>
+            <div class="w-2 h-6 bg-gradient-to-b from-white to-yellow-400 rounded-full animate-rflame2" style="animation-delay: -0.1s;"></div>
+            <div class="w-1.5 h-5 bg-gradient-to-b from-yellow-200 to-orange-500 rounded-full animate-rflame2" style="animation-delay: -0.15s;"></div>
+            <div class="w-1 h-3 bg-gradient-to-b from-orange-300 to-orange-600 rounded-full animate-rflame3 opacity-90"></div>
+          </div>
+          <!-- Spark particles (visible on drag) -->
+          <div class="rocket-sparks absolute -bottom-8 left-1/2 -translate-x-1/2 pointer-events-none" id="rocket-sparks">
+            <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+            <div class="spark"></div><div class="spark"></div><div class="spark"></div>
+          </div>
+          <!-- Exhaust trail -->
+          <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-4 h-12 bg-gradient-to-b from-orange-400/25 via-phantom/10 to-transparent rounded-full blur-md transition-all duration-300" id="rocket-exhaust"></div>
+        </div>
+      </div>
+
+      <!-- Station dots -->
+      <div class="flex flex-col gap-0" id="rocket-stations">
+        <button data-target="vs-aes" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="AES-256-GCM">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">AES-256-GCM</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-chacha" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="ChaCha20">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">ChaCha20-Poly1305</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-x25519" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="X25519">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">X25519</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-mlkem" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="ML-KEM-1024">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">ML-KEM-1024</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-ed25519" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="Ed25519">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">Ed25519</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-ratchet" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="Double Ratchet">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">Double Ratchet</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-spqr" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="SPQR">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">SPQR Triple Ratchet</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-hkdf" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="HKDF">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20">HKDF-SHA256</span>
+          <div class="w-3 h-3 rounded-full border-2 border-phantom/40 bg-surface transition-all duration-300 group-hover:border-phantom-light group-hover:bg-phantom/30 group-hover:scale-125"></div>
+        </button>
+        <button data-target="vs-quantum" class="rocket-station group relative flex items-center justify-end pr-7 py-3 cursor-pointer bg-transparent border-none" aria-label="Quantum">
+          <span class="station-label absolute right-14 whitespace-nowrap text-xs text-text-muted opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-phantom/20 border-red-500/30 text-red-400/80">⚛️ Menaces quantiques</span>
+          <div class="w-3 h-3 rounded-full border-2 border-red-500/40 bg-surface transition-all duration-300 group-hover:border-red-400 group-hover:bg-red-500/30 group-hover:scale-125"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* === FLAME ANIMATIONS === */
+    @keyframes rflame1 { 0%,100% { height: 10px; opacity: 0.8; } 50% { height: 18px; opacity: 1; } }
+    @keyframes rflame2 { 0%,100% { height: 16px; opacity: 0.9; } 50% { height: 24px; opacity: 1; } }
+    @keyframes rflame3 { 0%,100% { height: 8px; opacity: 0.7; } 50% { height: 16px; opacity: 1; } }
+    .animate-rflame1 { animation: rflame1 0.3s ease-in-out infinite; }
+    .animate-rflame2 { animation: rflame2 0.25s ease-in-out infinite; }
+    .animate-rflame3 { animation: rflame3 0.35s ease-in-out infinite; }
+
+    /* === ROCKET VISIBILITY === */
+    #rocket-nav.visible { opacity: 1; pointer-events: auto; }
+
+    /* === GLOW PULSE (idle) === */
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 8px rgba(156, 77, 204, 0.4)); }
+      50% { filter: drop-shadow(0 0 18px rgba(156, 77, 204, 0.7)); }
+    }
+    #rocket-ship { animation: glowPulse 3s ease-in-out infinite; cursor: grab; }
+
+    /* === GLOW RING === */
+    .rocket-glow-ring {
+      background: radial-gradient(circle, rgba(156,77,204,0.12) 0%, transparent 70%);
+      animation: ringPulse 2s ease-in-out infinite;
+    }
+    @keyframes ringPulse {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.4); opacity: 0.7; }
+    }
+
+    /* === FLYING STATE (click station) === */
+    #rocket-ship.flying { transition-duration: 400ms !important; animation: none !important; }
+    #rocket-ship.flying .rocket-svg { animation: rocketShake 0.5s ease-out; }
+    @keyframes rocketShake {
+      0% { transform: rotate(0deg); }
+      15% { transform: rotate(-6deg) scale(1.15); }
+      30% { transform: rotate(6deg) scale(1.2); }
+      50% { transform: rotate(-3deg) scale(1.1); }
+      70% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+    #rocket-ship.flying #rocket-exhaust { height: 3rem; opacity: 0.7; }
+    #rocket-ship.flying #rocket-nav-flames div { height: 1.5rem !important; }
+
+    /* === DRAGGING STATE (grab & scroll) === */
+    #rocket-ship.dragging {
+      cursor: grabbing !important;
+      animation: none !important;
+      filter: drop-shadow(0 0 24px rgba(156, 77, 204, 0.9)) !important;
+      transition: none !important;
+    }
+    #rocket-ship.dragging .rocket-svg { transform: scale(1.25); transition: transform 0.15s; }
+    #rocket-ship.dragging #rocket-nav-flames div { height: 2rem !important; }
+    #rocket-ship.dragging #rocket-exhaust { height: 5rem; opacity: 0.8; filter: blur(8px); }
+    #rocket-ship.dragging .rocket-glow-ring { animation: none; transform: scale(1.6); opacity: 1; }
+
+    /* Show ALL labels while dragging */
+    #rocket-nav.nav-dragging .station-label {
+      opacity: 1 !important;
+      transform: translateX(0) !important;
+    }
+    #rocket-nav.nav-dragging { cursor: grabbing; }
+
+    /* Drag hint on hover */
+    #rocket-ship:hover #rocket-drag-hint { opacity: 1; }
+    #rocket-ship.dragging #rocket-drag-hint { opacity: 0 !important; }
+
+    /* === ACTIVE STATION DOT === */
+    .rocket-station .w-3 { position: relative; }
+    .rocket-station .w-3.active {
+      border-color: #B44FE0 !important;
+      background: rgba(156, 77, 204, 0.5) !important;
+      box-shadow: 0 0 12px rgba(156, 77, 204, 0.6);
+      transform: scale(1.4);
+    }
+    /* Ping ring on active dot */
+    .rocket-station .w-3.active::after {
+      content: '';
+      position: absolute; inset: -4px; border-radius: 50%;
+      border: 1.5px solid rgba(180, 79, 224, 0.4);
+      animation: stationPing 1.5s ease-out infinite;
+    }
+    .rocket-station[data-target="vs-quantum"] .w-3.active::after {
+      border-color: rgba(239, 68, 68, 0.4);
+    }
+    @keyframes stationPing {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    /* === SPARK PARTICLES (drag only) === */
+    .rocket-sparks .spark {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: #FFD700; opacity: 0;
+    }
+    #rocket-ship.dragging .rocket-sparks .spark { animation: sparkFly 0.6s ease-out infinite; }
+    #rocket-ship.dragging .rocket-sparks .spark:nth-child(1) { animation-delay: 0s; left: -6px; }
+    #rocket-ship.dragging .rocket-sparks .spark:nth-child(2) { animation-delay: 0.1s; left: -2px; }
+    #rocket-ship.dragging .rocket-sparks .spark:nth-child(3) { animation-delay: 0.2s; left: 2px; }
+    #rocket-ship.dragging .rocket-sparks .spark:nth-child(4) { animation-delay: 0.15s; left: 6px; }
+    #rocket-ship.dragging .rocket-sparks .spark:nth-child(5) { animation-delay: 0.08s; left: -4px; }
+    #rocket-ship.dragging .rocket-sparks .spark:nth-child(6) { animation-delay: 0.28s; left: 4px; }
+    @keyframes sparkFly {
+      0% { transform: translateY(0); opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(22px) translateX(var(--sx, 3px)); opacity: 0; }
+    }
+
+    /* === TRACK PROGRESS === */
+    #rocket-track-fill { box-shadow: 0 0 6px rgba(156, 77, 204, 0.4); }
+  </style>
+
   <!-- Footer -->
   <footer class="py-12 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -1248,7 +1475,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     const sp = document.getElementById('scroll-progress');
     window.addEventListener('scroll', () => { if (!sp) return; const h = document.documentElement.scrollHeight - window.innerHeight; sp.style.width = h > 0 ? `${(window.scrollY/h*100)}%` : '0%'; });
 
-    // GSAP scroll animations
+    // GSAP scroll animations (enhanced)
     async function initGSAP() {
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -1259,14 +1486,34 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         gsap.fromTo(card as Element, { y: 40, opacity: 0 }, { scrollTrigger: { trigger: card as Element, start: 'top 85%' }, y: 0, opacity: 1, duration: 0.5, delay: i * 0.06 });
       });
 
-      // Animate table rows
+      // Table rows — slide from left with stagger
       gsap.utils.toArray('tbody tr').forEach((row, i) => {
-        gsap.fromTo(row as Element, { x: -20, opacity: 0 }, { scrollTrigger: { trigger: row as Element, start: 'top 90%' }, x: 0, opacity: 1, duration: 0.4, delay: i * 0.05 });
+        gsap.fromTo(row as Element, { x: -30, opacity: 0 }, { scrollTrigger: { trigger: row as Element, start: 'top 92%' }, x: 0, opacity: 1, duration: 0.5, delay: i * 0.04, ease: 'power2.out' });
       });
 
-      // Section reveals
+      // Section reveals — smooth power3
       gsap.utils.toArray('.section-reveal').forEach(el => {
-        gsap.fromTo(el as Element, { y: 60, opacity: 0 }, { scrollTrigger: { trigger: el as Element, start: 'top 80%' }, y: 0, opacity: 1, duration: 0.8 });
+        gsap.fromTo(el as Element, { y: 60, opacity: 0 }, { scrollTrigger: { trigger: el as Element, start: 'top 82%' }, y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
+      });
+
+      // Section headings — skew + slide reveal
+      gsap.utils.toArray('section[id^="vs-"] h2').forEach(el => {
+        gsap.fromTo(el as Element, { x: -50, opacity: 0, skewX: -5 }, { scrollTrigger: { trigger: el as Element, start: 'top 88%' }, x: 0, opacity: 1, skewX: 0, duration: 0.7, ease: 'power3.out' });
+      });
+
+      // Comparison marks — bouncy pop
+      gsap.utils.toArray('.compare-check, .compare-cross, .compare-partial').forEach((el, i) => {
+        gsap.fromTo(el as Element, { scale: 0 }, { scrollTrigger: { trigger: el as Element, start: 'top 93%' }, scale: 1, duration: 0.35, delay: (i % 6) * 0.04, ease: 'back.out(3)' });
+      });
+
+      // Code blocks — slide from right
+      gsap.utils.toArray('pre').forEach(el => {
+        gsap.fromTo(el as Element, { x: 30, opacity: 0 }, { scrollTrigger: { trigger: el as Element, start: 'top 88%' }, x: 0, opacity: 1, duration: 0.6, ease: 'power2.out' });
+      });
+
+      // Glass info boxes (not already section-reveal) — scale pop
+      gsap.utils.toArray('.glass:not(.section-reveal)').forEach(el => {
+        gsap.fromTo(el as Element, { scale: 0.92, opacity: 0 }, { scrollTrigger: { trigger: el as Element, start: 'top 85%' }, scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' });
       });
     }
     initGSAP();
@@ -1279,6 +1526,149 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function(this: HTMLAnchorElement, e: Event) { e.preventDefault(); document.querySelector(this.getAttribute('href')!)?.scrollIntoView({ behavior: 'smooth' }); });
     });
+
+    // ---- Rocket Section Navigator (with DRAG-TO-SCROLL) ----
+    const rocketNav = document.getElementById('rocket-nav');
+    const rocketShip = document.getElementById('rocket-ship');
+    const rocketTrackFill = document.getElementById('rocket-track-fill');
+    const stations = document.querySelectorAll('.rocket-station');
+    const sectionIds = Array.from(stations).map(s => s.getAttribute('data-target')!);
+    const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    let isDragging = false;
+
+    // Show/hide + track position
+    function updateRocketNav() {
+      if (!rocketNav || !rocketShip || sectionEls.length === 0) return;
+
+      const scrollY = window.scrollY;
+      const firstSection = sectionEls[0];
+      const showAfter = firstSection.offsetTop - window.innerHeight * 0.5;
+
+      if (scrollY > showAfter) {
+        rocketNav.classList.add('visible');
+      } else {
+        rocketNav.classList.remove('visible');
+        return;
+      }
+
+      // Find current section
+      let activeIdx = 0;
+      for (let i = sectionEls.length - 1; i >= 0; i--) {
+        if (scrollY >= sectionEls[i].offsetTop - window.innerHeight * 0.4) {
+          activeIdx = i;
+          break;
+        }
+      }
+
+      // Move rocket to active station (skip if dragging — user controls it)
+      if (!isDragging) {
+        const stationArr = Array.from(stations);
+        const targetStation = stationArr[activeIdx];
+        if (targetStation) {
+          const stationsContainer = document.getElementById('rocket-stations');
+          if (stationsContainer) {
+            const containerRect = stationsContainer.getBoundingClientRect();
+            const stationRect = targetStation.getBoundingClientRect();
+            const offset = stationRect.top - containerRect.top + stationRect.height / 2 - 24;
+            rocketShip.style.top = `${offset}px`;
+          }
+        }
+      }
+
+      // Update active dots
+      stations.forEach((s, i) => {
+        const dot = s.querySelector('.w-3');
+        if (i === activeIdx) dot?.classList.add('active');
+        else dot?.classList.remove('active');
+      });
+
+      // Update track fill
+      if (rocketTrackFill) {
+        const ratio = sectionEls.length > 1 ? activeIdx / (sectionEls.length - 1) : 0;
+        rocketTrackFill.style.height = `${ratio * 100}%`;
+      }
+    }
+
+    // Click handlers for stations
+    stations.forEach(station => {
+      station.addEventListener('click', () => {
+        if (isDragging) return;
+        const targetId = station.getAttribute('data-target');
+        const target = document.getElementById(targetId!);
+        if (!target || !rocketShip) return;
+
+        rocketShip.classList.add('flying');
+        setTimeout(() => rocketShip.classList.remove('flying'), 500);
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ==== DRAG-TO-SCROLL (like a real scrollbar!) ====
+    if (rocketShip && rocketNav) {
+      function startDrag(clientY: number) {
+        isDragging = true;
+        rocketShip!.classList.add('dragging');
+        rocketNav!.classList.add('nav-dragging');
+        document.body.style.userSelect = 'none';
+        (document.body.style as any).webkitUserSelect = 'none';
+        onDrag(clientY);
+      }
+
+      function onDrag(clientY: number) {
+        if (!isDragging) return;
+        const stationsContainer = document.getElementById('rocket-stations');
+        if (!stationsContainer || sectionEls.length < 2) return;
+
+        const containerRect = stationsContainer.getBoundingClientRect();
+        const relativeY = clientY - containerRect.top;
+        const ratio = Math.max(0, Math.min(1, relativeY / containerRect.height));
+
+        // Map ratio → page scroll position (first section to last section)
+        const firstTop = sectionEls[0].offsetTop - 100;
+        const lastEl = sectionEls[sectionEls.length - 1];
+        const lastBottom = lastEl.offsetTop + lastEl.offsetHeight;
+        const scrollRange = lastBottom - firstTop - window.innerHeight;
+        window.scrollTo({ top: firstTop + ratio * scrollRange, behavior: 'auto' });
+
+        // Move rocket directly (instant, no transition lag)
+        const offset = ratio * (containerRect.height - 48);
+        rocketShip!.style.top = `${offset}px`;
+        rocketShip!.style.transition = 'none';
+
+        // Track fill
+        if (rocketTrackFill) {
+          rocketTrackFill.style.height = `${ratio * 100}%`;
+        }
+      }
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+        rocketShip!.classList.remove('dragging');
+        rocketNav!.classList.remove('nav-dragging');
+        rocketShip!.style.transition = '';
+        document.body.style.userSelect = '';
+        (document.body.style as any).webkitUserSelect = '';
+
+        // Boost animation on release
+        rocketShip!.classList.add('flying');
+        setTimeout(() => rocketShip!.classList.remove('flying'), 500);
+      }
+
+      // Mouse events
+      rocketShip.addEventListener('mousedown', (e: MouseEvent) => { e.preventDefault(); startDrag(e.clientY); });
+      document.addEventListener('mousemove', (e: MouseEvent) => { if (isDragging) { e.preventDefault(); onDrag(e.clientY); } });
+      document.addEventListener('mouseup', endDrag);
+
+      // Touch events
+      rocketShip.addEventListener('touchstart', (e: TouchEvent) => { e.preventDefault(); startDrag(e.touches[0].clientY); }, { passive: false });
+      document.addEventListener('touchmove', (e: TouchEvent) => { if (isDragging) { e.preventDefault(); onDrag(e.touches[0].clientY); } }, { passive: false });
+      document.addEventListener('touchend', endDrag);
+    }
+
+    window.addEventListener('scroll', updateRocketNav, { passive: true });
+    window.addEventListener('resize', updateRocketNav);
+    setTimeout(updateRocketNav, 500);
 
     // Three.js particle background for hero
     async function initCryptoCanvas() {
