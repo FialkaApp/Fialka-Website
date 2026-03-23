@@ -2,7 +2,7 @@
 
 Official website for **Fialka** — the end-to-end encrypted messenger that knows nothing about you.
 
-🔗 **Live:** [devbot667.github.io/Fialka-Website](https://devbot667.github.io/Fialka-Website/)
+🔗 **Live:** [fialkaapp.github.io/Fialka-Website](https://fialkaapp.github.io/Fialka-Website/)
 
 ## Features
 
@@ -38,7 +38,9 @@ npm run build     # static output in dist/
 
 ## Related
 
-- [Fialka App](https://github.com/FialkaApp/Fialka) — The Android app
+- [Fialka Android](https://github.com/FialkaApp/Fialka-Android) — The Android app
+- [Fialka iOS](https://github.com/FialkaApp/Fialka-iOS) — The iOS app
+- [FialkaApp](https://github.com/FialkaApp) — GitHub organization
 
 ## License
 
