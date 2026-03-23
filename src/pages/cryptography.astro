@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="SecureChat — Cryptography Deep Dive">
+<Layout title="Fialka — Cryptography Deep Dive">
 
   <div id="scroll-progress"></div>
 
@@ -11,8 +11,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">
-        <svg class="w-8 h-8 transition-transform group-hover:scale-110" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="nav-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#nav-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
-        <span class="text-xl font-bold font-['Space_Grotesk']">Secure<span class="text-phantom-light">Chat</span></span>
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </div>
       <div class="flex items-center gap-4">
         <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer"><span data-lang="fr">EN</span><span data-lang="en">FR</span></button>
-        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -41,7 +41,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="py-2 text-phantom-light font-semibold" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
-        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
+        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -64,10 +64,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <span data-lang="en">Comparative <span class="gradient-text">Cryptography</span></span>
       </h1>
       <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-lang="fr">
-        Chaque algorithme a été choisi pour une raison précise. Voici pourquoi — et pourquoi <strong class="text-white">pas</strong> les alternatives.
+        La Fialka M-125 utilisait 10 rotors mécaniques. Aujourd'hui, nous utilisons des mathématiques post-quantiques. Voici pourquoi — et pourquoi <strong class="text-white">pas</strong> les alternatives.
       </p>
       <p class="text-xl text-text-secondary max-w-2xl mx-auto" data-lang="en">
-        Every algorithm was chosen for a specific reason. Here's why — and why <strong class="text-white">not</strong> the alternatives.
+        The Fialka M-125 used 10 mechanical rotors. Today, we use post-quantum mathematics. Here's why — and why <strong class="text-white">not</strong> the alternatives.
       </p>
     </div>
   </section>
@@ -156,7 +156,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="grid lg:grid-cols-2 gap-8 section-reveal">
         <!-- Winner -->
         <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 relative overflow-hidden">
-          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-accent-green/20 text-accent-green text-xs font-bold">SecureChat</div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-accent-green/20 text-accent-green text-xs font-bold">Fialka</div>
           <h3 class="text-2xl font-bold font-['Space_Grotesk'] mb-4 flex items-center gap-3">
             <span class="text-3xl">🔒</span> AES-256-GCM
           </h3>
@@ -225,8 +225,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div>
             <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sélection automatique du chiffrement</h3>
             <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Automatic cipher selection</h3>
-            <p class="text-text-secondary mb-6" data-lang="fr">SecureChat détecte au runtime si le processeur supporte <strong class="text-white">AES-NI</strong> (accélération matérielle AES). Si oui → AES-256-GCM. Sinon → ChaCha20-Poly1305, qui est <strong class="text-phantom-light">3× plus rapide en software pur</strong>.</p>
-            <p class="text-text-secondary mb-6" data-lang="en">SecureChat detects at runtime whether the CPU supports <strong class="text-white">AES-NI</strong> (hardware AES acceleration). If yes → AES-256-GCM. If no → ChaCha20-Poly1305, which is <strong class="text-phantom-light">3× faster in pure software</strong>.</p>
+            <p class="text-text-secondary mb-6" data-lang="fr">Fialka détecte au runtime si le processeur supporte <strong class="text-white">AES-NI</strong> (accélération matérielle AES). Si oui → AES-256-GCM. Sinon → ChaCha20-Poly1305, qui est <strong class="text-phantom-light">3× plus rapide en software pur</strong>.</p>
+            <p class="text-text-secondary mb-6" data-lang="en">Fialka detects at runtime whether the CPU supports <strong class="text-white">AES-NI</strong> (hardware AES acceleration). If yes → AES-256-GCM. If no → ChaCha20-Poly1305, which is <strong class="text-phantom-light">3× faster in pure software</strong>.</p>
             <div class="space-y-2 text-sm">
               <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10">
                 <span class="text-accent-green font-['JetBrains_Mono']">if</span>
@@ -370,8 +370,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       <div class="section-reveal glass rounded-2xl p-6 flex items-center gap-4">
         <span class="text-2xl">💡</span>
-        <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">* X25519 seul n'est pas post-quantique</strong>, c'est pourquoi SecureChat utilise <strong class="text-phantom-light">PQXDH</strong> : X25519 + ML-KEM-1024. La sécurité classique de X25519 est complétée par la résistance quantique de ML-KEM.</p>
-        <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">* X25519 alone is not post-quantum</strong>, which is why SecureChat uses <strong class="text-phantom-light">PQXDH</strong>: X25519 + ML-KEM-1024. X25519's classical security is complemented by ML-KEM's quantum resistance.</p>
+        <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">* X25519 seul n'est pas post-quantique</strong>, c'est pourquoi Fialka utilise <strong class="text-phantom-light">PQXDH</strong> : X25519 + ML-KEM-1024. La sécurité classique de X25519 est complétée par la résistance quantique de ML-KEM.</p>
+        <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">* X25519 alone is not post-quantum</strong>, which is why Fialka uses <strong class="text-phantom-light">PQXDH</strong>: X25519 + ML-KEM-1024. X25519's classical security is complemented by ML-KEM's quantum resistance.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 mt-8 section-reveal">
@@ -414,7 +414,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
               <span class="text-3xl">🛡️</span>
               <div>
                 <h3 class="text-xl font-bold font-['Space_Grotesk']">ML-KEM-1024 (Kyber)</h3>
-                <span class="text-xs text-accent-green">NIST FIPS 203 — SecureChat</span>
+                <span class="text-xs text-accent-green">NIST FIPS 203 — Fialka</span>
               </div>
             </div>
             <div class="space-y-2 text-sm text-text-secondary">
@@ -562,7 +562,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 lg:col-span-2">
           <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 flex items-center gap-2">
             <span class="text-2xl">🔄</span><span data-lang="fr">Double Ratchet (Signal Protocol)</span><span data-lang="en">Double Ratchet (Signal Protocol)</span>
-            <span class="px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green text-xs">SecureChat</span>
+            <span class="px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green text-xs">Fialka</span>
           </h3>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="space-y-3 text-sm text-text-secondary">
@@ -641,8 +641,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
             <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 mt-8" data-lang="fr">La solution SPQR</h3>
             <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 mt-8" data-lang="en">The SPQR solution</h3>
-            <p class="text-text-secondary" data-lang="fr">Tous les <strong class="text-white">10 messages</strong>, SecureChat effectue un nouvel échange ML-KEM-1024 (encapsulation + décapsulation) et mélange le secret partagé post-quantique dans la rootKey via HKDF. C'est le <strong class="text-phantom-light">PQ Ratchet</strong> — un troisième ratchet, indépendant des deux autres.</p>
-            <p class="text-text-secondary" data-lang="en">Every <strong class="text-white">10 messages</strong>, SecureChat performs a new ML-KEM-1024 exchange (encapsulation + decapsulation) and mixes the post-quantum shared secret into the rootKey via HKDF. This is the <strong class="text-phantom-light">PQ Ratchet</strong> — a third ratchet, independent of the other two.</p>
+            <p class="text-text-secondary" data-lang="fr">Tous les <strong class="text-white">10 messages</strong>, Fialka effectue un nouvel échange ML-KEM-1024 (encapsulation + décapsulation) et mélange le secret partagé post-quantique dans la rootKey via HKDF. C'est le <strong class="text-phantom-light">PQ Ratchet</strong> — un troisième ratchet, indépendant des deux autres.</p>
+            <p class="text-text-secondary" data-lang="en">Every <strong class="text-white">10 messages</strong>, Fialka performs a new ML-KEM-1024 exchange (encapsulation + decapsulation) and mixes the post-quantum shared secret into the rootKey via HKDF. This is the <strong class="text-phantom-light">PQ Ratchet</strong> — a third ratchet, independent of the other two.</p>
           </div>
           <div class="font-['JetBrains_Mono'] text-xs space-y-3">
             <div class="text-text-muted mb-2 text-center">SPQR — Triple Ratchet</div>
@@ -652,7 +652,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
                 <span class="text-phantom-light font-bold">msg₁₀ → SPQR Trigger!</span>
                 <div class="mt-2 pl-4 space-y-1 text-phantom-light/80">
                   <div>ct = ML-KEM.Encaps(pk_partner) → (ss, ct)</div>
-                  <div>newRK = HKDF(currentRK ‖ ss, info="SecureChat-SPQR-pq-ratchet")</div>
+                  <div>newRK = HKDF(currentRK ‖ ss, info="Fialka-SPQR-pq-ratchet")</div>
                   <div>pqRatchetCounter = 0</div>
                 </div>
               </div>
@@ -708,13 +708,13 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
         <div class="md:col-span-2 space-y-6">
           <div class="glass rounded-2xl p-6">
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="fr">Où HKDF est utilisé dans SecureChat</h4>
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="en">Where HKDF is used in SecureChat</h4>
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="fr">Où HKDF est utilisé dans Fialka</h4>
+            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="en">Where HKDF is used in Fialka</h4>
             <div class="space-y-2 font-['JetBrains_Mono'] text-xs">
               <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">PQXDH</span><span class="text-text-muted">SK = HKDF(DH₁‖DH₂‖DH₃‖DH₄‖ML-KEM.ss)</span></div>
               <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">DH Ratchet</span><span class="text-text-muted">newRK, CK = HKDF(RK, DH(a,B))</span></div>
               <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">KDF Chain</span><span class="text-text-muted">CKₙ₊₁, MK = HMAC-SHA256(CKₙ)</span></div>
-              <div class="p-2 rounded bg-phantom/15 flex items-center gap-3 border border-phantom/20"><span class="text-phantom-light">SPQR</span><span class="text-text-muted">newRK = HKDF(RK ‖ ss, "SecureChat-SPQR-pq-ratchet")</span></div>
+              <div class="p-2 rounded bg-phantom/15 flex items-center gap-3 border border-phantom/20"><span class="text-phantom-light">SPQR</span><span class="text-text-muted">newRK = HKDF(RK ‖ ss, "Fialka-SPQR-pq-ratchet")</span></div>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
@@ -722,8 +722,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
               <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-sm text-yellow-400">PBKDF2</h4>
               <p class="text-xs text-text-secondary" data-lang="fr">Conçu pour deriver des clés à partir de <strong class="text-white">mots de passe</strong> (lent volontairement). Pas adapté pour dérivation rapide type ratchet.</p>
               <p class="text-xs text-text-secondary" data-lang="en">Designed to derive keys from <strong class="text-white">passwords</strong> (intentionally slow). Not suited for fast ratchet-style derivation.</p>
-              <p class="text-xs text-text-muted mt-2" data-lang="fr">→ SecureChat utilise PBKDF2 uniquement pour le PIN (600K itérations)</p>
-              <p class="text-xs text-text-muted mt-2" data-lang="en">→ SecureChat uses PBKDF2 only for PIN (600K iterations)</p>
+              <p class="text-xs text-text-muted mt-2" data-lang="fr">→ Fialka utilise PBKDF2 uniquement pour le PIN (600K itérations)</p>
+              <p class="text-xs text-text-muted mt-2" data-lang="en">→ Fialka uses PBKDF2 only for PIN (600K iterations)</p>
             </div>
             <div class="glass rounded-2xl p-5 opacity-60">
               <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-sm text-yellow-400">Argon2</h4>
@@ -749,8 +749,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         </div>
         <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Résistance aux <span class="gradient-text">attaques quantiques</span></h2>
         <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Resistance to <span class="gradient-text">quantum attacks</span></h2>
-        <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="fr">Un ordinateur quantique suffisamment puissant disposera de deux armes principales. Voici comment SecureChat se défend contre chacune.</p>
-        <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="en">A sufficiently powerful quantum computer will have two main weapons. Here's how SecureChat defends against each.</p>
+        <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="fr">Un ordinateur quantique suffisamment puissant disposera de deux armes principales. Voici comment Fialka se défend contre chacune.</p>
+        <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="en">A sufficiently powerful quantum computer will have two main weapons. Here's how Fialka defends against each.</p>
       </div>
 
       <!-- Shor's Algorithm -->
@@ -794,8 +794,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-1">
               <span class="text-3xl">🛡️</span>
               <div>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense SecureChat vs Shor</h3>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">SecureChat defense vs Shor</h3>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense Fialka vs Shor</h3>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">Fialka defense vs Shor</h3>
               </div>
             </div>
             <div class="mt-4 space-y-4 text-sm text-text-secondary">
@@ -890,13 +890,13 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-1">
               <span class="text-3xl">✅</span>
               <div>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense SecureChat vs Grover</h3>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">SecureChat defense vs Grover</h3>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense Fialka vs Grover</h3>
+                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">Fialka defense vs Grover</h3>
               </div>
             </div>
             <div class="mt-4 space-y-3 text-sm text-text-secondary">
-              <p data-lang="fr"><strong class="text-accent-green">Grover n'est pas un problème pour SecureChat.</strong> Toute la pile symétrique utilise des clés de <strong class="text-white">256 bits</strong>. Même divisée par 2 → 128 bits restants = <strong class="text-phantom-light">astronomiquement sûr</strong>.</p>
-              <p data-lang="en"><strong class="text-accent-green">Grover is not a problem for SecureChat.</strong> The entire symmetric stack uses <strong class="text-white">256-bit keys</strong>. Even halved → 128 bits remaining = <strong class="text-phantom-light">astronomically safe</strong>.</p>
+              <p data-lang="fr"><strong class="text-accent-green">Grover n'est pas un problème pour Fialka.</strong> Toute la pile symétrique utilise des clés de <strong class="text-white">256 bits</strong>. Même divisée par 2 → 128 bits restants = <strong class="text-phantom-light">astronomiquement sûr</strong>.</p>
+              <p data-lang="en"><strong class="text-accent-green">Grover is not a problem for Fialka.</strong> The entire symmetric stack uses <strong class="text-white">256-bit keys</strong>. Even halved → 128 bits remaining = <strong class="text-phantom-light">astronomically safe</strong>.</p>
               <div class="p-4 rounded-xl bg-surface/50 border border-phantom/10 mt-4">
                 <p class="font-['JetBrains_Mono'] text-xs text-phantom-light mb-2" data-lang="fr">Pour mettre en perspective 2<sup>128</sup> :</p>
                 <p class="font-['JetBrains_Mono'] text-xs text-phantom-light mb-2" data-lang="en">To put 2<sup>128</sup> in perspective:</p>
@@ -928,8 +928,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <p data-lang="fr">Des adversaires (états, agences) <strong class="text-white">interceptent et stockent</strong> le trafic chiffré aujourd'hui, en attendant qu'un ordinateur quantique puisse le déchiffrer dans 10-20 ans.</p>
             <p data-lang="en">Adversaries (states, agencies) <strong class="text-white">intercept and store</strong> encrypted traffic today, waiting for a quantum computer to decrypt it in 10-20 years.</p>
             <div class="mt-3 p-3 rounded-lg bg-accent-green/10 border border-accent-green/20">
-              <p class="text-xs text-accent-green" data-lang="fr"><strong>Défense SecureChat :</strong> PQXDH + SPQR. Le chiffrement est post-quantique dès maintenant. Même capturé, le trafic reste indéchiffrable dans le futur.</p>
-              <p class="text-xs text-accent-green" data-lang="en"><strong>SecureChat defense:</strong> PQXDH + SPQR. Encryption is post-quantum right now. Even if captured, traffic remains undecryptable in the future.</p>
+              <p class="text-xs text-accent-green" data-lang="fr"><strong>Défense Fialka :</strong> PQXDH + SPQR. Le chiffrement est post-quantique dès maintenant. Même capturé, le trafic reste indéchiffrable dans le futur.</p>
+              <p class="text-xs text-accent-green" data-lang="en"><strong>Fialka defense:</strong> PQXDH + SPQR. Encryption is post-quantum right now. Even if captured, traffic remains undecryptable in the future.</p>
             </div>
           </div>
         </div>
@@ -1059,8 +1059,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       <!-- Timeline: Quantum Roadmap -->
       <div class="mt-12 section-reveal">
-        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="fr">Roadmap <span class="gradient-text">post-quantique</span> de SecureChat</h3>
-        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="en">SecureChat <span class="gradient-text">post-quantum</span> roadmap</h3>
+        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="fr">Roadmap <span class="gradient-text">post-quantique</span> de Fialka</h3>
+        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="en">Fialka <span class="gradient-text">post-quantum</span> roadmap</h3>
         <div class="space-y-4 max-w-3xl mx-auto">
           <div class="flex gap-4 items-start">
             <div class="flex flex-col items-center">
@@ -1193,10 +1193,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="glass-strong rounded-3xl p-12">
         <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Vérifiez par <span class="gradient-text">vous-même</span></h2>
         <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Verify it <span class="gradient-text">yourself</span></h2>
-        <p class="text-text-secondary mb-8" data-lang="fr">SecureChat est 100% open source. Chaque ligne de code crypto est auditable.</p>
-        <p class="text-text-secondary mb-8" data-lang="en">SecureChat is 100% open source. Every line of crypto code is auditable.</p>
+        <p class="text-text-secondary mb-8" data-lang="fr">Fialka est 100% open source. Chaque ligne de code crypto est auditable.</p>
+        <p class="text-text-secondary mb-8" data-lang="en">Fialka is 100% open source. Every line of crypto code is auditable.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
+          <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             <span data-lang="fr">Voir le code source</span><span data-lang="en">View source code</span>
           </a>
@@ -1424,14 +1424,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <!-- Footer -->
   <footer class="py-12 border-t border-white/5">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-      <span class="text-sm text-text-secondary">SecureChat — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
+      <span class="text-sm text-text-secondary">Fialka — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
       <div class="flex items-center gap-6 text-sm text-text-muted">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
         <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
         <span>GPLv3</span>
       </div>
-      <div class="text-xs text-text-muted">© 2026 SecureChat. <span data-lang="fr">Tous droits réservés.</span><span data-lang="en">All rights reserved.</span></div>
+      <div class="text-xs text-text-muted">© 2026 Fialka. <span data-lang="fr">Tous droits réservés.</span><span data-lang="en">All rights reserved.</span></div>
     </div>
   </footer>
 

@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="SecureChat — Private by Design">
+<Layout title="Fialka — Private by Design">
 
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress"></div>
@@ -12,15 +12,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">
-        <svg class="w-8 h-8 transition-transform group-hover:scale-110" viewBox="0 0 64 64" fill="none">
-          <defs><linearGradient id="nav-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs>
-          <rect width="64" height="64" rx="14" fill="url(#nav-g)"/>
-          <path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/>
-          <rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/>
-          <circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/>
-          <path d="M31 42h2v5h-2z" fill="#7B2D8E"/>
-        </svg>
-        <span class="text-xl font-bold font-['Space_Grotesk']">Secure<span class="text-phantom-light">Chat</span></span>
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
 
       <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
@@ -37,7 +30,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">EN</span>
           <span data-lang="en">FR</span>
         </button>
-        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -61,7 +54,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
         <a href="#faq" class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-mobile-link>FAQ</a>
-        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
+        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -83,23 +76,23 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         </div>
 
         <h1 class="text-5xl md:text-7xl font-black font-['Space_Grotesk'] leading-tight mb-6">
-          <span class="glitch" data-text="SecureChat">Secure<span class="gradient-text">Chat</span></span>
+          <span class="glitch" data-text="Fialka">Fial<span class="gradient-text">ka</span></span>
           <br/>
           <span data-lang="fr"><span id="typing-text-fr" class="text-3xl md:text-4xl font-medium text-text-secondary typing-cursor"></span></span>
           <span data-lang="en"><span id="typing-text-en" class="text-3xl md:text-4xl font-medium text-text-secondary typing-cursor"></span></span>
         </h1>
 
         <p class="text-lg text-text-secondary max-w-lg mx-auto lg:mx-0 mb-10" data-lang="fr">
-          La messagerie chiffrée <strong class="text-white">post-quantique</strong> de bout en bout qui ne sait <strong class="text-white">rien</strong> de vous.
-          PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Tor intégré, zéro métadonnée.
+          Nommée d'après la <strong class="text-white">Fialka M-125</strong>, la machine de chiffrement soviétique de la Guerre froide.
+          Messagerie <strong class="text-white">post-quantique</strong> de bout en bout — PQXDH, Double Ratchet, Tor intégré, <strong class="text-white">zéro métadonnée</strong>.
         </p>
         <p class="text-lg text-text-secondary max-w-lg mx-auto lg:mx-0 mb-10" data-lang="en">
-          The <strong class="text-white">post-quantum</strong> end-to-end encrypted messenger that knows <strong class="text-white">nothing</strong> about you.
-          PQXDH (X25519 + ML-KEM-1024), Double Ratchet, built-in Tor, zero metadata.
+          Named after the <strong class="text-white">Fialka M-125</strong>, the Cold War Soviet cipher machine.
+          <strong class="text-white">Post-quantum</strong> end-to-end encrypted messenger — PQXDH, Double Ratchet, built-in Tor, <strong class="text-white">zero metadata</strong>.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer"
              class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong text-lg">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             <span data-lang="fr">Voir sur GitHub</span>
@@ -191,7 +184,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div>
           <label class="text-sm text-text-muted mb-2 block font-['JetBrains_Mono']" data-lang="fr">→ Votre message (plaintext)</label>
           <label class="text-sm text-text-muted mb-2 block font-['JetBrains_Mono']" data-lang="en">→ Your message (plaintext)</label>
-          <input id="encrypt-input" type="text" class="encrypt-input w-full px-5 py-4 rounded-xl text-lg" placeholder="Hello SecureChat..." maxlength="200" autocomplete="off" />
+          <input id="encrypt-input" type="text" class="encrypt-input w-full px-5 py-4 rounded-xl text-lg" placeholder="Hello Fialka..." maxlength="200" autocomplete="off" />
         </div>
         <div class="grid md:grid-cols-2 gap-4">
           <div class="space-y-2">
@@ -209,8 +202,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         </div>
         <div class="flex items-center gap-3 text-xs text-text-muted">
           <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
-          <span data-lang="fr">Chiffrement réel via Web Crypto API. Dans SecureChat, la clé AES provient du Double Ratchet PQXDH (X25519 + ML-KEM-1024).</span>
-          <span data-lang="en">Real encryption via Web Crypto API. In SecureChat, the AES key comes from the PQXDH Double Ratchet (X25519 + ML-KEM-1024).</span>
+          <span data-lang="fr">Chiffrement réel via Web Crypto API. Dans Fialka, la clé AES provient du Double Ratchet PQXDH (X25519 + ML-KEM-1024).</span>
+          <span data-lang="en">Real encryption via Web Crypto API. In Fialka, the AES key comes from the PQXDH Double Ratchet (X25519 + ML-KEM-1024).</span>
         </div>
       </div>
     </div>
@@ -223,8 +216,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="text-center mb-20 section-reveal">
         <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Tout ce dont vous avez <span class="gradient-text">besoin</span></h2>
         <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Everything you <span class="gradient-text">need</span></h2>
-        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">Conçu pour la vie privée absolue. Chaque fonctionnalité protège vos communications.</p>
-        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">Designed for absolute privacy. Every feature protects your communications.</p>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">L'héritage cryptographique de la Guerre froide, armé contre l'ère quantique. Chaque fonctionnalité protège vos communications.</p>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">Cold War cryptographic heritage, armed for the quantum era. Every feature protects your communications.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-reveal" id="features-grid">
@@ -254,7 +247,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
           <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
             <div class="text-3xl mb-2">📱</div>
-            <div class="font-semibold font-['Space_Grotesk']">SecureChat</div>
+            <div class="font-semibold font-['Space_Grotesk']">Fialka</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffre les messages</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">Encrypts messages</div>
           </div>
@@ -303,8 +296,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
     <div class="relative max-w-7xl mx-auto px-6">
       <div class="text-center mb-20 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sécurité de <span class="gradient-text glitch" data-text="niveau militaire">niveau militaire</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en"><span class="gradient-text glitch" data-text="Military-grade">Military-grade</span> security</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sécurité de <span class="gradient-text glitch" data-text="niveau diplomatique">niveau diplomatique</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en"><span class="gradient-text glitch" data-text="Diplomatic-grade">Diplomatic-grade</span> security</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-start">
@@ -387,7 +380,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <!-- ===== COMPARISON ===== -->
   <section id="compare" class="py-32 relative">
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
-    <div class="relative max-w-5xl mx-auto px-6">
+    <div class="relative max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 section-reveal">
         <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Comment on se <span class="gradient-text">compare</span></h2>
         <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">How we <span class="gradient-text">compare</span></h2>
@@ -395,28 +388,37 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="section-reveal overflow-x-auto">
         <table class="w-full text-sm">
           <thead><tr class="border-b border-white/10">
-            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="fr">Fonctionnalité</th>
-            <th class="text-left py-4 px-4 text-text-secondary font-normal" data-lang="en">Feature</th>
-            <th class="py-4 px-4 text-center"><span class="gradient-text font-bold">SecureChat</span></th>
-            <th class="py-4 px-4 text-center text-text-secondary">Signal</th>
-            <th class="py-4 px-4 text-center text-text-secondary">Telegram</th>
-            <th class="py-4 px-4 text-center text-text-secondary">WhatsApp</th>
+            <th class="text-left py-4 px-3 text-text-secondary font-normal" data-lang="fr">Fonctionnalité</th>
+            <th class="text-left py-4 px-3 text-text-secondary font-normal" data-lang="en">Feature</th>
+            <th class="py-4 px-3 text-center"><span class="gradient-text font-bold">Fialka</span></th>
+            <th class="py-4 px-3 text-center text-text-secondary">Signal</th>
+            <th class="py-4 px-3 text-center text-text-secondary">Session</th>
+            <th class="py-4 px-3 text-center text-text-secondary">Briar</th>
+            <th class="py-4 px-3 text-center text-text-secondary">Telegram</th>
+            <th class="py-4 px-3 text-center text-text-secondary">WhatsApp</th>
           </tr></thead>
           <tbody>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">E2E par défaut</td><td class="py-3 px-4" data-lang="en">E2E by default</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Post-Quantique (PQXDH)</td><td class="py-3 px-4" data-lang="en">Post-Quantum (PQXDH)</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Double Ratchet PFS</td><td class="py-3 px-4" data-lang="en">Double Ratchet PFS</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Tor intégré</td><td class="py-3 px-4" data-lang="en">Built-in Tor</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Zéro métadonnée</td><td class="py-3 px-4" data-lang="en">Zero metadata</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Trafic factice</td><td class="py-3 px-4" data-lang="en">Dummy traffic</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Delete-after-delivery</td><td class="py-3 px-4" data-lang="en">Delete-after-delivery</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">senderUid HMAC</td><td class="py-3 px-4" data-lang="en">senderUid HMAC</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Open Source</td><td class="py-3 px-4" data-lang="en">Open Source</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-partial text-lg">◐</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">SPQR (PQ ratchet continu)</td><td class="py-3 px-4" data-lang="en">SPQR (continuous PQ ratchet)</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Chiffrement adaptatif (AES/ChaCha20)</td><td class="py-3 px-4" data-lang="en">Adaptive cipher (AES/ChaCha20)</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
-            <tr class="hover:bg-white/2"><td class="py-3 px-4" data-lang="fr">Pas de numéro de tél.</td><td class="py-3 px-4" data-lang="en">No phone number</td><td class="py-3 px-4 text-center compare-check text-lg">✓</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td><td class="py-3 px-4 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">E2E par défaut</td><td class="py-3 px-3" data-lang="en">E2E by default</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Post-Quantique (PQXDH)</td><td class="py-3 px-3" data-lang="en">Post-Quantum (PQXDH)</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-partial text-lg">◐</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Double Ratchet PFS</td><td class="py-3 px-3" data-lang="en">Double Ratchet PFS</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Tor intégré</td><td class="py-3 px-3" data-lang="en">Built-in Tor</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Onion routing (Lokinet)</td><td class="py-3 px-3" data-lang="en">Onion routing (Lokinet)</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">P2P (sans serveur central)</td><td class="py-3 px-3" data-lang="en">P2P (no central server)</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-partial text-lg">◐</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Zéro métadonnée</td><td class="py-3 px-3" data-lang="en">Zero metadata</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-partial text-lg">◐</td><td class="py-3 px-3 text-center compare-partial text-lg">◐</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Trafic factice</td><td class="py-3 px-3" data-lang="en">Dummy traffic</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Delete-after-delivery</td><td class="py-3 px-3" data-lang="en">Delete-after-delivery</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">senderUid HMAC</td><td class="py-3 px-3" data-lang="en">senderUid HMAC</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-partial text-lg">◐</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Open Source</td><td class="py-3 px-3" data-lang="en">Open Source</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-partial text-lg">◐</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">SPQR (PQ ratchet continu)</td><td class="py-3 px-3" data-lang="en">SPQR (continuous PQ ratchet)</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Chiffrement adaptatif (AES/ChaCha20)</td><td class="py-3 px-3" data-lang="en">Adaptive cipher (AES/ChaCha20)</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="border-b border-white/5 hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Fonctionne sans Internet</td><td class="py-3 px-3" data-lang="en">Works without Internet</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
+            <tr class="hover:bg-white/2"><td class="py-3 px-3" data-lang="fr">Pas de numéro de tél.</td><td class="py-3 px-3" data-lang="en">No phone number</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-check text-lg">✓</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td><td class="py-3 px-3 text-center compare-cross text-lg">✗</td></tr>
           </tbody>
         </table>
+      </div>
+      <div class="mt-8 space-y-2 text-xs text-text-muted section-reveal">
+        <p data-lang="fr">◐ Signal : PQ via PQXDH (X3DH + Kyber) au handshake uniquement, pas de ratchet continu. Sealed sender = ◐ métadonnées. Session : utilise un swarm décentralisé (Lokinet), pas de PFS depuis l'abandon du Double Ratchet (Session Protocol v1) — le Protocol V2 (annoncé déc. 2025) réintroduira PFS + PQC. Gérée par la Session Technology Foundation (Suisse, 2024). Briar : P2P pur via Tor/Bluetooth/Wi-Fi, zéro serveur, mais pas de PFS ni de post-quantique. Audité par Cure53 (2017).</p>
+        <p data-lang="en">◐ Signal: PQ via PQXDH (X3DH + Kyber) at handshake only, no continuous ratchet. Sealed sender = ◐ metadata. Session: uses decentralized swarm (Lokinet), no PFS since dropping Double Ratchet (Session Protocol v1) — Protocol V2 (announced Dec. 2025) will re-introduce PFS + PQC. Managed by the Session Technology Foundation (Switzerland, 2024). Briar: pure P2P via Tor/Bluetooth/Wi-Fi, zero server, but no PFS or post-quantum. Audited by Cure53 (2017).</p>
       </div>
     </div>
   </section>
@@ -424,44 +426,77 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
   <!-- ===== INSPIRATIONS ===== -->
   <section id="inspirations" class="py-32 relative">
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-16 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Inspiré par les <span class="gradient-text">meilleurs</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Inspired by the <span class="gradient-text">best</span></h2>
-        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">SecureChat s'inscrit dans un mouvement plus large. Ces projets nous inspirent par leur vision de la vie privée.</p>
-        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">SecureChat is part of a larger movement. These projects inspire us with their vision for privacy.</p>
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-8 section-reveal">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">L'<span class="gradient-text">héritage</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The <span class="gradient-text">legacy</span></h2>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">De la machine de chiffrement M-125 aux protocoles open source modernes — l'ADN de Fialka.</p>
+        <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">From the M-125 cipher machine to modern open-source protocols — Fialka's DNA.</p>
+      </div>
+      <div class="glass rounded-2xl p-6 md:p-8 mb-10 section-reveal border border-phantom/20">
+        <p class="text-text-secondary leading-relaxed" data-lang="fr">
+          Fialka est un <strong class="text-white">projet passion</strong>, né de la fascination pour l'histoire du chiffrement. De la <strong class="text-phantom-light">Scytale spartiate</strong> (700 av. J.-C.) au <strong class="text-phantom-light">chiffre de César</strong>, de la <strong class="text-phantom-light">machine Enigma</strong> déchiffrée à Bletchley Park dès 1940 à la <strong class="text-phantom-light">Fialka M-125</strong> soviétique qui a protégé les secrets du Pacte de Varsovie pendant 34 ans, jusqu'à la révolution <strong class="text-phantom-light">Diffie-Hellman</strong> (1976) et l'avènement de la <strong class="text-phantom-light">cryptographie post-quantique</strong> du NIST (2024) — chaque époque a repoussé les limites du secret. Fialka est notre modeste contribution à cette histoire millénaire.
+        </p>
+        <p class="text-text-secondary leading-relaxed" data-lang="en">
+          Fialka is a <strong class="text-white">passion project</strong>, born from fascination with the history of cryptography. From the <strong class="text-phantom-light">Spartan Scytale</strong> (700 BC) to the <strong class="text-phantom-light">Caesar cipher</strong>, from the <strong class="text-phantom-light">Enigma machine</strong> broken at Bletchley Park from 1940 to the Soviet <strong class="text-phantom-light">Fialka M-125</strong> that protected Warsaw Pact secrets for 34 years, through the <strong class="text-phantom-light">Diffie-Hellman</strong> revolution (1976) and the advent of <strong class="text-phantom-light">NIST post-quantum cryptography</strong> (2024) — every era pushed the boundaries of secrecy. Fialka is our humble contribution to this millennial history.
+        </p>
       </div>
       <div class="grid md:grid-cols-2 gap-6 section-reveal">
+        <div class="glass rounded-2xl p-6 feature-card border border-phantom/30">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl">🔏</div>
+            <div>
+              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Fialka M-125</h3>
+              <div class="text-xs text-text-muted" data-lang="fr">La machine originelle — 1956</div>
+              <div class="text-xs text-text-muted" data-lang="en">The original machine — 1956</div>
+            </div>
+          </div>
+          <p class="text-sm text-text-secondary" data-lang="fr">Machine de chiffrement soviétique (1956–1990) utilisée par les 8 pays du Pacte de Varsovie. 10 rotors à 30 contacts, circuits à fiches, impression sur bande perforée. Classée top secret pendant toute la Guerre froide, jamais cassée publiquement de son vivant. Notre nom, notre héritage.</p>
+          <p class="text-sm text-text-secondary" data-lang="en">Soviet cipher machine (1956–1990) used by all 8 Warsaw Pact nations. 10 rotors with 30 contacts each, plugboard circuits, punched-tape output. Classified top secret throughout the Cold War, never publicly broken during its operational life. Our name, our legacy.</p>
+        </div>
         <div class="glass rounded-2xl p-6 feature-card">
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-accent-green/10 flex items-center justify-center text-2xl">💬</div>
             <div>
               <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Signal</h3>
-              <div class="text-xs text-text-muted" data-lang="fr">Le standard du Double Ratchet</div>
-              <div class="text-xs text-text-muted" data-lang="en">The Double Ratchet standard</div>
+              <div class="text-xs text-text-muted" data-lang="fr">Le standard du Double Ratchet — 2013</div>
+              <div class="text-xs text-text-muted" data-lang="en">The Double Ratchet standard — 2013</div>
             </div>
           </div>
-          <p class="text-sm text-text-secondary" data-lang="fr">Signal a défini le standard du chiffrement E2E moderne. Le protocole Double Ratchet que nous utilisons a été créé par leur équipe. Respect total.</p>
-          <p class="text-sm text-text-secondary" data-lang="en">Signal defined the standard for modern E2E encryption. The Double Ratchet protocol we use was created by their team. Total respect.</p>
+          <p class="text-sm text-text-secondary" data-lang="fr">Créé par Moxie Marlinspike et Trevor Perrin. Le Signal Protocol (X3DH + Double Ratchet) est devenu le standard mondial du chiffrement E2E, adopté par WhatsApp (2 milliards d'utilisateurs), Google Messages et Facebook Messenger. Le Double Ratchet que nous utilisons vient directement de leur travail.</p>
+          <p class="text-sm text-text-secondary" data-lang="en">Created by Moxie Marlinspike and Trevor Perrin. The Signal Protocol (X3DH + Double Ratchet) became the global standard for E2E encryption, adopted by WhatsApp (2 billion users), Google Messages and Facebook Messenger. The Double Ratchet we use comes directly from their work.</p>
         </div>
         <div class="glass rounded-2xl p-6 feature-card">
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl">🌐</div>
             <div>
               <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Session</h3>
-              <div class="text-xs text-text-muted" data-lang="fr">Messagerie décentralisée</div>
-              <div class="text-xs text-text-muted" data-lang="en">Decentralized messenger</div>
+              <div class="text-xs text-text-muted" data-lang="fr">Messagerie décentralisée — 2020</div>
+              <div class="text-xs text-text-muted" data-lang="en">Decentralized messenger — 2020</div>
             </div>
           </div>
-          <p class="text-sm text-text-secondary" data-lang="fr">Session a prouvé qu'une messagerie sans numéro de téléphone et sans serveur central est possible. Leur approche onion-routing via Lokinet nous a inspiré pour l'intégration de Tor.</p>
-          <p class="text-sm text-text-secondary" data-lang="en">Session proved that a messenger without phone numbers or central servers is possible. Their onion-routing via Lokinet inspired our Tor integration.</p>
+          <p class="text-sm text-text-secondary" data-lang="fr">Fork de Signal créé en 2020 par la Oxen Privacy Tech Foundation (Australie). Depuis octobre 2024, le projet est géré par la <strong class="text-white">Session Technology Foundation</strong>, basée en <strong class="text-phantom-light">Suisse</strong>. Session a retiré le Double Ratchet au profit du Session Protocol (sans PFS), sacrifiant la forward secrecy pour le multi-device et la décentralisation via les Service Nodes (Lokinet). Le Session Protocol V2 (annoncé déc. 2025) réintroduira le PFS et la crypto post-quantique. Audité par Quarkslab (2021). Pas de numéro de téléphone. Leur onion-routing a inspiré notre intégration Tor.</p>
+          <p class="text-sm text-text-secondary" data-lang="en">Signal fork created in 2020 by the Oxen Privacy Tech Foundation (Australia). Since October 2024, the project is managed by the <strong class="text-white">Session Technology Foundation</strong>, based in <strong class="text-phantom-light">Switzerland</strong>. Session removed the Double Ratchet in favor of the Session Protocol (no PFS), trading forward secrecy for multi-device support and decentralization via Service Nodes (Lokinet). Session Protocol V2 (announced Dec. 2025) will re-introduce PFS and post-quantum cryptography. Audited by Quarkslab (2021). No phone number. Their onion-routing inspired our Tor integration.</p>
         </div>
+        <div class="glass rounded-2xl p-6 feature-card">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-accent-green/10 flex items-center justify-center text-2xl">🧱</div>
+            <div>
+              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Briar</h3>
+              <div class="text-xs text-text-muted" data-lang="fr">Messagerie P2P résiliente — 2018</div>
+              <div class="text-xs text-text-muted" data-lang="en">Resilient P2P messenger — 2018</div>
+            </div>
+          </div>
+          <p class="text-sm text-text-secondary" data-lang="fr">Conçu pour les journalistes, activistes et dissidents. Briar est entièrement P2P : aucun serveur central, zéro métadonnée. Fonctionne via Tor, mais aussi via Bluetooth et Wi-Fi direct — même sans Internet. Utilise le Bramble Transport Protocol (pas de Double Ratchet ni PFS). Audité par Cure53 (2017). GPLv3.</p>
+          <p class="text-sm text-text-secondary" data-lang="en">Built for journalists, activists and dissidents. Briar is fully P2P: no central server, zero metadata. Works over Tor, but also via Bluetooth and Wi-Fi direct — even without Internet. Uses the Bramble Transport Protocol (no Double Ratchet or PFS). Audited by Cure53 (2017). GPLv3.</p>
+        </div>
+      </div>
       </div>
       <div class="text-center mt-10 section-reveal">
         <div class="glass rounded-xl inline-flex items-center gap-3 px-6 py-3 text-sm text-text-secondary">
           <span class="text-phantom-light">💡</span>
-          <span data-lang="fr">SecureChat n'est affilié à aucun de ces projets. Nous partageons simplement une vision commune : la vie privée comme droit fondamental.</span>
-          <span data-lang="en">SecureChat is not affiliated with any of these projects. We simply share a common vision: privacy as a fundamental right.</span>
+          <span data-lang="fr">Fialka n'est affilié à aucun de ces projets. Nous sommes un projet indépendant, né de la passion pour la cryptographie et son histoire.</span>
+          <span data-lang="en">Fialka is not affiliated with any of these projects. We are an independent project, born from a passion for cryptography and its history.</span>
         </div>
       </div>
     </div>
@@ -476,27 +511,27 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="absolute left-8 top-0 bottom-0 w-0.5 timeline-line"></div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V1 — Core</h3></div><p class="text-sm text-text-secondary" data-lang="fr">E2E, contacts QR, PIN+bio, thèmes, messages éphémères, SQLCipher</p><p class="text-sm text-text-secondary" data-lang="en">E2E, QR contacts, PIN+bio, themes, ephemeral messages, SQLCipher</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V1 — Le Coffre</h3></div><p class="text-sm text-text-secondary" data-lang="fr">E2E, contacts QR, PIN+bio, thèmes, messages éphémères, SQLCipher</p><p class="text-sm text-text-secondary" data-lang="en">E2E, QR contacts, PIN+bio, themes, ephemeral messages, SQLCipher</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V2 — Crypto Upgrade</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Full Double Ratchet X25519, BIP-39, suppression compte, UI modernization</p><p class="text-sm text-text-secondary" data-lang="en">Full Double Ratchet X25519, BIP-39, account deletion, UI modernization</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V2 — Ascension</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Full Double Ratchet X25519, BIP-39, suppression compte, UI modernization</p><p class="text-sm text-text-secondary" data-lang="en">Full Double Ratchet X25519, BIP-39, account deletion, UI modernization</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.3 — Material 3, Tor & Hardening</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Material 3, Tor intégré, Ed25519, fichiers E2E, dummy traffic, ProGuard, HMAC senderUid</p><p class="text-sm text-text-secondary" data-lang="en">Material 3, built-in Tor, Ed25519, E2E files, dummy traffic, ProGuard, HMAC senderUid</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.3 — Fortification</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Material 3, Tor intégré, Ed25519, fichiers E2E, dummy traffic, ProGuard, HMAC senderUid</p><p class="text-sm text-text-secondary" data-lang="en">Material 3, built-in Tor, Ed25519, E2E files, dummy traffic, ProGuard, HMAC senderUid</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.4 — Post-Quantum & Security</h3></div><p class="text-sm text-text-secondary" data-lang="fr">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, vérification empreinte indépendante, QR deep link v2, Room DB v16</p><p class="text-sm text-text-secondary" data-lang="en">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, independent fingerprint verification, QR deep link v2, Room DB v16</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.4 — Horizon Quantique</h3></div><p class="text-sm text-text-secondary" data-lang="fr">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, vérification empreinte indépendante, QR deep link v2, Room DB v16</p><p class="text-sm text-text-secondary" data-lang="en">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, independent fingerprint verification, QR deep link v2, Room DB v16</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.5 — SPQR & ChaCha20</h3></div><p class="text-sm text-text-secondary" data-lang="fr">SPQR Triple Ratchet (ré-encapsulation ML-KEM tous les 10 msgs), ChaCha20-Poly1305 adaptatif, modèle de menace (6 tiers), sélection auto cipher hardware</p><p class="text-sm text-text-secondary" data-lang="en">SPQR Triple Ratchet (ML-KEM re-encapsulation every 10 msgs), adaptive ChaCha20-Poly1305, threat model (6 tiers), auto hardware cipher selection</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.5 — Défense Continue</h3></div><p class="text-sm text-text-secondary" data-lang="fr">SPQR Triple Ratchet (ré-encapsulation ML-KEM tous les 10 msgs), ChaCha20-Poly1305 adaptatif, modèle de menace (6 tiers), sélection auto cipher hardware</p><p class="text-sm text-text-secondary" data-lang="en">SPQR Triple Ratchet (ML-KEM re-encapsulation every 10 msgs), adaptive ChaCha20-Poly1305, threat model (6 tiers), auto hardware cipher selection</p></div>
         </div>
         <div class="relative pl-20 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom-light border-4 border-surface animate-pulse-glow flex items-center justify-center"><span class="text-[8px]">→</span></div>
-          <div class="glass rounded-xl p-5 border border-phantom/30"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">En cours</span><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">In Progress</span><h3 class="font-semibold font-['Space_Grotesk']">V3.6 — Camouflage & Voice</h3></div><p class="text-sm text-text-secondary" data-lang="fr">App disguise, faux écran, dual PIN, panic button, FLAG_SECURE, messages vocaux E2E, sealed sender, reply/quote</p><p class="text-sm text-text-secondary" data-lang="en">App disguise, cover screen, dual PIN, panic button, FLAG_SECURE, E2E voice messages, sealed sender, reply/quote</p></div>
+          <div class="glass rounded-xl p-5 border border-phantom/30"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">En cours</span><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">In Progress</span><h3 class="font-semibold font-['Space_Grotesk']">V3.6 — Camouflage</h3></div><p class="text-sm text-text-secondary" data-lang="fr">App disguise, faux écran, dual PIN, panic button, FLAG_SECURE, messages vocaux E2E, sealed sender, reply/quote</p><p class="text-sm text-text-secondary" data-lang="en">App disguise, cover screen, dual PIN, panic button, FLAG_SECURE, E2E voice messages, sealed sender, reply/quote</p></div>
         </div>
       </div>
     </div>
@@ -508,14 +543,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-phantom/5 to-surface pointer-events-none"></div>
     <div class="relative max-w-3xl mx-auto px-6 text-center section-reveal">
       <div class="glass-strong rounded-3xl p-12">
-        <div class="w-20 h-20 rounded-2xl bg-phantom/20 flex items-center justify-center mx-auto mb-8">
-          <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="dl-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#dl-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
+        <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8">
+          <img src={`${base}icon-192.png`} alt="Fialka" class="w-20 h-20 rounded-2xl" />
         </div>
-        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Télécharger Secure<span class="gradient-text">Chat</span></h2>
-        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Download Secure<span class="gradient-text">Chat</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Télécharger Fial<span class="gradient-text">ka</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Download Fial<span class="gradient-text">ka</span></h2>
         <p class="text-text-secondary mb-8" data-lang="fr">Version 3.5 · Android 13+ · APK signé · Open Source GPLv3</p>
         <p class="text-text-secondary mb-8" data-lang="en">Version 3.5 · Android 13+ · Signed APK · Open Source GPLv3</p>
-        <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 bg-phantom hover:bg-phantom-light text-white text-lg font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong mb-8">
+        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 bg-phantom hover:bg-phantom-light text-white text-lg font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong mb-8">
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           <span data-lang="fr">Voir sur GitHub</span><span data-lang="en">View on GitHub</span>
         </a>
@@ -529,23 +564,25 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="max-w-3xl mx-auto px-6">
       <div class="text-center mb-16 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4">FAQ</h2></div>
       <div class="space-y-4 section-reveal">
-        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">SecureChat est-il vraiment gratuit ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Oui, 100% gratuit et open source sous licence GPLv3. Pas de publicité, pas de tracking, pas d'abonnement.</div></div>
-        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Ai-je besoin d'un numéro de téléphone ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Non. SecureChat utilise l'authentification anonyme Firebase. Aucun numéro, email ou donnée personnelle requis.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Pourquoi le nom « Fialka » ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka (Фиалка, « violette » en russe) est le nom de la M-125, la machine de chiffrement soviétique utilisée par le Pacte de Varsovie de 1956 à 1990 pour les communications diplomatiques et militaires classifiées. Nous portons cet héritage : une cryptographie forgée pour résister à des décennies d'interception, aujourd'hui armée contre l'ère quantique.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Fialka est-il vraiment gratuit ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Oui, 100% gratuit et open source sous licence GPLv3. Pas de publicité, pas de tracking, pas d'abonnement.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Ai-je besoin d'un numéro de téléphone ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Non. Fialka utilise l'authentification anonyme Firebase. Aucun numéro, email ou donnée personnelle requis.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Qu'est-ce que le Double Ratchet ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Le protocole Double Ratchet génère une nouvelle clé pour chaque message via un échange PQXDH hybride (X25519 + ML-KEM-1024). Si une clé est compromise, les messages passés et futurs restent sûrs (PFS + self-healing).</div></div>
         <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Pourquoi Tor est-il intégré ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Tor masque votre IP réelle. Combiné au HMAC senderUid et dummy traffic, votre identité réseau est invisible.</div></div>
-        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Qu'est-ce que le chiffrement post-quantique ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">SecureChat utilise PQXDH, un échange hybride combinant X25519 (résistant aux attaques classiques) et ML-KEM-1024 (NIST FIPS 203, résistant aux ordinateurs quantiques). Même un futur ordinateur quantique ne pourra pas casser vos messages.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Qu'est-ce que le chiffrement post-quantique ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka utilise PQXDH, un échange hybride combinant X25519 (résistant aux attaques classiques) et ML-KEM-1024 (NIST FIPS 203, résistant aux ordinateurs quantiques). Même un futur ordinateur quantique ne pourra pas casser vos messages.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Puis-je restaurer mon compte ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Oui, grâce à votre phrase BIP-39 de 24 mots.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Qu'est-ce que le SPQR Triple Ratchet ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Le SPQR ajoute un troisième ratchet post-quantique au Double Ratchet classique. Tous les 10 messages, une nouvelle ré-encapsulation ML-KEM-1024 injecte un secret quantique frais dans la chaîne de clés. Même si un attaquant quantique compromet une clé, la sécurité se régénère automatiquement au prochain cycle SPQR.</div></div>
-        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Pourquoi utiliser ChaCha20-Poly1305 en plus d'AES ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">SecureChat détecte automatiquement si votre appareil supporte l'accélération AES-NI. Si oui, AES-256-GCM est utilisé. Sinon, ChaCha20-Poly1305 prend le relais — il est 3× plus rapide en software pur, avec le même niveau de sécurité AEAD. Vous n'avez rien à configurer.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Pourquoi utiliser ChaCha20-Poly1305 en plus d'AES ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka détecte automatiquement si votre appareil supporte l'accélération AES-NI. Si oui, AES-256-GCM est utilisé. Sinon, ChaCha20-Poly1305 prend le relais — il est 3× plus rapide en software pur, avec le même niveau de sécurité AEAD. Vous n'avez rien à configurer.</div></div>
 
-        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Is SecureChat really free?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Yes, 100% free and open source under GPLv3. No ads, no tracking, no subscriptions.</div></div>
-        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Do I need a phone number?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">No. SecureChat uses Firebase anonymous authentication. No phone number, email, or personal data required.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Why the name "Fialka"?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka (Фиалка, "violet" in Russian) is the name of the M-125, a Soviet cipher machine used by the Warsaw Pact from 1956 to 1990 for classified diplomatic and military communications. We carry that legacy: cryptography forged to withstand decades of interception, now armed for the quantum era.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Is Fialka really free?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Yes, 100% free and open source under GPLv3. No ads, no tracking, no subscriptions.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Do I need a phone number?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">No. Fialka uses Firebase anonymous authentication. No phone number, email, or personal data required.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">What is Double Ratchet?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">The Double Ratchet generates a new key per message via a hybrid PQXDH exchange (X25519 + ML-KEM-1024). If one key leaks, past and future messages stay safe (PFS + self-healing).</div></div>
         <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Why is Tor built-in?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Tor hides your real IP. Combined with HMAC senderUid and dummy traffic, your network identity is invisible.</div></div>
-        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">What is post-quantum encryption?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">SecureChat uses PQXDH, a hybrid exchange combining X25519 (resistant to classical attacks) and ML-KEM-1024 (NIST FIPS 203, resistant to quantum computers). Even a future quantum computer won't be able to break your messages.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">What is post-quantum encryption?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka uses PQXDH, a hybrid exchange combining X25519 (resistant to classical attacks) and ML-KEM-1024 (NIST FIPS 203, resistant to quantum computers). Even a future quantum computer won't be able to break your messages.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Can I restore my account?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Yes, using your 24-word BIP-39 mnemonic phrase.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">What is the SPQR Triple Ratchet?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">SPQR adds a third post-quantum ratchet on top of the classic Double Ratchet. Every 10 messages, a fresh ML-KEM-1024 re-encapsulation injects a new quantum secret into the key chain. Even if a quantum attacker compromises a key, security auto-regenerates at the next SPQR cycle.</div></div>
-        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Why use ChaCha20-Poly1305 alongside AES?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">SecureChat auto-detects whether your device supports AES-NI hardware acceleration. If yes, AES-256-GCM is used. Otherwise, ChaCha20-Poly1305 takes over — it's 3× faster in pure software, with the same AEAD security level. Zero configuration needed.</div></div>
+        <div class="faq-item glass rounded-xl" data-lang="en"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Why use ChaCha20-Poly1305 alongside AES?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka auto-detects whether your device supports AES-NI hardware acceleration. If yes, AES-256-GCM is used. Otherwise, ChaCha20-Poly1305 takes over — it's 3× faster in pure software, with the same AEAD security level. Zero configuration needed.</div></div>
       </div>
     </div>
   </section>
@@ -632,16 +669,16 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center gap-3">
-          <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="ft-g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#9C4DCC"/><stop offset="100%" stop-color="#7B2D8E"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(#ft-g)"/><path d="M22 30v-6a10 10 0 0 1 20 0v6h-4v-6a6 6 0 0 0-12 0v6z" fill="#fff"/><rect x="18" y="30" width="28" height="22" rx="4" fill="#fff"/><circle cx="32" cy="39" r="3.5" fill="#7B2D8E"/><path d="M31 42h2v5h-2z" fill="#7B2D8E"/></svg>
-          <span class="text-sm text-text-secondary">SecureChat — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
+          <img src={`${base}icon-192.png`} alt="Fialka" class="w-6 h-6 rounded-md" />
+          <span class="text-sm text-text-secondary">Fialka — <span data-lang="fr">par</span><span data-lang="en">by</span> <a href="https://github.com/DevBot667" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">DevBot667</a></span>
         </div>
         <div class="flex items-center gap-6 text-sm text-text-muted">
           <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
           <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
-          <a href="https://github.com/DevBot667/SecureChat" target="_blank" rel="noopener noreferrer" class="hover:text-phantom-light transition-colors">GitHub</a>
+          <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="hover:text-phantom-light transition-colors">GitHub</a>
           <span>GPLv3</span>
         </div>
-        <div class="text-xs text-text-muted">© 2026 SecureChat. <span data-lang="fr">Tous droits réservés.</span><span data-lang="en">All rights reserved.</span></div>
+        <div class="text-xs text-text-muted">© 2026 Fialka. <span data-lang="fr">Tous droits réservés.</span><span data-lang="en">All rights reserved.</span></div>
       </div>
     </div>
   </footer>
@@ -701,8 +738,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       }
       tick();
     }
-    typeWriter('typing-text-fr', ["Chiffrement post-quantique.", "La messagerie qui ne sait rien de vous.", "PQXDH + Double Ratchet.", "Zéro métadonnée. Zéro compromis.", "Private by design."]);
-    typeWriter('typing-text-en', ["Post-quantum encryption.", "The messenger that knows nothing about you.", "PQXDH + Double Ratchet.", "Zero metadata. Zero compromise.", "Private by design."]);
+    typeWriter('typing-text-fr', ["Héritière de la machine M-125.", "Chiffrement post-quantique.", "La messagerie qui ne sait rien de vous.", "PQXDH + Double Ratchet.", "Zéro métadonnée. Zéro compromis.", "Née dans l'ombre. Forgée pour durer."]);
+    typeWriter('typing-text-en', ["Heir to the M-125 cipher machine.", "Post-quantum encryption.", "The messenger that knows nothing about you.", "PQXDH + Double Ratchet.", "Zero metadata. Zero compromise.", "Born in the shadows. Built to last."]);
 
     // ---- Count Up ----
     function animateCountUp() {
@@ -784,13 +821,13 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     // ---- GitHub Stats (commits count) ----
     async function fetchGHStats() {
       try {
-        const resp = await fetch('https://api.github.com/repos/DevBot667/SecureChat');
+        const resp = await fetch('https://api.github.com/repos/FialkaApp/Fialka');
         if (!resp.ok) return;
         const data = await resp.json();
         const el = document.getElementById('gh-commits');
         if (el && data.size) {
           // GitHub API doesn't directly give commit count easily, use contributors stats
-          const cResp = await fetch('https://api.github.com/repos/DevBot667/SecureChat/contributors');
+          const cResp = await fetch('https://api.github.com/repos/FialkaApp/Fialka/contributors');
           if (cResp.ok) {
             const contributors = await cResp.json();
             const total = contributors.reduce((s: number, c: any) => s + (c.contributions || 0), 0);

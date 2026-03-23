@@ -1,8 +1,8 @@
-# SecureChat Website
+# Fialka Website
 
-Official website for **SecureChat** — the end-to-end encrypted messenger that knows nothing about you.
+Official website for **Fialka** — the end-to-end encrypted messenger that knows nothing about you.
 
-🔗 **Live:** [devbot667.github.io/SecureChat-Website](https://devbot667.github.io/SecureChat-Website/)
+🔗 **Live:** [devbot667.github.io/Fialka-Website](https://devbot667.github.io/Fialka-Website/)
 
 ## Features
 
@@ -38,7 +38,7 @@ npm run build     # static output in dist/
 
 ## Related
 
-- [SecureChat App](https://github.com/DevBot667/SecureChat) — The Android app
+- [Fialka App](https://github.com/FialkaApp/Fialka) — The Android app
 
 ## License
 
