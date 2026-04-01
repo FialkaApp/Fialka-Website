@@ -200,9 +200,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    import { marked } from 'marked';
-
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -250,8 +249,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         if (!resFr.ok && !resEn.ok) throw new Error('Both failed');
         const mdFr = resFr.ok ? await resFr.text() : '# Changelog\n\n_Pas encore disponible._';
         const mdEn = resEn.ok ? await resEn.text() : '# Changelog\n\n_Not available yet._';
-        elFr.innerHTML = await marked.parse(mdFr);
-        elEn.innerHTML = await marked.parse(mdEn);
+        elFr.innerHTML = await marked(mdFr);
+        elEn.innerHTML = await marked(mdEn);
         loaded = true;
         elLoading.classList.add('hidden');
         showCurrentLang();
