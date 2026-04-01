@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       </div>
       <div class="flex items-center gap-4">
         <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer"><span data-lang="fr">EN</span><span data-lang="en">FR</span></button>
-        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+        <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -43,7 +43,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
         <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
-        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
+        <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
@@ -179,7 +179,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">2.</span> <span class="text-phantom-light">AES-256-GCM | ChaCha20-Poly1305</span><span class="text-text-muted">(key, iv, padded)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">ciphertext + tag₁₂₈</span></div>
           <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">3.</span> <span class="text-phantom-light">Ed25519.sign</span><span class="text-text-muted">(ct ‖ convId ‖ ts)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">signature₅₁₂</span></div>
           <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">4.</span> <span class="text-text-muted">senderUid =</span> <span class="text-phantom-light">HMAC</span><span class="text-text-muted">(convId, realUid)</span> <span class="text-text-muted">→</span> <span class="text-accent-green">anonymous ID</span></div>
-          <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green">→ Firebase reçoit un blob opaque. Rien n'est lisible côté serveur.</span></div>
+          <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green" data-lang="fr">→ TorTransport sera invoké — blob 100% opaque, rien de lisible en transit</span><span class="text-accent-green" data-lang="en">→ TorTransport will be invoked — 100% opaque blob, nothing readable in transit</span></div>
         </div>
       </div>
     </div>
@@ -207,7 +207,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </svg>
             <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="fr">Blob chiffré + signature</div>
             <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="en">Encrypted blob + signature</div>
-            <div class="flex items-center gap-2"><div class="arch-arrow h-1 w-8 rounded-full"></div><span class="text-xs text-phantom-light">VPN TUN</span><div class="arch-arrow h-1 w-8 rounded-full"></div></div>
+            <div class="flex items-center gap-2"><div class="arch-arrow h-1 w-8 rounded-full"></div><span class="text-xs text-phantom-light">TorTransport</span><div class="arch-arrow h-1 w-8 rounded-full"></div></div>
             <!-- Animated Onion/Tor SVG -->
             <svg class="w-14 h-14 svg-float" style="animation-delay:-1s" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Onion layers -->
@@ -220,7 +220,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
               <path d="M28 6 Q32 10 32 6" stroke="#9C4DCC" stroke-width="1.5" fill="none"/>
             </svg>
             <div class="text-xs text-text-muted font-['JetBrains_Mono']">3 relais Tor (Guard → Middle → Exit)</div>
-            <div class="flex items-center gap-2"><div class="arch-arrow h-1 w-8 rounded-full"></div><span class="text-xs text-phantom-light">HTTPS</span><div class="arch-arrow h-1 w-8 rounded-full"></div></div>
+            <div class="flex items-center gap-2"><div class="arch-arrow h-1 w-8 rounded-full"></div><span class="text-xs text-phantom-light">.onion</span><div class="arch-arrow h-1 w-8 rounded-full"></div></div>
             <!-- Animated Server SVG -->
             <svg class="w-14 h-14 svg-float" style="animation-delay:-2s" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="12" y="8" width="40" height="16" rx="3" stroke="#9C4DCC" stroke-width="1.5" fill="#1A1A1A"/>
@@ -235,9 +235,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
               <rect x="36" y="13" width="10" height="6" rx="1" fill="#7B2D8E" opacity="0.3"/>
               <rect x="36" y="33" width="10" height="6" rx="1" fill="#7B2D8E" opacity="0.3"/>
             </svg>
-            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="fr">Firebase (blob opaque)</div>
-            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="en">Firebase (opaque blob)</div>
-            <div class="text-xs text-accent-green mt-2 font-['JetBrains_Mono']">delete-after-delivery ✓</div>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="fr">.onion P2P / Mailbox (si hors-ligne)</div>
+            <div class="text-xs text-text-muted font-['JetBrains_Mono']" data-lang="en">.onion P2P / Mailbox (if offline)</div>
+            <div class="text-xs text-accent-green mt-2 font-['JetBrains_Mono']" data-lang="fr">P2P direct · zéro serveur central ✓</div>
+            <div class="text-xs text-accent-green mt-2 font-['JetBrains_Mono']" data-lang="en">Direct P2P · zero central server ✓</div>
           </div>
         </div>
         <div>
@@ -246,11 +247,90 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <h2 class="text-3xl font-bold font-['Space_Grotesk']">Transport Tor</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
-            <p data-lang="fr">Le blob chiffré est envoyé via un <strong class="text-white">VPN TUN local</strong> qui route tout le trafic vers un proxy <strong class="text-phantom-light">SOCKS5 → Tor</strong>.</p>
-            <p data-lang="en">The encrypted blob is sent via a <strong class="text-white">local VPN TUN</strong> that routes all traffic through a <strong class="text-phantom-light">SOCKS5 → Tor</strong> proxy.</p>
-            <p data-lang="fr">Le message traverse <strong class="text-white">3 relais Tor</strong> (Guard, Middle, Exit). Firebase ne voit qu'une IP de sortie Tor — jamais la vôtre. Combiné au <strong class="text-phantom-light">senderUid HMAC</strong>, l'anonymat est total.</p>
-            <p data-lang="en">The message traverses <strong class="text-white">3 Tor relays</strong> (Guard, Middle, Exit). Firebase only sees a Tor exit IP — never yours. Combined with <strong class="text-phantom-light">senderUid HMAC</strong>, anonymity is complete.</p>
+            <p data-lang="fr">Le blob chiffré est transmis par <strong class="text-white">TorTransport</strong> — un protocole de trames binaires (magic <code class="text-phantom-light text-xs">0xF1 0xA1</code>, 13 types de trames) qui établit une connexion directe vers l'adresse <strong class="text-phantom-light">.onion du destinataire</strong>.</p>
+            <p data-lang="en">The encrypted blob is transmitted by <strong class="text-white">TorTransport</strong> — a binary frame protocol (magic <code class="text-phantom-light text-xs">0xF1 0xA1</code>, 13 frame types) that establishes a direct connection to the <strong class="text-phantom-light">recipient's .onion address</strong>.</p>
+            <p data-lang="fr">Le message traverse <strong class="text-white">3 relais Tor</strong> (Guard, Middle, Exit) et arrive au <strong class="text-phantom-light">Hidden Service .onion</strong> du destinataire — <strong class="text-white">P2P direct, zéro Firebase, zéro serveur central</strong>. Votre IP réelle n'est jamais exposée.</p>
+            <p data-lang="en">The message traverses <strong class="text-white">3 Tor relays</strong> (Guard, Middle, Exit) and arrives at the recipient's <strong class="text-phantom-light">.onion Hidden Service</strong> — <strong class="text-white">direct P2P, zero Firebase, zero central server</strong>. Your real IP is never exposed.</p>
+            <div class="mt-4 p-4 rounded-xl bg-phantom/10 border border-phantom/20">
+              <p class="text-sm" data-lang="fr"><strong class="text-phantom-light">📬 Si hors-ligne — Fialka Mailbox</strong> : l'<strong class="text-white">OutboxManager</strong> bascule automatiquement vers le Mailbox configuré. Le blob chiffré est déposé et récupéré par le destinataire à sa prochaine connexion (polling 60s, TTL 7 jours max). Le serveur Mailbox ne déchiffre jamais rien.</p>
+              <p class="text-sm" data-lang="en"><strong class="text-phantom-light">📬 If offline — Fialka Mailbox</strong>: <strong class="text-white">OutboxManager</strong> automatically falls back to the configured Mailbox. The encrypted blob is deposited and retrieved by the recipient at next connection (60s polling, 7-day max TTL). The Mailbox server never decrypts anything.</p>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 4b: Fialka Mailbox Modes -->
+  <section class="py-16 relative">
+    <div class="max-w-5xl mx-auto px-6 section-reveal">
+      <div class="glass-strong rounded-3xl p-8 md:p-10 border border-phantom/30">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-12 h-12 rounded-xl bg-phantom/30 flex items-center justify-center text-2xl">📬</div>
+          <div>
+            <h2 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="fr">Fialka Mailbox — 4 modes de livraison</h2>
+            <h2 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="en">Fialka Mailbox — 4 delivery modes</h2>
+            <p class="text-xs text-phantom-light font-['JetBrains_Mono'] mt-1" data-lang="fr">Store-and-forward chiffré · Fallback si destinataire hors-ligne</p>
+            <p class="text-xs text-phantom-light font-['JetBrains_Mono'] mt-1" data-lang="en">Encrypted store-and-forward · Fallback if recipient offline</p>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass rounded-2xl p-5 border border-phantom/20">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-accent-green/10 flex items-center justify-center text-xl">⚡</div>
+              <div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 1 — Direct P2P</div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 1 — Direct P2P</div>
+                <div class="text-xs text-accent-green font-['JetBrains_Mono']" data-lang="fr">Le mode le plus rapide</div>
+                <div class="text-xs text-accent-green font-['JetBrains_Mono']" data-lang="en">The fastest mode</div>
+              </div>
+            </div>
+            <p class="text-sm text-text-secondary" data-lang="fr">Connexion .onion directe entre les deux appareils via TorTransport. Zéro intermédiaire, zéro stockage externe. Uniquement possible si les deux parties sont en ligne simultanément.</p>
+            <p class="text-sm text-text-secondary" data-lang="en">Direct .onion connection between both devices via TorTransport. Zero intermediary, zero external storage. Only possible when both parties are online simultaneously.</p>
+          </div>
+          <div class="glass rounded-2xl p-5 border border-phantom/20">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-phantom/20 flex items-center justify-center text-xl">👤</div>
+              <div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 2 — Mailbox Personnel</div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 2 — Personal Mailbox</div>
+                <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="fr">Votre .onion comme boîte aux lettres</div>
+                <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="en">Your .onion as a mailbox</div>
+              </div>
+            </div>
+            <p class="text-sm text-text-secondary" data-lang="fr">Votre propre appareil expose son .onion comme Mailbox. Les expéditeurs y déposent leurs blobs chiffrés. Vous les récupérez à votre prochaine connexion.</p>
+            <p class="text-sm text-text-secondary" data-lang="en">Your own device exposes its .onion as a Mailbox. Senders deposit their encrypted blobs there. You retrieve them at your next connection.</p>
+          </div>
+          <div class="glass rounded-2xl p-5 border border-phantom/20">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-phantom/20 flex items-center justify-center text-xl">🔒</div>
+              <div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 3 — Nœud Privé</div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 3 — Private Node</div>
+                <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="fr">Liste blanche de membres</div>
+                <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="en">Member whitelist</div>
+              </div>
+            </div>
+            <p class="text-sm text-text-secondary" data-lang="fr">Un MailboxServer dédié (auto-hébergé, .onion) n'accepte que les membres autorisés. Contrôle OWNER, blobs opaque, TTL 7 jours. Le serveur ne déchiffre jamais.</p>
+            <p class="text-sm text-text-secondary" data-lang="en">A dedicated MailboxServer (self-hosted, .onion) only accepts authorized members. OWNER control, opaque blobs, 7-day TTL. The server never decrypts anything.</p>
+          </div>
+          <div class="glass rounded-2xl p-5 border border-phantom/20">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-phantom/20 flex items-center justify-center text-xl">🌐</div>
+              <div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 4 — Nœud Public</div>
+                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 4 — Public Node</div>
+                <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="fr">Nœud ouvert sans liste blanche</div>
+                <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="en">Open node, no whitelist</div>
+              </div>
+            </div>
+            <p class="text-sm text-text-secondary" data-lang="fr">Un MailboxServer ouvert acceptant n'importe quel dépôt. Utile pour les cas où l'expéditeur n'est pas connu à l'avance. Tous les blobs restent opaques pour le serveur.</p>
+            <p class="text-sm text-text-secondary" data-lang="en">An open MailboxServer accepting any deposit. Useful when the sender is not known in advance. All blobs remain opaque to the server.</p>
+          </div>
+        </div>
+        <div class="mt-6 p-4 rounded-xl bg-surface/50 font-['JetBrains_Mono'] text-xs text-text-muted">
+          <span data-lang="fr">Dans tous les modes : blob chiffré E2E · serveur = relais aveugle · TTL 7 jours · stats cumulatives (totalDeposited, totalFetched) · polling 60s</span>
+          <span data-lang="en">In all modes: E2E encrypted blob · server = blind relay · 7-day TTL · cumulative stats (totalDeposited, totalFetched) · 60s polling</span>
         </div>
       </div>
     </div>
@@ -269,8 +349,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">Bob reçoit le blob. Il <strong class="text-white">vérifie la signature Ed25519</strong> (badge ✅ ou ⚠️), puis déchiffre avec sa clé <strong class="text-phantom-light">AES-256-GCM ou ChaCha20-Poly1305</strong> du ratchet (selon le champ <code class="text-phantom-light text-xs">cipherSuite</code>).</p>
             <p data-lang="en">Bob receives the blob. He <strong class="text-white">verifies the Ed25519 signature</strong> (badge ✅ or ⚠️), then decrypts with his <strong class="text-phantom-light">AES-256-GCM or ChaCha20-Poly1305</strong> ratchet key (based on the <code class="text-phantom-light text-xs">cipherSuite</code> field).</p>
-            <p data-lang="fr">Le message déchiffré est stocké dans <strong class="text-phantom-light">SQLCipher</strong> (base Room chiffrée AES-256). Si un timer éphémère est actif, le message <strong class="text-white">s'autodétruit</strong>. Côté serveur, delete-after-delivery supprime le blob immédiatement.</p>
-            <p data-lang="en">The decrypted message is stored in <strong class="text-phantom-light">SQLCipher</strong> (AES-256 encrypted Room DB). If an ephemeral timer is active, the message <strong class="text-white">self-destructs</strong>. Server-side, delete-after-delivery removes the blob immediately.</p>
+            <p data-lang="fr">Le message déchiffré est stocké dans <strong class="text-phantom-light">SQLCipher</strong> (base Room chiffrée AES-256). Si un timer éphémère est actif, le message <strong class="text-white">s'autodétruit</strong>. Si livré via Mailbox, le blob est supprimé du store après récupération (TTL 7 jours max).</p>
+            <p data-lang="en">The decrypted message is stored in <strong class="text-phantom-light">SQLCipher</strong> (AES-256 encrypted Room DB). If an ephemeral timer is active, the message <strong class="text-white">self-destructs</strong>. If delivered via Mailbox, the blob is removed from the store after retrieval (7-day maximum TTL).</p>
           </div>
         </div>
         <div class="glass rounded-2xl p-8 font-['JetBrains_Mono'] text-xs space-y-3">
@@ -280,7 +360,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="border-t border-white/5 pt-3 space-y-2">
             <div class="p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-text-muted">💾 Store →</span> <span class="text-phantom-light">SQLCipher(AES-256)</span></div>
             <div class="p-3 rounded-lg bg-accent-red/5 border border-accent-red/20"><span class="text-accent-red">⏱️ Timer → autodestruction</span></div>
-            <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green">🗑️ Firebase → blob supprimé</span></div>
+            <div class="p-3 rounded-lg bg-accent-green/5 border border-accent-green/20"><span class="text-accent-green" data-lang="fr">🗑️ Mailbox → blob supprimé après livraison ✓</span><span class="text-accent-green" data-lang="en">🗑️ Mailbox → blob deleted after delivery ✓</span></div>
           </div>
         </div>
       </div>
@@ -318,7 +398,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="text-xs text-text-secondary" data-lang="fr">Aucune trace</div><div class="text-xs text-text-secondary" data-lang="en">No trace left</div>
           </div>
         </div>
-        <a href="https://github.com/FialkaApp/Fialka" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
+        <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-phantom hover:bg-phantom-light text-white font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           <span data-lang="fr">Voir le code source</span><span data-lang="en">View source code</span>
         </a>

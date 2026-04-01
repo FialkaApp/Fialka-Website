@@ -14,14 +14,14 @@ const siteUrl = 'https://fialkaapp.github.io/Fialka-Website';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Fialka — Héritière de la machine de chiffrement M-125. Messagerie post-quantique de bout en bout. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, AES-256-GCM, Tor intégré, zéro métadonnée." />
+    <meta name="description" content="Fialka — Héritière de la machine M-125. Messagerie post-quantique P2P via Tor Hidden Services. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Fialka Mailbox 4 modes, zéro Firebase, zéro serveur central." />
     <meta name="theme-color" content="#7B2D8E" />
     <meta name="author" content="DevBot667" />
     <meta name="keywords" content="Fialka, M-125, cipher machine, Fialka M-125, Cold War cryptography, encrypted messaging, E2E encryption, Tor, Double Ratchet, X25519, PQXDH, ML-KEM-1024, post-quantum, privacy, anonymous chat, zero metadata, AES-256-GCM, Ed25519, StrongBox" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
-    <meta property="og:description" content="Heir to the M-125 cipher machine. Post-quantum E2E encrypted messenger. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, AES-256-GCM, Tor integration, zero metadata." />
+    <meta property="og:description" content="Heir to the M-125 cipher machine. Post-quantum P2P messenger via Tor Hidden Services. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Fialka Mailbox 4 modes, zero Firebase, zero central server." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:image" content={`${siteUrl}/og-image.png`} />
@@ -34,7 +34,7 @@ const siteUrl = 'https://fialkaapp.github.io/Fialka-Website';
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content="Heir to the M-125 cipher machine. Post-quantum E2E encrypted messenger. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, AES-256-GCM, Tor integration, zero metadata." />
+    <meta name="twitter:description" content="Heir to the M-125 cipher machine. Post-quantum P2P messenger via Tor Hidden Services. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Fialka Mailbox 4 modes, zero Firebase, zero central server." />
     <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
 
     <!-- Favicons -->
@@ -71,14 +71,18 @@ const siteUrl = 'https://fialkaapp.github.io/Fialka-Website';
       },
       "featureList": [
         "Post-quantum key exchange PQXDH (X25519 + ML-KEM-1024)",
-        "End-to-end encryption (AES-256-GCM)",
+        "End-to-end encryption (AES-256-GCM / ChaCha20-Poly1305 adaptive)",
         "Double Ratchet protocol with PFS & self-healing",
-        "Ed25519 message signatures",
-        "Tor network integration",
-        "Zero metadata collection",
-        "Ephemeral messages",
+        "SPQR Triple Ratchet — continuous ML-KEM-1024 re-encapsulation every 10 messages",
+        "Ed25519 + ML-DSA-44 hybrid signatures",
+        "Tor Hidden Services P2P — deterministic .onion address per account, zero central server",
+        "Fialka Mailbox — 4-mode encrypted store-and-forward (Direct P2P, Personal, Private Node, Public Node)",
+        "Zero metadata — senderUid HMAC, message padding, dummy traffic",
+        "Zero Firebase, zero Google services",
+        "Ephemeral messages with auto-destruction timer",
+        "BIP-39 24-word seed backup — 1 Seed → Everything identity",
         "StrongBox hardware security",
-        "SQLCipher local storage"
+        "SQLCipher local storage (AES-256 encrypted Room DB)"
       ]
     })} />
 
