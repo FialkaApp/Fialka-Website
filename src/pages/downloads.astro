@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Downloads">
+  <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}platforms`} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">Platforms</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm text-phantom-light mb-6 border border-phantom/30">
+        📦 v4.0.2-beta
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Get <span class="gradient-text">Fialka</span></h1>
+      <p class="text-text-muted">Download the latest release — free, open source, no account required.</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Warning -->
+      <div class="glass rounded-2xl p-5 border border-amber-500/20 mb-10">
+        <p class="text-sm text-text-secondary">
+          ⚠️ <strong class="text-white">Beta software:</strong> Fialka is currently in beta. Core cryptography is battle-hardened, but UI and features may change. By downloading you agree to the <a href={`${base}terms`} class="text-phantom-light hover:underline">Terms of Use</a>.
+        </p>
+      </div>
+
+      <!-- Android download -->
+      <section class="mb-10">
+        <h2 class="docs-h2">🤖 Android</h2>
+        <div class="glass rounded-2xl p-6 border border-phantom/20">
+          <div class="flex items-start justify-between flex-wrap gap-4 mb-6">
+            <div>
+              <p class="text-text-muted text-xs mb-1">Latest stable beta</p>
+              <p class="text-white font-bold text-xl">v4.0.2-beta</p>
+              <p class="text-text-muted text-xs mt-1">versionCode 11 · April 2026</p>
+            </div>
+            <div class="text-right">
+              <p class="text-text-muted text-xs mb-1">Requirements</p>
+              <p class="text-text-secondary text-sm">Android 8.0+ (API 26)</p>
+              <p class="text-text-muted text-xs">arm64-v8a or x86_64</p>
+            </div>
+          </div>
+
+          <a href="https://github.com/FialkaApp/Fialka-Android/releases/latest"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 w-full justify-center px-6 py-4 rounded-xl bg-gradient-to-r from-phantom to-phantom-light text-white font-bold text-lg hover:opacity-90 transition-all group mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
+            Download APK (GitHub Releases)
+          </a>
+
+          <div class="glass rounded-xl p-4 border border-phantom/20 text-xs space-y-2">
+            <p class="text-text-muted font-semibold text-white">SHA-256 checksum (v4.0.2-beta APK):</p>
+            <code class="text-phantom-light font-mono break-all block">40d458ad5ef571dd07f4dd7ce75a66378fea1dfa89e5aaf7a1ac0be0ec90aad8</code>
+            <p class="text-text-muted mt-2">Verify on Linux/macOS: <code class="text-green-300">sha256sum fialka-v4.0.2-beta.apk</code></p>
+            <p class="text-text-muted">Verify on Windows: <code class="text-green-300">certutil -hashfile fialka-v4.0.2-beta.apk SHA256</code></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation steps -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Install on Android</h2>
+        <ol class="space-y-3 text-text-secondary text-sm">
+          <li class="flex gap-3">
+            <span class="text-phantom-light font-bold shrink-0">1.</span>
+            <span>Download the APK from GitHub Releases.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-phantom-light font-bold shrink-0">2.</span>
+            <span>On your Android device, go to <strong class="text-white">Settings → Security → Install unknown apps</strong> and allow installation from your file manager or browser.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-phantom-light font-bold shrink-0">3.</span>
+            <span>Open the downloaded APK file and tap <strong class="text-white">Install</strong>.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-phantom-light font-bold shrink-0">4.</span>
+            <span>On first launch, Fialka will generate your cryptographic identity (BIP-39 24-word seed). <strong class="text-white">Back up your seed phrase securely</strong> — it's the only way to restore your account.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-phantom-light font-bold shrink-0">5.</span>
+            <span>Tor bootstrap takes ~30 seconds on first launch. Once connected, you're ready to share your Account ID with contacts.</span>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Desktop -->
+      <section class="mb-10">
+        <h2 class="docs-h2">🖥️ Desktop (Windows)</h2>
+        <div class="glass rounded-2xl p-6 border border-phantom/20">
+          <div class="text-center py-6">
+            <div class="text-5xl mb-4">🔜</div>
+            <p class="text-white font-semibold text-lg mb-2">Coming Soon</p>
+            <p class="text-text-secondary text-sm mb-4">The Windows desktop client is in development. It uses the same Fialka-Core (Rust) cryptographic backend and is byte-for-byte protocol-compatible with the Android app.</p>
+            <a href="https://github.com/FialkaApp/Fialka-Android/releases" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass border border-phantom/30 text-phantom-light hover:border-phantom-light transition-all text-sm">
+              Watch for releases on GitHub →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- iOS -->
+      <section class="mb-10">
+        <h2 class="docs-h2">🍎 iOS</h2>
+        <div class="glass rounded-2xl p-6 border border-phantom/20 text-center py-6">
+          <div class="text-5xl mb-4">📋</div>
+          <p class="text-white font-semibold text-lg mb-2">Planned</p>
+          <p class="text-text-secondary text-sm">iOS support is on the roadmap. Fialka-Core already has a target for <code class="text-phantom-light">aarch64-apple-ios</code>. No timeline yet.</p>
+        </div>
+      </section>
+
+      <!-- Build from source -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Build from Source</h2>
+        <p class="text-text-secondary text-sm mb-4">Fialka is fully open source under GPLv3. You can build and verify the APK yourself:</p>
+        <div class="glass rounded-2xl p-4 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-green-300 font-mono whitespace-pre">git clone https://github.com/FialkaApp/Fialka-Android
+cd Fialka-Android
+./gradlew assembleRelease</pre>
+        </div>
+        <p class="text-text-muted text-xs mt-3">Requires: Android SDK, NDK, Rust toolchain (for Fialka-Core). See <a href="https://github.com/FialkaApp/Fialka-Android/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">README.md</a> for full setup instructions.</p>
+      </section>
+
+      <!-- Links -->
+      <div class="glass rounded-2xl p-6 border border-phantom/20">
+        <h3 class="text-white font-bold mb-4">Related</h3>
+        <div class="grid md:grid-cols-2 gap-3">
+          {[
+            { href: `${base}security`, label: '🔐 Security Policy', desc: 'Cryptographic algorithms and reporting' },
+            { href: `${base}platforms`, label: '🦀 Platform Support', desc: 'Fialka-Core targets and bridges' },
+            { href: `${base}changelog`, label: '📋 Changelog', desc: 'What changed in each version' },
+            { href: 'https://github.com/FialkaApp/Fialka-Android', label: '💻 Source Code', desc: 'Full source on GitHub' },
+          ].map(({ href, label, desc }) => (
+            <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="glass rounded-xl p-4 border border-phantom/20 hover:border-phantom-light transition-all">
+              <p class="text-white text-sm font-semibold">{label}</p>
+              <p class="text-text-muted text-xs mt-1">{desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <script>
+    const el = document.getElementById('scroll-progress');
+    if (el) {
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        el.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+      }, { passive: true });
+    }
+  </script>
+
+  <style>
+    .docs-h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 0; margin-bottom: 1rem; }
+  </style>
+</Layout>

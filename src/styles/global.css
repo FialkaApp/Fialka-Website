@@ -357,6 +357,25 @@ body {
 .skeleton::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(156, 77, 204, 0.06), transparent); animation: shimmer 1.8s infinite; }
 @keyframes shimmer { 100% { transform: translateX(100%); } }
 
+/* Changelog rendered markdown styles */
+.prose-changelog h1, .prose-changelog h2, .prose-changelog h3 { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #fff; }
+.prose-changelog h1 { font-size: 2rem; }
+.prose-changelog h2 { font-size: 1.5rem; border-bottom: 1px solid rgba(123,45,142,0.3); padding-bottom: 0.5rem; }
+.prose-changelog h3 { font-size: 1.1rem; color: var(--color-phantom-light); }
+.prose-changelog p { color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.7; }
+.prose-changelog ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: var(--color-text-secondary); }
+.prose-changelog ul li { margin-bottom: 0.25rem; }
+.prose-changelog code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: rgba(123,45,142,0.15); color: var(--color-phantom-light); padding: 0.1em 0.4em; border-radius: 4px; }
+.prose-changelog pre { background: rgba(26,26,26,0.8); border: 1px solid rgba(123,45,142,0.2); border-radius: 12px; padding: 1rem; overflow-x: auto; margin-bottom: 1rem; }
+.prose-changelog pre code { background: none; padding: 0; color: var(--color-text-secondary); }
+.prose-changelog blockquote { border-left: 3px solid var(--color-phantom); padding-left: 1rem; color: var(--color-text-muted); font-style: italic; margin: 1rem 0; }
+.prose-changelog a { color: var(--color-phantom-light); text-decoration: underline; }
+.prose-changelog strong { color: #fff; font-weight: 600; }
+.prose-changelog hr { border-color: rgba(123,45,142,0.2); margin: 2rem 0; }
+.prose-changelog table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.9rem; }
+.prose-changelog th { background: rgba(123,45,142,0.15); color: var(--color-phantom-light); padding: 0.5rem 0.75rem; text-align: left; }
+.prose-changelog td { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--color-text-secondary); }
+
 /* Mobile hamburger animation */
 .menu-open #bar1 { transform: translateY(4px) rotate(45deg); }
 .menu-open #bar2 { opacity: 0; }

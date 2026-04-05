@@ -1,0 +1,154 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Platforms">
+  <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}downloads`} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">Downloads</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm text-phantom-light mb-6 border border-phantom/30">
+        🦀 Fialka-Core
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Platform <span class="gradient-text">Support</span></h1>
+      <p class="text-text-muted">Cross-platform cryptographic core — Fialka-Core (Rust) powers the same algorithms on every platform.</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- What is Fialka-Core -->
+      <section class="mb-10">
+        <h2 class="docs-h2">What is Fialka-Core?</h2>
+        <p class="text-text-secondary mb-4">Fialka-Core is a cross-platform cryptographic library written in <strong class="text-white">Rust</strong>. It replaces BouncyCastle on all platforms, providing a single native implementation compiled to platform-specific binaries.</p>
+        <div class="glass rounded-2xl p-5 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-phantom-light font-mono leading-relaxed whitespace-pre">┌─────────────────────────────────────────────┐
+│          Application Layer                   │
+│   Android (Kotlin)  ·  Desktop (C#/WPF)     │
+├──────────────────────┬──────────────────────┤
+│   JNI Bridge         │  P/Invoke Bridge      │
+│   FialkaCoreJNI.kt   │  FialkaCore.cs        │
+├──────────────────────┴──────────────────────┤
+│          Fialka-Core (Rust)                  │
+│  Ed25519 · X25519 · ML-KEM-1024 · ML-DSA    │
+│  AES-256-GCM · ChaCha20 · HKDF · BIP-39    │
+│  Double Ratchet · PQXDH · Wire Protocol     │
+└─────────────────────────────────────────────┘</pre>
+        </div>
+      </section>
+
+      <!-- Platform matrix -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Platform Matrix</h2>
+        <div class="glass rounded-2xl overflow-hidden border border-phantom/20">
+          <table class="w-full text-sm">
+            <thead><tr class="border-b border-phantom/20 bg-phantom/5">
+              <th class="text-left p-4 text-white">Platform</th>
+              <th class="text-left p-4 text-white">Target</th>
+              <th class="text-left p-4 text-white">Binary</th>
+              <th class="text-left p-4 text-white">Bridge</th>
+              <th class="text-left p-4 text-white">Status</th>
+            </tr></thead>
+            <tbody class="divide-y divide-phantom/10">
+              <tr>
+                <td class="p-4 text-text-secondary">🤖 Android</td>
+                <td class="p-4 text-phantom-light font-mono text-xs">aarch64-linux-android<br/>x86_64-linux-android</td>
+                <td class="p-4 text-text-muted font-mono text-xs">.so</td>
+                <td class="p-4 text-text-muted text-xs">JNI (<code class="text-phantom-light">FialkaCoreJNI.kt</code>)</td>
+                <td class="p-4 text-green-400 font-semibold">✅ Available</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">🖥️ Windows Desktop</td>
+                <td class="p-4 text-phantom-light font-mono text-xs">x86_64-pc-windows-msvc</td>
+                <td class="p-4 text-text-muted font-mono text-xs">.dll</td>
+                <td class="p-4 text-text-muted text-xs">P/Invoke (<code class="text-phantom-light">FialkaCore.cs</code>)</td>
+                <td class="p-4 text-green-400 font-semibold">✅ Available</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">🍎 iOS</td>
+                <td class="p-4 text-phantom-light font-mono text-xs">aarch64-apple-ios</td>
+                <td class="p-4 text-text-muted font-mono text-xs">.a</td>
+                <td class="p-4 text-text-muted text-xs">C FFI</td>
+                <td class="p-4 text-amber-400 font-semibold">🔜 Planned</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-text-muted text-xs mt-3">All platforms share byte-for-byte compatible cryptographic operations — sessions established on Android interoperate seamlessly with Desktop.</p>
+      </section>
+
+      <!-- What Fialka-Core provides -->
+      <section class="mb-10">
+        <h2 class="docs-h2">What Fialka-Core Provides</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          {[
+            { icon: '🔐', title: 'crypto/', desc: 'Ed25519, X25519, ML-KEM-1024, ML-DSA-44, AES-256-GCM, ChaCha20-Poly1305, HKDF' },
+            { icon: '🪪', title: 'identity/', desc: 'Seed (24 BIP-39 words) → all key pairs + Tor v3 .onion address derivation' },
+            { icon: '⚙️', title: 'ratchet/', desc: 'Double Ratchet + PQXDH (byte-for-byte compatible with Android/Desktop)' },
+            { icon: '📡', title: 'protocol/', desc: 'Wire frame format (0xF1 0xA1 magic header)' },
+            { icon: '🔗', title: 'ffi/', desc: 'extern "C" interface, header auto-generated by cbindgen' },
+          ].map(({ icon, title, desc }) => (
+            <div class="glass rounded-2xl p-5 border border-phantom/20">
+              <div class="text-2xl mb-2">{icon}</div>
+              <h3 class="text-white font-mono font-bold mb-1">{title}</h3>
+              <p class="text-text-muted text-sm">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Build from source -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Build Fialka-Core from Source</h2>
+
+        <h3 class="text-white font-semibold mb-3 mt-6">Android</h3>
+        <div class="glass rounded-2xl p-4 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-green-300 font-mono whitespace-pre"># Install prerequisites
+cargo install cargo-ndk
+rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
+
+# Build .so for all ABIs
+./build_android.sh</pre>
+        </div>
+
+        <h3 class="text-white font-semibold mb-3 mt-6">Windows Desktop</h3>
+        <div class="glass rounded-2xl p-4 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-blue-300 font-mono whitespace-pre">rustup target add x86_64-pc-windows-msvc
+build_windows.bat</pre>
+        </div>
+
+        <p class="text-text-muted text-sm mt-4">Source code: <a href="https://github.com/FialkaApp/Fialka-Android/tree/main/Fialka-Core" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">github.com/FialkaApp/Fialka-Android/tree/main/Fialka-Core</a></p>
+      </section>
+
+    </div>
+  </article>
+
+  <script>
+    const el = document.getElementById('scroll-progress');
+    if (el) {
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        el.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+      }, { passive: true });
+    }
+  </script>
+
+  <style>
+    .docs-h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 0; margin-bottom: 1rem; }
+  </style>
+</Layout>

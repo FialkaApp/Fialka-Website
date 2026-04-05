@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Politique Cookies">
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Accueil</a>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Cookies & <span class="gradient-text">Traçage</span></h1>
+      <p class="text-text-muted text-sm">Zéro cookie. Zéro analytics. Voilà c'est simple.</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6 legal-content">
+
+      <div class="glass rounded-2xl p-8 border border-green-500/20 mb-10 text-center">
+        <div class="text-6xl mb-4">🍪❌</div>
+        <h2 class="text-2xl font-bold text-white mb-3" style="border:none; margin:0 0 0.75rem 0;">Ce site n'utilise aucun cookie</h2>
+        <p class="text-text-secondary mb-0">Pas de bannière cookie à cliquer, pas de consentement requis, pas de pistage — parce qu'il n'y a rien à pistage.</p>
+      </div>
+
+      <section class="mb-10">
+        <h2>Résumé complet</h2>
+        <div class="glass rounded-2xl overflow-hidden border border-phantom/20">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-phantom/20">
+                <th class="text-left p-4 text-white font-semibold">Technologie</th>
+                <th class="text-left p-4 text-white font-semibold">Utilisée ?</th>
+                <th class="text-left p-4 text-white font-semibold">Détails</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">Cookies HTTP</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Aucun cookie de session, de préférence, ni de suivi</td>
+              </tr>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">localStorage / sessionStorage</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Aucune donnée stockée dans le navigateur</td>
+              </tr>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">Google Analytics / GA4</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Jamais installé, aucun script gtag.js</td>
+              </tr>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">Hotjar / Clarity / Heap</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Aucun enregistrement de session ni heatmap</td>
+              </tr>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">Publicité / Retargeting</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Aucun pixel publicitaire (Meta, Google Ads, etc.)</td>
+              </tr>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">Google Fonts</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Polices systèmes uniquement — aucune requête vers googleapis.com</td>
+              </tr>
+              <tr class="border-b border-phantom/10">
+                <td class="p-4 text-text-secondary">CDN JavaScript externe</td>
+                <td class="p-4 text-green-400 font-bold">Non</td>
+                <td class="p-4 text-text-muted">Aucun script chargé depuis jsDelivr, unpkg, cdnjs, etc.</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-text-secondary">GitHub API (changelog)</td>
+                <td class="p-4 text-amber-400 font-bold">Au build</td>
+                <td class="p-4 text-text-muted">Récupération des fichiers CHANGELOG.md au moment de la compilation, pas dans votre navigateur</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2>Ce qui se passe quand vous visitez ce site</h2>
+        <p>Votre navigateur envoie une unique requête HTTP vers les serveurs <strong class="text-white">GitHub Pages</strong> (infrastructure d'hébergement). C'est tout. GitHub Pages peut enregistrer des logs d'accès serveur standard (adresse IP, User-Agent, page visitée) conformément à la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">politique de confidentialité de GitHub</a>.</p>
+        <p class="mt-3">Nous, les développeurs de Fialka, n'avons aucun accès à ces logs, aucun tableau de bord d'analytics, et ne savons pas combien de personnes visitent ce site.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>Pas de bannière cookie — pourquoi ?</h2>
+        <p>La directive ePrivacy (transposée en France par l'article L.34-5 du CPCE) et les lignes directrices de la CNIL exigent un consentement pour les cookies non essentiels. Puisque nous n'utilisons <strong class="text-white">aucun cookie</strong> (ni traceurs, ni analytics), aucune bannière de consentement n'est nécessaire.</p>
+        <p class="mt-3">Nous ne présentons pas de bannière cookie parce qu'il n'y a rien à accepter ou refuser.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>Données de l'application (hors site web)</h2>
+        <p>L'application Fialka elle-même est distincte de ce site web. Pour les données gérées par l'application — messages chiffrés, clés d'identité, etc. — consultez notre <a href={`${base}confidentialite`}>politique de confidentialité</a> complète.</p>
+      </section>
+
+      <div class="glass rounded-2xl p-6 text-center mt-8">
+        <p class="text-sm text-text-muted">© 2024–2026 Contributeurs FialkaApp. Sous licence GPLv3.</p>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .legal-content h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(123,45,142,0.25); padding-bottom: 0.5rem; }
+    .legal-content p { color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.7; }
+    .legal-content ul { list-style: disc; padding-left: 1.5rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+    .legal-content ul li { margin-bottom: 0.3rem; }
+    .legal-content a { color: var(--color-phantom-light); text-decoration: underline; }
+    table { border-collapse: collapse; }
+  </style>
+</Layout>

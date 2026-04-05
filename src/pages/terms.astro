@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Terms of Use">
+  <div id="scroll-progress"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}conditions`} class="text-xs px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all text-text-muted">🇫🇷 Version française</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Terms of <span class="gradient-text">Use</span></h1>
+      <p class="text-text-muted text-sm">Last updated: April 3, 2026</p>
+    </div>
+  </section>
+
+  <section class="py-6">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="glass rounded-2xl p-5 border border-phantom/20">
+        <p class="text-sm text-text-secondary">
+          ⚠️ <strong class="text-white">Important:</strong> This document is provided for informational purposes only. It has not been reviewed by a qualified legal professional. It does not constitute professional legal advice. Users in specific jurisdictions should consult independent legal counsel for binding compliance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6 legal-content">
+
+      <section class="mb-10">
+        <div class="glass rounded-2xl p-8 border-l-4 border-phantom">
+          <h2 class="text-2xl font-bold font-['Space_Grotesk'] mb-4 text-phantom-light">TL;DR</h2>
+          <p class="text-text-secondary">Fialka is a <strong class="text-white">tool</strong>, not a service. The developers do not operate any infrastructure, do not store any user data, and cannot access any messages. There is no central server — all communication is peer-to-peer via Tor. Users are solely responsible for their use of the software.</p>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2>1. Acceptance</h2>
+        <p>By downloading, installing, or using Fialka, you agree to these Terms of Use. If you do not agree, do not use the software.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>2. Nature of the Software</h2>
+        <p>Fialka is <strong class="text-white">free, open-source software</strong> distributed under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer">GNU General Public License v3.0 (GPLv3)</a>.</p>
+        <ul class="mt-3">
+          <li>Fialka is a <strong class="text-white">tool</strong>, not a service</li>
+          <li>The developers provide source code and pre-built APKs — nothing more</li>
+          <li>The developers <strong class="text-white">do not operate any servers, relays, databases, or infrastructure</strong></li>
+          <li>There is <strong class="text-white">no central server</strong> — communication is fully peer-to-peer via Tor Hidden Services</li>
+          <li>The developers <strong class="text-white">cannot access, read, decrypt, moderate, or delete</strong> any message</li>
+          <li>Your identity is your <strong class="text-white">cryptographic key</strong> — there are no accounts, no registration, no database</li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2>3. Eligibility</h2>
+        <p>You must be at least <strong class="text-white">16 years old</strong> (or the applicable minimum digital age of consent in your jurisdiction) to use Fialka. By using the app, you confirm that you meet this requirement.</p>
+        <p class="mt-3"><strong class="text-white">USA — COPPA Notice:</strong> Fialka is not directed to children under 13. Since Fialka collects no personal information from any user (P2P architecture, zero server-side storage), COPPA requirements are satisfied by design. If you are under 13, do not use this application.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>4. User Responsibilities</h2>
+        <p>Since Fialka is a fully decentralized tool with no central authority, <strong class="text-white">you are solely responsible for</strong>:</p>
+        <ul class="mt-3">
+          <li><strong class="text-white">Your cryptographic identity:</strong> Your Ed25519 seed is your identity. If you lose your 24-word recovery phrase, your identity is irrecoverable.</li>
+          <li><strong class="text-white">Your Mailbox node</strong> (if self-hosted): You deploy, configure, and secure your own Mailbox. The developers have no access to it.</li>
+          <li><strong class="text-white">Your compliance:</strong> You are responsible for complying with all applicable laws, including export control regulations for cryptographic software.</li>
+          <li><strong class="text-white">Your data:</strong> All data is stored locally on your device. The developers store nothing.</li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2>5. Prohibited Uses</h2>
+        <p>You agree <strong class="text-white">not</strong> to use Fialka to violate any applicable law or regulation, to transmit illegal content, to harass or harm others, or to distribute malware.</p>
+        <p class="mt-3 text-text-muted text-sm italic">Note: The developers have no technical ability to enforce these restrictions. Fialka is fully peer-to-peer with no central point of control. This clause reflects ethical expectations, not operational control.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>6. No Warranty</h2>
+        <p>Fialka is provided <strong class="text-white">"AS IS"</strong>, without warranty of any kind, express or implied.</p>
+        <ul class="mt-3">
+          <li>The cryptographic implementation has <strong class="text-white">not yet been independently audited</strong> by a third-party security firm (audit planned — see <a href={`${base}security`}>Security page</a>)</li>
+          <li>The developers make <strong class="text-white">no guarantee</strong> that the software is free of vulnerabilities</li>
+          <li>The developers are <strong class="text-white">not responsible</strong> for any data loss, security breach, or damage resulting from the use of the software</li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2>7. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, the developers and contributors shall <strong class="text-white">not be liable</strong> for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use or inability to use Fialka, any unauthorized access to your data, any loss of cryptographic keys, or any third-party actions or services (Tor, UnifiedPush, etc.).</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>8. Decentralized Architecture — No Central Control</h2>
+        <p>Fialka is designed with <strong class="text-white">zero central authority</strong>: no central server, no account database, no content moderation, no kill switch, no telemetry. The developers have no ability to comply with takedown requests, content removal orders, or user data requests — because no such data exists on any server they control.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>9. Intellectual Property</h2>
+        <p>Fialka source code is licensed under <strong class="text-white">GPLv3</strong>. The Fialka name, logo, and branding are used by the FialkaApp organization; reuse should follow standard open-source community conventions. Third-party libraries retain their respective licenses.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>10. Governing Law</h2>
+        <p>These Terms are governed by the laws of <strong class="text-white">France</strong> and applicable European Union regulations (including GDPR, Regulation 2016/679; and the Loi Informatique et Libertés n° 78-17 du 6 janvier 1978), without regard to conflict of law provisions.</p>
+        <p class="mt-3"><strong class="text-white">EU Cyber Resilience Act (CRA — Regulation 2024/2847):</strong> Fialka is a non-commercial open-source software product, currently exempt under the CRA's open-source non-commercial provisions. This position will be reviewed as implementing acts are finalized.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>11. Contact</h2>
+        <p>GitHub: <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer">github.com/FialkaApp/Fialka-Android</a> · Security issues: <a href={`${base}security`}>Security page</a></p>
+      </section>
+
+      <div class="glass rounded-2xl p-6 text-center mt-8">
+        <p class="text-sm text-text-muted">© 2024–2026 FialkaApp Contributors. Licensed under GPLv3.</p>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .legal-content h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(123,45,142,0.25); padding-bottom: 0.5rem; }
+    .legal-content p { color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.7; }
+    .legal-content ul { list-style: disc; padding-left: 1.5rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+    .legal-content ul li { margin-bottom: 0.3rem; }
+    .legal-content a { color: var(--color-phantom-light); text-decoration: underline; }
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #7B2D8E, #9C4DCC, #B44FE0); z-index: 9999; transition: width 0.05s linear; }
+  </style>
+
+  <script>
+    const sp = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => { if (!sp) return; const h = document.documentElement.scrollHeight - window.innerHeight; sp.style.width = h > 0 ? `${(window.scrollY/h*100)}%` : '0%'; });
+  </script>
+</Layout>

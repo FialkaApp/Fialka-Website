@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Export Control">
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Export <span class="gradient-text">Control</span></h1>
+      <p class="text-text-muted text-sm">Cryptography export and distribution notice</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6 legal-content">
+
+      <div class="glass rounded-2xl p-5 border border-amber-500/20 mb-8">
+        <p class="text-sm text-text-secondary">
+          ⚠️ <strong class="text-white">Notice:</strong> Fialka implements strong cryptographic algorithms. Downloading, using, or distributing Fialka may be subject to export control laws in your jurisdiction. You are solely responsible for compliance with all applicable laws.
+        </p>
+      </div>
+
+      <section class="mb-10">
+        <h2>Cryptographic Algorithms</h2>
+        <p>Fialka implements the following strong cryptographic primitives:</p>
+        <ul>
+          <li>AES-256-GCM (symmetric encryption)</li>
+          <li>ChaCha20-Poly1305 (symmetric encryption, stream)</li>
+          <li>X25519 (Elliptic Curve Diffie–Hellman key exchange)</li>
+          <li>Ed25519 (digital signatures)</li>
+          <li>ML-KEM-1024 (post-quantum key encapsulation, FIPS 203)</li>
+          <li>ML-DSA-44 (post-quantum signatures, FIPS 204)</li>
+          <li>BLAKE3 / SHA3-256 (cryptographic hashing)</li>
+          <li>HKDF (key derivation)</li>
+          <li>Double Ratchet + PQXDH (forward-secret messaging protocol)</li>
+        </ul>
+        <p class="mt-3">The cryptographic core is provided by <strong class="text-white">Fialka-Core</strong>, a Rust library included in this project under GPLv3.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>United States — EAR (Export Administration Regulations)</h2>
+        <p>Fialka is published as <strong class="text-white">publicly available open-source software</strong>. Under 15 CFR § 740.13(e) of the Export Administration Regulations, cryptographic source code that is publicly available and meets certain criteria is eligible for the <strong class="text-white">TSU exception</strong> (Technology and Software — Unrestricted).</p>
+        <p class="mt-3">Key conditions met by this project:</p>
+        <ul>
+          <li>Source code is publicly available on GitHub (no access controls)</li>
+          <li>The project is not developed for or by a U.S. person for commercial sale</li>
+          <li>No encryption review request (ERN) has been submitted (not required under TSU for open-source)</li>
+        </ul>
+        <p class="mt-3 text-text-muted text-sm italic">Disclaimer: This is not legal advice. EAR classification may depend on factors specific to your use. Consult legal counsel if exporting for commercial purposes.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>European Union — Dual-Use Regulation</h2>
+        <p>Cryptographic software may be subject to EU dual-use controls under <strong class="text-white">Council Regulation (EC) No 428/2009</strong> (as amended). Category 5 Part 2 covers information security products.</p>
+        <p class="mt-3">However, an exemption applies under <strong class="text-white">Note 3 (the "Mass Market" / "publicly available" exemption)</strong> for cryptographic software that is:</p>
+        <ul>
+          <li>Available to the public without restriction</li>
+          <li>Not designed for a specific application that would trigger controls</li>
+          <li>Not subject to export restrictions by the developer</li>
+        </ul>
+        <p class="mt-3">Fialka satisfies these conditions as a freely available open-source application.</p>
+        <p class="mt-3 text-text-muted text-sm italic">Note: EU regulations and interpretations vary by member state. Check with your national authority (e.g., ANSSI in France, BAFA in Germany) if in doubt.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>France — Déclaration ANSSI</h2>
+        <p>En France, les produits et services de cryptologie sont soumis aux articles 29 à 41 de la loi n° 2004-575 du 21 juin 2004 (LCEN) et au décret n° 2007-663 du 2 mai 2007. L'utilisation de la cryptologie est <strong class="text-white">libre</strong> depuis la loi de 1999. La fourniture, l'importation ou l'exportation peuvent nécessiter une déclaration ou une autorisation auprès de l'<strong class="text-white">ANSSI</strong>.</p>
+        <p class="mt-3">Fialka est un logiciel open-source à vocation non commerciale, distribué librement. L'ANSSI a défini des régimes simplifiés pour ce type de logiciel. Consultez le site <a href="https://www.ssi.gouv.fr" target="_blank" rel="noopener noreferrer">ssi.gouv.fr</a> pour les procédures applicables.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>Restricted Parties &amp; Embargoed Destinations</h2>
+        <p>Fialka must not be downloaded, used, or distributed in violation of applicable sanctions or in connection with:</p>
+        <ul>
+          <li>Parties on U.S. OFAC Specially Designated Nationals (SDN) list</li>
+          <li>Parties on the EU Consolidated Financial Sanctions List</li>
+          <li>Countries subject to comprehensive U.S. embargoes (currently: Cuba, Iran, North Korea, Syria, Russia-controlled regions of Ukraine)</li>
+        </ul>
+        <p class="mt-3">By downloading or using Fialka, you represent that you are not on any restricted party list and are not located in an embargoed jurisdiction.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>Your Responsibilities</h2>
+        <p>The Fialka project and its contributors do not accept responsibility for your compliance with export control laws. By downloading, using, or distributing Fialka you agree that:</p>
+        <ul>
+          <li>You have determined whether export authorization is required in your jurisdiction</li>
+          <li>You will comply with all applicable export control laws and regulations</li>
+          <li>You will not export or re-export Fialka in violation of any applicable law</li>
+        </ul>
+      </section>
+
+      <div class="glass rounded-2xl p-6 text-center mt-8">
+        <p class="text-sm text-text-muted">© 2024–2026 FialkaApp contributors. Licensed under GPLv3.</p>
+        <p class="text-xs text-text-muted/60 mt-2">This notice is provided for informational purposes and does not constitute legal advice.</p>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .legal-content h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(123,45,142,0.25); padding-bottom: 0.5rem; }
+    .legal-content p { color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.7; }
+    .legal-content ul { list-style: disc; padding-left: 1.5rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+    .legal-content ul li { margin-bottom: 0.3rem; }
+    .legal-content a { color: var(--color-phantom-light); text-decoration: underline; }
+  </style>
+</Layout>

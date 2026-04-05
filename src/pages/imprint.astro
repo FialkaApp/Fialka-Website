@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Imprint">
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}mentions-legales`} class="text-xs px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all text-text-muted">🇫🇷 Mentions légales</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4"><span class="gradient-text">Imprint</span></h1>
+      <p class="text-text-muted text-sm">Legal information about the Fialka project</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6 legal-content">
+
+      <section class="mb-10">
+        <div class="glass rounded-2xl p-5 border border-phantom/20 mb-8">
+          <p class="text-sm text-text-secondary">
+            ⚠️ <strong class="text-white">Note:</strong> This imprint describes an open-source volunteer project, not a registered legal entity or commercial service. It does not constitute a legally recognized imprint pursuant to specific national Impressumspflicht requirements. Users in Germany or Austria should be aware that Fialka is not a commercial offering and the developers are private individuals, not entrepreneurs (§ 5 TMG / § 25 MedienG do not apply to non-commercial open-source projects hosted abroad).
+          </p>
+        </div>
+
+        <h2>Project Identity</h2>
+        <ul>
+          <li><strong class="text-white">Project name:</strong> Fialka</li>
+          <li><strong class="text-white">Organization:</strong> FialkaApp (volunteer open-source organization)</li>
+          <li><strong class="text-white">Nature:</strong> Non-commercial open-source software project — not a registered company or legal entity</li>
+          <li><strong class="text-white">License:</strong> GNU General Public License v3.0 (GPLv3)</li>
+          <li><strong class="text-white">Source code:</strong> <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer">github.com/FialkaApp/Fialka-Android</a></li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2>Contact</h2>
+        <ul>
+          <li><strong class="text-white">GitHub:</strong> <a href="https://github.com/FialkaApp" target="_blank" rel="noopener noreferrer">github.com/FialkaApp</a></li>
+          <li><strong class="text-white">Security issues:</strong> <a href="https://github.com/FialkaApp/Fialka-Android/security/advisories/new" target="_blank" rel="noopener noreferrer">Submit a private security advisory</a></li>
+          <li><strong class="text-white">General inquiries:</strong> GitHub Issues or Discussions on the main repository</li>
+        </ul>
+        <p class="mt-3 text-text-muted text-sm italic">The developers are private contributors. No physical address is published. The project does not engage in commercial activity and does not require a formal imprint under the laws of most jurisdictions.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>Website Hosting</h2>
+        <ul>
+          <li><strong class="text-white">Hosting provider:</strong> GitHub Pages (GitHub, Inc. — 88 Colin P. Kelly Jr. St, San Francisco, CA 94107, USA)</li>
+          <li><strong class="text-white">Website URL:</strong> <a href="https://fialkaapp.github.io/Fialka-Website" target="_blank" rel="noopener noreferrer">fialkaapp.github.io/Fialka-Website</a></li>
+          <li><strong class="text-white">Privacy of the website:</strong> No analytics, no cookies, no tracking. Google Fonts are not loaded externally. See <a href={`${base}cookies`}>Cookies page</a>.</li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2>Intellectual Property</h2>
+        <p>The Fialka source code is licensed under <strong class="text-white">GPLv3</strong>. The name "Fialka" and the associated logo are used by the FialkaApp volunteer organization. The project takes inspiration from the historical Soviet Fialka M-125 cipher machine — this is a cultural and aesthetic reference only; there is no affiliation with any government or defense entity.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>Disclaimers</h2>
+        <ul>
+          <li>Fialka is provided "as is" without warranty of any kind</li>
+          <li>The cryptographic implementation has not yet been independently audited</li>
+          <li>The project is maintained by volunteers in their personal capacity</li>
+          <li>No commercial revenue is generated from Fialka</li>
+        </ul>
+      </section>
+
+      <div class="glass rounded-2xl p-6 text-center mt-8">
+        <p class="text-sm text-text-muted">© 2024–2026 FialkaApp Contributors. Licensed under GPLv3.</p>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .legal-content h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(123,45,142,0.25); padding-bottom: 0.5rem; }
+    .legal-content p { color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.7; }
+    .legal-content ul { list-style: disc; padding-left: 1.5rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+    .legal-content ul li { margin-bottom: 0.3rem; }
+    .legal-content a { color: var(--color-phantom-light); text-decoration: underline; }
+  </style>
+</Layout>

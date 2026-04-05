@@ -7,6 +7,7 @@ interface Props {
 
 const { title } = Astro.props;
 const siteUrl = 'https://fialkaapp.github.io/Fialka-Website';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
 <!doctype html>
@@ -44,10 +45,7 @@ const siteUrl = 'https://fialkaapp.github.io/Fialka-Website';
     <link rel="icon" type="image/png" sizes="512x512" href="/Fialka-Website/icon-512.png" />
     <link rel="manifest" href="/Fialka-Website/manifest.json" />
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <!-- Fonts: system stack, no external requests -->
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -88,7 +86,75 @@ const siteUrl = 'https://fialkaapp.github.io/Fialka-Website';
 
     <title>{title}</title>
   </head>
-  <body class="bg-surface text-text-primary antialiased">
-    <slot />
+  <body class="bg-surface text-text-primary antialiased flex flex-col min-h-screen">
+    <div class="flex-1">
+      <slot />
+    </div>
+
+    <!-- ===== GLOBAL FOOTER ===== -->
+    <footer class="py-10 border-t border-white/5 mt-auto">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <!-- Logo -->
+          <div class="col-span-2 md:col-span-1">
+            <a href={base} class="flex items-center gap-2 mb-3 group">
+              <img src={`${base}icon-192.png`} alt="Fialka" class="w-7 h-7 rounded-md" />
+              <span class="font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+            </a>
+            <p class="text-xs text-text-muted leading-relaxed">Free, open-source · GPLv3<br/>P2P via Tor · Zero metadata</p>
+            <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-3 text-xs text-text-muted hover:text-phantom-light transition-colors">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              FialkaApp/Fialka-Android
+            </a>
+          </div>
+
+          <!-- Product -->
+          <div>
+            <h4 class="text-xs font-semibold text-text-secondary mb-3 uppercase tracking-wider">Product</h4>
+            <ul class="space-y-2 text-sm text-text-muted">
+              <li><a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a></li>
+              <li>
+                <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
+                <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+              </li>
+              <li><a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a></li>
+              <li><a href={`${base}downloads`} class="hover:text-phantom-light transition-colors" data-lang="en">Downloads</a><a href={`${base}downloads`} class="hover:text-phantom-light transition-colors" data-lang="fr">Téléchargements</a></li>
+              <li><a href={`${base}security`} class="hover:text-phantom-light transition-colors">Security</a></li>
+              <li><a href={`${base}mailbox`} class="hover:text-phantom-light transition-colors">Mailbox</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal FR -->
+          <div>
+            <h4 class="text-xs font-semibold text-text-secondary mb-3 uppercase tracking-wider">Juridique (FR)</h4>
+            <ul class="space-y-2 text-sm text-text-muted">
+              <li><a href={`${base}confidentialite`} class="hover:text-phantom-light transition-colors">Politique de confidentialité</a></li>
+              <li><a href={`${base}conditions`} class="hover:text-phantom-light transition-colors">Conditions d'utilisation</a></li>
+              <li><a href={`${base}mentions-legales`} class="hover:text-phantom-light transition-colors">Mentions légales</a></li>
+              <li><a href={`${base}cookies`} class="hover:text-phantom-light transition-colors">Cookies</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal EN -->
+          <div>
+            <h4 class="text-xs font-semibold text-text-secondary mb-3 uppercase tracking-wider">Legal (EN)</h4>
+            <ul class="space-y-2 text-sm text-text-muted">
+              <li><a href={`${base}privacy`} class="hover:text-phantom-light transition-colors">Privacy Policy</a></li>
+              <li><a href={`${base}terms`} class="hover:text-phantom-light transition-colors">Terms of Use</a></li>
+              <li><a href={`${base}imprint`} class="hover:text-phantom-light transition-colors">Imprint</a></li>
+              <li><a href={`${base}export-control`} class="hover:text-phantom-light transition-colors">Export Control</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted">
+          <div>© 2024–2026 FialkaApp Contributors. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer" class="hover:text-phantom-light transition-colors">GPLv3</a>.</div>
+          <div class="flex items-center gap-4">
+            <span data-lang="fr">Fialka est un outil. Les développeurs ne collectent aucune donnée.</span>
+            <span data-lang="en">Fialka is a tool. Developers collect zero data.</span>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

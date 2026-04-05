@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const faqsFr = [
+  { q: 'Pourquoi le nom « Fialka » ?', a: 'Fialka (Фиалка, « violette » en russe) est le nom de la M-125, la machine de chiffrement soviétique utilisée par le Pacte de Varsovie de 1956 à 1990 pour les communications diplomatiques et militaires classifiées. Nous portons cet héritage : une cryptographie forgée pour résister à des décennies d\'interception, aujourd\'hui armée contre l\'ère quantique.' },
+  { q: 'Fialka est-il vraiment gratuit ?', a: 'Oui, 100% gratuit et open source sous licence GPLv3. Pas de publicité, pas de tracking, pas d\'abonnement — et jamais.' },
+  { q: 'Ai-je besoin d\'un numéro de téléphone ou d\'un email ?', a: 'Non. Fialka n\'utilise ni numéro de téléphone, ni email, ni aucun service Google ou Firebase. Votre identité est un Account ID Ed25519 dérivé de votre seed BIP-39 — purement cryptographique, zéro donnée personnelle.' },
+  { q: 'Qu\'est-ce que le Double Ratchet ?', a: 'Le protocole Double Ratchet génère une nouvelle clé pour chaque message via un échange PQXDH hybride (X25519 + ML-KEM-1024). Si une clé est compromise, les messages passés et futurs restent sûrs (PFS + self-healing).' },
+  { q: 'Comment fonctionne le transport P2P via Tor ?', a: 'Chaque compte Fialka possède une adresse .onion déterministe dérivée de son seed. Le daemon Tor réel (Guardian Project libtor.so) expose ce Hidden Service. Les messages se transmettent directement de .onion à .onion via TorTransport. Si le destinataire est hors-ligne, le Fialka Mailbox prend le relais comme store-and-forward chiffré. Zéro Firebase, zéro serveur central.' },
+  { q: 'Qu\'est-ce que le chiffrement post-quantique ?', a: 'Fialka utilise PQXDH, un échange hybride combinant X25519 (résistant aux attaques classiques) et ML-KEM-1024 (NIST FIPS 203, résistant aux ordinateurs quantiques). Même un futur ordinateur quantique ne pourra pas briser vos messages.' },
+  { q: 'Puis-je restaurer mon compte ?', a: 'Oui, grâce à votre phrase mnémonique BIP-39 de 24 mots. Conservez-la en lieu sûr — c\'est la seule façon de restaurer votre identité, vos clés, et votre adresse .onion.' },
+  { q: 'Qu\'est-ce que le SPQR Triple Ratchet ?', a: 'Le SPQR ajoute un troisième ratchet post-quantique au Double Ratchet classique. Tous les 10 messages, une nouvelle ré-encapsulation ML-KEM-1024 injecte un secret quantique frais dans la chaîne de clés. Même si un attaquant quantique compromet une clé, la sécurité se régénère automatiquement au prochain cycle SPQR.' },
+  { q: 'Pourquoi utiliser ChaCha20-Poly1305 en plus d\'AES ?', a: 'Fialka détecte automatiquement si votre appareil supporte l\'accélération matérielle AES-NI. Si oui, AES-256-GCM est utilisé. Sinon, ChaCha20-Poly1305 prend le relais — il est 3× plus rapide en pur logiciel, avec le même niveau de sécurité AEAD. Rien à configurer.' },
+  { q: 'Les messages sont-ils chiffrés sur le serveur Mailbox ?', a: 'Oui — le Mailbox ne voit que des blobs chiffrés opaques. Aucun déchiffrement n\'est possible côté Mailbox. Les blobs sont purgés après 7 jours ou après récupération.' },
+  { q: 'Comment ajouter un contact ?', a: 'Partagez votre Account ID (ou code QR) avec votre contact. L\'invitation transite via Tor — une fois acceptée, la conversation E2E est établie. Aucun numéro, aucun email, aucun serveur central.' },
+];
+
+const faqsEn = [
+  { q: 'Why the name "Fialka"?', a: 'Fialka (Фиалка, "violet" in Russian) is the name of the M-125, a Soviet cipher machine used by the Warsaw Pact from 1956 to 1990 for classified diplomatic and military communications. We carry that legacy: cryptography forged to withstand decades of interception, now armed for the quantum era.' },
+  { q: 'Is Fialka really free?', a: 'Yes, 100% free and open source under GPLv3. No ads, no tracking, no subscriptions — ever.' },
+  { q: 'Do I need a phone number or email?', a: 'No. Fialka uses no phone number, email, or any Google/Firebase service. Your identity is an Ed25519 Account ID derived from your BIP-39 seed — purely cryptographic, zero personal data.' },
+  { q: 'What is Double Ratchet?', a: 'The Double Ratchet protocol generates a new key per message via a hybrid PQXDH exchange (X25519 + ML-KEM-1024). If a key is compromised, past and future messages remain safe (PFS + self-healing).' },
+  { q: 'How does Tor P2P transport work?', a: 'Every Fialka account has a deterministic .onion address derived from its seed. The real Tor daemon (Guardian Project libtor.so) exposes this Hidden Service. Messages travel directly .onion to .onion via TorTransport. If the recipient is offline, Fialka Mailbox takes over as an encrypted store-and-forward fallback. Zero Firebase, zero central server.' },
+  { q: 'What is post-quantum encryption?', a: 'Fialka uses PQXDH, a hybrid exchange combining X25519 (resistant to classical attacks) and ML-KEM-1024 (NIST FIPS 203, resistant to quantum computers). Even a future quantum computer won\'t be able to break your messages.' },
+  { q: 'Can I restore my account?', a: 'Yes, using your 24-word BIP-39 mnemonic phrase. Keep it safe — it\'s the only way to restore your identity, keys, and .onion address.' },
+  { q: 'What is the SPQR Triple Ratchet?', a: 'SPQR adds a third post-quantum ratchet on top of the classic Double Ratchet. Every 10 messages, a fresh ML-KEM-1024 re-encapsulation injects a new quantum secret into the key chain. Even if a quantum attacker compromises a key, security auto-regenerates at the next SPQR cycle.' },
+  { q: 'Why use ChaCha20-Poly1305 alongside AES?', a: 'Fialka auto-detects whether your device supports AES-NI hardware acceleration. If yes, AES-256-GCM is used. Otherwise, ChaCha20-Poly1305 takes over — it\'s 3× faster in pure software, with the same AEAD security level. Zero configuration needed.' },
+  { q: 'Are messages encrypted on the Mailbox server?', a: 'Yes — the Mailbox only ever sees opaque encrypted blobs. No decryption is possible on the Mailbox side. Blobs are purged after 7 days or after retrieval.' },
+  { q: 'How do I add a contact?', a: 'Share your Account ID (or QR code) with your contact. The invitation travels over Tor — once accepted, an E2E conversation is established. No phone number, no email, no central server involved.' },
+];
+---
+
+<Layout title="Fialka — FAQ">
+  <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="lang-btn" class="text-xs px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all">
+          <span data-lang="fr">🇬🇧 English</span>
+          <span data-lang="en">🇫🇷 Français</span>
+        </button>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4" data-lang="fr">Questions <span class="gradient-text">fréquentes</span></h1>
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4" data-lang="en">Frequently Asked <span class="gradient-text">Questions</span></h1>
+    </div>
+  </section>
+
+  <section class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6 space-y-3">
+
+      <!-- FR FAQ -->
+      {faqsFr.map((item) => (
+        <div class="faq-item glass rounded-xl" data-lang="fr">
+          <button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')">
+            <span class="font-semibold pr-4">{item.q}</span>
+            <svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-5 text-sm text-text-secondary">{item.a}</div>
+        </div>
+      ))}
+
+      <!-- EN FAQ -->
+      {faqsEn.map((item) => (
+        <div class="faq-item glass rounded-xl" data-lang="en">
+          <button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')">
+            <span class="font-semibold pr-4">{item.q}</span>
+            <svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="faq-answer px-5 pb-5 text-sm text-text-secondary">{item.a}</div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <script>
+    // Scroll progress
+    const sp = document.getElementById('scroll-progress');
+    if (sp) {
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        sp.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+      }, { passive: true });
+    }
+
+    // Language toggle
+    const btn = document.getElementById('lang-btn');
+    function applyLang(lang: string) {
+      document.documentElement.classList.toggle('lang-fr', lang === 'fr');
+      document.documentElement.classList.toggle('lang-en', lang === 'en');
+      try { localStorage.setItem('fialka-lang', lang); } catch {}
+    }
+    const saved = (() => { try { return localStorage.getItem('fialka-lang'); } catch { return null; } })();
+    applyLang(saved === 'en' ? 'en' : 'fr');
+    btn?.addEventListener('click', () => {
+      const cur = document.documentElement.classList.contains('lang-en') ? 'en' : 'fr';
+      applyLang(cur === 'fr' ? 'en' : 'fr');
+    });
+  </script>
+
+  <style>
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-chevron { transition: transform 0.3s ease; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+  </style>
+</Layout>

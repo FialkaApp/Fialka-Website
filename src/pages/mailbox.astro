@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Mailbox">
+  <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}security`} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">Security</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm text-phantom-light mb-6 border border-phantom/30">
+        📬 Offline Delivery
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Fialka <span class="gradient-text">Mailbox</span></h1>
+      <p class="text-text-muted">Offline message delivery — how Fialka reaches you even when your phone is off.</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Two modes -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Two Mutually Exclusive Operating Modes</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass rounded-2xl p-6 border border-phantom/20">
+            <div class="text-2xl mb-3">📱</div>
+            <h3 class="text-white font-bold text-lg mb-2">User Mode</h3>
+            <p class="text-text-secondary text-sm mb-3">The phone functions as a standard messaging client.</p>
+            <ul class="text-text-muted text-xs space-y-1.5">
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Creates a Fialka account (BIP-39 seed)</li>
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Generates a deterministic .onion address</li>
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Sends and receives E2E encrypted P2P messages</li>
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Receives offline messages via a Mailbox</li>
+              <li class="flex gap-2"><span class="text-amber-400">⚠</span> Only ONE User Mode per device</li>
+            </ul>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-phantom/20">
+            <div class="text-2xl mb-3">🖥️</div>
+            <h3 class="text-white font-bold text-lg mb-2">Mailbox Mode</h3>
+            <p class="text-text-secondary text-sm mb-3">The phone becomes a storage and message transport service.</p>
+            <ul class="text-text-muted text-xs space-y-1.5">
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Exposes a permanent .onion Hidden Service</li>
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Stores encrypted blobs (zero decryption)</li>
+              <li class="flex gap-2"><span class="text-green-400">✓</span> Auto-purges after 7-day TTL</li>
+              <li class="flex gap-2"><span class="text-red-400">✗</span> Cannot send or receive chat messages</li>
+              <li class="flex gap-2"><span class="text-amber-400">⚠</span> Requires 2 devices to use alongside User Mode</li>
+            </ul>
+          </div>
+        </div>
+        <div class="glass rounded-xl p-4 border border-amber-500/20 mt-4 text-sm text-text-muted">
+          <strong class="text-white">⚠️ Important constraint:</strong> User Mode and Mailbox Mode are mutually exclusive on the same device. You need 2 phones (or a spare phone / Raspberry Pi as the Mailbox).
+        </div>
+      </section>
+
+      <!-- Sharing models -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Three Sharing Models</h2>
+        <div class="space-y-4">
+          <div class="glass rounded-2xl p-6 border border-phantom/20">
+            <div class="flex items-start gap-4">
+              <span class="text-2xl">1️⃣</span>
+              <div>
+                <h3 class="text-white font-bold mb-1">Personal Mailbox</h3>
+                <p class="text-text-secondary text-sm">Used solely by the owner's User-mode phone. Each user account has one Personal Mailbox. Accessible only by the owner — "my Mailbox for when I'm offline".</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-phantom/20">
+            <div class="flex items-start gap-4">
+              <span class="text-2xl">2️⃣</span>
+              <div>
+                <h3 class="text-white font-bold mb-1">Private Mailbox (whitelist)</h3>
+                <p class="text-text-secondary text-sm">Shared with a restricted group — family, friends, colleagues. The owner alone manages the whitelist and permissions. Only authorized users can deposit messages. Granular control: add/remove access anytime.</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-phantom/20">
+            <div class="flex items-start gap-4">
+              <span class="text-2xl">3️⃣</span>
+              <div>
+                <h3 class="text-white font-bold mb-1">Public Mailbox</h3>
+                <p class="text-text-secondary text-sm">Accepts messages from all Fialka users. No whitelist, no authentication. Useful for bots, open services, and community relays.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Delivery modes table -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Delivery Modes & Privacy</h2>
+        <div class="glass rounded-2xl overflow-hidden border border-phantom/20">
+          <table class="w-full text-sm">
+            <thead><tr class="border-b border-phantom/20 bg-phantom/5">
+              <th class="text-left p-4 text-white">Mode</th>
+              <th class="text-left p-4 text-white">Description</th>
+              <th class="text-left p-4 text-white">Privacy</th>
+            </tr></thead>
+            <tbody class="divide-y divide-phantom/10">
+              <tr><td class="p-4 text-text-secondary font-semibold">0 — Direct P2P</td><td class="p-4 text-text-muted text-sm">.onion to .onion directly</td><td class="p-4 text-yellow-300 text-sm">★★★★★</td></tr>
+              <tr><td class="p-4 text-text-secondary font-semibold">1 — Personal</td><td class="p-4 text-text-muted text-sm">Your own device (old phone, RPi)</td><td class="p-4 text-yellow-300 text-sm">★★★★★</td></tr>
+              <tr><td class="p-4 text-text-secondary font-semibold">2 — Private Node</td><td class="p-4 text-text-muted text-sm">Friend hosts for trusted group (whitelist)</td><td class="p-4 text-yellow-300 text-sm">★★★★☆</td></tr>
+              <tr><td class="p-4 text-text-secondary font-semibold">3 — Public Node</td><td class="p-4 text-text-muted text-sm">Community volunteers, auto-selected (default)</td><td class="p-4 text-yellow-300 text-sm">★★★☆☆</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Security guarantees -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Security Guarantees</h2>
+        <div class="space-y-2">
+          {[
+            ['ZERO server-side decryption', 'Blobs are completely opaque to the Mailbox — it stores encrypted bytes it cannot read.'],
+            ['Raw blob storage', 'No metadata extraction — no recipient, no timing, no actual size, no content type.'],
+            ['7-day max TTL', 'All undelivered blobs are automatically purged after 7 days.'],
+            ['Stats only', 'Mailbox only tracks cumulative counters (totalDeposited, totalFetched) — no message-level analytics.'],
+            ['Adaptive polling', '10s base interval, 5s after messages received, 60s backoff on network error.'],
+            ['Full UI configuration', 'Mode, TTL, whitelist — all configurable in Settings.'],
+          ].map(([title, desc]) => (
+            <div class="glass rounded-xl p-4 border border-green-500/20 flex items-start gap-3">
+              <span class="text-green-400 mt-0.5 shrink-0">✅</span>
+              <div>
+                <span class="text-white font-semibold text-sm">{title}</span>
+                <p class="text-text-muted text-sm mt-0.5">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Push notifications -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Push Notifications (opt-in)</h2>
+        <div class="glass rounded-2xl p-5 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-phantom-light font-mono leading-relaxed whitespace-pre">Phone A → sendMessage() → Tor Hidden Service → Phone B
+                                                  ↓ (if offline)
+                                          Fialka Mailbox stores ciphertext
+                                                  ↓
+                                          UnifiedPush + ntfy.sh
+                                                  ↓
+                                          Phone B wakes up → connects to Mailbox
+                                          → retrieves + decrypts messages
+                                          "New message received"
+                                          (ZERO content, ZERO metadata)</pre>
+        </div>
+        <p class="text-text-muted text-xs mt-3">UnifiedPush + ntfy.sh are used as a zero-content wake-up signal only. Push notifications carry no message content or sender metadata whatsoever.</p>
+      </section>
+
+      <!-- Real-world use case -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Real-World Use Case</h2>
+        <div class="glass rounded-2xl p-6 border border-phantom/20 space-y-3 text-sm text-text-secondary">
+          <p>📱 <strong class="text-white">Your main phone</strong> runs User Mode — normal Fialka messaging.</p>
+          <p>🔌 <strong class="text-white">Old spare phone or tablet</strong> stays plugged in permanently at home on power + WiFi — running Mailbox Mode.</p>
+          <p>📬 While you're offline, contacts send you messages → stored as encrypted blobs in your home Mailbox.</p>
+          <p>🔄 When you come back online, your main phone connects to the Mailbox and retrieves all pending messages.</p>
+          <p class="text-text-muted text-xs pt-2">Configure via: <code class="text-phantom-light">Settings → Mailbox → Personal Mailbox → enter your Mailbox .onion address</code></p>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <script>
+    const el = document.getElementById('scroll-progress');
+    if (el) {
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        el.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+      }, { passive: true });
+    }
+  </script>
+
+  <style>
+    .docs-h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 0; margin-bottom: 1rem; }
+  </style>
+</Layout>

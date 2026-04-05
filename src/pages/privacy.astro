@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Privacy Policy">
+  <div id="scroll-progress"></div>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}confidentialite`} class="text-xs px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all text-text-muted">🇫🇷 Version française</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-accent-green mb-6">
+        <span class="w-2 h-2 rounded-full bg-accent-green animate-pulse"></span>
+        Zero data collection · Privacy by design
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Privacy <span class="gradient-text">Policy</span></h1>
+      <p class="text-text-muted text-sm">Last updated: April 3, 2026</p>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="py-6">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="glass rounded-2xl p-5 border border-phantom/20">
+        <p class="text-sm text-text-secondary">
+          ⚠️ <strong class="text-white">Important:</strong> This document is provided for informational purposes only and reflects the architecture of the Fialka open-source project. It has not been reviewed by a qualified legal professional. Users requiring legally binding privacy assessments for specific jurisdictions should seek independent legal advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6 legal-content">
+
+      <section class="mb-10">
+        <div class="glass rounded-2xl p-8 border-l-4 border-phantom">
+          <h2 class="text-2xl font-bold font-['Space_Grotesk'] mb-4 text-phantom-light">TL;DR — Zero Data</h2>
+          <p class="text-text-secondary mb-3">Fialka is a <strong class="text-white">tool</strong>. The developers do not operate any infrastructure, do not store any user data, and cannot access any messages. There is no central server — all communication is peer-to-peer via Tor.</p>
+          <ul class="space-y-2 text-text-secondary text-sm">
+            <li class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span> No phone number, no email, no account registration</li>
+            <li class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span> No analytics, no telemetry, no tracking</li>
+            <li class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span> No Google services, no Firebase, no cloud APIs</li>
+            <li class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span> All data stored locally, encrypted, on your device only</li>
+            <li class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span> IP address never visible — all traffic via Tor</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2>1. Data Controller</h2>
+        <p>Fialka is an open-source project maintained by independent contributors under the organization <strong class="text-white">FialkaApp</strong> on GitHub.</p>
+        <ul class="mt-3 space-y-1">
+          <li>No company or legal entity operates Fialka as a service</li>
+          <li>No central server is operated by the developers — Fialka is fully peer-to-peer</li>
+          <li>No user data is collected, processed, or stored by the developers</li>
+          <li>Contact: <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer">github.com/FialkaApp/Fialka-Android</a></li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2>2. Data We Do NOT Collect</h2>
+        <p>Fialka is designed to minimize data by design and by default. There is no central server, no cloud service, and no analytics.</p>
+        <div class="overflow-x-auto mt-4">
+          <table>
+            <thead><tr><th>Data type</th><th>Collected?</th><th>Details</th></tr></thead>
+            <tbody>
+              <tr><td>Message content</td><td class="compare-check">❌ Never</td><td>End-to-end encrypted (PQXDH + Double Ratchet + AES-256-GCM)</td></tr>
+              <tr><td>Private keys</td><td class="compare-check">❌ Never</td><td>Generated and stored exclusively on your device (Android Keystore)</td></tr>
+              <tr><td>Phone number / Email</td><td class="compare-check">❌ Never</td><td>Not required — identity is a cryptographic key</td></tr>
+              <tr><td>Location data</td><td class="compare-check">❌ Never</td><td>Not collected</td></tr>
+              <tr><td>Usage analytics</td><td class="compare-check">❌ Never</td><td>No analytics SDK, no telemetry, no third-party services</td></tr>
+              <tr><td>IP addresses</td><td class="compare-check">❌ Never</td><td>All traffic routed through Tor — your device is a Hidden Service</td></tr>
+              <tr><td>Metadata (who talks to whom)</td><td class="compare-check">❌ Never</td><td>Peer-to-peer via Tor .onion — no central server sees traffic patterns</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2>3. Network Architecture — No Central Server</h2>
+        <p>Fialka does <strong class="text-white">not</strong> rely on any cloud service, corporate infrastructure, or central relay.</p>
+
+        <h3>3.1. Tor Hidden Services</h3>
+        <ul>
+          <li>Your device runs a Tor Hidden Service (.onion address derived from your Ed25519 identity)</li>
+          <li>Messages are exchanged <strong class="text-white">directly</strong> between devices — no relay, no middleman</li>
+          <li>Your real IP address is never exposed to anyone</li>
+        </ul>
+
+        <h3>3.2. Fialka Mailbox (Offline Delivery)</h3>
+        <p>When a recipient is offline, encrypted messages may be temporarily stored on a <strong class="text-white">Mailbox node</strong>. Mailbox nodes only store encrypted blobs — they cannot read, decrypt, or identify sender/recipient. Messages are deleted after delivery or TTL expiration. The developers do <strong class="text-white">not</strong> operate any Mailbox node.</p>
+
+        <h3>3.3. Push Notifications (Optional)</h3>
+        <p>Uses <strong class="text-white">UnifiedPush</strong> protocol with <strong class="text-white">ntfy.sh</strong> (open-source, self-hostable). Push payload contains zero message content — only a wake-up signal. Can be completely disabled in app settings.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>4. Data Stored Locally on Your Device</h2>
+        <p>The following data is stored <strong class="text-white">exclusively on your device</strong> and never transmitted to any server:</p>
+        <ul class="mt-3">
+          <li>Cryptographic identity (Ed25519 seed → derives all keys)</li>
+          <li>Recovery phrase (BIP-39 / 24 words)</li>
+          <li>Message history (encrypted with SQLCipher AES-256)</li>
+          <li>Contact list, ratchet states, app settings</li>
+        </ul>
+        <p class="mt-4">Protected by: SQLCipher (AES-256), Android Keystore (StrongBox/TEE), EncryptedSharedPreferences, optional PIN + biometric app lock.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>5. Third-Party Software Components</h2>
+        <div class="overflow-x-auto">
+          <table>
+            <thead><tr><th>Component</th><th>Role</th><th>Data involved</th><th>Operated by developers?</th></tr></thead>
+            <tbody>
+              <tr><td><strong class="text-white">Tor</strong></td><td>Anonymous transport</td><td>Encrypted network traffic</td><td class="compare-cross">No — Tor Project</td></tr>
+              <tr><td><strong class="text-white">Fialka-Core (Rust)</strong></td><td>Cryptographic library</td><td>Local computation only</td><td class="compare-cross">No — bundled library</td></tr>
+              <tr><td><strong class="text-white">UnifiedPush / ntfy.sh</strong></td><td>Optional push wake-up</td><td>Wake-up signal (zero content)</td><td class="compare-cross">No — self-hostable</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3"><strong class="text-white">No Google services, no Firebase, no cloud APIs, no corporate infrastructure.</strong></p>
+      </section>
+
+      <section class="mb-10">
+        <h2>6. EU/EEA Users — GDPR</h2>
+        <p>Under <strong class="text-white">GDPR (Regulation 2016/679)</strong> and <strong class="text-white">French Law (Loi Informatique et Libertés n° 78-17)</strong>, EU users have rights to access, rectification, erasure, portability, objection, and restriction.</p>
+        <p class="mt-3">In practice, since the developers collect <strong class="text-white">zero personal data</strong>, operate <strong class="text-white">zero infrastructure</strong>, and store <strong class="text-white">nothing server-side</strong>, these rights are satisfied <strong class="text-phantom-light">by architecture</strong>. To delete all your data: simply delete the app.</p>
+        <p class="mt-3">The <strong class="text-white">CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) is the competent supervisory authority in France.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>7. Children's Privacy</h2>
+        <p>Fialka is <strong class="text-white">not intended for use by anyone under 16</strong> (or the applicable minimum digital age of consent in your jurisdiction).</p>
+        <p class="mt-2"><strong class="text-white">COPPA (USA):</strong> Fialka is not directed to children under 13. Since Fialka collects no personal data from any user whatsoever (P2P architecture, zero server-side storage), COPPA compliance is satisfied by design.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2>8. Changes to This Policy</h2>
+        <p>Changes will be published on GitHub and reflected in the "Last updated" date above. Significant changes will be noted in the Changelog.</p>
+        <p class="mt-2">Contact: <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer">github.com/FialkaApp/Fialka-Android</a></p>
+      </section>
+
+      <div class="glass rounded-2xl p-6 text-center mt-8">
+        <p class="text-sm text-text-muted">© 2024–2026 FialkaApp Contributors. Licensed under GPLv3.</p>
+        <p class="text-xs text-text-muted mt-1">Fialka is a tool. The developers do not operate any infrastructure, do not store any user data, and cannot access any messages.</p>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .legal-content h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid rgba(123,45,142,0.25); padding-bottom: 0.5rem; }
+    .legal-content h3 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1rem; font-weight: 600; color: var(--color-phantom-light); margin-top: 1.25rem; margin-bottom: 0.5rem; }
+    .legal-content p { color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.7; }
+    .legal-content ul { list-style: disc; padding-left: 1.5rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; }
+    .legal-content ul li { margin-bottom: 0.3rem; }
+    .legal-content a { color: var(--color-phantom-light); text-decoration: underline; }
+    .legal-content table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.85rem; }
+    .legal-content th { background: rgba(123,45,142,0.15); color: var(--color-phantom-light); padding: 0.5rem 0.75rem; text-align: left; }
+    .legal-content td { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--color-text-secondary); }
+    #scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, #7B2D8E, #9C4DCC, #B44FE0); z-index: 9999; transition: width 0.05s linear; }
+  </style>
+
+  <script>
+    const sp = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => { if (!sp) return; const h = document.documentElement.scrollHeight - window.innerHeight; sp.style.width = h > 0 ? `${(window.scrollY/h*100)}%` : '0%'; });
+  </script>
+</Layout>

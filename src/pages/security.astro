@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<Layout title="Fialka — Security">
+  <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href={base} class="flex items-center gap-3 group">
+        <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
+        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href={`${base}downloads`} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">Downloads</a>
+        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pt-32 pb-12 animated-gradient">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm text-phantom-light mb-6 border border-phantom/30">
+        🔐 Security Policy
+      </div>
+      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4">Cryptographic <span class="gradient-text">Architecture</span></h1>
+      <p class="text-text-muted">How Fialka protects your communications — algorithms, protocol stack, and reporting.</p>
+    </div>
+  </section>
+
+  <article class="py-12 pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Important Notice -->
+      <div class="glass rounded-2xl p-5 border border-amber-500/20 mb-10">
+        <p class="text-sm text-text-secondary">
+          <strong class="text-white">⚠️ Important:</strong> Fialka is a tool. The developers do not operate any infrastructure, do not store any user data, and cannot access any messages. There is no central server — all communication is peer-to-peer via Tor Hidden Services. Users are solely responsible for their use of the software.
+        </p>
+      </div>
+
+      <!-- Supported Versions -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Supported Versions</h2>
+        <div class="glass rounded-2xl overflow-hidden border border-phantom/20">
+          <table class="w-full text-sm">
+            <thead><tr class="border-b border-phantom/20"><th class="text-left p-4 text-white">Version</th><th class="text-left p-4 text-white">Status</th></tr></thead>
+            <tbody>
+              <tr class="border-b border-phantom/10"><td class="p-4 text-text-secondary font-mono">V4.0.x</td><td class="p-4 text-green-400">✅ Current — security fixes</td></tr>
+              <tr class="border-b border-phantom/10"><td class="p-4 text-text-secondary font-mono">V3.4.x</td><td class="p-4 text-green-400">✅ Security fixes only</td></tr>
+              <tr><td class="p-4 text-text-secondary font-mono">&lt; V3.4</td><td class="p-4 text-red-400">❌ Unsupported</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Reporting -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Report a Vulnerability</h2>
+        <p class="text-text-secondary mb-4">If you discover a security vulnerability, <strong class="text-white">do not open a public issue</strong>.</p>
+        <div class="glass rounded-2xl p-6 border border-phantom/20 space-y-3">
+          <p class="text-text-secondary text-sm"><strong class="text-white">Option 1 — GitHub private advisory (preferred):</strong></p>
+          <a href="https://github.com/FialkaApp/Fialka-Android/security/advisories/new" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-phantom/20 border border-phantom/40 text-phantom-light hover:bg-phantom/30 transition-all text-sm">
+            🔒 Open private security advisory →
+          </a>
+          <p class="text-text-muted text-xs mt-3">Please include: description, reproduction steps, potential impact, suggested fix. Expected response: <strong class="text-white">48–72 hours</strong> for acknowledgment.</p>
+        </div>
+      </section>
+
+      <!-- Identity Architecture -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Identity Architecture — "1 Seed → Everything"</h2>
+        <p class="text-text-secondary mb-4">Fialka derives the entire cryptographic identity from a single <strong class="text-white">Ed25519 seed (32 bytes)</strong>, backed up as 24 BIP-39 words:</p>
+        <div class="glass rounded-2xl p-5 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-phantom-light font-mono leading-relaxed whitespace-pre">Ed25519 seed (32 bytes)  ←  BIP-39 24 words restores this
+│
+├── Ed25519 keypair       → sign messages (authentication)
+│
+├── Ed25519 pubkey → SHA3-256 → Base58    = Account ID "Fa3x...9Z"
+│
+├── Ed25519 keypair → Tor v3 encoding     = .onion address
+│
+├── Ed25519 pubkey → SHA-256 → 16 emojis  = Fingerprint anti-MITM (96-bit)
+│
+├── Ed25519 pubkey → birational map        = X25519 DH pubkey
+│   (Edwards → Montgomery)                  Contact only needs Ed25519 pubkey
+│                                           → X25519 computes automatically
+│
+└── HKDF(seed, "fialka-ml-kem", 64 bytes) = ML-KEM-1024 keypair
+    (d=32 + z=32 → deterministic KeyGen)    (post-quantum key derived from seed)</pre>
+        </div>
+        <div class="glass rounded-xl p-4 border border-green-500/20 mt-4 text-sm">
+          <strong class="text-white">Key result:</strong> <span class="text-text-secondary">BIP-39 24 words restore <em>everything</em>: Ed25519, X25519, ML-KEM-1024, Account ID, .onion address, fingerprint.</span>
+        </div>
+      </section>
+
+      <!-- Algorithms -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Algorithms</h2>
+        <div class="glass rounded-2xl overflow-hidden border border-phantom/20 overflow-x-auto">
+          <table class="w-full text-xs">
+            <thead><tr class="border-b border-phantom/20 bg-phantom/5">
+              <th class="text-left p-3 text-white">Component</th>
+              <th class="text-left p-3 text-white">Algorithm</th>
+              <th class="text-left p-3 text-white">Key Size</th>
+              <th class="text-left p-3 text-white">Library</th>
+            </tr></thead>
+            <tbody class="divide-y divide-phantom/10">
+              <tr><td class="p-3 text-text-secondary">Identity key</td><td class="p-3 text-phantom-light font-mono">Ed25519</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">DH key agreement</td><td class="p-3 text-phantom-light font-mono">X25519</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">Post-quantum KEM</td><td class="p-3 text-phantom-light font-mono">ML-KEM-1024</td><td class="p-3 text-text-muted">NIST Level 5</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">PQ signature</td><td class="p-3 text-phantom-light font-mono">ML-DSA-44</td><td class="p-3 text-text-muted">NIST Level 2</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">Symmetric (primary)</td><td class="p-3 text-phantom-light font-mono">AES-256-GCM</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">Fialka-Core / HW</td></tr>
+              <tr><td class="p-3 text-text-secondary">Symmetric (fallback)</td><td class="p-3 text-phantom-light font-mono">ChaCha20-Poly1305</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">Key derivation</td><td class="p-3 text-phantom-light font-mono">HKDF-SHA256</td><td class="p-3 text-text-muted">—</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">Account ID</td><td class="p-3 text-phantom-light font-mono">SHA3-256 → Base58</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">PIN hashing</td><td class="p-3 text-phantom-light font-mono">PBKDF2-HMAC-SHA256</td><td class="p-3 text-text-muted">600K iter</td><td class="p-3 text-text-muted">Android built-in</td></tr>
+              <tr><td class="p-3 text-text-secondary">Local database</td><td class="p-3 text-phantom-light font-mono">SQLCipher AES-256</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">SQLCipher 4.14.1</td></tr>
+              <tr><td class="p-3 text-text-secondary">Key storage</td><td class="p-3 text-phantom-light font-mono">Android Keystore</td><td class="p-3 text-text-muted">HW-backed</td><td class="p-3 text-text-muted">StrongBox / TEE</td></tr>
+              <tr><td class="p-3 text-text-secondary">Backup</td><td class="p-3 text-phantom-light font-mono">BIP-39</td><td class="p-3 text-text-muted">256-bit</td><td class="p-3 text-text-muted">Fialka-Core (Rust)</td></tr>
+              <tr><td class="p-3 text-text-secondary">Transport</td><td class="p-3 text-phantom-light font-mono">Tor Hidden Services</td><td class="p-3 text-text-muted">—</td><td class="p-3 text-text-muted">libtor.so</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Protocol Stack -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Protocol Stack (11 Layers)</h2>
+        <div class="glass rounded-2xl p-5 border border-phantom/20 space-y-2 overflow-x-auto">
+          {[
+            ['Layer 1 — Identity', 'Ed25519 seed (32 bytes) → derives everything'],
+            ['Layer 2 — Key Exchange', 'PQXDH (X25519 + ML-KEM-1024 hybrid)'],
+            ['Layer 3 — Handshake Auth', 'Ed25519 + ML-DSA-44 hybrid signature'],
+            ['Layer 4 — Ratcheting', 'Double Ratchet (DH ratchet + KDF chains)'],
+            ['Layer 5 — PQ Maintenance', 'SPQR (ML-KEM re-encapsulation every 10 messages)'],
+            ['Layer 6 — Encryption', 'AES-256-GCM or ChaCha20-Poly1305 (auto-selected)'],
+            ['Layer 7 — Signing', 'Ed25519 per-message signature'],
+            ['Layer 8 — Padding', 'Fixed-size buckets (256B / 1KB / 4KB / 16KB)'],
+            ['Layer 9 — Transport', 'Tor Hidden Services (.onion P2P — no relay)'],
+            ['Layer 10 — Cover Traffic', 'Dummy messages (30–90s interval, per-conversation)'],
+            ['Layer 11 — Offline', 'Fialka Mailbox (encrypted blob store via Tor)'],
+          ].map(([layer, desc]) => (
+            <div class="flex items-start gap-3 text-sm">
+              <span class="text-phantom-light font-mono text-xs whitespace-nowrap w-36 shrink-0 pt-0.5">{layer}</span>
+              <span class="text-text-secondary">{desc}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Session Establishment -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Session Establishment — PQXDH</h2>
+        <div class="glass rounded-2xl p-5 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-phantom-light font-mono leading-relaxed whitespace-pre">Alice                                   Bob
+  │                                       │
+  ├── X25519 DH(Alice, Bob) ─────────────►│  = ssClassic (32 bytes)
+  ├── ML-KEM encaps(Bob pubkey) ─────────►│  = ssPQ (32 bytes) + kemCiphertext
+  ├── Ed25519.sign(handshake data) ──────►│  = classicSig (64 bytes)
+  ├── ML-DSA-44.sign(handshake data) ────►│  = pqSig (2420 bytes, one-time)
+  │                                       │
+  └── HKDF(ssClassic ‖ ssPQ) ──────────→ rootKey initial
+                                          (hybrid classic + post-quantum)</pre>
+        </div>
+      </section>
+
+      <!-- Per-Message Encryption -->
+      <section class="mb-10">
+        <h2 class="docs-h2">Per-Message Encryption</h2>
+        <div class="glass rounded-2xl p-5 border border-phantom/20 overflow-x-auto">
+          <pre class="text-xs text-phantom-light font-mono leading-relaxed whitespace-pre">rootKey ──→ DH Ratchet (X25519 ephemeral) ──→ new rootKey
+         └─→ chainKey ──→ HMAC ──→ messageKey
+
+messageKey ──→ AES-256-GCM(plaintext padded) ──→ ciphertext
+Ed25519.sign(ciphertext ‖ conversationId ‖ createdAt) ──→ signature (64 bytes)
+
+Every 10 messages (SPQR):
+  ML-KEM encaps ──→ ssPQ (32 bytes)
+  HKDF(rootKey ‖ ssPQ) ──→ new rootKey  (continuous PQ protection)</pre>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <script>
+    const el = document.getElementById('scroll-progress');
+    if (el) {
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        el.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
+      }, { passive: true });
+    }
+  </script>
+
+  <style>
+    .docs-h2 { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-top: 0; margin-bottom: 1rem; }
+  </style>
+</Layout>
