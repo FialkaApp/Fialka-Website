@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/outfit";
+@import "@fontsource-variable/syne";
 
 @theme {
   --color-phantom: #7B2D8E;
@@ -24,7 +26,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Space Grotesk', system-ui, sans-serif;
+  font-family: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
   overflow-x: hidden;
 }
 
@@ -337,8 +339,8 @@ body {
 }
 
 /* ===== Changelog styles ===== */
-.changelog-content h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-phantom-light); font-family: 'Space Grotesk', sans-serif; }
-.changelog-content h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--color-text-primary); font-family: 'Space Grotesk', sans-serif; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(123, 45, 142, 0.2); }
+.changelog-content h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-phantom-light); font-family: 'Syne Variable', sans-serif; }
+.changelog-content h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--color-text-primary); font-family: 'Syne Variable', sans-serif; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(123, 45, 142, 0.2); }
 .changelog-content h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; color: var(--color-phantom-light); }
 .changelog-content p { color: var(--color-text-secondary); margin-bottom: 0.5rem; line-height: 1.7; }
 .changelog-content ul { list-style: none; padding-left: 0; margin-bottom: 1rem; }
@@ -358,7 +360,7 @@ body {
 @keyframes shimmer { 100% { transform: translateX(100%); } }
 
 /* Changelog rendered markdown styles */
-.prose-changelog h1, .prose-changelog h2, .prose-changelog h3 { font-family: 'Space Grotesk', system-ui, sans-serif; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #fff; }
+.prose-changelog h1, .prose-changelog h2, .prose-changelog h3 { font-family: 'Syne Variable', system-ui, sans-serif; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #fff; }
 .prose-changelog h1 { font-size: 2rem; }
 .prose-changelog h2 { font-size: 1.5rem; border-bottom: 1px solid rgba(123,45,142,0.3); padding-bottom: 0.5rem; }
 .prose-changelog h3 { font-size: 1.1rem; color: var(--color-phantom-light); }

@@ -13,7 +13,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">
         <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
-        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+        <span class="text-xl font-bold font-['Syne_Variable']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
 
       <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
@@ -23,6 +23,19 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+        <div class="relative group">
+                <button class="flex items-center gap-1 hover:text-phantom-light transition-colors cursor-pointer">
+                  Docs
+                  <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 glass-strong rounded-xl border border-white/10 py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                  <a href={`${base}security`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Security</a>
+                  <a href={`${base}mailbox`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Mailbox</a>
+                  <a href={`${base}platforms`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Platforms</a>
+                  <a href={`${base}downloads`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Downloads</a>
+                  <a href={`${base}faq`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">FAQ</a>
+                </div>
+              </div>
       </div>
 
       <div class="flex items-center gap-4">
@@ -53,7 +66,11 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
-        <a href="#faq" class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-mobile-link>FAQ</a>
+        <a href={`${base}security`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Security</a>
+        <a href={`${base}mailbox`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Mailbox</a>
+        <a href={`${base}platforms`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Platforms</a>
+        <a href={`${base}downloads`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Downloads</a>
+        <a href={`${base}faq`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">FAQ</a>
         <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
@@ -75,7 +92,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="en">Open Source & Free</span>
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-black font-['Space_Grotesk'] leading-tight mb-6">
+        <h1 class="text-5xl md:text-7xl font-black font-['Syne_Variable'] leading-tight mb-6">
           <span class="glitch" data-text="Fialka">Fial<span class="gradient-text">ka</span></span>
           <br/>
           <span data-lang="fr"><span id="typing-text-fr" class="text-3xl md:text-4xl font-medium text-text-secondary typing-cursor"></span></span>
@@ -108,16 +125,16 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <!-- GitHub stats counters -->
         <div class="flex gap-8 mt-12 justify-center lg:justify-start">
           <div class="text-center">
-            <div class="text-3xl font-bold font-['Space_Grotesk'] gradient-text" data-count="256">0</div>
+            <div class="text-3xl font-bold font-['Syne_Variable'] gradient-text" data-count="256">0</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">bits de chiffrement</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">bits encryption</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold font-['Space_Grotesk'] gradient-text" id="gh-commits" data-count="0">—</div>
+            <div class="text-3xl font-bold font-['Syne_Variable'] gradient-text" id="gh-commits" data-count="0">—</div>
             <div class="text-xs text-text-muted mt-1">commits</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold font-['Space_Grotesk'] gradient-text" data-count="0">0</div>
+            <div class="text-3xl font-bold font-['Syne_Variable'] gradient-text" data-count="0">0</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">métadonnées stockées</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">metadata stored</div>
           </div>
@@ -173,7 +190,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
     <div class="relative max-w-4xl mx-auto px-6">
       <div class="text-center mb-16 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4">
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4">
           <span data-lang="fr"><span class="glitch" data-text="Chiffrement">Chiffrement</span> en <span class="gradient-text">direct</span></span>
           <span data-lang="en"><span class="glitch" data-text="Encryption">Encryption</span> <span class="gradient-text">live</span></span>
         </h2>
@@ -214,23 +231,23 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <section id="features" class="py-32 relative">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-20 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Tout ce dont vous avez <span class="gradient-text">besoin</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Everything you <span class="gradient-text">need</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Tout ce dont vous avez <span class="gradient-text">besoin</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">Everything you <span class="gradient-text">need</span></h2>
         <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">L'héritage cryptographique de la Guerre froide, armé contre l'ère quantique. Chaque fonctionnalité protège vos communications.</p>
         <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">Cold War cryptographic heritage, armed for the quantum era. Every feature protects your communications.</p>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-reveal" id="features-grid">
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🔐</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Chiffrement E2E</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">E2E Encryption</h3><p class="text-sm text-text-secondary" data-lang="fr">PQXDH (X25519 + ML-KEM-1024) + AES-256-GCM. Double Ratchet avec Perfect Forward Secrecy.</p><p class="text-sm text-text-secondary" data-lang="en">PQXDH (X25519 + ML-KEM-1024) + AES-256-GCM. Double Ratchet with Perfect Forward Secrecy.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🧅</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">Tor Hidden Services P2P</h3><p class="text-sm text-text-secondary" data-lang="fr">Daemon Tor réel (Guardian Project <code class="text-phantom-light text-xs">libtor.so</code>). Adresse .onion déterministe par compte — P2P direct, zéro serveur central, zéro Firebase.</p><p class="text-sm text-text-secondary" data-lang="en">Real Tor daemon (Guardian Project <code class="text-phantom-light text-xs">libtor.so</code>). Deterministic .onion address per account — direct P2P, zero central server, zero Firebase.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">👻</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Zéro métadonnée</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">Zero Metadata</h3><p class="text-sm text-text-secondary" data-lang="fr">senderUid HMAC, padding message, trafic factice — aucune trace réseau.</p><p class="text-sm text-text-secondary" data-lang="en">senderUid HMAC, message padding, dummy traffic — no network trace.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default border border-phantom/30"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📬</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">Fialka Mailbox</h3><p class="text-sm text-text-secondary" data-lang="fr">4 modes — <strong class="text-white">Direct P2P</strong>, <strong class="text-white">Personnel</strong> (.onion async), <strong class="text-white">Nœud Privé</strong> (liste blanche), <strong class="text-white">Nœud Public</strong>. Store-and-forward chiffré, TTL 7 jours, zéro déchiffrement serveur.</p><p class="text-sm text-text-secondary" data-lang="en">4 modes — <strong class="text-white">Direct P2P</strong>, <strong class="text-white">Personal</strong> (.onion async), <strong class="text-white">Private Node</strong> (whitelist), <strong class="text-white">Public Node</strong>. Encrypted store-and-forward, 7-day TTL, zero server-side decryption.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">⏱️</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Messages éphémères</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">Ephemeral Messages</h3><p class="text-sm text-text-secondary" data-lang="fr">Timer côté envoi + côté lecture. Les messages disparaissent automatiquement.</p><p class="text-sm text-text-secondary" data-lang="en">Send-side + read-side timer. Messages vanish automatically.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📝</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">BIP-39 Backup</h3><p class="text-sm text-text-secondary" data-lang="fr">24 mots mnémoniques pour sauvegarder votre clé. 2<sup>256</sup> combinaisons possibles.</p><p class="text-sm text-text-secondary" data-lang="en">24 mnemonic words to backup your key. 2<sup>256</sup> possible combinations.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">✍️</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">Ed25519 Signing</h3><p class="text-sm text-text-secondary" data-lang="fr">Chaque message est signé. Badge ✅ si valide, ⚠️ si falsifié.</p><p class="text-sm text-text-secondary" data-lang="en">Every message is signed. Badge ✅ if valid, ⚠️ if tampered.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🎨</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">5 Thèmes M3</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">5 M3 Themes</h3><p class="text-sm text-text-secondary">Midnight, Hacker, Phantom, Aurora, Daylight — Material Design 3.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🔑</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']">PIN + Biometric</h3><p class="text-sm text-text-secondary" data-lang="fr">PIN 6 chiffres PBKDF2 (600K itérations) + empreinte digitale.</p><p class="text-sm text-text-secondary" data-lang="en">6-digit PIN with PBKDF2 (600K iterations) + fingerprint unlock.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📎</div><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="fr">Fichiers chiffrés E2E</h3><h3 class="text-lg font-semibold mb-2 font-['Space_Grotesk']" data-lang="en">E2E Encrypted Files</h3><p class="text-sm text-text-secondary" data-lang="fr">Photos, fichiers, caméra — chiffré AES-256-GCM avant l'envoi.</p><p class="text-sm text-text-secondary" data-lang="en">Photos, files, camera — AES-256-GCM encrypted before sending.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🔐</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="fr">Chiffrement E2E</h3><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="en">E2E Encryption</h3><p class="text-sm text-text-secondary" data-lang="fr">PQXDH (X25519 + ML-KEM-1024) + AES-256-GCM. Double Ratchet avec Perfect Forward Secrecy.</p><p class="text-sm text-text-secondary" data-lang="en">PQXDH (X25519 + ML-KEM-1024) + AES-256-GCM. Double Ratchet with Perfect Forward Secrecy.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🧅</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']">Tor Hidden Services P2P</h3><p class="text-sm text-text-secondary" data-lang="fr">Daemon Tor réel (Guardian Project <code class="text-phantom-light text-xs">libtor.so</code>). Adresse .onion déterministe par compte — P2P direct, zéro serveur central, zéro Firebase.</p><p class="text-sm text-text-secondary" data-lang="en">Real Tor daemon (Guardian Project <code class="text-phantom-light text-xs">libtor.so</code>). Deterministic .onion address per account — direct P2P, zero central server, zero Firebase.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">👻</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="fr">Zéro métadonnée</h3><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="en">Zero Metadata</h3><p class="text-sm text-text-secondary" data-lang="fr">senderUid HMAC, padding message, trafic factice — aucune trace réseau.</p><p class="text-sm text-text-secondary" data-lang="en">senderUid HMAC, message padding, dummy traffic — no network trace.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default border border-phantom/30"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📬</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']">Fialka Mailbox</h3><p class="text-sm text-text-secondary" data-lang="fr">4 modes — <strong class="text-white">Direct P2P</strong>, <strong class="text-white">Personnel</strong> (.onion async), <strong class="text-white">Nœud Privé</strong> (liste blanche), <strong class="text-white">Nœud Public</strong>. Store-and-forward chiffré, TTL 7 jours, zéro déchiffrement serveur.</p><p class="text-sm text-text-secondary" data-lang="en">4 modes — <strong class="text-white">Direct P2P</strong>, <strong class="text-white">Personal</strong> (.onion async), <strong class="text-white">Private Node</strong> (whitelist), <strong class="text-white">Public Node</strong>. Encrypted store-and-forward, 7-day TTL, zero server-side decryption.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">⏱️</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="fr">Messages éphémères</h3><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="en">Ephemeral Messages</h3><p class="text-sm text-text-secondary" data-lang="fr">Timer côté envoi + côté lecture. Les messages disparaissent automatiquement.</p><p class="text-sm text-text-secondary" data-lang="en">Send-side + read-side timer. Messages vanish automatically.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📝</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']">BIP-39 Backup</h3><p class="text-sm text-text-secondary" data-lang="fr">24 mots mnémoniques pour sauvegarder votre clé. 2<sup>256</sup> combinaisons possibles.</p><p class="text-sm text-text-secondary" data-lang="en">24 mnemonic words to backup your key. 2<sup>256</sup> possible combinations.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">✍️</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']">Ed25519 Signing</h3><p class="text-sm text-text-secondary" data-lang="fr">Chaque message est signé. Badge ✅ si valide, ⚠️ si falsifié.</p><p class="text-sm text-text-secondary" data-lang="en">Every message is signed. Badge ✅ if valid, ⚠️ if tampered.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🎨</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="fr">5 Thèmes M3</h3><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="en">5 M3 Themes</h3><p class="text-sm text-text-secondary">Midnight, Hacker, Phantom, Aurora, Daylight — Material Design 3.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">🔑</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']">PIN + Biometric</h3><p class="text-sm text-text-secondary" data-lang="fr">PIN 6 chiffres PBKDF2 (600K itérations) + empreinte digitale.</p><p class="text-sm text-text-secondary" data-lang="en">6-digit PIN with PBKDF2 (600K iterations) + fingerprint unlock.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 cursor-default"><div class="tilt-content"><div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl mb-4">📎</div><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="fr">Fichiers chiffrés E2E</h3><h3 class="text-lg font-semibold mb-2 font-['Syne_Variable']" data-lang="en">E2E Encrypted Files</h3><p class="text-sm text-text-secondary" data-lang="fr">Photos, fichiers, caméra — chiffré AES-256-GCM avant l'envoi.</p><p class="text-sm text-text-secondary" data-lang="en">Photos, files, camera — AES-256-GCM encrypted before sending.</p></div></div>
       </div>
     </div>
   </section>
@@ -241,14 +258,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
     <div class="relative max-w-5xl mx-auto px-6">
       <div class="text-center mb-16 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Architecture <span class="gradient-text">réseau</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Network <span class="gradient-text">Architecture</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Architecture <span class="gradient-text">réseau</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">Network <span class="gradient-text">Architecture</span></h2>
       </div>
       <div class="section-reveal">
         <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
           <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
             <div class="text-3xl mb-2">📱</div>
-            <div class="font-semibold font-['Space_Grotesk']">Fialka</div>
+            <div class="font-semibold font-['Syne_Variable']">Fialka</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffre les messages</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">Encrypts messages</div>
           </div>
@@ -256,7 +273,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="arch-arrow w-1 h-8 rounded-full md:hidden"></div>
           <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
             <div class="text-3xl mb-2">🧅</div>
-            <div class="font-semibold font-['Space_Grotesk']">Tor Network</div>
+            <div class="font-semibold font-['Syne_Variable']">Tor Network</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">3 relais onion</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">3 onion relays</div>
           </div>
@@ -264,7 +281,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="arch-arrow w-1 h-8 rounded-full md:hidden"></div>
           <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px] border border-phantom/30">
             <div class="text-3xl mb-2">🌐</div>
-            <div class="font-semibold font-['Space_Grotesk']">.onion P2P</div>
+            <div class="font-semibold font-['Syne_Variable']">.onion P2P</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">Hidden Service direct</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">Direct Hidden Service</div>
           </div>
@@ -272,8 +289,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="arch-arrow w-1 h-8 rounded-full md:hidden"></div>
           <div class="arch-node glass-strong rounded-2xl p-6 text-center min-w-[160px]">
             <div class="text-3xl mb-2">📱</div>
-            <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Destinataire</div>
-            <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Recipient</div>
+            <div class="font-semibold font-['Syne_Variable']" data-lang="fr">Destinataire</div>
+            <div class="font-semibold font-['Syne_Variable']" data-lang="en">Recipient</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">Déchiffre en local</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">Decrypts locally</div>
           </div>
@@ -281,7 +298,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="flex justify-center mt-6">
           <div class="glass rounded-xl p-4 text-center border border-phantom/20">
             <div class="text-2xl mb-1">📬</div>
-            <div class="font-semibold font-['Space_Grotesk'] text-sm">Fialka Mailbox</div>
+            <div class="font-semibold font-['Syne_Variable'] text-sm">Fialka Mailbox</div>
             <div class="text-xs text-text-muted mt-1" data-lang="fr">Fallback hors-ligne · blob chiffré · TTL 7 jours</div>
             <div class="text-xs text-text-muted mt-1" data-lang="en">Offline fallback · encrypted blob · 7-day TTL</div>
           </div>
@@ -305,14 +322,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
     <div class="relative max-w-7xl mx-auto px-6">
       <div class="text-center mb-20 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sécurité de <span class="gradient-text glitch" data-text="niveau diplomatique">niveau diplomatique</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en"><span class="gradient-text glitch" data-text="Diplomatic-grade">Diplomatic-grade</span> security</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Sécurité de <span class="gradient-text glitch" data-text="niveau diplomatique">niveau diplomatique</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en"><span class="gradient-text glitch" data-text="Diplomatic-grade">Diplomatic-grade</span> security</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-12 items-start">
         <div class="section-reveal space-y-6">
           <div class="glass rounded-2xl p-6 space-y-4">
-            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2"><span class="text-phantom-light">⚡</span><span data-lang="fr">Flux de chiffrement</span><span data-lang="en">Encryption Flow</span></h3>
+            <h3 class="text-xl font-semibold font-['Syne_Variable'] flex items-center gap-2"><span class="text-phantom-light">⚡</span><span data-lang="fr">Flux de chiffrement</span><span data-lang="en">Encryption Flow</span></h3>
             <div class="space-y-3 font-['JetBrains_Mono'] text-sm">
               <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">01</span><span data-lang="fr">Message → Padding (256B/1K/4K/16K)</span><span data-lang="en">Message → Padding (256B/1K/4K/16K)</span></div>
               <div class="flex items-center gap-3 p-3 rounded-lg bg-surface/50 border border-phantom/10"><span class="text-accent-green">02</span><span>Padded → AES-256-GCM(ratchet_key, nonce)</span></div>
@@ -322,7 +339,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
           </div>
           <div class="glass rounded-2xl p-6">
-            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🎲</span><span data-lang="fr">Entropie : 256 bits</span><span data-lang="en">Entropy: 256 bits</span></h3>
+            <h3 class="text-xl font-semibold font-['Syne_Variable'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🎲</span><span data-lang="fr">Entropie : 256 bits</span><span data-lang="en">Entropy: 256 bits</span></h3>
             <div class="font-['JetBrains_Mono'] text-xs text-phantom-light/80 bg-surface/50 p-4 rounded-lg overflow-x-auto mb-4"><div id="entropy-bits" class="flex flex-wrap gap-0.5 leading-5"></div></div>
             <p class="text-sm text-text-secondary" data-lang="fr"><strong class="text-white">2<sup>256</sup></strong> = 1.16 × 10<sup>77</sup> combinaisons. Plus que les atomes de l'univers (10<sup>80</sup>). Un superordinateur à 10<sup>12</sup> clés/s → <strong class="text-phantom-light">3.67 × 10<sup>57</sup> années</strong>.</p>
             <p class="text-sm text-text-secondary" data-lang="en"><strong class="text-white">2<sup>256</sup></strong> = 1.16 × 10<sup>77</sup> combinations. More than atoms in the universe (10<sup>80</sup>). A supercomputer at 10<sup>12</sup> keys/s → <strong class="text-phantom-light">3.67 × 10<sup>57</sup> years</strong>.</p>
@@ -331,7 +348,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
         <div class="section-reveal space-y-6">
           <div class="glass rounded-2xl p-6">
-            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🔄</span> Double Ratchet PQXDH</h3>
+            <h3 class="text-xl font-semibold font-['Syne_Variable'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🔄</span> Double Ratchet PQXDH</h3>
             <div class="space-y-3 text-sm text-text-secondary">
               <div class="flex items-start gap-3"><span class="text-phantom-light mt-0.5">▸</span><span data-lang="fr"><strong class="text-white">PQXDH</strong> — Échange hybride X25519 + ML-KEM-1024 (post-quantique)</span><span data-lang="en"><strong class="text-white">PQXDH</strong> — Hybrid exchange X25519 + ML-KEM-1024 (post-quantum)</span></div>
               <div class="flex items-start gap-3"><span class="text-phantom-light mt-0.5">▸</span><span data-lang="fr"><strong class="text-white">DH Ratchet</strong> — Nouvel échange X25519 à chaque tour</span><span data-lang="en"><strong class="text-white">DH Ratchet</strong> — New X25519 exchange every reply turn</span></div>
@@ -341,13 +358,13 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
           </div>
           <div class="glass rounded-2xl p-6">
-            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">📐</span> PQXDH (X25519 + ML-KEM-1024)</h3>
+            <h3 class="text-xl font-semibold font-['Syne_Variable'] flex items-center gap-2 mb-4"><span class="text-phantom-light">📐</span> PQXDH (X25519 + ML-KEM-1024)</h3>
             <p class="text-sm text-text-secondary mb-3" data-lang="fr"><strong class="text-white">Hybride post-quantique</strong> : X25519 (Curve25519) + ML-KEM-1024 (NIST FIPS 203). Résiste aux attaques classiques ET quantiques.</p>
             <p class="text-sm text-text-secondary mb-3" data-lang="en"><strong class="text-white">Post-quantum hybrid</strong>: X25519 (Curve25519) + ML-KEM-1024 (NIST FIPS 203). Resists both classical AND quantum attacks.</p>
             <div class="p-3 rounded-lg bg-surface/50 font-['JetBrains_Mono'] text-xs text-phantom-light/80">SK = HKDF(X25519(a,B) ‖ ML-KEM.Decaps(sk, ct))</div>
           </div>
           <div class="glass rounded-2xl p-6">
-            <h3 class="text-xl font-semibold font-['Space_Grotesk'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🫧</span><span data-lang="fr">Empreinte Emoji (Anti-MITM)</span><span data-lang="en">Emoji Fingerprint (Anti-MITM)</span></h3>
+            <h3 class="text-xl font-semibold font-['Syne_Variable'] flex items-center gap-2 mb-4"><span class="text-phantom-light">🫧</span><span data-lang="fr">Empreinte Emoji (Anti-MITM)</span><span data-lang="en">Emoji Fingerprint (Anti-MITM)</span></h3>
             <p class="text-sm text-text-secondary mb-3" data-lang="fr"><strong class="text-white">16 emojis</strong> d'une palette de 64 = <strong class="text-phantom-light">96 bits d'entropie</strong>.</p>
             <p class="text-sm text-text-secondary mb-3" data-lang="en"><strong class="text-white">16 emojis</strong> from a 64-emoji palette = <strong class="text-phantom-light">96 bits of entropy</strong>.</p>
             <div class="flex gap-1 text-2xl p-3 rounded-lg bg-surface/50 justify-center flex-wrap" id="emoji-fingerprint"></div>
@@ -362,19 +379,19 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <section id="crypto" class="py-32 relative">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-20 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Plongée dans la <span class="gradient-text">cryptographie</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en"><span class="gradient-text">Cryptography</span> deep dive</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Plongée dans la <span class="gradient-text">cryptographie</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en"><span class="gradient-text">Cryptography</span> deep dive</h2>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-reveal">
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">⚡</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">PQXDH</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Échange hybride X25519 + ML-KEM-1024. Résiste aux attaques classiques ET quantiques.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Hybrid exchange X25519 + ML-KEM-1024. Resists classical AND quantum attacks.</p><div class="font-['JetBrains_Mono'] text-xs p-2 rounded bg-surface/50 text-phantom-light/70">SK = HKDF(DH₁‖DH₂‖DH₃‖DH₄‖ML-KEM.ss)</div></div></div>
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">🔒</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">AES-256-GCM</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Mode authentifié : chiffré ET vérifié par un tag 128-bit.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Authenticated mode: encrypted AND verified by 128-bit tag.</p><div class="font-['JetBrains_Mono'] text-xs p-2 rounded bg-surface/50 text-phantom-light/70">C = AES-GCM(K, IV, P, AAD) → (ct, tag₁₂₈)</div></div></div>
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">📏</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">Message Padding</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Messages paddés à 256B/1KB/4KB/16KB. Taille réelle cachée.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Messages padded to 256B/1KB/4KB/16KB. Real size hidden.</p><div class="flex gap-2 mt-2"><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-1/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-2/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-3/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-full rounded bg-phantom-light"></div></div></div></div></div>
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">👻</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2" data-lang="fr">Trafic Factice</h3><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2" data-lang="en">Dummy Traffic</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Messages factices toutes les 45-120s via le vrai Double Ratchet.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Fake messages every 45-120s via real Double Ratchet.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">✍️</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">Ed25519</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Signature sur <code class="text-phantom-light">ct ‖ convId ‖ ts</code>. Anti-falsification.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Signature over <code class="text-phantom-light">ct ‖ convId ‖ ts</code>. Anti-tampering.</p><div class="flex items-center gap-2 text-xs"><span class="px-2 py-1 rounded bg-accent-green/20 text-accent-green">✅ Valid</span><span class="px-2 py-1 rounded bg-accent-red/20 text-accent-red">⚠️ Tampered</span></div></div></div>
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">📝</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">BIP-39</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">24 mots = 256 bits + checksum SHA-256. Espace = 2<sup>256</sup>.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">24 words = 256 bits + SHA-256 checksum. Space = 2<sup>256</sup>.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">🗄️</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">SQLCipher</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Base Room chiffrée AES-256. Clé dans EncryptedSharedPreferences.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Room DB encrypted AES-256. Key in EncryptedSharedPreferences.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 border border-phantom/30"><div class="tilt-content"><div class="text-3xl mb-3">⚡</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">ChaCha20-Poly1305 <span class="text-xs text-phantom-light">V3.5</span></h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Chiffrement alternatif auto-sélectionné si pas d'AES-NI. 3× plus rapide en software pur. Même sécurité AEAD.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Auto-selected alternative cipher when no AES-NI. 3× faster in pure software. Same AEAD security.</p></div></div>
-        <div class="tilt-card glass rounded-2xl p-6 border border-phantom/30"><div class="tilt-content"><div class="text-3xl mb-3">🏛️</div><h3 class="font-semibold font-['Space_Grotesk'] text-lg mb-2">SPQR Triple Ratchet <span class="text-xs text-phantom-light">V3.5</span></h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Ré-encapsulation ML-KEM-1024 tous les 10 messages. Protection PQ continue, pas seulement au handshake.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">ML-KEM-1024 re-encapsulation every 10 messages. Continuous PQ protection, not just at handshake.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">⚡</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">PQXDH</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Échange hybride X25519 + ML-KEM-1024. Résiste aux attaques classiques ET quantiques.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Hybrid exchange X25519 + ML-KEM-1024. Resists classical AND quantum attacks.</p><div class="font-['JetBrains_Mono'] text-xs p-2 rounded bg-surface/50 text-phantom-light/70">SK = HKDF(DH₁‖DH₂‖DH₃‖DH₄‖ML-KEM.ss)</div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">🔒</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">AES-256-GCM</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Mode authentifié : chiffré ET vérifié par un tag 128-bit.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Authenticated mode: encrypted AND verified by 128-bit tag.</p><div class="font-['JetBrains_Mono'] text-xs p-2 rounded bg-surface/50 text-phantom-light/70">C = AES-GCM(K, IV, P, AAD) → (ct, tag₁₂₈)</div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">📏</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">Message Padding</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Messages paddés à 256B/1KB/4KB/16KB. Taille réelle cachée.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Messages padded to 256B/1KB/4KB/16KB. Real size hidden.</p><div class="flex gap-2 mt-2"><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-1/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-2/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-3/4 rounded bg-phantom-light"></div></div><div class="flex-1 h-3 rounded bg-phantom/30"><div class="h-full w-full rounded bg-phantom-light"></div></div></div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">👻</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2" data-lang="fr">Trafic Factice</h3><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2" data-lang="en">Dummy Traffic</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Messages factices toutes les 45-120s via le vrai Double Ratchet.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Fake messages every 45-120s via real Double Ratchet.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">✍️</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">Ed25519</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Signature sur <code class="text-phantom-light">ct ‖ convId ‖ ts</code>. Anti-falsification.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Signature over <code class="text-phantom-light">ct ‖ convId ‖ ts</code>. Anti-tampering.</p><div class="flex items-center gap-2 text-xs"><span class="px-2 py-1 rounded bg-accent-green/20 text-accent-green">✅ Valid</span><span class="px-2 py-1 rounded bg-accent-red/20 text-accent-red">⚠️ Tampered</span></div></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">📝</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">BIP-39</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">24 mots = 256 bits + checksum SHA-256. Espace = 2<sup>256</sup>.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">24 words = 256 bits + SHA-256 checksum. Space = 2<sup>256</sup>.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6"><div class="tilt-content"><div class="text-3xl mb-3">🗄️</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">SQLCipher</h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Base Room chiffrée AES-256. Clé dans EncryptedSharedPreferences.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Room DB encrypted AES-256. Key in EncryptedSharedPreferences.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 border border-phantom/30"><div class="tilt-content"><div class="text-3xl mb-3">⚡</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">ChaCha20-Poly1305 <span class="text-xs text-phantom-light">V3.5</span></h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Chiffrement alternatif auto-sélectionné si pas d'AES-NI. 3× plus rapide en software pur. Même sécurité AEAD.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">Auto-selected alternative cipher when no AES-NI. 3× faster in pure software. Same AEAD security.</p></div></div>
+        <div class="tilt-card glass rounded-2xl p-6 border border-phantom/30"><div class="tilt-content"><div class="text-3xl mb-3">🏛️</div><h3 class="font-semibold font-['Syne_Variable'] text-lg mb-2">SPQR Triple Ratchet <span class="text-xs text-phantom-light">V3.5</span></h3><p class="text-sm text-text-secondary mb-3" data-lang="fr">Ré-encapsulation ML-KEM-1024 tous les 10 messages. Protection PQ continue, pas seulement au handshake.</p><p class="text-sm text-text-secondary mb-3" data-lang="en">ML-KEM-1024 re-encapsulation every 10 messages. Continuous PQ protection, not just at handshake.</p></div></div>
       </div>
       <div class="text-center mt-12">
         <a href={`${base}cryptography`} class="inline-flex items-center gap-3 px-8 py-4 glass border border-phantom/30 hover:border-phantom-light text-phantom-light font-semibold rounded-2xl transition-all hover:scale-105 group">
@@ -391,8 +408,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
     <div class="relative max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Comment on se <span class="gradient-text">compare</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">How we <span class="gradient-text">compare</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Comment on se <span class="gradient-text">compare</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">How we <span class="gradient-text">compare</span></h2>
       </div>
       <div class="section-reveal overflow-x-auto">
         <table class="w-full text-sm">
@@ -437,8 +454,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <section id="inspirations" class="py-32 relative">
     <div class="max-w-5xl mx-auto px-6">
       <div class="text-center mb-8 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">L'<span class="gradient-text">héritage</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The <span class="gradient-text">legacy</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">L'<span class="gradient-text">héritage</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">The <span class="gradient-text">legacy</span></h2>
         <p class="text-text-secondary max-w-2xl mx-auto" data-lang="fr">De la machine de chiffrement M-125 aux protocoles open source modernes — l'ADN de Fialka.</p>
         <p class="text-text-secondary max-w-2xl mx-auto" data-lang="en">From the M-125 cipher machine to modern open-source protocols — Fialka's DNA.</p>
       </div>
@@ -455,7 +472,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl">🔏</div>
             <div>
-              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Fialka M-125</h3>
+              <h3 class="font-semibold font-['Syne_Variable'] text-lg">Fialka M-125</h3>
               <div class="text-xs text-text-muted" data-lang="fr">La machine originelle — 1956</div>
               <div class="text-xs text-text-muted" data-lang="en">The original machine — 1956</div>
             </div>
@@ -467,7 +484,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-accent-green/10 flex items-center justify-center text-2xl">💬</div>
             <div>
-              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Signal</h3>
+              <h3 class="font-semibold font-['Syne_Variable'] text-lg">Signal</h3>
               <div class="text-xs text-text-muted" data-lang="fr">Le standard du Double Ratchet — 2013</div>
               <div class="text-xs text-text-muted" data-lang="en">The Double Ratchet standard — 2013</div>
             </div>
@@ -479,7 +496,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-phantom/20 flex items-center justify-center text-2xl">🌐</div>
             <div>
-              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Session</h3>
+              <h3 class="font-semibold font-['Syne_Variable'] text-lg">Session</h3>
               <div class="text-xs text-text-muted" data-lang="fr">Messagerie décentralisée — 2020</div>
               <div class="text-xs text-text-muted" data-lang="en">Decentralized messenger — 2020</div>
             </div>
@@ -491,7 +508,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-xl bg-accent-green/10 flex items-center justify-center text-2xl">🧱</div>
             <div>
-              <h3 class="font-semibold font-['Space_Grotesk'] text-lg">Briar</h3>
+              <h3 class="font-semibold font-['Syne_Variable'] text-lg">Briar</h3>
               <div class="text-xs text-text-muted" data-lang="fr">Messagerie P2P résiliente — 2018</div>
               <div class="text-xs text-text-muted" data-lang="en">Resilient P2P messenger — 2018</div>
             </div>
@@ -515,36 +532,36 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <!-- ===== ROADMAP ===== -->
   <section id="roadmap" class="py-32 relative">
     <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center mb-20 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4"><span class="gradient-text">Roadmap</span></h2></div>
+      <div class="text-center mb-20 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4"><span class="gradient-text">Roadmap</span></h2></div>
       <div class="relative section-reveal">
         <div class="absolute left-8 top-0 bottom-0 w-0.5 timeline-line"></div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V1 — Le Coffre</h3></div><p class="text-sm text-text-secondary" data-lang="fr">E2E, contacts QR, PIN+bio, thèmes, messages éphémères, SQLCipher</p><p class="text-sm text-text-secondary" data-lang="en">E2E, QR contacts, PIN+bio, themes, ephemeral messages, SQLCipher</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Syne_Variable']">V1 — Le Coffre</h3></div><p class="text-sm text-text-secondary" data-lang="fr">E2E, contacts QR, PIN+bio, thèmes, messages éphémères, SQLCipher</p><p class="text-sm text-text-secondary" data-lang="en">E2E, QR contacts, PIN+bio, themes, ephemeral messages, SQLCipher</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V2 — Ascension</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Full Double Ratchet X25519, BIP-39, suppression compte, UI modernization</p><p class="text-sm text-text-secondary" data-lang="en">Full Double Ratchet X25519, BIP-39, account deletion, UI modernization</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Syne_Variable']">V2 — Ascension</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Full Double Ratchet X25519, BIP-39, suppression compte, UI modernization</p><p class="text-sm text-text-secondary" data-lang="en">Full Double Ratchet X25519, BIP-39, account deletion, UI modernization</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.3 — Fortification</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Material 3, Tor intégré, Ed25519, fichiers E2E, dummy traffic, ProGuard, HMAC senderUid</p><p class="text-sm text-text-secondary" data-lang="en">Material 3, built-in Tor, Ed25519, E2E files, dummy traffic, ProGuard, HMAC senderUid</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Syne_Variable']">V3.3 — Fortification</h3></div><p class="text-sm text-text-secondary" data-lang="fr">Material 3, Tor intégré, Ed25519, fichiers E2E, dummy traffic, ProGuard, HMAC senderUid</p><p class="text-sm text-text-secondary" data-lang="en">Material 3, built-in Tor, Ed25519, E2E files, dummy traffic, ProGuard, HMAC senderUid</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.4 — Horizon Quantique</h3></div><p class="text-sm text-text-secondary" data-lang="fr">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, vérification empreinte indépendante, QR deep link v2, Room DB v16</p><p class="text-sm text-text-secondary" data-lang="en">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, independent fingerprint verification, QR deep link v2, Room DB v16</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Syne_Variable']">V3.4 — Horizon Quantique</h3></div><p class="text-sm text-text-secondary" data-lang="fr">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, vérification empreinte indépendante, QR deep link v2, Room DB v16</p><p class="text-sm text-text-secondary" data-lang="en">PQXDH (X25519 + ML-KEM-1024), DeviceSecurityManager StrongBox, independent fingerprint verification, QR deep link v2, Room DB v16</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V3.5 — Défense Continue</h3></div><p class="text-sm text-text-secondary" data-lang="fr">SPQR Triple Ratchet (ré-encapsulation ML-KEM tous les 10 msgs), ChaCha20-Poly1305 adaptatif, modèle de menace (6 tiers), sélection auto cipher hardware</p><p class="text-sm text-text-secondary" data-lang="en">SPQR Triple Ratchet (ML-KEM re-encapsulation every 10 msgs), adaptive ChaCha20-Poly1305, threat model (6 tiers), auto hardware cipher selection</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Syne_Variable']">V3.5 — Défense Continue</h3></div><p class="text-sm text-text-secondary" data-lang="fr">SPQR Triple Ratchet (ré-encapsulation ML-KEM tous les 10 msgs), ChaCha20-Poly1305 adaptatif, modèle de menace (6 tiers), sélection auto cipher hardware</p><p class="text-sm text-text-secondary" data-lang="en">SPQR Triple Ratchet (ML-KEM re-encapsulation every 10 msgs), adaptive ChaCha20-Poly1305, threat model (6 tiers), auto hardware cipher selection</p></div>
         </div>
         <div class="relative pl-20 pb-12 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom border-4 border-surface flex items-center justify-center"><span class="text-[8px]">✓</span></div>
-          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Space_Grotesk']">V4.0 — Kill Firebase</h3></div><p class="text-sm text-text-secondary" data-lang="fr">P2P pur via Tor Hidden Services, Fialka Mailbox 4 modes, identité 1 Seed → Tout, ML-DSA-44, statuts de livraison, refresh UI 2026</p><p class="text-sm text-text-secondary" data-lang="en">Pure P2P via Tor Hidden Services, Fialka Mailbox 4 modes, 1 Seed → Everything identity, ML-DSA-44, delivery badges, 2026 UI refresh</p></div>
+          <div class="glass rounded-xl p-5"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green">Completed</span><h3 class="font-semibold font-['Syne_Variable']">V4.0 — Kill Firebase</h3></div><p class="text-sm text-text-secondary" data-lang="fr">P2P pur via Tor Hidden Services, Fialka Mailbox 4 modes, identité 1 Seed → Tout, ML-DSA-44, statuts de livraison, refresh UI 2026</p><p class="text-sm text-text-secondary" data-lang="en">Pure P2P via Tor Hidden Services, Fialka Mailbox 4 modes, 1 Seed → Everything identity, ML-DSA-44, delivery badges, 2026 UI refresh</p></div>
         </div>
         <div class="relative pl-20 timeline-item">
           <div class="absolute left-5 w-6 h-6 rounded-full bg-phantom-light border-4 border-surface animate-pulse-glow flex items-center justify-center"><span class="text-[8px]">→</span></div>
-          <div class="glass rounded-xl p-5 border border-phantom/30"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">Prochain</span><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">Next</span><h3 class="font-semibold font-['Space_Grotesk']">V4.1 — Camouflage</h3></div><p class="text-sm text-text-secondary" data-lang="fr">App disguise, faux écran fonctionnel, Dual PIN, Panic Button, messages vocaux E2E (Opus), reply/quote, Sealed Sender</p><p class="text-sm text-text-secondary" data-lang="en">App disguise, functional cover screen, Dual PIN, Panic Button, E2E voice messages (Opus), reply/quote, Sealed Sender</p></div>
+          <div class="glass rounded-xl p-5 border border-phantom/30"><div class="flex items-center gap-3 mb-2"><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">Prochain</span><span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">Next</span><h3 class="font-semibold font-['Syne_Variable']">V4.1 — Camouflage</h3></div><p class="text-sm text-text-secondary" data-lang="fr">App disguise, faux écran fonctionnel, Dual PIN, Panic Button, messages vocaux E2E (Opus), reply/quote, Sealed Sender</p><p class="text-sm text-text-secondary" data-lang="en">App disguise, functional cover screen, Dual PIN, Panic Button, E2E voice messages (Opus), reply/quote, Sealed Sender</p></div>
         </div>
       </div>
     </div>
@@ -559,8 +576,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8">
           <img src={`${base}icon-192.png`} alt="Fialka" class="w-20 h-20 rounded-2xl" />
         </div>
-        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Télécharger Fial<span class="gradient-text">ka</span></h2>
-        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Download Fial<span class="gradient-text">ka</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Télécharger Fial<span class="gradient-text">ka</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">Download Fial<span class="gradient-text">ka</span></h2>
         <p class="text-text-secondary mb-8" data-lang="fr">Version 4.0 · Android 13+ · APK signé · Open Source GPLv3</p>
         <p class="text-text-secondary mb-8" data-lang="en">Version 4.0 · Android 13+ · Signed APK · Open Source GPLv3</p>
         <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-5 bg-phantom hover:bg-phantom-light text-white text-lg font-semibold rounded-2xl transition-all hover:scale-105 glow-phantom-strong mb-8">
@@ -575,7 +592,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <!-- ===== FAQ ===== -->
   <section id="faq" class="py-32 relative">
     <div class="max-w-3xl mx-auto px-6">
-      <div class="text-center mb-16 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4">FAQ</h2></div>
+      <div class="text-center mb-16 section-reveal"><h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4">FAQ</h2></div>
       <div class="space-y-4 section-reveal">
         <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Pourquoi le nom « Fialka » ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Fialka (Фиалка, « violette » en russe) est le nom de la M-125, la machine de chiffrement soviétique utilisée par le Pacte de Varsovie de 1956 à 1990 pour les communications diplomatiques et militaires classifiées. Nous portons cet héritage : une cryptographie forgée pour résister à des décennies d'interception, aujourd'hui armée contre l'ère quantique.</div></div>
         <div class="faq-item glass rounded-xl" data-lang="fr"><button class="w-full flex items-center justify-between p-5 text-left cursor-pointer" onclick="this.parentElement.classList.toggle('open')"><span class="font-semibold">Fialka est-il vraiment gratuit ?</span><svg class="faq-chevron w-5 h-5 text-phantom-light flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer px-5 pb-5 text-sm text-text-secondary">Oui, 100% gratuit et open source sous licence GPLv3. Pas de publicité, pas de tracking, pas d'abonnement.</div></div>
@@ -843,7 +860,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           document.body.classList.add('easter-unlocked');
           const msg = document.createElement('div');
           msg.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] glass-strong rounded-3xl p-12 text-center';
-          msg.innerHTML = `<div class="text-6xl mb-4">🔓</div><div class="text-2xl font-bold font-['Space_Grotesk'] gradient-text mb-2">Easter Egg Unlocked!</div><div class="text-text-secondary">You found the secret. You're a true cypherpunk. 🫡</div>`;
+          msg.innerHTML = `<div class="text-6xl mb-4">🔓</div><div class="text-2xl font-bold font-['Syne_Variable'] gradient-text mb-2">Easter Egg Unlocked!</div><div class="text-text-secondary">You found the secret. You're a true cypherpunk. 🫡</div>`;
           document.body.appendChild(msg);
           setTimeout(() => { msg.remove(); document.body.classList.remove('easter-unlocked'); }, 4000);
         }

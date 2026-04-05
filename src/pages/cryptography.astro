@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">
         <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
-        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+        <span class="text-xl font-bold font-['Syne_Variable']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
@@ -20,8 +20,19 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="text-phantom-light font-semibold" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
-        <a href={`${base}security`} class="hover:text-phantom-light transition-colors">Security</a>
-        <a href={`${base}downloads`} class="hover:text-phantom-light transition-colors">Downloads</a>
+        <div class="relative group">
+                <button class="flex items-center gap-1 hover:text-phantom-light transition-colors cursor-pointer">
+                  Docs
+                  <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 glass-strong rounded-xl border border-white/10 py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                  <a href={`${base}security`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Security</a>
+                  <a href={`${base}mailbox`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Mailbox</a>
+                  <a href={`${base}platforms`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Platforms</a>
+                  <a href={`${base}downloads`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Downloads</a>
+                  <a href={`${base}faq`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">FAQ</a>
+                </div>
+              </div>
       </div>
       <div class="flex items-center gap-4">
         <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer"><span data-lang="fr">EN</span><span data-lang="en">FR</span></button>
@@ -44,7 +55,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
         <a href={`${base}security`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Security</a>
+        <a href={`${base}mailbox`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Mailbox</a>
+        <a href={`${base}platforms`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Platforms</a>
         <a href={`${base}downloads`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Downloads</a>
+        <a href={`${base}faq`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">FAQ</a>
         <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
@@ -63,7 +77,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <span data-lang="fr">Pourquoi ces choix cryptographiques ?</span>
         <span data-lang="en">Why these cryptographic choices?</span>
       </div>
-      <h1 class="text-5xl md:text-7xl font-black font-['Space_Grotesk'] mb-6">
+      <h1 class="text-5xl md:text-7xl font-black font-['Syne_Variable'] mb-6">
         <span data-lang="fr"><span class="gradient-text">Cryptographie</span> comparée</span>
         <span data-lang="en">Comparative <span class="gradient-text">Cryptography</span></span>
       </h1>
@@ -80,62 +94,62 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <section class="py-20 relative">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16 section-reveal">
-        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">La pile <span class="gradient-text">cryptographique</span></h2>
-        <h2 class="text-3xl md:text-4xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The cryptographic <span class="gradient-text">stack</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">La pile <span class="gradient-text">cryptographique</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">The cryptographic <span class="gradient-text">stack</span></h2>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 section-reveal">
         <a href="#vs-aes" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">🔒</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">AES-256-GCM</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">AES-256-GCM</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffrement symétrique</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Symmetric encryption</div>
         </a>
         <a href="#vs-chacha" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">⚡</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">ChaCha20-Poly1305</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">ChaCha20-Poly1305</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Chiffrement alternatif</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Alternative cipher</div>
         </a>
         <a href="#vs-x25519" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">🔑</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">X25519</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">X25519</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Échange de clés</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Key exchange</div>
         </a>
         <a href="#vs-mlkem" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">🛡️</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">ML-KEM-1024</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">ML-KEM-1024</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Post-quantique</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Post-quantum</div>
         </a>
         <a href="#vs-ed25519" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">✍️</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">Ed25519</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">Ed25519</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Signatures</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Signatures</div>
         </a>
         <a href="#vs-ratchet" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">🔄</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">Double Ratchet</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">Double Ratchet</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Renouvellement de clés</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Key renewal</div>
         </a>
         <a href="#vs-spqr" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">🏛️</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">SPQR</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">SPQR</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Triple Ratchet PQ</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">PQ Triple Ratchet</div>
         </a>
         <a href="#vs-hkdf" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group">
           <div class="text-3xl mb-2">🧪</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors">HKDF-SHA256</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors">HKDF-SHA256</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Dérivation de clés</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Key derivation</div>
         </a>
         <a href="#vs-quantum" class="glass rounded-2xl p-5 text-center crypto-stack-card cursor-pointer group border border-accent-red/20">
           <div class="text-3xl mb-2">⚛️</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors" data-lang="fr">Menaces quantiques</div>
-          <div class="font-semibold font-['Space_Grotesk'] text-sm group-hover:text-phantom-light transition-colors" data-lang="en">Quantum threats</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors" data-lang="fr">Menaces quantiques</div>
+          <div class="font-semibold font-['Syne_Variable'] text-sm group-hover:text-phantom-light transition-colors" data-lang="en">Quantum threats</div>
           <div class="text-xs text-text-muted mt-1" data-lang="fr">Shor, Grover & défenses</div>
           <div class="text-xs text-text-muted mt-1" data-lang="en">Shor, Grover & defenses</div>
         </a>
@@ -153,15 +167,15 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Chiffrement symétrique</span>
           <span data-lang="en">Symmetric encryption</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">AES-256-GCM</span> ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">AES-256-GCM</span>?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi <span class="gradient-text">AES-256-GCM</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why <span class="gradient-text">AES-256-GCM</span>?</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-8 section-reveal">
         <!-- Winner -->
         <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 relative overflow-hidden">
           <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-accent-green/20 text-accent-green text-xs font-bold">Fialka</div>
-          <h3 class="text-2xl font-bold font-['Space_Grotesk'] mb-4 flex items-center gap-3">
+          <h3 class="text-2xl font-bold font-['Syne_Variable'] mb-4 flex items-center gap-3">
             <span class="text-3xl">🔒</span> AES-256-GCM
           </h3>
           <div class="space-y-3 text-sm text-text-secondary">
@@ -183,7 +197,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <!-- Losers -->
         <div class="space-y-6">
           <div class="glass rounded-2xl p-6 border border-accent-red/20 opacity-80">
-            <h3 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h3 class="text-lg font-bold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-xl">🐌</span> RSA-2048/4096
               <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="fr">Pas adapté</span>
               <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="en">Not suitable</span>
@@ -196,7 +210,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
           </div>
           <div class="glass rounded-2xl p-6 border border-white/5 opacity-60">
-            <h3 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h3 class="text-lg font-bold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-xl">😐</span> AES-256-CBC
               <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="fr">Inférieur</span>
               <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="en">Inferior</span>
@@ -220,15 +234,15 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Chiffrement adaptatif · Nouveau en V3.5</span>
           <span data-lang="en">Adaptive cipher · New in V3.5</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">ChaCha20-Poly1305</span> en alternative ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">ChaCha20-Poly1305</span> as alternative?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi <span class="gradient-text">ChaCha20-Poly1305</span> en alternative ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why <span class="gradient-text">ChaCha20-Poly1305</span> as alternative?</h2>
       </div>
 
       <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12 mb-8">
         <div class="grid lg:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Sélection automatique du chiffrement</h3>
-            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Automatic cipher selection</h3>
+            <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Sélection automatique du chiffrement</h3>
+            <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">Automatic cipher selection</h3>
             <p class="text-text-secondary mb-6" data-lang="fr">Fialka détecte au runtime si le processeur supporte <strong class="text-white">AES-NI</strong> (accélération matérielle AES). Si oui → AES-256-GCM. Sinon → ChaCha20-Poly1305, qui est <strong class="text-phantom-light">3× plus rapide en software pur</strong>.</p>
             <p class="text-text-secondary mb-6" data-lang="en">Fialka detects at runtime whether the CPU supports <strong class="text-white">AES-NI</strong> (hardware AES acceleration). If yes → AES-256-GCM. If no → ChaCha20-Poly1305, which is <strong class="text-phantom-light">3× faster in pure software</strong>.</p>
             <div class="space-y-2 text-sm">
@@ -248,7 +262,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="space-y-4">
               <div class="glass rounded-xl p-5">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="font-semibold font-['Space_Grotesk'] text-sm">AES-256-GCM</span>
+                  <span class="font-semibold font-['Syne_Variable'] text-sm">AES-256-GCM</span>
                   <span class="text-xs text-text-muted" data-lang="fr">avec AES-NI</span>
                   <span class="text-xs text-text-muted" data-lang="en">with AES-NI</span>
                 </div>
@@ -257,7 +271,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
               </div>
               <div class="glass rounded-xl p-5">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="font-semibold font-['Space_Grotesk'] text-sm">ChaCha20-Poly1305</span>
+                  <span class="font-semibold font-['Syne_Variable'] text-sm">ChaCha20-Poly1305</span>
                   <span class="text-xs text-accent-green" data-lang="fr">sans AES-NI</span>
                   <span class="text-xs text-accent-green" data-lang="en">without AES-NI</span>
                 </div>
@@ -266,7 +280,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
               </div>
               <div class="glass rounded-xl p-5 opacity-50">
                 <div class="flex items-center justify-between mb-3">
-                  <span class="font-semibold font-['Space_Grotesk'] text-sm">AES-256-GCM</span>
+                  <span class="font-semibold font-['Syne_Variable'] text-sm">AES-256-GCM</span>
                   <span class="text-xs text-accent-red" data-lang="fr">sans AES-NI</span>
                   <span class="text-xs text-accent-red" data-lang="en">without AES-NI</span>
                 </div>
@@ -280,7 +294,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       <div class="grid md:grid-cols-2 gap-6 section-reveal">
         <div class="glass rounded-2xl p-6">
-          <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2"><span class="text-phantom-light">⚡</span> ChaCha20-Poly1305</h4>
+          <h4 class="font-semibold font-['Syne_Variable'] mb-3 flex items-center gap-2"><span class="text-phantom-light">⚡</span> ChaCha20-Poly1305</h4>
           <div class="space-y-2 text-sm text-text-secondary">
             <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">Conçu par djb</strong> (Daniel J. Bernstein) — audité, adopté par TLS 1.3, WireGuard, Google</span><span data-lang="en"><strong class="text-white">Designed by djb</strong> (Daniel J. Bernstein) — audited, adopted by TLS 1.3, WireGuard, Google</span></div>
             <div class="flex items-start gap-2"><span class="text-accent-green mt-0.5">✓</span><span data-lang="fr"><strong class="text-white">AEAD</strong> identique à GCM — chiffrement + authentification en un passage</span><span data-lang="en"><strong class="text-white">AEAD</strong> just like GCM — encryption + authentication in one pass</span></div>
@@ -289,7 +303,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           </div>
         </div>
         <div class="glass rounded-2xl p-6">
-          <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2"><span class="text-phantom-light">🔐</span><span data-lang="fr">Les deux sont AEAD</span><span data-lang="en">Both are AEAD</span></h4>
+          <h4 class="font-semibold font-['Syne_Variable'] mb-3 flex items-center gap-2"><span class="text-phantom-light">🔐</span><span data-lang="fr">Les deux sont AEAD</span><span data-lang="en">Both are AEAD</span></h4>
           <div class="space-y-2 text-sm text-text-secondary">
             <p data-lang="fr">AES-256-GCM et ChaCha20-Poly1305 fournissent tous les deux le chiffrement <strong class="text-white">authentifié</strong> (AEAD). Ils intègrent nativement un MAC (Encrypt-then-MAC) :</p>
             <p data-lang="en">Both AES-256-GCM and ChaCha20-Poly1305 provide <strong class="text-white">authenticated</strong> encryption (AEAD). They natively include a MAC (Encrypt-then-MAC):</p>
@@ -315,8 +329,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Échange de clés Diffie-Hellman</span>
           <span data-lang="en">Diffie-Hellman key exchange</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">X25519</span> ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">X25519</span>?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi <span class="gradient-text">X25519</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why <span class="gradient-text">X25519</span>?</h2>
       </div>
 
       <div class="section-reveal overflow-x-auto mb-8">
@@ -380,17 +394,17 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       <div class="grid md:grid-cols-3 gap-6 mt-8 section-reveal">
         <div class="glass rounded-2xl p-6 border border-accent-green/20">
-          <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-accent-green">Curve25519</h4>
+          <h4 class="font-semibold font-['Syne_Variable'] mb-2 text-accent-green">Curve25519</h4>
           <p class="text-xs text-text-secondary" data-lang="fr">Courbe de Montgomery a = 486662, champ premier p = 2<sup>255</sup> − 19. Conçue par Daniel J. Bernstein pour être <strong class="text-white">immune aux timing attacks</strong> par design. Utilisée par Signal, WireGuard, SSH, Tor.</p>
           <p class="text-xs text-text-secondary" data-lang="en">Montgomery curve a = 486662, prime field p = 2<sup>255</sup> − 19. Designed by Daniel J. Bernstein to be <strong class="text-white">immune to timing attacks</strong> by design. Used by Signal, WireGuard, SSH, Tor.</p>
         </div>
         <div class="glass rounded-2xl p-6">
-          <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-yellow-400">P-256 (secp256r1)</h4>
+          <h4 class="font-semibold font-['Syne_Variable'] mb-2 text-yellow-400">P-256 (secp256r1)</h4>
           <p class="text-xs text-text-secondary" data-lang="fr">Courbe Short Weierstrass NIST. Performante mais paramètres "inexpliqués" — des chercheurs soupçonnent un choix non aléatoire (similaire à Dual_EC_DRBG). Implémentations souvent non constant-time.</p>
           <p class="text-xs text-text-secondary" data-lang="en">NIST Short Weierstrass curve. Performant but "unexplained" parameters — researchers suspect non-random choice (similar to Dual_EC_DRBG). Implementations often not constant-time.</p>
         </div>
         <div class="glass rounded-2xl p-6 opacity-60">
-          <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-accent-red">RSA-2048</h4>
+          <h4 class="font-semibold font-['Syne_Variable'] mb-2 text-accent-red">RSA-2048</h4>
           <p class="text-xs text-text-secondary" data-lang="fr">Diffie-Hellman classique sur corps premier. Clés énormes (256+ bytes), lent, pas de PFS sauf avec des éphémères explicites. Vulnérable au quantum (Shor).</p>
           <p class="text-xs text-text-secondary" data-lang="en">Classical prime-field Diffie-Hellman. Huge keys (256+ bytes), slow, no PFS unless using explicit ephemerals. Quantum vulnerable (Shor).</p>
         </div>
@@ -407,8 +421,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Résistance post-quantique</span>
           <span data-lang="en">Post-quantum resistance</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">ML-KEM-1024</span> ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">ML-KEM-1024</span>?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi <span class="gradient-text">ML-KEM-1024</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why <span class="gradient-text">ML-KEM-1024</span>?</h2>
       </div>
 
       <div class="grid lg:grid-cols-2 gap-8 section-reveal">
@@ -417,7 +431,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-4">
               <span class="text-3xl">🛡️</span>
               <div>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']">ML-KEM-1024 (Kyber)</h3>
+                <h3 class="text-xl font-bold font-['Syne_Variable']">ML-KEM-1024 (Kyber)</h3>
                 <span class="text-xs text-accent-green">NIST FIPS 203 — Fialka</span>
               </div>
             </div>
@@ -429,8 +443,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
           </div>
           <div class="glass rounded-2xl p-6">
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="fr">Pourquoi ML-KEM-<span class="text-phantom-light">1024</span> et pas 768 ?</h4>
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="en">Why ML-KEM-<span class="text-phantom-light">1024</span> and not 768?</h4>
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3" data-lang="fr">Pourquoi ML-KEM-<span class="text-phantom-light">1024</span> et pas 768 ?</h4>
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3" data-lang="en">Why ML-KEM-<span class="text-phantom-light">1024</span> and not 768?</h4>
             <p class="text-sm text-text-secondary" data-lang="fr">ML-KEM-768 offre un niveau de sécurité 3 (≈ AES-192). Nous avons choisi <strong class="text-white">ML-KEM-1024</strong> (niveau 5 ≈ AES-256) pour une marge de sécurité maximale. Le surcoût est minimal (+0.05ms, +500 bytes).</p>
             <p class="text-sm text-text-secondary" data-lang="en">ML-KEM-768 offers security level 3 (≈ AES-192). We chose <strong class="text-white">ML-KEM-1024</strong> (level 5 ≈ AES-256) for maximum security margin. The overhead is minimal (+0.05ms, +500 bytes).</p>
           </div>
@@ -438,7 +452,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
         <div class="space-y-6">
           <div class="glass rounded-2xl p-6 border border-white/5 opacity-70">
-            <h4 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h4 class="text-lg font-bold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-xl">🔷</span> NTRU
               <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="fr">Alternatif</span>
               <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="en">Alternative</span>
@@ -449,7 +463,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
           </div>
           <div class="glass rounded-2xl p-6 border border-white/5 opacity-70">
-            <h4 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h4 class="text-lg font-bold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-xl">🟢</span> McEliece
               <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="fr">Clés énormes</span>
               <span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 text-xs" data-lang="en">Huge keys</span>
@@ -460,7 +474,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
           </div>
           <div class="glass rounded-2xl p-6 border border-white/5 opacity-70">
-            <h4 class="text-lg font-bold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h4 class="text-lg font-bold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-xl">🔴</span> SIKE/SIDH
               <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="fr">Cassé</span>
               <span class="px-2 py-0.5 rounded-full bg-accent-red/20 text-accent-red text-xs" data-lang="en">Broken</span>
@@ -484,8 +498,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Signatures numériques</span>
           <span data-lang="en">Digital signatures</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">Ed25519</span> ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">Ed25519</span>?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi <span class="gradient-text">Ed25519</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why <span class="gradient-text">Ed25519</span>?</h2>
       </div>
 
       <div class="section-reveal overflow-x-auto mb-8">
@@ -558,13 +572,13 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Renouvellement des clés</span>
           <span data-lang="en">Key renewal</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi le <span class="gradient-text">Double Ratchet</span> ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why the <span class="gradient-text">Double Ratchet</span>?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi le <span class="gradient-text">Double Ratchet</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why the <span class="gradient-text">Double Ratchet</span>?</h2>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-6 section-reveal">
         <div class="glass-strong rounded-2xl p-8 border border-accent-green/30 lg:col-span-2">
-          <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 flex items-center gap-2">
+          <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4 flex items-center gap-2">
             <span class="text-2xl">🔄</span><span data-lang="fr">Double Ratchet (Signal Protocol)</span><span data-lang="en">Double Ratchet (Signal Protocol)</span>
             <span class="px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green text-xs">Fialka</span>
           </h3>
@@ -590,7 +604,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
         <div class="space-y-6">
           <div class="glass rounded-2xl p-6 border border-accent-red/20 opacity-70">
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-accent-red">✗</span>
               <span data-lang="fr">Clé statique</span>
               <span data-lang="en">Static key</span>
@@ -599,7 +613,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <p class="text-xs text-text-secondary" data-lang="en">WhatsApp pre-2016, Telegram (non-secret chats). Single shared key. If compromised → <strong class="text-accent-red">all past AND future messages are readable</strong>.</p>
           </div>
           <div class="glass rounded-2xl p-6 border border-yellow-500/20 opacity-70">
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-yellow-400">△</span>
               <span data-lang="fr">OTR (Off-the-Record)</span>
               <span data-lang="en">OTR (Off-the-Record)</span>
@@ -608,7 +622,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <p class="text-xs text-text-secondary" data-lang="en">Double Ratchet predecessor. PFS but no async messages — both parties must be online simultaneously.</p>
           </div>
           <div class="glass rounded-2xl p-6 border border-yellow-500/20 opacity-70">
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3 flex items-center gap-2">
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3 flex items-center gap-2">
               <span class="text-yellow-400">△</span>
               <span>MTProto 2.0</span>
             </h4>
@@ -631,20 +645,20 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Nouveau en V3.5</span>
           <span data-lang="en">New in V3.5</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">SPQR — Le <span class="gradient-text">Triple Ratchet</span> post-quantique</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">SPQR — The post-quantum <span class="gradient-text">Triple Ratchet</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">SPQR — Le <span class="gradient-text">Triple Ratchet</span> post-quantique</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">SPQR — The post-quantum <span class="gradient-text">Triple Ratchet</span></h2>
       </div>
 
       <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12 mb-8">
         <div class="grid lg:grid-cols-2 gap-10 items-start">
           <div>
-            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Le problème</h3>
-            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The problem</h3>
+            <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Le problème</h3>
+            <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">The problem</h3>
             <p class="text-text-secondary mb-4" data-lang="fr">Le Double Ratchet classique renouvelle les clés via <strong class="text-white">X25519</strong> uniquement. ML-KEM-1024 n'est utilisé que dans le handshake initial PQXDH. Si un ordinateur quantique casse X25519 <strong class="text-phantom-light">après</strong> le handshake, les ratchets DH suivants ne bénéficient plus de protection post-quantique.</p>
             <p class="text-text-secondary mb-4" data-lang="en">The classic Double Ratchet renews keys via <strong class="text-white">X25519</strong> only. ML-KEM-1024 is only used in the initial PQXDH handshake. If a quantum computer breaks X25519 <strong class="text-phantom-light">after</strong> the handshake, subsequent DH ratchets no longer benefit from post-quantum protection.</p>
 
-            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 mt-8" data-lang="fr">La solution SPQR</h3>
-            <h3 class="text-xl font-bold font-['Space_Grotesk'] mb-4 mt-8" data-lang="en">The SPQR solution</h3>
+            <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4 mt-8" data-lang="fr">La solution SPQR</h3>
+            <h3 class="text-xl font-bold font-['Syne_Variable'] mb-4 mt-8" data-lang="en">The SPQR solution</h3>
             <p class="text-text-secondary" data-lang="fr">Tous les <strong class="text-white">10 messages</strong>, Fialka effectue un nouvel échange ML-KEM-1024 (encapsulation + décapsulation) et mélange le secret partagé post-quantique dans la rootKey via HKDF. C'est le <strong class="text-phantom-light">PQ Ratchet</strong> — un troisième ratchet, indépendant des deux autres.</p>
             <p class="text-text-secondary" data-lang="en">Every <strong class="text-white">10 messages</strong>, Fialka performs a new ML-KEM-1024 exchange (encapsulation + decapsulation) and mixes the post-quantum shared secret into the rootKey via HKDF. This is the <strong class="text-phantom-light">PQ Ratchet</strong> — a third ratchet, independent of the other two.</p>
           </div>
@@ -686,8 +700,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Dérivation de clés</span>
           <span data-lang="en">Key derivation</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Pourquoi <span class="gradient-text">HKDF-SHA256</span> ?</h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Why <span class="gradient-text">HKDF-SHA256</span>?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Pourquoi <span class="gradient-text">HKDF-SHA256</span> ?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Why <span class="gradient-text">HKDF-SHA256</span>?</h2>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6 section-reveal">
@@ -695,7 +709,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-3 mb-4">
             <span class="text-3xl">🧪</span>
             <div>
-              <h3 class="font-bold font-['Space_Grotesk']">HKDF</h3>
+              <h3 class="font-bold font-['Syne_Variable']">HKDF</h3>
               <span class="text-xs text-accent-green">RFC 5869</span>
             </div>
           </div>
@@ -712,8 +726,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
         <div class="md:col-span-2 space-y-6">
           <div class="glass rounded-2xl p-6">
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="fr">Où HKDF est utilisé dans Fialka</h4>
-            <h4 class="font-semibold font-['Space_Grotesk'] mb-3" data-lang="en">Where HKDF is used in Fialka</h4>
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3" data-lang="fr">Où HKDF est utilisé dans Fialka</h4>
+            <h4 class="font-semibold font-['Syne_Variable'] mb-3" data-lang="en">Where HKDF is used in Fialka</h4>
             <div class="space-y-2 font-['JetBrains_Mono'] text-xs">
               <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">PQXDH</span><span class="text-text-muted">SK = HKDF(DH₁‖DH₂‖DH₃‖DH₄‖ML-KEM.ss)</span></div>
               <div class="p-2 rounded bg-surface/50 flex items-center gap-3"><span class="text-phantom-light">DH Ratchet</span><span class="text-text-muted">newRK, CK = HKDF(RK, DH(a,B))</span></div>
@@ -723,14 +737,14 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="glass rounded-2xl p-5 opacity-60">
-              <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-sm text-yellow-400">PBKDF2</h4>
+              <h4 class="font-semibold font-['Syne_Variable'] mb-2 text-sm text-yellow-400">PBKDF2</h4>
               <p class="text-xs text-text-secondary" data-lang="fr">Conçu pour deriver des clés à partir de <strong class="text-white">mots de passe</strong> (lent volontairement). Pas adapté pour dérivation rapide type ratchet.</p>
               <p class="text-xs text-text-secondary" data-lang="en">Designed to derive keys from <strong class="text-white">passwords</strong> (intentionally slow). Not suited for fast ratchet-style derivation.</p>
               <p class="text-xs text-text-muted mt-2" data-lang="fr">→ Fialka utilise PBKDF2 uniquement pour le PIN (600K itérations)</p>
               <p class="text-xs text-text-muted mt-2" data-lang="en">→ Fialka uses PBKDF2 only for PIN (600K iterations)</p>
             </div>
             <div class="glass rounded-2xl p-5 opacity-60">
-              <h4 class="font-semibold font-['Space_Grotesk'] mb-2 text-sm text-yellow-400">Argon2</h4>
+              <h4 class="font-semibold font-['Syne_Variable'] mb-2 text-sm text-yellow-400">Argon2</h4>
               <p class="text-xs text-text-secondary" data-lang="fr">Memory-hard KDF, meilleur que PBKDF2 pour les mots de passe. Mais <strong class="text-white">trop lent</strong> et memory-intensive pour un ratchet par message.</p>
               <p class="text-xs text-text-secondary" data-lang="en">Memory-hard KDF, better than PBKDF2 for passwords. But <strong class="text-white">too slow</strong> and memory-intensive for per-message ratcheting.</p>
             </div>
@@ -751,8 +765,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <span data-lang="fr">Menaces & résistance</span>
           <span data-lang="en">Threats & resistance</span>
         </div>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="fr">Résistance aux <span class="gradient-text">attaques quantiques</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk']" data-lang="en">Resistance to <span class="gradient-text">quantum attacks</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="fr">Résistance aux <span class="gradient-text">attaques quantiques</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable']" data-lang="en">Resistance to <span class="gradient-text">quantum attacks</span></h2>
         <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="fr">Un ordinateur quantique suffisamment puissant disposera de deux armes principales. Voici comment Fialka se défend contre chacune.</p>
         <p class="text-text-secondary mt-4 max-w-3xl mx-auto" data-lang="en">A sufficiently powerful quantum computer will have two main weapons. Here's how Fialka defends against each.</p>
       </div>
@@ -765,8 +779,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-1">
               <span class="text-3xl">💀</span>
               <div>
-                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="fr">Algorithme de Shor</h3>
-                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="en">Shor's Algorithm</h3>
+                <h3 class="text-2xl font-bold font-['Syne_Variable']" data-lang="fr">Algorithme de Shor</h3>
+                <h3 class="text-2xl font-bold font-['Syne_Variable']" data-lang="en">Shor's Algorithm</h3>
                 <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="fr">MENACE CRITIQUE — casse la crypto asymétrique</span>
                 <span class="text-xs text-accent-red font-['JetBrains_Mono']" data-lang="en">CRITICAL THREAT — breaks asymmetric crypto</span>
               </div>
@@ -798,8 +812,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-1">
               <span class="text-3xl">🛡️</span>
               <div>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense Fialka vs Shor</h3>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">Fialka defense vs Shor</h3>
+                <h3 class="text-xl font-bold font-['Syne_Variable']" data-lang="fr">Défense Fialka vs Shor</h3>
+                <h3 class="text-xl font-bold font-['Syne_Variable']" data-lang="en">Fialka defense vs Shor</h3>
               </div>
             </div>
             <div class="mt-4 space-y-4 text-sm text-text-secondary">
@@ -834,8 +848,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-1">
               <span class="text-3xl">🔍</span>
               <div>
-                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="fr">Algorithme de Grover</h3>
-                <h3 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="en">Grover's Algorithm</h3>
+                <h3 class="text-2xl font-bold font-['Syne_Variable']" data-lang="fr">Algorithme de Grover</h3>
+                <h3 class="text-2xl font-bold font-['Syne_Variable']" data-lang="en">Grover's Algorithm</h3>
                 <span class="text-xs text-yellow-400 font-['JetBrains_Mono']" data-lang="fr">MENACE MODÉRÉE — divise la sécurité symétrique par 2</span>
                 <span class="text-xs text-yellow-400 font-['JetBrains_Mono']" data-lang="en">MODERATE THREAT — halves symmetric security</span>
               </div>
@@ -894,8 +908,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-1">
               <span class="text-3xl">✅</span>
               <div>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="fr">Défense Fialka vs Grover</h3>
-                <h3 class="text-xl font-bold font-['Space_Grotesk']" data-lang="en">Fialka defense vs Grover</h3>
+                <h3 class="text-xl font-bold font-['Syne_Variable']" data-lang="fr">Défense Fialka vs Grover</h3>
+                <h3 class="text-xl font-bold font-['Syne_Variable']" data-lang="en">Fialka defense vs Grover</h3>
               </div>
             </div>
             <div class="mt-4 space-y-3 text-sm text-text-secondary">
@@ -923,8 +937,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-3 mb-4">
             <span class="text-3xl">📡</span>
             <div>
-              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="fr">Harvest Now, Decrypt Later</h3>
-              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="en">Harvest Now, Decrypt Later</h3>
+              <h3 class="text-lg font-bold font-['Syne_Variable']" data-lang="fr">Harvest Now, Decrypt Later</h3>
+              <h3 class="text-lg font-bold font-['Syne_Variable']" data-lang="en">Harvest Now, Decrypt Later</h3>
               <span class="text-xs text-accent-red font-['JetBrains_Mono']">HNDL</span>
             </div>
           </div>
@@ -942,8 +956,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-3 mb-4">
             <span class="text-3xl">⚡</span>
             <div>
-              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="fr">Attaques par canal auxiliaire</h3>
-              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="en">Side-channel attacks</h3>
+              <h3 class="text-lg font-bold font-['Syne_Variable']" data-lang="fr">Attaques par canal auxiliaire</h3>
+              <h3 class="text-lg font-bold font-['Syne_Variable']" data-lang="en">Side-channel attacks</h3>
               <span class="text-xs text-yellow-400 font-['JetBrains_Mono']">Timing / Power / Cache</span>
             </div>
           </div>
@@ -961,8 +975,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <div class="flex items-center gap-3 mb-4">
             <span class="text-3xl">🎯</span>
             <div>
-              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="fr">Autres menaces connues</h3>
-              <h3 class="text-lg font-bold font-['Space_Grotesk']" data-lang="en">Other known threats</h3>
+              <h3 class="text-lg font-bold font-['Syne_Variable']" data-lang="fr">Autres menaces connues</h3>
+              <h3 class="text-lg font-bold font-['Syne_Variable']" data-lang="en">Other known threats</h3>
             </div>
           </div>
           <div class="text-sm text-text-secondary space-y-3">
@@ -977,8 +991,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       <!-- Threat Matrix Table -->
       <div class="section-reveal">
-        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-6" data-lang="fr">Matrice de <span class="gradient-text">résistance</span> complète</h3>
-        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-6" data-lang="en">Complete <span class="gradient-text">resistance</span> matrix</h3>
+        <h3 class="text-2xl font-bold font-['Syne_Variable'] text-center mb-6" data-lang="fr">Matrice de <span class="gradient-text">résistance</span> complète</h3>
+        <h3 class="text-2xl font-bold font-['Syne_Variable'] text-center mb-6" data-lang="en">Complete <span class="gradient-text">resistance</span> matrix</h3>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
             <thead><tr class="border-b border-white/10">
@@ -1063,8 +1077,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
       <!-- Timeline: Quantum Roadmap -->
       <div class="mt-12 section-reveal">
-        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="fr">Roadmap <span class="gradient-text">post-quantique</span> de Fialka</h3>
-        <h3 class="text-2xl font-bold font-['Space_Grotesk'] text-center mb-8" data-lang="en">Fialka <span class="gradient-text">post-quantum</span> roadmap</h3>
+        <h3 class="text-2xl font-bold font-['Syne_Variable'] text-center mb-8" data-lang="fr">Roadmap <span class="gradient-text">post-quantique</span> de Fialka</h3>
+        <h3 class="text-2xl font-bold font-['Syne_Variable'] text-center mb-8" data-lang="en">Fialka <span class="gradient-text">post-quantum</span> roadmap</h3>
         <div class="space-y-4 max-w-3xl mx-auto">
           <div class="flex gap-4 items-start">
             <div class="flex flex-col items-center">
@@ -1073,7 +1087,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
             <div class="glass rounded-xl p-5 flex-1 border border-accent-green/20">
               <div class="flex items-center gap-3 mb-1">
-                <span class="font-bold font-['Space_Grotesk'] text-accent-green">V3.5</span>
+                <span class="font-bold font-['Syne_Variable'] text-accent-green">V3.5</span>
                 <span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green" data-lang="fr">Fait</span>
                 <span class="text-xs px-2 py-0.5 rounded-full bg-accent-green/20 text-accent-green" data-lang="en">Done</span>
               </div>
@@ -1088,7 +1102,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
             <div class="glass rounded-xl p-5 flex-1 border border-yellow-500/20">
               <div class="flex items-center gap-3 mb-1">
-                <span class="font-bold font-['Space_Grotesk'] text-yellow-400">V3.6 – V3.7</span>
+                <span class="font-bold font-['Syne_Variable'] text-yellow-400">V3.6 – V3.7</span>
                 <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400" data-lang="fr">Prévu</span>
                 <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400" data-lang="en">Planned</span>
               </div>
@@ -1102,7 +1116,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             </div>
             <div class="glass rounded-xl p-5 flex-1 border border-phantom/20">
               <div class="flex items-center gap-3 mb-1">
-                <span class="font-bold font-['Space_Grotesk'] text-phantom-light">V4.0</span>
+                <span class="font-bold font-['Syne_Variable'] text-phantom-light">V4.0</span>
                 <span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="fr">Recherche</span>
                 <span class="text-xs px-2 py-0.5 rounded-full bg-phantom/20 text-phantom-light" data-lang="en">Research</span>
               </div>
@@ -1121,8 +1135,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-phantom/5 to-surface pointer-events-none"></div>
     <div class="relative max-w-5xl mx-auto px-6">
       <div class="text-center mb-12 section-reveal">
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">La pile <span class="gradient-text">complète</span></h2>
-        <h2 class="text-4xl md:text-5xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">The <span class="gradient-text">complete</span> stack</h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">La pile <span class="gradient-text">complète</span></h2>
+        <h2 class="text-4xl md:text-5xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">The <span class="gradient-text">complete</span> stack</h2>
       </div>
       <div class="section-reveal glass-strong rounded-3xl p-8 md:p-12">
         <div class="space-y-4 font-['JetBrains_Mono'] text-sm">
@@ -1195,8 +1209,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <section class="py-20 relative">
     <div class="max-w-3xl mx-auto px-6 text-center section-reveal">
       <div class="glass-strong rounded-3xl p-12">
-        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-4" data-lang="fr">Vérifiez par <span class="gradient-text">vous-même</span></h2>
-        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-4" data-lang="en">Verify it <span class="gradient-text">yourself</span></h2>
+        <h2 class="text-3xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">Vérifiez par <span class="gradient-text">vous-même</span></h2>
+        <h2 class="text-3xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">Verify it <span class="gradient-text">yourself</span></h2>
         <p class="text-text-secondary mb-8" data-lang="fr">Fialka est 100% open source. Chaque ligne de code crypto est auditable.</p>
         <p class="text-text-secondary mb-8" data-lang="en">Fialka is 100% open source. Every line of crypto code is auditable.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">

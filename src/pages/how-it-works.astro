@@ -12,7 +12,7 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">
         <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
-        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+        <span class="text-xl font-bold font-['Syne_Variable']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
       <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
@@ -20,8 +20,19 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="text-phantom-light font-semibold">How it Works</a>
         <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
-        <a href={`${base}security`} class="hover:text-phantom-light transition-colors">Security</a>
-        <a href={`${base}downloads`} class="hover:text-phantom-light transition-colors">Downloads</a>
+        <div class="relative group">
+                <button class="flex items-center gap-1 hover:text-phantom-light transition-colors cursor-pointer">
+                  Docs
+                  <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 glass-strong rounded-xl border border-white/10 py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                  <a href={`${base}security`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Security</a>
+                  <a href={`${base}mailbox`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Mailbox</a>
+                  <a href={`${base}platforms`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Platforms</a>
+                  <a href={`${base}downloads`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Downloads</a>
+                  <a href={`${base}faq`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">FAQ</a>
+                </div>
+              </div>
       </div>
       <div class="flex items-center gap-4">
         <button id="lang-toggle" class="text-sm px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all cursor-pointer"><span data-lang="fr">EN</span><span data-lang="en">FR</span></button>
@@ -46,7 +57,10 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
         <a href={`${base}security`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Security</a>
+        <a href={`${base}mailbox`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Mailbox</a>
+        <a href={`${base}platforms`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Platforms</a>
         <a href={`${base}downloads`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Downloads</a>
+        <a href={`${base}faq`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">FAQ</a>
         <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
@@ -58,8 +72,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   <!-- Header -->
   <section class="pt-32 pb-16 animated-gradient">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h1 class="text-5xl md:text-6xl font-black font-['Space_Grotesk'] mb-6" data-lang="fr">Comment ça <span class="gradient-text">fonctionne</span></h1>
-      <h1 class="text-5xl md:text-6xl font-black font-['Space_Grotesk'] mb-6" data-lang="en">How it <span class="gradient-text">works</span></h1>
+      <h1 class="text-5xl md:text-6xl font-black font-['Syne_Variable'] mb-6" data-lang="fr">Comment ça <span class="gradient-text">fonctionne</span></h1>
+      <h1 class="text-5xl md:text-6xl font-black font-['Syne_Variable'] mb-6" data-lang="en">How it <span class="gradient-text">works</span></h1>
       <p class="text-xl text-text-secondary" data-lang="fr">De la machine M-125 à votre poche — le parcours d'un message, du premier contact à la destruction automatique.</p>
       <p class="text-xl text-text-secondary" data-lang="en">From the M-125 machine to your pocket — a message's journey, from first contact to automatic destruction.</p>
     </div>
@@ -71,9 +85,9 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">1</div>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="fr">Échange de clés</h2>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Key Exchange</h2>
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Syne_Variable']">1</div>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']" data-lang="fr">Échange de clés</h2>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']" data-lang="en">Key Exchange</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">Quand Alice et Bob se connectent pour la première fois, ils scannent leurs <strong class="text-white">QR codes v2</strong> contenant leurs clés publiques X25519 et ML-KEM-1024.</p>
@@ -139,8 +153,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         </div>
         <div class="order-1 lg:order-2">
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">2</div>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']">Double Ratchet</h2>
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Syne_Variable']">2</div>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']">Double Ratchet</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">À chaque <strong class="text-white">tour de conversation</strong> (Alice parle, puis Bob répond), un nouvel échange X25519 est effectué — c'est le <strong class="text-phantom-light">DH Ratchet</strong>. L'échange initial PQXDH garantit une résistance post-quantique.</p>
@@ -163,9 +177,9 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">3</div>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="fr">Chiffrement & Signature</h2>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Encryption & Signing</h2>
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Syne_Variable']">3</div>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']" data-lang="fr">Chiffrement & Signature</h2>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']" data-lang="en">Encryption & Signing</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">Le message est d'abord <strong class="text-white">paddé</strong> à une taille fixe (256B/1KB/4KB/16KB) pour cacher sa longueur réelle.</p>
@@ -247,8 +261,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         </div>
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">4</div>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']">Transport Tor</h2>
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Syne_Variable']">4</div>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']">Transport Tor</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">Le blob chiffré est transmis par <strong class="text-white">TorTransport</strong> — un protocole de trames binaires (magic <code class="text-phantom-light text-xs">0xF1 0xA1</code>, 13 types de trames) qui établit une connexion directe vers l'adresse <strong class="text-phantom-light">.onion du destinataire</strong>.</p>
@@ -272,8 +286,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
         <div class="flex items-center gap-3 mb-8">
           <div class="w-12 h-12 rounded-xl bg-phantom/30 flex items-center justify-center text-2xl">📬</div>
           <div>
-            <h2 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="fr">Fialka Mailbox — 4 modes de livraison</h2>
-            <h2 class="text-2xl font-bold font-['Space_Grotesk']" data-lang="en">Fialka Mailbox — 4 delivery modes</h2>
+            <h2 class="text-2xl font-bold font-['Syne_Variable']" data-lang="fr">Fialka Mailbox — 4 modes de livraison</h2>
+            <h2 class="text-2xl font-bold font-['Syne_Variable']" data-lang="en">Fialka Mailbox — 4 delivery modes</h2>
             <p class="text-xs text-phantom-light font-['JetBrains_Mono'] mt-1" data-lang="fr">Store-and-forward chiffré · Fallback si destinataire hors-ligne</p>
             <p class="text-xs text-phantom-light font-['JetBrains_Mono'] mt-1" data-lang="en">Encrypted store-and-forward · Fallback if recipient offline</p>
           </div>
@@ -283,8 +297,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-3">
               <div class="w-10 h-10 rounded-xl bg-accent-green/10 flex items-center justify-center text-xl">⚡</div>
               <div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 1 — Direct P2P</div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 1 — Direct P2P</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="fr">Mode 1 — Direct P2P</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="en">Mode 1 — Direct P2P</div>
                 <div class="text-xs text-accent-green font-['JetBrains_Mono']" data-lang="fr">Le mode le plus rapide</div>
                 <div class="text-xs text-accent-green font-['JetBrains_Mono']" data-lang="en">The fastest mode</div>
               </div>
@@ -296,8 +310,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-3">
               <div class="w-10 h-10 rounded-xl bg-phantom/20 flex items-center justify-center text-xl">👤</div>
               <div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 2 — Mailbox Personnel</div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 2 — Personal Mailbox</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="fr">Mode 2 — Mailbox Personnel</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="en">Mode 2 — Personal Mailbox</div>
                 <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="fr">Votre .onion comme boîte aux lettres</div>
                 <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="en">Your .onion as a mailbox</div>
               </div>
@@ -309,8 +323,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-3">
               <div class="w-10 h-10 rounded-xl bg-phantom/20 flex items-center justify-center text-xl">🔒</div>
               <div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 3 — Nœud Privé</div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 3 — Private Node</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="fr">Mode 3 — Nœud Privé</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="en">Mode 3 — Private Node</div>
                 <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="fr">Liste blanche de membres</div>
                 <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="en">Member whitelist</div>
               </div>
@@ -322,8 +336,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
             <div class="flex items-center gap-3 mb-3">
               <div class="w-10 h-10 rounded-xl bg-phantom/20 flex items-center justify-center text-xl">🌐</div>
               <div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="fr">Mode 4 — Nœud Public</div>
-                <div class="font-semibold font-['Space_Grotesk']" data-lang="en">Mode 4 — Public Node</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="fr">Mode 4 — Nœud Public</div>
+                <div class="font-semibold font-['Syne_Variable']" data-lang="en">Mode 4 — Public Node</div>
                 <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="fr">Nœud ouvert sans liste blanche</div>
                 <div class="text-xs text-phantom-light font-['JetBrains_Mono']" data-lang="en">Open node, no whitelist</div>
               </div>
@@ -346,9 +360,9 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
       <div class="grid lg:grid-cols-2 gap-12 items-center section-reveal">
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Space_Grotesk']">5</div>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="fr">Réception & Destruction</h2>
-            <h2 class="text-3xl font-bold font-['Space_Grotesk']" data-lang="en">Receive & Destroy</h2>
+            <div class="w-12 h-12 rounded-xl bg-phantom flex items-center justify-center text-white text-xl font-bold font-['Syne_Variable']">5</div>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']" data-lang="fr">Réception & Destruction</h2>
+            <h2 class="text-3xl font-bold font-['Syne_Variable']" data-lang="en">Receive & Destroy</h2>
           </div>
           <div class="space-y-4 text-text-secondary">
             <p data-lang="fr">Bob reçoit le blob. Il <strong class="text-white">vérifie la signature Ed25519</strong> (badge ✅ ou ⚠️), puis déchiffre avec sa clé <strong class="text-phantom-light">AES-256-GCM ou ChaCha20-Poly1305</strong> du ratchet (selon le champ <code class="text-phantom-light text-xs">cipherSuite</code>).</p>
@@ -382,8 +396,8 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
           <path d="M32 12 L50 22 V36 C50 46 32 54 32 54 C32 54 14 46 14 36 V22 Z" fill="#7B2D8E" opacity="0.25"><animate attributeName="opacity" values="0.15;0.35;0.15" dur="3s" repeatCount="indefinite"/></path>
           <path d="M24 32 L30 38 L42 26" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"><animate attributeName="stroke-dashoffset" from="30" to="0" dur="1.5s" fill="freeze"/><animate attributeName="stroke-dasharray" values="0 30;30 0" dur="1.5s" fill="freeze"/></path>
         </svg>
-        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-6" data-lang="fr">Résultat : <span class="gradient-text">invisibilité totale</span></h2>
-        <h2 class="text-3xl font-bold font-['Space_Grotesk'] mb-6" data-lang="en">Result: <span class="gradient-text">total invisibility</span></h2>
+        <h2 class="text-3xl font-bold font-['Syne_Variable'] mb-6" data-lang="fr">Résultat : <span class="gradient-text">invisibilité totale</span></h2>
+        <h2 class="text-3xl font-bold font-['Syne_Variable'] mb-6" data-lang="en">Result: <span class="gradient-text">total invisibility</span></h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div class="p-4 rounded-xl bg-surface/50">
             <svg class="w-8 h-8 mx-auto mb-1" viewBox="0 0 32 32" fill="none"><rect x="6" y="14" width="20" height="14" rx="3" fill="#9C4DCC" opacity="0.3" stroke="#9C4DCC" stroke-width="1.5"/><path d="M11 14v-4a5 5 0 0 1 10 0v4" stroke="#9C4DCC" stroke-width="1.5" fill="none"/><circle cx="16" cy="20" r="2" fill="#9C4DCC"><animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite"/></circle></svg>

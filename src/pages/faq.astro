@@ -38,22 +38,63 @@ const faqsEn = [
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">
         <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
-        <span class="text-xl font-bold font-['Space_Grotesk']">Fial<span class="text-phantom-light">ka</span></span>
+        <span class="text-xl font-bold font-['Syne_Variable']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
+      <div class="hidden md:flex items-center gap-6 text-sm text-text-secondary">
+        <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors">Cryptography</a>
+        <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
+        <a href={`${base}changelog`} class="hover:text-phantom-light transition-colors">Changelog</a>
+        <div class="relative group">
+                <button class="flex items-center gap-1 text-phantom-light font-semibold cursor-pointer">
+                  Docs
+                  <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 glass-strong rounded-xl border border-white/10 py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                  <a href={`${base}security`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Security</a>
+                  <a href={`${base}mailbox`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Mailbox</a>
+                  <a href={`${base}platforms`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Platforms</a>
+                  <a href={`${base}downloads`} class="block px-4 py-2 text-sm text-text-secondary hover:text-phantom-light hover:bg-white/5 transition-colors">Downloads</a>
+                  <a href={`${base}faq`} class="block px-4 py-2 text-sm text-phantom-light font-semibold transition-colors">FAQ</a>
+                </div>
+              </div>
+      </div>
       <div class="flex items-center gap-4">
-        <button id="lang-btn" class="text-xs px-3 py-1.5 rounded-lg border border-phantom/30 hover:border-phantom-light hover:text-phantom-light transition-all">
-          <span data-lang="fr">🇬🇧 English</span>
-          <span data-lang="en">🇫🇷 Français</span>
+        <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-phantom hover:bg-phantom-light text-white text-sm font-medium rounded-xl transition-all hover:scale-105 glow-phantom">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer" aria-label="Menu">
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
         </button>
-        <a href={base} class="text-sm text-text-secondary hover:text-phantom-light transition-colors">← Home</a>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden glass-strong border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
+        <a href={base} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Cryptography</a>
+        <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
+        <a href={`${base}changelog`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Changelog</a>
+        <a href={`${base}security`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Security</a>
+        <a href={`${base}mailbox`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Mailbox</a>
+        <a href={`${base}platforms`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Platforms</a>
+        <a href={`${base}downloads`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Downloads</a>
+        <a href={`${base}faq`} class="py-2 text-phantom-light font-semibold transition-colors">FAQ</a>
+        <a href="https://github.com/FialkaApp/Fialka-Android" target="_blank" rel="noopener noreferrer" class="py-2 text-phantom-light hover:text-phantom transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
       </div>
     </div>
   </nav>
 
   <section class="pt-32 pb-12 animated-gradient">
     <div class="max-w-3xl mx-auto px-6">
-      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4" data-lang="fr">Questions <span class="gradient-text">fréquentes</span></h1>
-      <h1 class="text-4xl md:text-5xl font-black font-['Space_Grotesk'] mb-4" data-lang="en">Frequently Asked <span class="gradient-text">Questions</span></h1>
+      <h1 class="text-4xl md:text-5xl font-black font-['Syne_Variable'] mb-4" data-lang="fr">Questions <span class="gradient-text">fréquentes</span></h1>
+      <h1 class="text-4xl md:text-5xl font-black font-['Syne_Variable'] mb-4" data-lang="en">Frequently Asked <span class="gradient-text">Questions</span></h1>
     </div>
   </section>
 
