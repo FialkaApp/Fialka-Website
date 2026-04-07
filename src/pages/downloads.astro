@@ -181,6 +181,38 @@ cd Fialka-Android
         <p class="text-text-muted text-xs mt-3">Requires: Android SDK, NDK, Rust toolchain (for Fialka-Core). See <a href="https://github.com/FialkaApp/Fialka-Android/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">README.md</a> for full setup instructions.</p>
       </section>
 
+      <!-- Fialka Mailbox (Self-hosted) -->
+      <section class="mb-10">
+        <h2 class="docs-h2">📬 Fialka Mailbox (Self-hosted)</h2>
+        <div class="glass rounded-2xl p-6 border border-phantom/20">
+          <p class="text-text-secondary text-sm mb-4">
+            Deploy your own encrypted store-and-forward relay over Tor. Owner/member access control,
+            7-day TTL, and onion key protection with TPM 2.0 or passphrase.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-4 mb-5">
+            <a href="https://github.com/FialkaApp/fialka-mailbox/releases/latest" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-phantom to-phantom-light text-white font-semibold hover:opacity-90 transition-all">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3"/></svg>
+              Download Mailbox (Latest)
+            </a>
+            <a href={`${base}mailbox`}
+              class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl glass border border-phantom/30 text-phantom-light hover:border-phantom-light transition-all">
+              📖 Open Mailbox documentation
+            </a>
+          </div>
+
+          <div class="glass rounded-xl p-4 border border-phantom/20 overflow-x-auto mb-3">
+            <p class="text-text-muted text-xs mb-2">One-line installer (Linux / RPi):</p>
+            <pre class="text-xs text-green-300 font-mono whitespace-pre">curl -fsSL https://raw.githubusercontent.com/FialkaApp/fialka-mailbox/main/deploy/install.sh | sudo bash</pre>
+          </div>
+
+          <p class="text-text-muted text-xs">
+            Repository: <a href="https://github.com/FialkaApp/fialka-mailbox" target="_blank" rel="noopener noreferrer" class="text-phantom-light hover:underline">github.com/FialkaApp/fialka-mailbox</a>
+          </p>
+        </div>
+      </section>
+
       <!-- Links -->
       <div class="glass rounded-2xl p-6 border border-phantom/20">
         <h3 class="text-white font-bold mb-4">Related</h3>

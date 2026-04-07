@@ -568,6 +568,59 @@ const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   </section>
 
 
+  <!-- ===== SELF-HOSTED MAILBOX ===== -->
+  <section id="mailbox-selfhost" class="py-24 relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-surface via-surface-light/20 to-surface pointer-events-none"></div>
+    <div class="relative max-w-6xl mx-auto px-6 section-reveal">
+      <div class="glass-strong rounded-3xl p-8 md:p-12 border border-phantom/25">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-phantom-light mb-4 border border-phantom/30">
+              📬 Self-Hosted · Store-and-Forward chiffré
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold font-['Syne_Variable'] mb-4" data-lang="fr">
+              Déploie ton <span class="gradient-text">Fialka Mailbox</span>
+            </h2>
+            <h2 class="text-3xl md:text-4xl font-bold font-['Syne_Variable'] mb-4" data-lang="en">
+              Deploy your <span class="gradient-text">Fialka Mailbox</span>
+            </h2>
+            <p class="text-text-secondary mb-5" data-lang="fr">
+              Ton propre nœud <strong class="text-white">.onion</strong>, contrôle owner/member, TTL 7 jours, clé onion protégée
+              en mode <strong class="text-white">TPM 2.0</strong> ou <strong class="text-white">passphrase</strong>.
+              Le serveur reste un relais aveugle : il ne déchiffre rien.
+            </p>
+            <p class="text-text-secondary mb-5" data-lang="en">
+              Your own <strong class="text-white">.onion</strong> node, owner/member access control, 7-day TTL, onion key protection
+              with <strong class="text-white">TPM 2.0</strong> or <strong class="text-white">passphrase</strong>.
+              The server remains a blind relay: it decrypts nothing.
+            </p>
+            <div class="flex flex-wrap gap-3 text-xs text-text-muted">
+              <span class="px-2.5 py-1 rounded-lg bg-surface/70 border border-white/10">TorTransport binaire · TCP 7333</span>
+              <span class="px-2.5 py-1 rounded-lg bg-surface/70 border border-white/10">SQLite · pure Go</span>
+              <span class="px-2.5 py-1 rounded-lg bg-surface/70 border border-white/10">Linux/RPi · Docker · systemd</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3 min-w-[260px]">
+            <a href="https://github.com/FialkaApp/fialka-mailbox/releases/latest" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-phantom hover:bg-phantom-light text-white font-semibold transition-all hover:scale-105 glow-phantom">
+              ⬇️ <span data-lang="fr">Télécharger Mailbox</span><span data-lang="en">Download Mailbox</span>
+            </a>
+            <a href={`${base}mailbox`}
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl glass border border-phantom/30 hover:border-phantom-light text-phantom-light font-semibold transition-all hover:scale-105">
+              📖 <span data-lang="fr">Guide self-hosted</span><span data-lang="en">Self-hosted guide</span>
+            </a>
+            <a href="https://github.com/FialkaApp/fialka-mailbox" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl glass border border-white/10 hover:border-phantom/40 text-text-secondary hover:text-white transition-all">
+              💻 GitHub · Fialka Mailbox
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ===== DOWNLOAD ===== -->
   <section id="download" class="py-32 relative">
     <div class="absolute inset-0 bg-gradient-to-b from-surface via-phantom/5 to-surface pointer-events-none"></div>
