@@ -5,8 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://fialkaapp.github.io',
-  base: '/Fialka-Website',
+  site: 'https://fialka.app',
+  base: '/',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]

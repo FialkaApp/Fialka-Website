@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fialkaapp.github.io/Fialka-Website/sitemap-index.xml
+Sitemap: https://fialka.app/sitemap-index.xml

@@ -2,7 +2,7 @@
 
 Official website for **Fialka** — the end-to-end encrypted messenger that knows nothing about you.
 
-🔗 **Live:** [fialkaapp.github.io/Fialka-Website](https://fialkaapp.github.io/Fialka-Website/)
+🔗 **Live:** [fialka.app](https://fialka.app/)
 
 ## Features
 
