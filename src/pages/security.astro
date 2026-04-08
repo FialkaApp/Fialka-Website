@@ -3,7 +3,12 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Security">
+<Layout
+  title="Fialka — Security"
+  lang="en"
+  canonicalPath="/security"
+  description="Fialka security — cryptographic architecture, supported versions, and vulnerability reporting. PQXDH + Double Ratchet + AES-256-GCM over Tor Hidden Services."
+>
   <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
 
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">

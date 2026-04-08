@@ -3,39 +3,53 @@ import '../styles/global.css'
 
 interface Props {
   title: string;
+  description?: string;
+  lang?: string;
+  canonicalPath?: string;
+  hreflangFr?: string;
+  hreflangEn?: string;
+  noindex?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, description, lang = 'en', canonicalPath, hreflangFr, hreflangEn, noindex = false } = Astro.props;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://fialka.app';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const defaultDescription = "Fialka — free open-source post-quantum messenger. P2P via Tor Hidden Services, PQXDH (X25519 + ML-KEM-1024), Double Ratchet, AES-256-GCM, zero Firebase, zero central server, zero metadata.";
+const pageDescription = description ?? defaultDescription;
+const canonicalUrl = canonicalPath !== undefined ? `${siteUrl}${canonicalPath}` : null;
 ---
 
 <!doctype html>
-<html lang="fr" class="lang-fr">
+<html lang={lang} class={lang === 'fr' ? 'lang-fr' : 'lang-en'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Fialka — Héritière de la machine M-125. Messagerie post-quantique P2P via Tor Hidden Services. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Fialka Mailbox 4 modes, zéro Firebase, zéro serveur central." />
+    <meta name="description" content={pageDescription} />
     <meta name="theme-color" content="#7B2D8E" />
     <meta name="author" content="DevBot667" />
     <meta name="keywords" content="Fialka, M-125, cipher machine, Fialka M-125, Cold War cryptography, encrypted messaging, E2E encryption, Tor, Double Ratchet, X25519, PQXDH, ML-KEM-1024, post-quantum, privacy, anonymous chat, zero metadata, AES-256-GCM, Ed25519, StrongBox" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {hreflangFr && <link rel="alternate" hreflang="fr" href={`${siteUrl}${hreflangFr}`} />}
+    {hreflangEn && <link rel="alternate" hreflang="en" href={`${siteUrl}${hreflangEn}`} />}
+    {(hreflangFr || hreflangEn) && <link rel="alternate" hreflang="x-default" href={`${siteUrl}${hreflangEn ?? hreflangFr}`} />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
-    <meta property="og:description" content="Heir to the M-125 cipher machine. Post-quantum P2P messenger via Tor Hidden Services. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Fialka Mailbox 4 modes, zero Firebase, zero central server." />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalUrl ?? siteUrl} />
     <meta property="og:image" content={`${siteUrl}/og-image.png`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Fialka" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'fr' ? 'en_US' : 'fr_FR'} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content="Heir to the M-125 cipher machine. Post-quantum P2P messenger via Tor Hidden Services. PQXDH (X25519 + ML-KEM-1024), Double Ratchet, Fialka Mailbox 4 modes, zero Firebase, zero central server." />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
 
     <!-- Favicons -->

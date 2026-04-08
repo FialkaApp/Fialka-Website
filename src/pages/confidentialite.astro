@@ -3,7 +3,14 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Politique de confidentialité">
+<Layout
+  title="Fialka — Politique de confidentialité"
+  lang="fr"
+  canonicalPath="/confidentialite"
+  hreflangFr="/confidentialite"
+  hreflangEn="/privacy"
+  description="Politique de confidentialité Fialka — zéro collecte de données, P2P via Tor, pas d’analytics, pas de traçage, pas de compte. Conforme RGPD par architecture."
+>
   <div id="scroll-progress"></div>
 
   <!-- Nav -->

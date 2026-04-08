@@ -3,7 +3,12 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Mailbox">
+<Layout
+  title="Fialka — Mailbox"
+  lang="en"
+  canonicalPath="/mailbox"
+  description="Fialka Mailbox — encrypted offline message relay. 4 modes: Direct P2P, Personal, Private Node, Public Node. Zero plaintext, self-hostable, open-source."
+>
   <div id="scroll-progress" class="fixed top-0 left-0 right-0 h-1 z-[60] bg-gradient-to-r from-phantom to-phantom-light origin-left scale-x-0"></div>
 
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">

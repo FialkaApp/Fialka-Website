@@ -3,7 +3,14 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Conditions d'utilisation">
+<Layout
+  title="Fialka — Conditions d'utilisation"
+  lang="fr"
+  canonicalPath="/conditions"
+  hreflangFr="/conditions"
+  hreflangEn="/terms"
+  description="Conditions d’utilisation Fialka — logiciel open-source, pas de serveur central, pas de garantie. Responsabilités utilisateur, licence GPLv3, architecture décentralisée."
+>
   <div id="scroll-progress"></div>
 
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">

@@ -3,7 +3,12 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Politique Cookies">
+<Layout
+  title="Fialka — Politique Cookies"
+  lang="fr"
+  canonicalPath="/cookies"
+  description="Politique cookies Fialka — zéro cookie, zéro analytics, zéro traçage. Pas de bannière cookie nécessaire. Site statique hébergé sur GitHub Pages."
+>
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">

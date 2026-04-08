@@ -205,6 +205,8 @@ body {
 .lang-en [data-lang="en"] { display: revert !important; }
 .lang-fr [data-lang="en"] { display: none !important; }
 .lang-fr [data-lang="fr"] { display: revert !important; }
+.lang-en [data-lang="fr"] { display: none !important; }
+.lang-en [data-lang="en"] { display: revert !important; }
 
 /* ===== Scroll Progress Bar ===== */
 #scroll-progress {

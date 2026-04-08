@@ -3,7 +3,14 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Mentions légales">
+<Layout
+  title="Fialka — Mentions légales"
+  lang="fr"
+  canonicalPath="/mentions-legales"
+  hreflangFr="/mentions-legales"
+  hreflangEn="/imprint"
+  description="Mentions légales Fialka — informations légales sur le projet open-source bénévole hébergé sur GitHub Pages à fialka.app."
+>
   <nav class="fixed top-0 left-0 right-0 z-50 glass-strong">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href={base} class="flex items-center gap-3 group">

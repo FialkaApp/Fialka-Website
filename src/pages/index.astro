@@ -3,7 +3,12 @@ import Layout from '../layouts/Layout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 
-<Layout title="Fialka — Private by Design">
+<Layout
+  title="Fialka — Private by Design"
+  lang="fr"
+  canonicalPath="/"
+  description="Fialka — messagerie post-quantique open-source. P2P via Tor, PQXDH (X25519 + ML-KEM-1024), Double Ratchet, AES-256-GCM, zéro Firebase, zéro serveur central, zéro métadonnées. Android."
+>
 
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress"></div>
