@@ -1,22 +1,6 @@
 ﻿---
 import Layout from '../layouts/Layout.astro';
-import { marked } from 'marked';
-
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
-
-const BASE = 'https://raw.githubusercontent.com/FialkaApp/Fialka-Android/main/docs';
-let htmlFr = '<p><em>Pas encore disponible.</em></p>';
-let htmlEn = '<p><em>Not available yet.</em></p>';
-try {
-  const [resFr, resEn] = await Promise.all([
-    fetch(`${BASE}/fr/CHANGELOG.md`),
-    fetch(`${BASE}/en/CHANGELOG.md`),
-  ]);
-  if (resFr.ok) htmlFr = await marked.parse(await resFr.text());
-  if (resEn.ok) htmlEn = await marked.parse(await resEn.text());
-} catch (e) {
-  // fallback content already set
-}
 ---
 
 <Layout
@@ -35,8 +19,10 @@ try {
         <img src={`${base}icon-192.png`} alt="Fialka" class="w-8 h-8 rounded-lg transition-transform group-hover:scale-110" />
         <span class="text-xl font-bold font-['Syne_Variable']">Fial<span class="text-phantom-light">ka</span></span>
       </a>
-      <div class="hidden md:flex items-center gap-8 text-sm text-text-secondary">
+      <div class="hidden md:flex items-center gap-6 text-sm text-text-secondary">
         <a href={base} class="hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="text-phantom-light font-semibold">Changelog</a>
         <div class="relative group">
@@ -71,6 +57,8 @@ try {
     <div id="mobile-menu" class="md:hidden hidden glass-strong border-t border-white/5">
       <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-3 text-sm">
         <a href={base} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Home</a>
+        <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="fr">Cryptographie</a>
+        <a href={`${base}cryptography`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors" data-lang="en">Cryptography</a>
         <a href={`${base}how-it-works`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">How it Works</a>
         <a href={`${base}changelog`} class="py-2 text-phantom-light font-semibold">Changelog</a>
         <a href={`${base}security`} class="py-2 text-text-secondary hover:text-phantom-light transition-colors">Security</a>
@@ -99,8 +87,28 @@ try {
   <!-- Changelog Content -->
   <section class="py-24">
     <div class="max-w-3xl mx-auto px-6">
-      <div class="changelog-content prose-changelog" data-lang="fr" set:html={htmlFr}></div>
-      <div class="changelog-content prose-changelog" data-lang="en" set:html={htmlEn}></div>
+      <div id="changelog-fr" class="changelog-content prose-changelog" data-lang="fr">
+        <div class="animate-pulse space-y-4">
+          <div class="h-8 bg-white/5 rounded-xl w-3/4"></div>
+          <div class="h-4 bg-white/5 rounded w-full"></div>
+          <div class="h-4 bg-white/5 rounded w-5/6"></div>
+          <div class="h-4 bg-white/5 rounded w-4/6"></div>
+          <div class="h-8 bg-white/5 rounded-xl w-2/3 mt-8"></div>
+          <div class="h-4 bg-white/5 rounded w-full"></div>
+          <div class="h-4 bg-white/5 rounded w-3/4"></div>
+        </div>
+      </div>
+      <div id="changelog-en" class="changelog-content prose-changelog" data-lang="en">
+        <div class="animate-pulse space-y-4">
+          <div class="h-8 bg-white/5 rounded-xl w-3/4"></div>
+          <div class="h-4 bg-white/5 rounded w-full"></div>
+          <div class="h-4 bg-white/5 rounded w-5/6"></div>
+          <div class="h-4 bg-white/5 rounded w-4/6"></div>
+          <div class="h-8 bg-white/5 rounded-xl w-2/3 mt-8"></div>
+          <div class="h-4 bg-white/5 rounded w-full"></div>
+          <div class="h-4 bg-white/5 rounded w-3/4"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -180,6 +188,34 @@ try {
   </style>
 
   <!-- Footer handled by Layout -->
+
+  <script>
+    // Changelog: client-side fetch from GitHub (always up-to-date)
+    (async () => {
+      const BASE = 'https://raw.githubusercontent.com/FialkaApp/Fialka-Android/main/docs';
+      const divFr = document.getElementById('changelog-fr');
+      const divEn = document.getElementById('changelog-en');
+
+      async function loadChangelog(url: string, el: HTMLElement | null, fallback: string) {
+        if (!el) return;
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const md = await res.text();
+          // Dynamic import so Astro bundles marked for client use
+          const { marked } = await import('marked');
+          el.innerHTML = await marked.parse(md);
+        } catch {
+          el.innerHTML = `<p class="text-text-muted italic">${fallback}</p>`;
+        }
+      }
+
+      await Promise.all([
+        loadChangelog(`${BASE}/fr/CHANGELOG.md`, divFr, 'Impossible de charger le changelog.'),
+        loadChangelog(`${BASE}/en/CHANGELOG.md`, divEn, 'Unable to load changelog.'),
+      ]);
+    })();
+  </script>
 
   <script>
     // Mobile Menu Toggle
